@@ -1,0 +1,39 @@
+
+Buongiorno,
+
+Per il Capstone Project vorrei ampliare un'applicazione Python che ho già sviluppato durante il corso, dedicata all'analisi delle prestazioni in Formula 1, integrando alcune delle tecniche di Machine Learning e Deep Learning studiate durante il corso.
+
+Il progetto, denominato **Motorsport Performance Analysis, sarà composto da due sezioni principali:
+
+1. Data Analysis e Telemetry Comparison (già sviluppata)
+
+La prima parte utilizza i dati reali delle sessioni di Formula 1, acquisiti tramite la libreria FastF1, per effettuare analisi delle prestazioni dei piloti.
+
+Le funzionalità comprendono:
+- Analisi dei tempi sul giro, degli stint e delle strategie pneumatici.
+- Analisi statistiche e regressioni per studiare l'andamento delle prestazioni.
+- Confronto telemetrico tra piloti, attraverso velocità, acceleratore, freno e regime motore.
+- Visualizzazione dei circuiti e delle velocità lungo il tracciato.
+
+Questa sezione è stata sviluppata principalmente utilizzando Pandas, NumPy e Matplotlib, applicando tecniche di elaborazione, analisi statistica e visualizzazione dei dati.
+
+2. Dynamic Lap Time Prediction (nuovo sviluppo)
+
+La seconda parte introdurrà un modello di **Deep Learning basato su una rete neurale sviluppata con Keras, per prevedere dinamicamente il tempo finale di un giro di qualifica.
+
+Il modello sarà addestrato utilizzando i dati telemetrici delle tre sessioni di prove libere (FP1, FP2, FP3) dello stesso weekend, ricavati tramite FastF1.
+
+Attraverso tecniche di feature engineering, ogni giro verrà suddiviso in diversi punti di osservazione, considerando informazioni come velocità, tempo trascorso, progressione del giro, pneumatici e pilota.
+
+La rete neurale apprenderà a correggere una previsione di riferimento, calcolata utilizzando il miglior giro delle FP3. Durante la riproduzione di un giro di qualifica, il sistema aggiornerà progressivamente la previsione utilizzando esclusivamente le informazioni disponibili fino a quel momento.
+
+
+3. Interfaccia grafica e completamento
+
+Infine, intendo unificare entrambe le sezioni in una nuova interfaccia web interattiva, sviluppata con Streamlit e Plotly, sostituendo l'attuale interfaccia basata su Matplotlib.
+
+La dashboard permetterà di consultare le analisi telemetriche già esistenti e di visualizzare in tempo reale, durante il replay di una sessione storica, l'evoluzione delle previsioni della rete neurale.
+
+Con l'integrazione del modello predittivo e il rinnovamento del frontend, il progetto sarà considerato completo per la consegna finale.
+
+Cordiali saluti
