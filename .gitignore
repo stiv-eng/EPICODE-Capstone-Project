@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.fastf1_cache/
+artifacts/
+*.pyc
