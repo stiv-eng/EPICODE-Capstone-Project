@@ -30,6 +30,19 @@ def session_data(year, event, code):
     setup_cache()
     session = fastf1.get_session(int(year), event, code)
     session.load(laps=True, telemetry=True, weather=False, messages=False)
+    # FastF1 puo' registrare errori nei log e proseguire senza caricare i giri.
+    # In quel caso falliamo qui, invece di mostrare pagine vuote e messaggi ambigui.
+    try:
+        laps = session.laps
+    except Exception as exc:
+        raise RuntimeError(
+            f'FastF1 non ha caricato i giri di {event} {year} ({code}). '
+            'Controlla nel terminale i log FastF1, la connessione Internet e '
+            'la compatibilita delle librerie: python -m pip check. '
+            f'Dettaglio: {exc}'
+        ) from exc
+    if laps.empty:
+        raise ValueError(f'Nessun giro presente per {event} {year} ({code}).')
     return session
 
 
@@ -65,16 +78,23 @@ def load_selected_session(year, event, code):
 
 
 def lap_choices(session, driver):
-    """Restituisce lista di tuple (label, lap) per selection UI."""
+    """Restituisce coppie (etichetta, oggetto FastF1 Lap) con telemetria accessibile.
+
+    IMPORTANTE: non usare iterrows(), che produce pandas.Series e perde il
+    collegamento di FastF1 alla Session necessario a get_car_data().
+    """
     laps = session.laps.pick_drivers([driver])
     if 'LapTime' in laps:
         laps = laps.loc[laps['LapTime'].notna()]
-    if 'IsAccurate' in laps:
-        laps = laps.loc[laps['IsAccurate'].fillna(False).astype(bool)]
     if 'Deleted' in laps:
         laps = laps.loc[~laps['Deleted'].fillna(False).astype(bool)]
+    # IsAccurate e' una valutazione sulla qualita' del giro, non un requisito
+    # per leggere la telemetria. Non eliminare tutti i giri se e' False.
     choices = []
-    for _, lap in laps.sort_values('LapNumber').iterrows():
+    for idx in laps.sort_values('LapNumber').index:
+        lap = laps.loc[idx]  # FastF1 Lap, NON pandas.Series generica
+        if not hasattr(lap, 'get_car_data'):
+            raise TypeError('Il giro selezionato non e\' un oggetto FastF1 Lap.')
         sec = lap['LapTime'].total_seconds()
         choices.append((f"Giro {int(lap['LapNumber'])} · {sec:.3f} s · {lap.get('Compound', '?')}", lap))
     return choices
