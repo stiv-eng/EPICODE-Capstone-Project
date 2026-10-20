@@ -62,11 +62,13 @@ frame. It has **no target field**. Current/last/best-lap source timing fields an
 source progress are not retained in that frame.
 
 `Corpus.targets` separately records the verified target seconds, target source,
-source SHA-256, lap fingerprint, lap UID, physical-session ID, participant ID,
+source ID/revision/URL, per-file SHA-256 when applicable, lap fingerprint, lap UID, physical-session ID, participant ID,
 chronology, domain, coverage and source-independence decision. `snapshots` first
 computes causal rows, then attaches this table in a checked many-to-one join.
 All prefixes of a lap receive the same split assignment. Target/provenance and
 quality columns can be exported for audit but are refused by the trainer as inputs.
+For GT7, the bundle revision identifies the collection; its individual file hashes
+remain in the v0.5 manifest. The revision is never mislabelled as a file SHA-256.
 
 ACGym produces 275 accepted rows: 55 laps × five checkpoints, no checkpoint
 rejections. GT7 produces 40: eight laps × five checkpoints. No snapshot is an

@@ -234,7 +234,11 @@ def test_real_acgym_manifest_targets_duplicate_captures_and_gate():
 @pytest.mark.skipif(not (ROOT/'data/raw/gt7_trial_mountain_962c').exists(),reason='Optional GT7 bundle absent')
 def test_gt7_experimental_workflow():
     from motorsport.ingestion.gt7_importer import load_gt7_bundle
-    corpus=from_sessions([load_gt7_bundle(ROOT/'data/raw/gt7_trial_mountain_962c')],'GT7')
+    session=load_gt7_bundle(ROOT/'data/raw/gt7_trial_mountain_962c')
+    corpus=from_sessions([session],'GT7')
+    assert len(corpus.exclusions)==len(session.metadata['lap_rejections'])>0
+    assert corpus.targets.source_sha256.isna().all()  # bundle revision is not a file SHA
+    assert corpus.targets.source_revision.eq(session.metadata['revision']).all()
     assert len(corpus.laps)==8 and not eligibility(corpus)['eligible']
     table,rejected=snapshots(corpus)
     assert len(table)==40 and rejected.empty

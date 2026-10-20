@@ -1,7 +1,7 @@
 {
   "ACGym": {
     "mode": "Evaluated ML \u00b7 chronological physical-session holdout",
-    "corpus_id": "5107a9fa7b7abb52afa963d4f15b1d8081ef211c94556b3ffea520ffb26bc55f",
+    "corpus_id": "9b40989b3050adf87a86b8f678e7a9bbcc9d5c4f4a4cb8c9ab31d46fbe7ea55d",
     "selected_model": "SVR",
     "split": [
       {
@@ -2479,7 +2479,7 @@
   },
   "GT7": {
     "mode": "Experimental single-session case study \u2014 insufficient evidence for generalization.",
-    "corpus_id": "55b64abd5548aaf4c2aecfefc0a1f4fe45caef5497b02c253961df47f677c23c",
+    "corpus_id": "df38e20a36fd0a3e688f2be1048568d5eb81eaaf84557faa2ea94cf1ebaa7bae",
     "selected_model": "SVR",
     "split": [
       {
@@ -3282,5 +3282,5 @@
     "validation_laps": 2,
     "test_laps": 2
   },
-  "execution_seconds": 9.342
+  "execution_seconds": 8.94
 }

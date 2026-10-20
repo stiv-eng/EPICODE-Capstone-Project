@@ -68,7 +68,7 @@ def from_sessions(sessions, name='Local validated telemetry'):
             exclusions.append({'source':meta['filename'],'reason':'duplicate raw capture'})
             continue
         captures.add(capture)
-        exclusions.extend({'source':meta['filename'],**r} for r in meta.get('rejected_laps',[]))
+        exclusions.extend({'source':meta['filename'],**r} for r in meta.get('rejected_laps',meta.get('lap_rejections',[])))
         if not session.laps.available:
             continue
         for lap in session.laps.laps.itertuples(index=False):
@@ -95,7 +95,9 @@ def from_sessions(sessions, name='Local validated telemetry'):
             laps.append(source)
             targets.append({'lap_uid':uid,'physical_session_id':physical,'driver_id':source.driver_id,
                 'target_s':float(lap.duration_s),'target_source':lap.target_source,
-                'source_sha256':capture,'fingerprint':fingerprint,'start_order':order,
+                'source_id':capture,'source_sha256':meta.get('source_sha256'),
+                'source_revision':meta.get('revision'),'source_url':meta.get('source_url'),
+                'fingerprint':fingerprint,'start_order':order,
                 'domain':source.domain,'min_core_coverage':min(core_coverage(frame).values()),
                 'independence_verified':source.independence_verified})
     return Corpus(name,sorted(laps,key=lambda lap:lap.start_order),pd.DataFrame(targets),exclusions)
