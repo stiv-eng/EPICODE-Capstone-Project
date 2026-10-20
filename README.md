@@ -1,100 +1,126 @@
-# Motorsport Telemetry Analyzer - v0.4 Dataset Foundation
+# Motorsport Telemetry Analyzer - v0.5
 
-Explore local racing telemetry without a running simulator or FastF1 downloads.
-The real supplied dataset is available locally at `data/raw/telemetry.parquet`.
-Raw telemetry is excluded from Git; a fresh clone must obtain the file separately.
+Advanced local telemetry analysis, session-window comparison and audited dataset
+expansion. Python 3.11, Streamlit, Plotly, Pandas and NumPy; no running simulator
+or FastF1 connection is needed for local analysis.
 
-## Start from VS Code (Windows)
+## Start in VS Code
 
-1. Open this project folder in VS Code.
+1. Open this project folder.
 2. In **Run and Debug**, select **Motorsport Telemetry Analyzer**.
-3. Press **F5**. The profile runs Streamlit with the selected project interpreter.
-4. Open **Data Explorer** in the sidebar. Select `data/raw/telemetry.parquet`.
+3. Press **F5**. Open **Session Overview** from the sidebar.
+4. Select the original `data/raw/telemetry.parquet` or **GT7 - Trial Mountain - Porsche 962 C**.
 
-The existing `.venv` uses Python 3.11.9 and already contains all core packages.
-`.vscode/settings.json` points Python at `.venv/Scripts/python.exe`.
-The Python and Python Debugger extensions are installed in this workspace's user profile.
-If VS Code previously selected a different interpreter, select the project `.venv`
-with **Python: Select Interpreter** once; VS Code preserves explicit interpreter selections.
-The older launch profile remains available.
+The existing `.venv` and F5 configuration are preserved. VS Code uses the selected
+project interpreter; `.vscode/settings.json` points to `.venv/Scripts/python.exe`.
+If a different interpreter was explicitly selected earlier, select this `.venv`
+once using **Python: Select Interpreter**. Ordinary startup needs no terminal command.
 
-## Data Explorer
+## Pages
 
-- **Dataset e qualita**: metadata, original/canonical previews, missing/infinite values,
-  duplicate records/timestamps, sampling gaps, constants and exploratory outliers.
-- **Segnali**: select up to eight numeric signals and a sample interval. Speed,
-  pedals, steering, RPM and gear are available in the real attachment.
-- **Posizione**: a source-coordinate trace colored by speed where available.
-- **Giri**: complete laps only when counters and progress validate boundaries.
+| Page | What it does |
+|---|---|
+| Session Overview | Recorded span versus observed duration, acquisition quality, sample/time means, gear/RPM distributions, capability assessment and candidate lap-feature export |
+| Data Explorer | Cached local CSV/Parquet or in-memory uploads, explicit column/unit mappings, schema/quality and raw previews; audited GT7 bundle support |
+| Driver Inputs | Configurable pedal thresholds, observed-time usage/overlap, complete/partial braking events, entry speeds, steering activity and combined signal charts |
+| Vehicle Dynamics | Acceleration traces, source-scale G-G scatter, speed/lateral and steering/yaw relations, slip, loads, suspension and wheel signals |
+| Tyre Analysis | FL/FR/RL/RR core/inner/middle/outer temperatures, pressures, reported wear, wheel loads/speeds where present; temporal inspection and CSV summaries |
+| Telemetry Comparison | Two compatible session windows with relative time, up to 20 saved windows, or validated laps with approximate driven-distance-fraction alignment |
+| Position Analysis | Source trajectory colored by speed/pedals, time window, sample marker, hover details and coordinate-quality warnings |
 
-For another file, choose **Carica file** and upload CSV or Parquet. Uploads remain
-in memory. Alternatively place a local file in `data/raw/` or `data/demo/`.
-Canonical names work directly; expand **Mappatura colonne e unita** to declare
-source columns and units and press **Applica mappatura**. Supported time units:
-seconds, milliseconds, microseconds, nanoseconds or datetime; speed: km/h or m/s;
-pedals: percent or fraction. Units are never guessed from a signal's maximum.
-CSV delimiters comma, semicolon, tab and pipe are detected; single-channel CSV
-is supported. Nonstandard encodings/layouts should be exported as ordinary UTF-8 CSV.
-The audited profile is automatically selected only for a local file whose SHA-256
-matches the supplied attachment, not merely its filename.
+Legacy Formula 1 pages remain opt-in through the sidebar checkbox. Historical
+SVR and Keras source modules are preserved, with migration deferred to v0.6/v0.7.
 
-Calculations use complete data. Plotly views use at most 5,000 rows selected by
-bucket extrema. Source rows, timestamps and extra channels are preserved;
-no missing telemetry is replaced with synthetic measurements. Canonical invalid
-values become missing, with their original values still available in the raw frame.
+## Data and analytical definitions
 
-## Findings from the real dataset
+The original attachment contains **116,987 rows / 86 channels**, no validated lap
+boundaries, repeated simulator timestamps and a 2.36 s gap. Recorded span is
+**1,827.078 s**; observed support after excluding the gap is **1,824.718 s**.
+Time means and pedal usage use positive finite forward intervals, with left-hold
+values. Repeated time values get zero dwell; gaps are excluded and no terminal
+sample duration is invented. The UI distinguishes ordinary sample means and
+channel-specific temporal coverage. Braking events do not split at zero-duration
+clock repeats; unsupported gaps and unknown samples do split them.
 
-**116,987 samples, 86 source channels, 1,827.078 seconds, about 64.03 Hz.**
-No null/infinite cells or exact duplicate rows; 14 constant channels; 1,245 repeated
-simulator timestamps and one 2.36-second acquisition gap. Speed reaches 260.589 km/h.
-`lap_progress` and `completed_laps` are both always zero. Coordinates are consistent
-with integrated velocities, so proximity returns are not certified lap boundaries.
-Lap analysis and lap-time model targets are unavailable for this attachment.
-Assetto Corsa / Imola provenance cannot be established from its embedded metadata.
+The additional GT7 source is downloaded locally and hash-verified: **95,796 rows /
+114 source columns**, one driver/session/car/track, **eight** consistency-checked
+complete laps. Other source groups are rejected for timer repeats/resets, out-lap
+status or missing finish evidence. Session time is host capture time; accepted lap
+targets use the independent simulator lap timer/next-lap packet, not host duration.
+Both raw datasets remain unchanged and excluded from Git.
 
-See the measured [dataset audit](docs/DATASET_AUDIT_V04.md),
-[architecture](docs/ARCHITECTURE_V04.md) and [release report](docs/RELEASE_V04_REPORT.md).
+GT7 attribution: Ricardo Queiroz (2026),
+[GT7 Telemetry: Porsche 962 C at Trial Mountain](https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c),
+publisher-declared [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) for the
+author's contribution. Our normalization, validation and summaries are separate
+derivations. No game assets or raw source telemetry are committed.
 
-## Environment and validation
+Unknown physical units remain labelled source units. Source-coordinate trajectories
+are not verified circuit geometry. Normalized driven distance supports retrospective
+signal-shape comparison; **cumulative lap delta remains unavailable for both real
+datasets** because no verified common spatial reference exists. Arbitrary session
+windows never become laps. Neither integrated collection meets the conservative
+robust ML/DL eligibility gate; no new supervised model was trained.
 
-For a new installation only (the current environment is already prepared):
+## Load and compare another session
+
+Choose **Carica file** in Data Explorer to upload CSV/Parquet. Use
+**Mappatura colonne e unita** to declare names/units and press **Applica mappatura**.
+That mapped session becomes available to the analytical pages and comparison
+selectors for the current Streamlit session. Local files in `data/raw/` or
+`data/demo/` are also discovered. There are no startup downloads.
+
+In **Telemetry Comparison**, choose sessions A/B and two positive-duration time
+windows. Select compatible channels and use **Salva finestra A/B** to retain a
+selection in memory. Relative axes preserve each window's actual clock and duration.
+For GT7 on both sides, **Giri verificati** exposes the eight accepted source IDs;
+plots clearly describe approximate alignment and disable unsupported time delta.
+CSV exports are available for derived metrics, events and lap-level candidate features.
+Full-lap aggregates are retrospective and must not be used as causal progressive inputs.
+
+## Environment and checks
+
+The existing Python 3.11.9 `.venv` already has the necessary packages. v0.5 adds no
+dependencies and does not reinstall deep learning libraries. On a new installation:
 
 ```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Core dependencies: NumPy, Pandas, PyArrow, Plotly, Streamlit, scikit-learn and pytest.
-FastF1, Keras, PyTorch and artifact support are optional in `requirements-extension.txt`.
-Existing deep learning packages were reused; none were reinstalled.
+Optional legacy/training-test packages are in `requirements-extension.txt`.
+Raw telemetry is not in Git. To reproduce the pinned GT7 working copy explicitly:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.download_gt7
+```
+
+Current workspace: both working datasets are already present. For another machine,
+copy the original attachment to `data/raw/telemetry.parquet` separately.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q tests
 .\.venv\Scripts\python.exe -m pip check
-.\.venv\Scripts\python.exe -m scripts.audit_dataset
+.\.venv\Scripts\python.exe -m scripts.audit_v05
 .\.venv\Scripts\python.exe -m scripts.smoke_app
 ```
 
-On a core-only installation, run tests with
-`--ignore=tests/test_model.py --ignore=tests/test_evaluation.py`.
-Those two historical training tests require the optional extension dependencies.
-Real-data tests skip when the ignored local attachment is absent. CI separates core
-and legacy training checks. Small synthetic fixtures are used only in tests.
-Optional browser captures can be regenerated with
-`python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`;
-this optional path uses the installed `websockets` package. Screenshots and logs are
-ignored under `artifacts/`. The temporary server/browser are stopped after checking.
+For a core-only installation omit the two historical DL training modules with
+`--ignore=tests/test_model.py --ignore=tests/test_evaluation.py`. Real-file tests skip
+if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests.
+Optional browser checks use the installed `websockets` package and local Chrome:
+`python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
+Screenshots/logs stay under ignored `artifacts/`; the temporary server/browser stop afterward.
 
-## Legacy and roadmap
+## Reports
 
-Enable **Mostra pagine legacy Formula 1** to expose historical dashboards.
-They require optional FastF1 resources and may need network access. Their models
-and feature functions are preserved separately from the local ingestion pipeline.
-Historical setup and model explanations are archived in
-[README_LEGACY_V03.md](docs/README_LEGACY_V03.md).
+- [Dataset research, licenses and measured selection](docs/DATASET_SELECTION_V05.md)
+- [Architecture and analytical formulas](docs/ARCHITECTURE_V05.md)
+- [ML/DL readiness, eligibility and leakage prevention](docs/ML_DL_READINESS_V05.md)
+- [Release report and actual acceptance results](docs/RELEASE_V05_REPORT.md)
+- [Reproducible measured evidence](docs/DATASET_MEASUREMENTS_V05.json)
 
-v0.5 should obtain reliable finish crossings, lap/session identifiers, source units,
-provenance and car/track metadata before lap comparisons or supervised lap-time
-training. v0.6/v0.7 can migrate SVR and Keras using validated canonical data.
-No v0.5 features or model migration are implemented in v0.4.
+v0.4 audit/release/architecture reports remain in `docs/`. Earlier Formula 1 setup
+and model notes are retained in [the historical README](docs/README_LEGACY_V03.md).
+v0.6 should use the GT7 subset as a small feature-contract case study and acquire
+an audited multi-session human ACGym subset before meaningful supervised evaluation.

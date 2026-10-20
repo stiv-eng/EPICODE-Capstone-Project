@@ -1,3 +1,23 @@
+# Release v0.5.0 - 2026-10-20
+
+- Added observed-time session metrics for irregular timestamps, repeated clocks,
+  missing time and acquisition gaps; sample and temporal statistics stay distinct.
+- Added configurable pedal usage/overlap, complete/partial braking events,
+  onset-speed statistics and source-scale steering activity.
+- Added Session Overview, Driver Inputs, Vehicle Dynamics, Tyre Analysis,
+  generalized Telemetry Comparison and Position Analysis pages with CSV exports.
+- Added shared cached dataset selection and a Data Explorer upload/mapping registry,
+  including file-replacement invalidation and bounded chart rendering.
+- Added saved session windows, compatible-unit checks, guarded validated-lap
+  comparison and explicit rejection of unsupported cumulative lap deltas.
+- Researched public datasets; downloaded and pinned a CC-BY-4.0 GT7 collection.
+  Validated eight complete lap targets from real packet timers; rejected inconsistent
+  groups and preserved raw files. No full supervised training was introduced.
+- Added capability and ML/DL eligibility assessment, retrospective candidate lap
+  features, reproducible source manifests, measured audit and readiness documentation.
+- Expanded unit, UI, real-file integration and browser smoke coverage.
+- Preserved v0.4 Git baseline, F5 setup, original datasets and historical SVR/Keras code.
+
 # Release v0.4.0 - 2026-10-20
 
 - Restored local Git history from the verified remote v0.3 branch without replacing

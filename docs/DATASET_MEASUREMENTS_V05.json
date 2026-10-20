@@ -1,0 +1,646 @@
+{
+  "original": {
+    "available": true,
+    "session_id": "local:b28e1797419a5d9987294cae3f09530f63c642045bcf223bb2e0809ad0c399d4",
+    "raw_shape": [
+      116987,
+      86
+    ],
+    "overview": {
+      "samples": 116987,
+      "valid_time_speed_samples": 116987,
+      "time": {
+        "gap_threshold_s": 1.0,
+        "observed_s": 1824.7179999999935,
+        "span_s": 1827.0779999999795,
+        "excluded_gap_s": 2.35999999998603,
+        "duplicate_steps": 1245,
+        "backward_steps": 0,
+        "invalid_time_samples": 0,
+        "large_gaps": 1
+      },
+      "signals": {
+        "speed_kmh": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 144.86034850780538,
+          "sample_mean": 144.86317500555805,
+          "min": 1.0051201581954956,
+          "max": 260.58929443359375
+        },
+        "throttle_pct": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 67.27043908504841,
+          "sample_mean": 67.27871704095334,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "brake_pct": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 11.672024862442223,
+          "sample_mean": 11.653930134929574,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "rpm": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 5505.216440020035,
+          "sample_mean": 5505.416217186525,
+          "min": 76.0,
+          "max": 8396.0
+        },
+        "g_lat": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 0.1436698406873173,
+          "sample_mean": 0.14349442538576698,
+          "min": -2.92047119140625,
+          "max": 3.037080764770508
+        },
+        "g_lon": {
+          "covered_s": 1824.7179999999935,
+          "time_mean": 0.013668092604846223,
+          "sample_mean": 0.013899206698261161,
+          "min": -2.2588796615600586,
+          "max": 2.032480239868164
+        }
+      }
+    },
+    "driver_default_thresholds": {
+      "throttle_pct": 90,
+      "brake_pct": 5,
+      "overlap_throttle_pct": 5,
+      "min_event_s": 0.1
+    },
+    "driver_metrics": {
+      "usage": {
+        "high_throttle": {
+          "active_s": 1179.6730000005336,
+          "covered_s": 1824.7179999999935,
+          "time_pct": 64.64960613094944
+        },
+        "braking": {
+          "active_s": 240.1730000009993,
+          "covered_s": 1824.7179999999935,
+          "time_pct": 13.162198213696591
+        },
+        "overlap": {
+          "active_s": 18.662000000360422,
+          "covered_s": 1824.7179999999935,
+          "time_pct": 1.0227333758071377
+        }
+      },
+      "observed_events": 241,
+      "complete_events": 240,
+      "entry_speed_mean_kmh": 164.5409722963969,
+      "entry_speed_max_kmh": 259.4122619628906,
+      "steering": {
+        "covered_s": 1824.7179999999935,
+        "time_mean": -0.029231488835930717,
+        "sample_mean": -0.02923997824863769,
+        "min": -0.8999999761581421,
+        "max": 0.8999999761581421
+      },
+      "steering_activity_source_units_per_s": 0.4146172437379118
+    },
+    "source_quality": {
+      "rows": 116987,
+      "columns": 86,
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "constant_channels": [
+        "lap_progress",
+        "completed_laps",
+        "brake_temp_fl",
+        "brake_temp_fr",
+        "brake_temp_rl",
+        "brake_temp_rr",
+        "turbo_boost",
+        "drs",
+        "tc",
+        "abs",
+        "brake_bias",
+        "air_temp",
+        "road_temp",
+        "water_temp"
+      ],
+      "time": null
+    },
+    "validated_laps": [],
+    "rejected_laps": [],
+    "capabilities": {
+      "session_analysis": {
+        "available": true,
+        "reason": "At least one finite numeric source signal."
+      },
+      "time_window_comparison": {
+        "available": true,
+        "reason": "Positive observed-time support and no backward clock steps required."
+      },
+      "track_position_analysis": {
+        "available": true,
+        "reason": "Finite varying source coordinates; provenance/accuracy remain source-specific."
+      },
+      "validated_lap_analysis": {
+        "available": false,
+        "reason": "Lap counter/progress are constant: complete laps cannot be validated."
+      },
+      "lap_progress_comparison": {
+        "available": false,
+        "reason": "Complete laps with finite monotonic driven distance; normalized fraction is approximate spatial alignment."
+      },
+      "cumulative_lap_delta": {
+        "available": false,
+        "reason": "Requires an explicitly verified common track-distance reference, strict distance/time ordering and gap-free coverage; driven distance alone is insufficient."
+      },
+      "full_lap_targets": {
+        "available": false,
+        "reason": "Targets require independently validated complete timing boundaries."
+      },
+      "supervised_ml_eligible": {
+        "available": false,
+        "reason": "Release gate: ≥30 validated target laps, ≥3 independent sessions, ≥99% finite core signals. This does not guarantee generalization."
+      },
+      "progressive_dl_eligible": {
+        "available": false,
+        "reason": "Requires the supervised gate plus validated progress; split complete sessions/laps and use causal prefixes only."
+      }
+    },
+    "candidate_lap_features": [],
+    "sha256": "fcec6ac8a8625f493e3440646c499a6991d76a2bd15d81d87d765662eef0b9e7"
+  },
+  "gt7": {
+    "available": true,
+    "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+    "raw_shape": [
+      95796,
+      114
+    ],
+    "overview": {
+      "samples": 95796,
+      "valid_time_speed_samples": 95796,
+      "time": {
+        "gap_threshold_s": 1.0,
+        "observed_s": 1598.577043056488,
+        "span_s": 2038.917117357254,
+        "excluded_gap_s": 440.340074300766,
+        "duplicate_steps": 0,
+        "backward_steps": 0,
+        "invalid_time_samples": 0,
+        "large_gaps": 6
+      },
+      "signals": {
+        "speed_kmh": {
+          "covered_s": 1598.577043056488,
+          "time_mean": 172.44885768347902,
+          "sample_mean": 172.48208443138603,
+          "min": 34.63720703125,
+          "max": 271.08502197265625
+        },
+        "throttle_pct": {
+          "covered_s": 1598.577043056488,
+          "time_mean": 70.12354252382032,
+          "sample_mean": 70.13307690607246,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "brake_pct": {
+          "covered_s": 1598.577043056488,
+          "time_mean": 8.36369136855479,
+          "sample_mean": 8.366721276175925,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "rpm": {
+          "covered_s": 1598.577043056488,
+          "time_mean": 6472.818207239169,
+          "sample_mean": 6473.492087352291,
+          "min": 2805.0,
+          "max": 8282.0
+        },
+        "g_lat": {
+          "covered_s": 1598.577043056488,
+          "time_mean": -1.2286981426741728,
+          "sample_mean": -1.2271726511079308,
+          "min": -24.838294982910156,
+          "max": 31.349853515625
+        },
+        "g_lon": {
+          "covered_s": 1598.577043056488,
+          "time_mean": 0.15825932315283922,
+          "sample_mean": 0.15831527245086738,
+          "min": -31.010957717895508,
+          "max": 16.110984802246094
+        }
+      }
+    },
+    "driver_default_thresholds": {
+      "throttle_pct": 90,
+      "brake_pct": 5,
+      "overlap_throttle_pct": 5,
+      "min_event_s": 0.1
+    },
+    "driver_metrics": {
+      "usage": {
+        "high_throttle": {
+          "active_s": 996.1196677684784,
+          "covered_s": 1598.577043056488,
+          "time_pct": 62.312897091521606
+        },
+        "braking": {
+          "active_s": 193.64993262290955,
+          "covered_s": 1598.577043056488,
+          "time_pct": 12.113894257648653
+        },
+        "overlap": {
+          "active_s": 16.499064683914185,
+          "covered_s": 1598.577043056488,
+          "time_pct": 1.0321094473099577
+        }
+      },
+      "observed_events": 157,
+      "complete_events": 157,
+      "entry_speed_mean_kmh": 180.55836311874876,
+      "entry_speed_max_kmh": 267.3283386230469,
+      "steering": {
+        "covered_s": 1598.577043056488,
+        "time_mean": 0.031229608340901372,
+        "sample_mean": 0.031198526441103876,
+        "min": -0.16988949477672577,
+        "max": 0.3728839159011841
+      },
+      "steering_activity_source_units_per_s": 0.03731105112871839
+    },
+    "source_quality": {
+      "rows": 95796,
+      "columns": 114,
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "constant_channels": [
+        "packet_type",
+        "fuel_capacity",
+        "water_temp",
+        "oil_temp",
+        "total_laps",
+        "pre_race_num_cars",
+        "min_alert_rpm",
+        "max_alert_rpm",
+        "calc_max_speed",
+        "tyre_radius_fl",
+        "tyre_radius_fr",
+        "tyre_radius_rl",
+        "tyre_radius_rr",
+        "transmission_top_speed",
+        "car_code",
+        "torque_vec_fl",
+        "torque_vec_fr",
+        "torque_vec_rl",
+        "torque_vec_rr",
+        "energy_recovery",
+        "car_category",
+        "gear_ratio_1",
+        "gear_ratio_2",
+        "gear_ratio_3",
+        "gear_ratio_4",
+        "gear_ratio_5",
+        "gear_ratio_6",
+        "gear_ratio_7",
+        "gear_ratio_8",
+        "f_on_track",
+        "f_paused",
+        "f_loading",
+        "f_has_turbo",
+        "f_handbrake",
+        "f_lights",
+        "f_high_beams",
+        "f_low_beams",
+        "f_asm"
+      ],
+      "time": null
+    },
+    "validated_laps": [
+      {
+        "lap_id": 2,
+        "start_sample": 6944,
+        "end_sample": 13459,
+        "start_s": 116.46852660179138,
+        "end_s": 224.9119791984558,
+        "duration_s": 108.65,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 3,
+        "start_sample": 13460,
+        "end_sample": 19858,
+        "start_s": 225.4701406955719,
+        "end_s": 331.66994309425354,
+        "duration_s": 106.657,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 4,
+        "start_sample": 19859,
+        "end_sample": 26312,
+        "start_s": 332.0472993850708,
+        "end_s": 439.3472719192505,
+        "duration_s": 107.559,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 5,
+        "start_sample": 26313,
+        "end_sample": 32662,
+        "start_s": 439.69253373146057,
+        "end_s": 545.2868256568909,
+        "duration_s": 105.834,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 6,
+        "start_sample": 32663,
+        "end_sample": 39037,
+        "start_s": 545.6404094696045,
+        "end_s": 651.6447100639343,
+        "duration_s": 106.25,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 11,
+        "start_sample": 64351,
+        "end_sample": 70683,
+        "start_s": 1418.731012582779,
+        "end_s": 1523.9622192382812,
+        "duration_s": 105.547,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 13,
+        "start_sample": 76987,
+        "end_sample": 83214,
+        "start_s": 1725.7822880744934,
+        "end_s": 1828.9552273750305,
+        "duration_s": 103.806,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      },
+      {
+        "lap_id": 14,
+        "start_sample": 83215,
+        "end_sample": 89437,
+        "start_s": 1829.3904676437378,
+        "end_s": 1932.777888059616,
+        "duration_s": 103.712,
+        "target_source": "next lap last_lap_ms",
+        "timing_basis": "simulator lap timer",
+        "target_verified": true
+      }
+    ],
+    "rejected_laps": [
+      {
+        "source_lap": 0,
+        "reasons": "out-lap; missing, repeated or nonmonotonic lap timer; invalid full-lap target; lap timer does not cover both boundaries within 100 ms; invalid driven-distance coverage"
+      },
+      {
+        "source_lap": 1,
+        "reasons": "missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 7,
+        "reasons": "missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 8,
+        "reasons": "missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 9,
+        "reasons": "missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 10,
+        "reasons": "multiple timer resets inside source lap; missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 12,
+        "reasons": "missing, repeated or nonmonotonic lap timer"
+      },
+      {
+        "source_lap": 15,
+        "reasons": "no subsequent packet witnessing a finish/last-lap target; multiple timer resets inside source lap; missing, repeated or nonmonotonic lap timer; invalid full-lap target; lap timer does not cover both boundaries within 100 ms"
+      }
+    ],
+    "capabilities": {
+      "session_analysis": {
+        "available": true,
+        "reason": "At least one finite numeric source signal."
+      },
+      "time_window_comparison": {
+        "available": true,
+        "reason": "Positive observed-time support and no backward clock steps required."
+      },
+      "track_position_analysis": {
+        "available": true,
+        "reason": "Finite varying source coordinates; provenance/accuracy remain source-specific."
+      },
+      "validated_lap_analysis": {
+        "available": true,
+        "reason": "Source lap counter, witnessed next-lap target, strictly increasing timer and boundary coverage checked; rejected laps are excluded."
+      },
+      "lap_progress_comparison": {
+        "available": true,
+        "reason": "Complete laps with finite monotonic driven distance; normalized fraction is approximate spatial alignment."
+      },
+      "cumulative_lap_delta": {
+        "available": false,
+        "reason": "Requires an explicitly verified common track-distance reference, strict distance/time ordering and gap-free coverage; driven distance alone is insufficient."
+      },
+      "full_lap_targets": {
+        "available": true,
+        "reason": "Targets require independently validated complete timing boundaries."
+      },
+      "supervised_ml_eligible": {
+        "available": false,
+        "reason": "Release gate: ≥30 validated target laps, ≥3 independent sessions, ≥99% finite core signals. This does not guarantee generalization."
+      },
+      "progressive_dl_eligible": {
+        "available": false,
+        "reason": "Requires the supervised gate plus validated progress; split complete sessions/laps and use causal prefixes only."
+      }
+    },
+    "candidate_lap_features": [
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 2,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:2",
+        "target_lap_time_s": 108.65,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 168.34812128005626,
+        "speed_kmh_max": 263.03167724609375,
+        "throttle_pct_time_mean": 68.45744388939195,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.387266816574167,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6426.583670914045,
+        "rpm_max": 8253.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 3,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:3",
+        "target_lap_time_s": 106.657,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 171.6602431258517,
+        "speed_kmh_max": 264.5884704589844,
+        "throttle_pct_time_mean": 70.98989299328944,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.93845164688521,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6469.548088467021,
+        "rpm_max": 8256.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 4,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:4",
+        "target_lap_time_s": 107.559,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 170.1853099177111,
+        "speed_kmh_max": 265.6441345214844,
+        "throttle_pct_time_mean": 69.08409876183927,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.384151294732506,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6429.937851636241,
+        "rpm_max": 8260.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 5,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:5",
+        "target_lap_time_s": 105.834,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 172.90802470396508,
+        "speed_kmh_max": 264.4330139160156,
+        "throttle_pct_time_mean": 71.01832536417213,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.673027169279813,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6493.315595463138,
+        "rpm_max": 8256.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 6,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:6",
+        "target_lap_time_s": 106.25,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 172.35604481166624,
+        "speed_kmh_max": 265.8863525390625,
+        "throttle_pct_time_mean": 71.25960491901816,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.790784446639996,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6469.50326692777,
+        "rpm_max": 8282.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 11,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:11",
+        "target_lap_time_s": 105.547,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 173.56002658212188,
+        "speed_kmh_max": 262.0244445800781,
+        "throttle_pct_time_mean": 69.72424589078211,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 7.781590971427806,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6535.3446396755,
+        "rpm_max": 8253.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 13,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:13",
+        "target_lap_time_s": 103.806,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 177.102807622121,
+        "speed_kmh_max": 257.6562805175781,
+        "throttle_pct_time_mean": 72.47699550104429,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.963108714338704,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6502.458903119488,
+        "rpm_max": 8247.0
+      },
+      {
+        "session_id": "gt7:a2e0709efc751904552890bf8398f3090763c8da",
+        "lap_id": 14,
+        "lap_uid": "gt7:a2e0709efc751904552890bf8398f3090763c8da:14",
+        "target_lap_time_s": 103.712,
+        "target_verified": true,
+        "track_id": "gt7:trial_mountain:forward",
+        "car_id": "gt7:3373",
+        "supervised_eligible": false,
+        "progressive_dl_eligible": false,
+        "feature_scope": "full lap retrospective; not causal progressive features",
+        "speed_kmh_time_mean": 176.51362493755323,
+        "speed_kmh_max": 258.3638916015625,
+        "throttle_pct_time_mean": 72.17443516086836,
+        "throttle_pct_max": 100.0,
+        "brake_pct_time_mean": 8.817551537652573,
+        "brake_pct_max": 100.0,
+        "rpm_time_mean": 6575.589498760645,
+        "rpm_max": 8275.0
+      }
+    ]
+  }
+}
