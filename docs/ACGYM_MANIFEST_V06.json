@@ -1,0 +1,470 @@
+{
+  "repo": "dasgringuen/assettoCorsaGym",
+  "revision": "ad1df12c49cce10f159ba31967744750bb9edd8b",
+  "license": "CC-BY-4.0",
+  "download_budget_bytes": 300000000,
+  "files": [
+    {
+      "path": "20240229_HC/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240229_HC/laps/laps_info.csv",
+      "bytes": 191,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240229_HC/laps/laps_info.csv",
+      "recording_label": "20240229_HC",
+      "driver_label": "HC",
+      "git_blob_oid": "ab65e6fe0687063dd61f0d72475f7c606687a117",
+      "sha256": "379cbdcad05e92065b9db36060ceb7a6bcec513e2dde8b758756422596f8d63c"
+    },
+    {
+      "path": "20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240229_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 12220454,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240229_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240229_HC",
+      "driver_label": "HC",
+      "sha256": "90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d"
+    },
+    {
+      "path": "20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240229_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 763,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240229_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240229_HC",
+      "driver_label": "HC",
+      "git_blob_oid": "046902ed70657b1047890ecf9b7d7bcd9ab022ee",
+      "sha256": "352accc6477c6f8e7d3017eb739594f20862370b8056d77e42b5d0fb951224cc"
+    },
+    {
+      "path": "20240304_AB/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240304_AB/laps/laps_info.csv",
+      "bytes": 236,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240304_AB/laps/laps_info.csv",
+      "recording_label": "20240304_AB",
+      "driver_label": "AB",
+      "git_blob_oid": "66645fcf13dea84e18f656777209a7707f033719",
+      "sha256": "d6bbe9224e3464ba3d8f2d0c042dc55977fc529e72ab3c90dcf025b2004494e9"
+    },
+    {
+      "path": "20240304_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240304_AB/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 9524566,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240304_AB/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240304_AB",
+      "driver_label": "AB",
+      "sha256": "62ba7f64c40207203eeb0292fed3dce69bda5802c4538269881de6805bb2a940"
+    },
+    {
+      "path": "20240304_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240304_AB/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 860,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240304_AB/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240304_AB",
+      "driver_label": "AB",
+      "git_blob_oid": "b6b33f5def98339314696e73347ec6492a0674d1",
+      "sha256": "6ab7f2956c2e41c17e27fcb6859e0a161b208a85529f595faec447e65526dfb0"
+    },
+    {
+      "path": "20240313_OP/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240313_OP/laps/laps_info.csv",
+      "bytes": 370,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240313_OP/laps/laps_info.csv",
+      "recording_label": "20240313_OP",
+      "driver_label": "OP",
+      "git_blob_oid": "e136029003bebe761d90b711b004cbe5ba2e02b4",
+      "sha256": "34e5737a3bc74a56d3dd87c77c2b2b8e702dfe878edc01b1e179190c9310466d"
+    },
+    {
+      "path": "20240313_OP/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240313_OP/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld",
+      "bytes": 14146378,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240313_OP/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_1.ld",
+      "recording_label": "20240313_OP",
+      "driver_label": "OP",
+      "sha256": "96ac171618e3472008ee02ad2aef77662451e86e6ca330437545eb9dd4addf13"
+    },
+    {
+      "path": "20240313_OP/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240313_OP/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ldx",
+      "bytes": 1142,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240313_OP/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_1.ldx",
+      "recording_label": "20240313_OP",
+      "driver_label": "OP",
+      "git_blob_oid": "29ff72ea50c73b0e14215b37487cf398837d063b",
+      "sha256": "bca86d352cf8d207a9326199a0479b4d14355b0a3725761a4d18bbd0204e2415"
+    },
+    {
+      "path": "20240329_HC/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240329_HC/laps/laps_info.csv",
+      "bytes": 328,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_HC/laps/laps_info.csv",
+      "recording_label": "20240329_HC",
+      "driver_label": "HC",
+      "git_blob_oid": "11748ffa87cf2a862ac4bb076caa6d261f83e92a",
+      "sha256": "4d703c33c928c07738f7d5372d44f2e0dc10773ccc3c4858d1a45f4fe5657432"
+    },
+    {
+      "path": "20240329_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240329_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "bytes": 12266422,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_3.ld",
+      "recording_label": "20240329_HC",
+      "driver_label": "HC",
+      "sha256": "dbd386eec1cabd603c7f6aedc8400e88a59ddadd72bed57d752fcd0b40202367"
+    },
+    {
+      "path": "20240329_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240329_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ldx",
+      "bytes": 1054,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_3.ldx",
+      "recording_label": "20240329_HC",
+      "driver_label": "HC",
+      "git_blob_oid": "3d7ef05de4f69a7f3721a1e1c313e436d80d2870",
+      "sha256": "41269797e50c382cee2e6df3b02275f609c54733373b6681c44b87bda149e7f2"
+    },
+    {
+      "path": "20240329_ST/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240329_ST/laps/laps_info.csv",
+      "bytes": 281,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_ST/laps/laps_info.csv",
+      "recording_label": "20240329_ST",
+      "driver_label": "ST",
+      "git_blob_oid": "cf91fb2738701c613e863fc21f5a9d030cef2633",
+      "sha256": "cfc916c76bf93c206371d0716042b6b6fe485473f48ca9ed4640330f5f15e302"
+    },
+    {
+      "path": "20240329_ST/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240329_ST/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 11225720,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_ST/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240329_ST",
+      "driver_label": "ST",
+      "sha256": "f2d680116ec88c585e544ae21a305cfe00beeec7514641e88cb0aecf3c087455"
+    },
+    {
+      "path": "20240329_ST/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240329_ST/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 957,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240329_ST/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240329_ST",
+      "driver_label": "ST",
+      "git_blob_oid": "646bee60871d113f6cf28971d4398e8d445092db",
+      "sha256": "72d37d157e7eca39a6a7a80c8cbb6ac7ee00620e00265d80e5cf8d597e371ff7"
+    },
+    {
+      "path": "20240405_NH/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240405_NH/laps/laps_info.csv",
+      "bytes": 280,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240405_NH/laps/laps_info.csv",
+      "recording_label": "20240405_NH",
+      "driver_label": "NH",
+      "git_blob_oid": "065f0c1100c84cd6237a6b4ec88fd036694c02c6",
+      "sha256": "4a73303c2fe2a798c849f7803a7d8b6403c44aae62ef335347c7770ef4745dd8"
+    },
+    {
+      "path": "20240405_NH/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240405_NH/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 11331514,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240405_NH/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240405_NH",
+      "driver_label": "NH",
+      "sha256": "93e2b66cba7b6bcc346f946f4759e7e1bf742d42aa221990d827500b6cc54985"
+    },
+    {
+      "path": "20240405_NH/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240405_NH/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 957,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240405_NH/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240405_NH",
+      "driver_label": "NH",
+      "git_blob_oid": "e9291953331fbca63db950391c76e725d14ed7b7",
+      "sha256": "2261f1f8715b58fba35817c9664bd352b45b6eb954cc8e9b3ed494c056770853"
+    },
+    {
+      "path": "20240408_WL/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240408_WL/laps/laps_info.csv",
+      "bytes": 237,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240408_WL/laps/laps_info.csv",
+      "recording_label": "20240408_WL",
+      "driver_label": "WL",
+      "git_blob_oid": "f34fa3605d3f611703cfdee82fc7cf7282665b58",
+      "sha256": "f327f4d734a13518089edcbd585a3f97a8a2c07c88218db4c8e0abe4f07e3c43"
+    },
+    {
+      "path": "20240408_WL/monza_&_dallara_f317_&_WL_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240408_WL/laps/monza_&_dallara_f317_&_WL_&_stint_1.ld",
+      "bytes": 7771698,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240408_WL/laps/monza_%26_dallara_f317_%26_WL_%26_stint_1.ld",
+      "recording_label": "20240408_WL",
+      "driver_label": "WL",
+      "sha256": "24341bda806fdbc65670c4646b54e5cb0285026cb01790d2353cac6a4b3af440"
+    },
+    {
+      "path": "20240408_WL/monza_&_dallara_f317_&_WL_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240408_WL/laps/monza_&_dallara_f317_&_WL_&_stint_1.ldx",
+      "bytes": 1610,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240408_WL/laps/monza_%26_dallara_f317_%26_WL_%26_stint_1.ldx",
+      "recording_label": "20240408_WL",
+      "driver_label": "WL",
+      "git_blob_oid": "0141aee33dce44d08b480cf746366f59a4b8d5f1",
+      "sha256": "4fd3a97e32aba1902535f358e6413980cd64a745e16b383b20058667f5df60ec"
+    },
+    {
+      "path": "20240410_A_12_123/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_12_123/laps/laps_info.csv",
+      "bytes": 598,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_12_123/laps/laps_info.csv",
+      "recording_label": "20240410_A_12_123",
+      "driver_label": "A",
+      "git_blob_oid": "b5e256c50f2f71c0e47f9685d56e3668e323e2d7",
+      "sha256": "c88c6613dafe77b4efaa30da6b0123e0d47cae9958ab129778de6a78b3cd1734"
+    },
+    {
+      "path": "20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld",
+      "bytes": 13018134,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_2.ld",
+      "recording_label": "20240410_A_12_123",
+      "driver_label": "A",
+      "sha256": "1c17cc59c1fe8ccf3ce2ada4bdbaf9f34f27b1df0d2ec9f1df035f74a8e506f0"
+    },
+    {
+      "path": "20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ldx",
+      "bytes": 1062,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_2.ldx",
+      "recording_label": "20240410_A_12_123",
+      "driver_label": "A",
+      "git_blob_oid": "210fccaafbbbe10371fc812759fe227372b39296",
+      "sha256": "a5ae44f3c391049857e64e7758d145546f7ca3bf7175bf84ca7284f7047a97f7"
+    },
+    {
+      "path": "20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld",
+      "bytes": 21858186,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_3.ld",
+      "recording_label": "20240410_A_12_123",
+      "driver_label": "A",
+      "sha256": "d3a0f7cf7f69b13fe912c238a4aa95bb1b98c3d467a1b2aaf4dba78c44466389"
+    },
+    {
+      "path": "20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ldx",
+      "bytes": 1554,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_12_123/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_3.ldx",
+      "recording_label": "20240410_A_12_123",
+      "driver_label": "A",
+      "git_blob_oid": "57f9210f0a93b948b0323a0325bd31789e9cbf22",
+      "sha256": "5e91a7586338003550cbf782e6d481685b83c98dd4266958b04babe2f889fb91"
+    },
+    {
+      "path": "20240410_A_21_231/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_21_231/laps/laps_info.csv",
+      "bytes": 606,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_21_231/laps/laps_info.csv",
+      "recording_label": "20240410_A_21_231",
+      "driver_label": "A",
+      "git_blob_oid": "e17a55002d8912f27eef515475fdd148bcd772b4",
+      "sha256": "8518cc9d9f4307c89c63636075081dc99d6623e4a15e42ee142e025cf01b5740"
+    },
+    {
+      "path": "20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld",
+      "bytes": 12917410,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_4.ld",
+      "recording_label": "20240410_A_21_231",
+      "driver_label": "A",
+      "sha256": "e4381045c6ac037dd7fe779eb618aec48ecc47f2950ca9196d608a05538d3c8d"
+    },
+    {
+      "path": "20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ldx",
+      "bytes": 1062,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_4.ldx",
+      "recording_label": "20240410_A_21_231",
+      "driver_label": "A",
+      "git_blob_oid": "39afd45cdcdfe6f4bc277f53d0d42de98e645e05",
+      "sha256": "31bef60271380e600abc7dedf024b4759aac25868e4ae3bc8680c6cee515a371"
+    },
+    {
+      "path": "20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld",
+      "bytes": 21792952,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_5.ld",
+      "recording_label": "20240410_A_21_231",
+      "driver_label": "A",
+      "sha256": "47fd714d2fcb78f0227eca52c0dff85a0bf1b961005ca80260cdc804bbfd6f1a"
+    },
+    {
+      "path": "20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ldx",
+      "bytes": 1554,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240410_A_21_231/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_5.ldx",
+      "recording_label": "20240410_A_21_231",
+      "driver_label": "A",
+      "git_blob_oid": "501e2bbdab1ff40a9b52bc0a60726b32c43e423c",
+      "sha256": "7ebc03b3235850770510f13ce12795620471fcb7ebc2f38dcb983ac6ae5a7f14"
+    },
+    {
+      "path": "20240411_A_12_312/laps_info.csv",
+      "source_path": "data_sets/monza/dallara_f317/20240411_A_12_312/laps/laps_info.csv",
+      "bytes": 595,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240411_A_12_312/laps/laps_info.csv",
+      "recording_label": "20240411_A_12_312",
+      "driver_label": "A",
+      "git_blob_oid": "baa1a17ccc62c534d69447b83b82249b77bdb33b",
+      "sha256": "125f900a9ad5370465341a1cba4bfcc3569e2b9d682686197666657218067090"
+    },
+    {
+      "path": "20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld",
+      "bytes": 13374048,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_6.ld",
+      "recording_label": "20240411_A_12_312",
+      "driver_label": "A",
+      "sha256": "09fac345878aaeef6aa829de78b7e751c1f936c3555d5e73df1b0c9dc6504a5d"
+    },
+    {
+      "path": "20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ldx",
+      "bytes": 1062,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_6.ldx",
+      "recording_label": "20240411_A_12_312",
+      "driver_label": "A",
+      "git_blob_oid": "a6320e5a690846651c4ec965a53ec21429f67447",
+      "sha256": "c55cb333ef4e455fb63cd1ee352674589eb6944c258d33bfe06ad6ebc32abd05"
+    },
+    {
+      "path": "20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ld",
+      "bytes": 21994400,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_7.ld",
+      "recording_label": "20240411_A_12_312",
+      "driver_label": "A",
+      "sha256": "7ea92e0f4ff639f401c563f673f79762e0504f2b384c2f26cddcfe7fe43ac00e"
+    },
+    {
+      "path": "20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ldx",
+      "bytes": 1554,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240411_A_12_312/laps/monza_%26_dallara_f317_%26_KC%20Sim%20Racer_%26_stint_7.ldx",
+      "recording_label": "20240411_A_12_312",
+      "driver_label": "A",
+      "git_blob_oid": "eed4c362d527c9cd3d6d010e0dba60a242bd88cb",
+      "sha256": "a03e68a304be121de6d3d764bd330c76323a2f0d91e002f128594cb43f4142e2"
+    },
+    {
+      "path": "20240417_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240417_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 9627318,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240417_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240417_HC",
+      "driver_label": "HC",
+      "sha256": "8398a2a83699831e413fb565fc7ff022b87451bc657faa6ecf97152f2cd9a597"
+    },
+    {
+      "path": "20240417_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240417_HC/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 957,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240417_HC/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240417_HC",
+      "driver_label": "HC",
+      "git_blob_oid": "8cc5d803cbe6c597d48384a40542ee1e39f57bda",
+      "sha256": "c19e1cdd4e9a2e3bb571d1e3fdcee118032cf8730e0aa82dc6bf49527187e836"
+    },
+    {
+      "path": "20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240423_IN/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 7637512,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240423_IN/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240423_IN",
+      "driver_label": "IN",
+      "sha256": "6636291543d61e5fa757a7c2e193acfc7f17cc8f6f0710cd18877bff2b0666bf"
+    },
+    {
+      "path": "20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240423_IN/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 762,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240423_IN/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240423_IN",
+      "driver_label": "IN",
+      "git_blob_oid": "ee3da9ba4622bb7899f2cd1a8207eba5250c0d86",
+      "sha256": "9e67ee65c73ca9876145cc6319fceb6c2ff6c0a5abdd6cbae8e8eb6d262d566d"
+    },
+    {
+      "path": "20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240423_IN/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "bytes": 8171890,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240423_IN/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_2.ld",
+      "recording_label": "20240423_IN",
+      "driver_label": "IN",
+      "sha256": "1d17d915b63a4f0808bf61483302980a9174ce75e9c741da4d12c721695b7ec7"
+    },
+    {
+      "path": "20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240423_IN/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ldx",
+      "bytes": 762,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240423_IN/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_2.ldx",
+      "recording_label": "20240423_IN",
+      "driver_label": "IN",
+      "git_blob_oid": "fc01d5be679e065c1d69eb3e4480560d60116115",
+      "sha256": "da09ddc4664b7c16e07fa4ab617ea08e684315e31525f837f8039738877cab76"
+    },
+    {
+      "path": "20240424_KW/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240424_KW/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 10818768,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240424_KW/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240424_KW",
+      "driver_label": "KW",
+      "sha256": "04791e46256c345057a0f7c1d1fb000da81e8d05b30946bb019a9f0130dbadf4"
+    },
+    {
+      "path": "20240424_KW/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240424_KW/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 957,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240424_KW/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240424_KW",
+      "driver_label": "KW",
+      "git_blob_oid": "ba5dc35b48cd178eda70b5ec6e8185331db4b9ff",
+      "sha256": "a607642cad3b98753111c618432321f5fb3fd6524b6ae9e9a74e9357ccca3945"
+    },
+    {
+      "path": "20240425_RRK/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240425_RRK/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 10225578,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240425_RRK/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240425_RRK",
+      "driver_label": "RRK",
+      "sha256": "a348488a78946eaaba853022e5fdbfa781b76e816872b4e7d89245cedd0421f7"
+    },
+    {
+      "path": "20240425_RRK/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240425_RRK/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 957,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240425_RRK/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240425_RRK",
+      "driver_label": "RRK",
+      "git_blob_oid": "98edbcac51bb7de31ecf3bb20905972021ed6ecb",
+      "sha256": "9d367327b9e0d818f3b7e4df2ed308b949a0df745d896d7f965d72c05b34f396"
+    },
+    {
+      "path": "20240426_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "source_path": "data_sets/monza/dallara_f317/20240426_AB/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "bytes": 11955462,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240426_AB/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ld",
+      "recording_label": "20240426_AB",
+      "driver_label": "AB",
+      "sha256": "1212953ae872bfdd3a7f6e399f0a708970939c22d87fd9f0aa87ba63c2816ef9"
+    },
+    {
+      "path": "20240426_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "source_path": "data_sets/monza/dallara_f317/20240426_AB/laps/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx",
+      "bytes": 956,
+      "url": "https://huggingface.co/datasets/dasgringuen/assettoCorsaGym/resolve/ad1df12c49cce10f159ba31967744750bb9edd8b/data_sets/monza/dallara_f317/20240426_AB/laps/monza_%26_dallara_f317_%26_adrianremonda_%26_stint_1.ldx",
+      "recording_label": "20240426_AB",
+      "driver_label": "AB",
+      "git_blob_oid": "c9420bc3016cc2ec31cfb1437634a2805cb21c51",
+      "sha256": "56feab58b0da8b3926e9c92a640104192ef2dcea45cbd0ce9db42b4f3a9f2ec4"
+    }
+  ],
+  "inspected_payload_bytes": 241902674
+}
