@@ -1,6 +1,7 @@
 """Composable file -> audit -> canonical telemetry -> validated laps pipeline."""
 from dataclasses import dataclass
 from pathlib import Path
+import hashlib
 
 import pandas as pd
 import numpy as np
@@ -34,13 +35,23 @@ def load_session(source, filename=None, profile=CANONICAL, csv_sep=None):
         raw, metadata = read_csv(source, sep=csv_sep)
     else:
         raise ValueError('Supported telemetry formats: .parquet and .csv')
+    metadata['filename'] = Path(name).name
+    return build_session(raw, metadata, profile)
+
+
+def build_session(raw, metadata, profile=CANONICAL, validated_laps=None, lap_elapsed=None):
+    """Compose standard readers or a source-specific, independently checked adapter."""
     data, normalization = normalize(raw, profile)
-    metadata.update(filename=Path(name).name, normalization=normalization)
+    metadata = {**metadata, 'normalization': normalization}
+    if 'session_id' not in metadata:
+        fingerprint = pd.util.hash_pandas_object(raw, index=True).to_numpy().tobytes()
+        schema = repr([(str(c),str(raw[c].dtype)) for c in raw]).encode()
+        metadata['session_id'] = 'local:'+hashlib.sha256(schema+fingerprint).hexdigest()
     # Source time is audited only after its units are explicitly declared.
     time_source = normalization['mappings'].get('elapsed_s', {}).get('source')
     raw_quality = quality_report(raw)
     metadata['source_time_column'] = time_source
-    laps = detect_laps(data)
+    laps = validated_laps if validated_laps is not None else detect_laps(data)
     # Unvalidated source labels remain in raw; only validated complete laps
     # become canonical labels consumable by future ML/DL pipelines.
     for column in ['lap_id', 'lap_elapsed_s']:
@@ -55,7 +66,8 @@ def load_session(source, filename=None, profile=CANONICAL, csv_sep=None):
         for lap in laps.laps.itertuples(index=False):
             rows = slice(lap.start_sample, lap.end_sample)
             lap_ids[rows] = lap.lap_id
-            lap_times[rows] = data['elapsed_s'].iloc[rows].to_numpy() - lap.start_s
+            lap_times[rows] = (np.asarray(lap_elapsed)[rows] if lap_elapsed is not None
+                               else data['elapsed_s'].iloc[rows].to_numpy() - lap.start_s)
         data['lap_id'], data['lap_elapsed_s'] = lap_ids, lap_times
     quality = quality_report(data, 'elapsed_s')
     return TelemetrySession(raw, data, metadata, raw_quality, quality, laps, session_metrics(data))

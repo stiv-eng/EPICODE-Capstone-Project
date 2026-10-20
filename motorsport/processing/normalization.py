@@ -38,6 +38,8 @@ def normalize(frame, profile=CANONICAL):
             elif target in {'throttle_pct', 'brake_pct'}:
                 if unit == 'fraction':
                     numeric = numeric * 100
+                elif unit == 'byte255':
+                    numeric = numeric / 2.55
                 elif unit != '%':
                     raise ValueError(f'Unknown control unit: {unit}')
         numeric = numeric.replace([np.inf, -np.inf], np.nan)

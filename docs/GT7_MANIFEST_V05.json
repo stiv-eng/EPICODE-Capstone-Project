@@ -1,0 +1,127 @@
+{
+  "repo": "rpqueiroz/gt7-trial-mountain-962c",
+  "revision": "a2e0709efc751904552890bf8398f3090763c8da",
+  "license": "CC-BY-4.0",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 12369,
+      "sha256": "1e307b16fea59a4c1f071edbdabbeeecadb7c1ed9fa460915496ce19312a0c42",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/README.md"
+    },
+    {
+      "path": "data/grid.parquet",
+      "bytes": 3233648,
+      "sha256": "e338e1c97531074df95f1197a5f0ddd13206430a06161ee51710c35a4b75caf6",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/grid.parquet"
+    },
+    {
+      "path": "data/laps/lap_000.parquet",
+      "bytes": 146204,
+      "sha256": "e2535f480b9200e0c248198241b0fdb787ebbf86183f29e651319ce6791afaa2",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_000.parquet"
+    },
+    {
+      "path": "data/laps/lap_001.parquet",
+      "bytes": 1767072,
+      "sha256": "8c5bdd542170c0fb5e1f0b57f64264e42ef3f283602fd6fb4aae73e86fa784ba",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_001.parquet"
+    },
+    {
+      "path": "data/laps/lap_002.parquet",
+      "bytes": 1751266,
+      "sha256": "40df9bcdd282ca5fa961f65ef8d01dedd7e2f42fd8ce8e85e5b32b7f28cd224d",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_002.parquet"
+    },
+    {
+      "path": "data/laps/lap_003.parquet",
+      "bytes": 1717717,
+      "sha256": "536394498d548ee52d915a642163e8d7889da6c0da3c9abb59cd5f03ae50a644",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_003.parquet"
+    },
+    {
+      "path": "data/laps/lap_004.parquet",
+      "bytes": 1730395,
+      "sha256": "25333c33f64dbaacc36632421126f64b33f9b72d6f4b11ad2ecafe8a8ac74cf5",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_004.parquet"
+    },
+    {
+      "path": "data/laps/lap_005.parquet",
+      "bytes": 1707573,
+      "sha256": "aeb32095415cd0a180d18d1e1cfe98e0ef72c1e8d37bb892caac178c5fb92cc7",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_005.parquet"
+    },
+    {
+      "path": "data/laps/lap_006.parquet",
+      "bytes": 1712593,
+      "sha256": "c23866e3d51046e7f3561070aa0882c6117226912469907cd8f31ae1f847d94c",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_006.parquet"
+    },
+    {
+      "path": "data/laps/lap_007.parquet",
+      "bytes": 1716413,
+      "sha256": "cf4288121aade7bcc6ca18136ba2d86ef6f2a5ca333ca3017cef959e58700c6c",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_007.parquet"
+    },
+    {
+      "path": "data/laps/lap_008.parquet",
+      "bytes": 1707152,
+      "sha256": "b1fed6cd4ab9ce6ed2f68289b86adb1bb9e10cce1dd35f52edc08451f623d5fe",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_008.parquet"
+    },
+    {
+      "path": "data/laps/lap_009.parquet",
+      "bytes": 1712522,
+      "sha256": "79038c2a37eef501a4e3f85b07cbd357bb2cafda3083bb28a0fcd2e5ac39bfe2",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_009.parquet"
+    },
+    {
+      "path": "data/laps/lap_010.parquet",
+      "bytes": 1677244,
+      "sha256": "5480d16d3e30ae3ba3db3c47fd3551da55d8be6aa914c826972943b2b3b4e9fe",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_010.parquet"
+    },
+    {
+      "path": "data/laps/lap_011.parquet",
+      "bytes": 1701541,
+      "sha256": "9efe8535ed1a444bc43453d49955fb84263b913c95b1ad42fb864614e3982e7d",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_011.parquet"
+    },
+    {
+      "path": "data/laps/lap_012.parquet",
+      "bytes": 1695775,
+      "sha256": "cb95120ad2fe71107082a6351e55411b89edda2d84ed773ff7f7bd420341b607",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_012.parquet"
+    },
+    {
+      "path": "data/laps/lap_013.parquet",
+      "bytes": 1677723,
+      "sha256": "2d4bbeb1fee7e00b29f20a87136be31cf3f4f22abd4016a8d8eb3ef4dc819b96",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_013.parquet"
+    },
+    {
+      "path": "data/laps/lap_014.parquet",
+      "bytes": 1678937,
+      "sha256": "c43bc3d2e63b0154d7b96e669b3e99b06e3c31d7d477bdc78789e4ec69a905d6",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_014.parquet"
+    },
+    {
+      "path": "data/laps/lap_015.parquet",
+      "bytes": 1714711,
+      "sha256": "e51eee60c2a9ce58dde5b20d64207b51b37cea4f152e28e9258f274a5df393f9",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/laps/lap_015.parquet"
+    },
+    {
+      "path": "data/sectors.parquet",
+      "bytes": 58683,
+      "sha256": "58adcc5dcc21989ac2e76bdf2b73f51ba6088be55baf43f80963b50600d28f23",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/sectors.parquet"
+    },
+    {
+      "path": "data/track.json",
+      "bytes": 3358,
+      "sha256": "20b54bf407d30c4b593df22c341825feddb1e0b2e63e76f5e2b388d7e052a414",
+      "url": "https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c/resolve/a2e0709efc751904552890bf8398f3090763c8da/data/track.json"
+    }
+  ]
+}
