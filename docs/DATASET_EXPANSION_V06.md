@@ -67,7 +67,8 @@ Canonical channels: speed km/h, controls %, RPM rpm, gear as reported, steering
 degrees, lateral/longitudinal acceleration g. Source lap count, current/last lap
 time (s), normalized car position and session countdown remain audited raw fields.
 
-The selected LD channels share a **100 Hz export grid**. Repeated current-lap
+Each file's selected channels share a declared **50 or 100 Hz export grid**.
+The first inspected file is 100 Hz; later files include 50 Hz. Repeated current-lap
 times show held/resampled source observations. The dataset card describes 50 Hz
 telemetry generally; **native sampling and export interpolation/hold latency are
 not certified here**. Canonical session time is the declared LD grid checked

@@ -45,6 +45,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 100,
       "independence_verified": true,
       "rows": 36057,
       "lap_targets": 3,
@@ -62,6 +63,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 28081,
       "lap_targets": 4,
@@ -79,6 +81,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 41755,
       "lap_targets": 6,
@@ -96,6 +99,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 36193,
       "lap_targets": 6,
@@ -113,6 +117,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 33114,
       "lap_targets": 5,
@@ -130,6 +135,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 33427,
       "lap_targets": 5,
@@ -147,6 +153,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 38417,
       "lap_targets": 6,
@@ -164,6 +171,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 64571,
       "lap_targets": 11,
@@ -181,6 +189,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 38119,
       "lap_targets": 6,
@@ -198,6 +207,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 64378,
       "lap_targets": 11,
@@ -215,6 +225,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 39470,
       "lap_targets": 6,
@@ -232,6 +243,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": false,
       "rows": 64974,
       "lap_targets": 11,
@@ -249,6 +261,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 28385,
       "lap_targets": 5,
@@ -266,6 +279,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 22498,
       "lap_targets": 3,
@@ -283,6 +297,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 24079,
       "lap_targets": 3,
@@ -300,6 +315,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 31910,
       "lap_targets": 5,
@@ -317,6 +333,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 30155,
       "lap_targets": 5,
@@ -334,6 +351,7 @@
         "vehicle": "dallara_f317",
         "venue": "monza"
       },
+      "export_hz": 50,
       "independence_verified": true,
       "rows": 35273,
       "lap_targets": 5,

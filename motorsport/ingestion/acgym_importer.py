@@ -77,7 +77,7 @@ def validate_laps(frame, beacons, hz):
             accepted.append({'lap_id':lap_id,'start_sample':int(a),'end_sample':int(b),
                 'start_s':start,'end_s':end,'duration_s':target,'target_verified':True,
                 'target_source':'witnessed next-counter Last Lap Time; LD timer + LDX beacons + countdown agreement',
-                'timing_basis':'source lap timer; 100 Hz export grid'})
+                'timing_basis':f'source lap timer; {hz} Hz export grid'})
     result = LapResult(bool(accepted),'Cross-checked source counter/timer/beacons/countdown; leading partials and unwitnessed tails excluded.',pd.DataFrame(accepted))
     return result,elapsed,rejected
 
@@ -112,7 +112,7 @@ def load_acgym_recording(path, entry, manifest):
     metadata = {'filename':recording+' / '+path.stem,'format':'MoTeC LD/LDX',
         'session_id':'acgym:'+entry['sha256'],'physical_session_id':physical,
         'driver_id':'acgym:'+entry['driver_label'],'session_date':day.isoformat(),
-        'recording_order':stint,'car_id':'ac:dallara_f317','track_id':'ac:monza',
+        'recording_order':stint,'car_id':'ac:dallara_f317','track_id':'ac:monza','export_hz':hz,
         'independence_verified':entry['driver_label']!='A',
         'source_sha256':entry['sha256'],'source_url':entry['url'],
         'source_header':header,'license':manifest['license'],'revision':manifest['revision'],
