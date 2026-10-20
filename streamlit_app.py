@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.4 · Dataset Foundation · Python · Plotly')
+    st.caption('v0.5 · Advanced Telemetry Analysis · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica che evolve verso sorgenti indipendenti '
                 'dal simulatore. Questa versione lavora con file **Parquet e CSV locali**.')
     st.markdown('Nel **Data Explorer** puoi aprire il dataset allegato, caricare altri file, '
@@ -15,15 +15,25 @@ def home():
     st.markdown('Le analisi sui giri sono disponibili soltanto con confini validati. '
                 'La sessione rimane esplorabile anche senza informazioni affidabili sui giri.')
     st.page_link('pages/00_Data_Explorer.py', label='Apri Data Explorer', icon='📊')
+    st.page_link('pages/10_Session_Overview.py', label='Apri Session Overview', icon='📈')
+    st.markdown('Analizza input del pilota, dinamica e pneumatici; confronta finestre di sessione '
+                'o giri verificati e ispeziona la traiettoria con un marcatore temporale. '
+                'La tabella delle capacità distingue dati disponibili e idoneità ML/DL.')
     st.info('Il dataset locale non richiede download, FastF1 o un simulatore in esecuzione.')
     st.markdown('I moduli storici SVR e Keras sono conservati. La loro migrazione '
                 'sul modello dati comune è prevista per v0.6 e v0.7.')
 
 
 pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=True),
-                             st.Page('pages/00_Data_Explorer.py', title='Data Explorer', icon='📊')]}
+                             st.Page('pages/10_Session_Overview.py', title='Session Overview',url_path='overview'),
+                             st.Page('pages/00_Data_Explorer.py', title='Data Explorer', icon='📊'),
+                             st.Page('pages/11_Driver_Inputs.py',title='Driver Inputs',url_path='inputs'),
+                             st.Page('pages/12_Vehicle_Dynamics.py',title='Vehicle Dynamics',url_path='dynamics'),
+                             st.Page('pages/13_Tyre_Analysis.py',title='Tyre Analysis',url_path='tyres'),
+                             st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',url_path='comparison'),
+                             st.Page('pages/15_Position_Analysis.py',title='Position Analysis',url_path='position')]}
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.4')
+    st.caption('Motorsport Telemetry Analyzer · v0.5')
     legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
     if legacy:
         st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')

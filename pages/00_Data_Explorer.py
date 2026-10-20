@@ -10,6 +10,7 @@ import streamlit as st
 from motorsport.pipeline import load_session
 from motorsport.processing.schema import CANONICAL, CANONICAL_UNITS, SUPPLIED_V04, SourceProfile
 from motorsport.analytics.session_metrics import chart_sample
+from motorsport_ui.telemetry import register_session, get_source, signal_chart, capability_table
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDITED_SHA256 = 'fcec6ac8a8625f493e3440646c499a6991d76a2bd15d81d87d765662eef0b9e7'
@@ -37,6 +38,9 @@ st.title('Data Explorer')
 st.caption('Telemetria locale · qualità dei dati · segnali e posizione')
 local_files = sorted(p for folder in [ROOT/'data/raw', ROOT/'data/demo']
                      for p in folder.glob('*') if p.suffix.lower() in {'.parquet', '.csv'})
+bundle = ROOT/'data/raw/gt7_trial_mountain_962c'
+if (bundle/'data/laps/lap_015.parquet').exists():
+    local_files.append(bundle)
 source_kind = st.radio('Sorgente', ['Dataset locale', 'Carica file'], horizontal=True)
 content, filename, selected = None, None, None
 audited = False
@@ -48,13 +52,35 @@ if source_kind == 'Dataset locale':
                             format_func=lambda p: str(p.relative_to(ROOT)))
     filename = selected.name
     stat = selected.stat()
-    audited = is_audited(str(selected), stat.st_mtime_ns, stat.st_size)
+    audited = is_audited(str(selected), stat.st_mtime_ns, stat.st_size) if selected.is_file() else False
 else:
     upload = st.file_uploader('Telemetria Parquet o CSV', type=['parquet', 'csv'])
     if upload is None:
         st.info('Carica un file per visualizzare i suoi canali. I file caricati restano in memoria.')
         st.stop()
     content, filename = upload.getvalue(), upload.name
+
+if selected and selected.is_dir():
+    try:
+        session = get_source(str(selected.resolve()))
+    except Exception as exc:
+        st.error(f'Raccolta GT7 non disponibile: {exc}'); st.stop()
+    register_session(session,str(selected.resolve()))
+    a,b,c = st.columns(3)
+    a.metric('Campioni',f'{len(session.raw):,}')
+    b.metric('Canali sorgente',len(session.raw.columns))
+    c.metric('Giri verificati',len(session.laps.laps))
+    st.info('Adattatore GT7: pedali byte 0–255, tempo host per la sessione e timer simulatore '
+            'per i giri verificati. I pacchetti di confine obsoleti e i giri incoerenti sono esclusi dalle etichette canoniche.')
+    with st.expander('Metadati, provenienza e giri esclusi'):
+        st.json(session.metadata)
+    st.dataframe(capability_table(session),hide_index=True,width='stretch')
+    st.dataframe(session.laps.laps,hide_index=True,width='stretch')
+    st.dataframe(pd.DataFrame(session.raw_quality['channels']),hide_index=True,width='stretch')
+    st.dataframe(session.raw.head(100),width='stretch')
+    signal_chart(session.data,['speed_kmh','throttle_pct','brake_pct'],session,key='gt7_explorer_signals')
+    st.caption('Apri Session Overview e le altre pagine per approfondire la raccolta selezionata.')
+    st.stop()
 
 profile_label = st.selectbox('Profilo sorgente',
     ['Canonico / mappatura manuale', 'Dataset allegato v0.4 (unità verificate)'],
@@ -114,6 +140,7 @@ if custom and custom[0] == mapping_key:
         st.stop()
 
 data, quality, metrics = session.data, session.quality, session.metrics
+register_session(session,str(selected.resolve()) if selected else 'upload:'+session.metadata['session_id'])
 a, b, c, d = st.columns(4)
 a.metric('Campioni', f'{len(data):,}')
 b.metric('Canali sorgente', len(session.raw.columns))

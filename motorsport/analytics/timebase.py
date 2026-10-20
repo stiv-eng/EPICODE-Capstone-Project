@@ -56,3 +56,16 @@ def fraction_time(frame, columns, predicate, support=None):
     active_s = float(support['weights'][active].sum())
     return {'active_s': active_s, 'covered_s': covered,
             'time_pct': 100*active_s/covered if covered else None}
+
+
+def chart_values(frame, sample, channel, time_column='elapsed_s'):
+    """Break rendered lines across excluded gaps without changing source values."""
+    y=numeric(sample,channel).copy()
+    t,shown=numeric(frame,time_column),numeric(sample,time_column)
+    if not np.isfinite(t).all() or (np.diff(t)<0).any() or not len(shown):
+        return y
+    support=time_support(frame.assign(elapsed_s=t)) if time_column!='elapsed_s' else time_support(frame)
+    for gap in np.flatnonzero(np.diff(t)>support['gap_threshold_s']):
+        after=np.searchsorted(shown,t[gap+1])
+        if after<len(y):y[after]=np.nan
+    return y

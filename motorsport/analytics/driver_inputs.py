@@ -10,27 +10,37 @@ EVENT_COLUMNS = ['start_sample', 'end_sample', 'start_s', 'end_s', 'duration_s',
 
 
 def braking_events(frame, threshold_pct=5., min_duration_s=.1, support=None):
-    if not 0 <= threshold_pct <= 100 or min_duration_s < 0:
+    if not 0 <= threshold_pct <= 100 or not np.isfinite(min_duration_s) or min_duration_s < 0:
         raise ValueError('Brake threshold must be 0–100% and minimum duration nonnegative.')
     support = support or time_support(frame)
     brake, speed, t = (numeric(frame, c) for c in ['brake_pct', 'speed_kmh', 'elapsed_s'])
-    eligible = np.isfinite(brake) & (brake >= 0) & (brake <= 100) & (support['weights'] > 0)
-    active = eligible & (brake > threshold_pct)
-    starts = np.flatnonzero(active & ~np.r_[False, active[:-1]]) if len(frame) else []
-    ends = np.flatnonzero(active & ~np.r_[active[1:], False]) if len(frame) else []
+    # Zero-duration duplicate-clock observations do not split an event. The
+    # final observation at a repeated timestamp owns the following interval.
+    intervals = np.flatnonzero(support['weights'] > 0)
+    if not len(intervals):
+        return pd.DataFrame(columns=EVENT_COLUMNS)
+    eligible = np.isfinite(brake[intervals]) & (brake[intervals] >= 0) & (brake[intervals] <= 100)
+    continuous = np.isclose(t[intervals[1:]], t[intervals[:-1]]+support['weights'][intervals[:-1]], rtol=0, atol=1e-8)
+    active = eligible & (brake[intervals] > threshold_pct)
+    starts = np.flatnonzero(active & ~np.r_[False, active[:-1] & continuous])
+    ends = np.flatnonzero(active & ~np.r_[active[1:] & continuous, False])
     events = []
-    for start, last in zip(starts, ends):
-        duration = float(support['weights'][start:last+1].sum())
+    for first_interval, last_interval in zip(starts, ends):
+        start, last = intervals[first_interval], intervals[last_interval]
+        duration = float(support['weights'][intervals[first_interval:last_interval+1]].sum())
         if duration < min_duration_s:
             continue
         end = last+1
-        witnessed_onset = start > 0 and eligible[start-1] and brake[start-1] <= threshold_pct
-        witnessed_release = end < len(frame) and np.isfinite(brake[end]) and brake[end] <= threshold_pct
+        witnessed_onset = first_interval>0 and continuous[first_interval-1] and eligible[first_interval-1] and brake[intervals[first_interval-1]]<=threshold_pct
+        release = end
+        while release+1<len(frame) and t[release+1]==t[end]:
+            release += 1
+        witnessed_release = np.isfinite(brake[release]) and 0<=brake[release]<=threshold_pct
         events.append({'start_sample': int(start), 'end_sample': int(end),
                        'start_s': t[start], 'end_s': t[end], 'duration_s': duration,
                        'entry_speed_kmh': speed[start] if witnessed_onset and np.isfinite(speed[start]) and speed[start] >= 0 else np.nan,
                        'complete': bool(witnessed_onset and witnessed_release),
-                       'peak_brake_pct': float(np.max(brake[start:last+1]))})
+                       'peak_brake_pct': float(np.max(brake[intervals[first_interval:last_interval+1]]))})
     return pd.DataFrame(events, columns=EVENT_COLUMNS)
 
 

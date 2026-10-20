@@ -65,9 +65,23 @@ def capture(browser, base, artifacts):
 
                 def screenshot(name):
                     image = call('Page.captureScreenshot', {'format': 'png', 'captureBeyondViewport': False})
-                    path = artifacts/f'{name}_v04.png'
+                    path = artifacts/f'{name}_v05.png'
                     path.write_bytes(base64.b64decode(image['data']))
                     print(f'Captured {path}', flush=True)
+
+                def choose(label,text):
+                    html=call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).map(e=>e.outerHTML)",'returnByValue':True})
+                    (artifacts/'browser_select_controls.json').write_text(json.dumps(html,indent=2),encoding='utf-8')
+                    def click(expression):
+                        script='(()=>{const r=('+expression+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()'
+                        result=call('Runtime.evaluate',{'expression':script,'returnByValue':True})
+                        coordinates=result['result']['value']
+                        call('Input.dispatchMouseEvent',{'type':'mousePressed','button':'left','clickCount':1,**coordinates})
+                        call('Input.dispatchMouseEvent',{'type':'mouseReleased','button':'left','clickCount':1,**coordinates})
+                    element="Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes("+json.dumps(label)+")).querySelector('[role=combobox]')"
+                    click(element)
+                    ready("Array.from(document.querySelectorAll('[role=option]')).some(e=>e.innerText.includes("+json.dumps(text)+"))")
+                    click("Array.from(document.querySelectorAll('[role=option]')).find(e=>e.innerText.includes("+json.dumps(text)+"))")
 
                 call('Emulation.setDeviceMetricsOverride', {'width': 1600, 'height': 1200,
                                                           'deviceScaleFactor': 1, 'mobile': False})
@@ -83,6 +97,34 @@ def capture(browser, base, artifacts):
                     call('Runtime.evaluate', {'expression': "Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).find(e=>e.getBoundingClientRect().height>100).scrollIntoView({block:'start'})"})
                     time.sleep(.5)
                     screenshot(name)
+                for name,route,expected in [
+                    ('overview','overview','Statistiche dei segnali'),
+                    ('inputs','inputs','Eventi osservati / completi'),
+                    ('dynamics','dynamics','Diagramma G-G'),
+                    ('tyres','tyres','Famiglia pneumatici'),
+                    ('comparison','comparison','Canali confrontati'),
+                    ('trajectory','position','Campione selezionato nella finestra'),
+                ]:
+                    call('Page.navigate',{'url':base+'/'+route})
+                    ready('document.body.innerText.includes('+json.dumps(expected)+')')
+                    ready("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).some(e=>e.getBoundingClientRect().height>100)")
+                    time.sleep(.4)
+                    screenshot(name)
+                if (ROOT/'data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet').exists():
+                    call('Page.navigate',{'url':base+'/overview'})
+                    ready("document.body.innerText.includes('Statistiche dei segnali')")
+                    choose('Dataset analizzato','GT7')
+                    ready("document.body.innerText.includes('GT7 Trial Mountain / Porsche 962 C') && document.body.innerText.includes('Giri verificati e feature candidate')")
+                    screenshot('gt7_overview')
+                    call('Page.navigate',{'url':base+'/comparison'})
+                    ready("document.body.innerText.includes('Canali confrontati')")
+                    choose('Sessione A','GT7')
+                    ready("document.body.innerText.includes('Sessione B')")
+                    choose('Sessione B','GT7')
+                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[data-testid=stRadio] label')).find(e=>e.innerText.includes('Giri verificati')).click()"})
+                    ready("document.body.innerText.includes('Giro verificato A') && document.body.innerText.includes('shared track-distance reference')")
+                    ready("document.querySelectorAll('[data-testid=stPlotlyChart]').length>0")
+                    screenshot('gt7_lap_comparison')
         finally:
             chrome.terminate()
             try:

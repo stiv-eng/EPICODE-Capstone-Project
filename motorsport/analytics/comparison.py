@@ -22,9 +22,12 @@ def select_window(frame, start_s, end_s):
     t=numeric(frame,'elapsed_s')
     if (np.diff(t)<0).any():
         raise ValueError('Window timing requires a nondecreasing source clock.')
-    view=frame.loc[np.isfinite(t) & (t>=start_s) & (t<=end_s)].copy(deep=False)
-    if view.empty:
+    positions=np.flatnonzero(np.isfinite(t) & (t>=start_s) & (t<=end_s))
+    if not len(positions):
         raise ValueError('No observations inside this session window.')
+    # Retain unknown timestamps between selected endpoints: deleting them would
+    # bridge unsupported time and silently invent duration coverage.
+    view=frame.iloc[positions[0]:positions[-1]+1].copy(deep=False)
     view['relative_s']=numeric(view,'elapsed_s')-start_s
     return view
 

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from .timebase import numeric, time_support, weighted_signal
-from .comparison import lap_trace
+from .comparison import lap_trace,cumulative_lap_delta
 
 
 def assess_capabilities(session):
@@ -24,8 +24,17 @@ def assess_capabilities(session):
             progress=True
         except ValueError:
             pass
-    signal_ready=all(c in frame and np.isfinite(numeric(frame,c)).mean()>=.99 for c in
-                     ['speed_kmh','throttle_pct','brake_pct','rpm'])
+    limits={'speed_kmh':(0,500),'throttle_pct':(0,100),'brake_pct':(0,100),'rpm':(0,25000)}
+    signal_ready=all(c in frame and np.mean(np.isfinite(numeric(frame,c)) &
+        (numeric(frame,c)>=lo) & (numeric(frame,c)<=hi))>=.99 for c,(lo,hi) in limits.items())
+    delta_ready=False
+    if progress and session.metadata.get('distance_reference_id'):
+        try:
+            ids=laps.lap_id.tolist()
+            cumulative_lap_delta(session,session,ids[0],ids[min(1,len(ids)-1)])
+            delta_ready=True
+        except ValueError:
+            pass
     # A conservative release gate, not a statistical sample-size guarantee.
     enough=targets and len(laps)>=30 and session.metadata.get('session_count',1)>=3
     supervised=bool(enough and signal_ready)
@@ -35,7 +44,7 @@ def assess_capabilities(session):
         'track_position_analysis':(position,'Finite varying source coordinates; provenance/accuracy remain source-specific.'),
         'validated_lap_analysis':(bool(validated),session.laps.reason),
         'lap_progress_comparison':(progress,'Complete laps with finite monotonic driven distance; normalized fraction is approximate spatial alignment.'),
-        'cumulative_lap_delta':(bool(progress and session.metadata.get('distance_reference_id')), 'Requires an explicitly verified common track-distance reference; driven distance alone is insufficient.'),
+        'cumulative_lap_delta':(delta_ready, 'Requires an explicitly verified common track-distance reference, strict distance/time ordering and gap-free coverage; driven distance alone is insufficient.'),
         'full_lap_targets':(targets,'Targets require independently validated complete timing boundaries.'),
         'supervised_ml_eligible':(supervised,'Release gate: ≥30 validated target laps, ≥3 independent sessions, ≥99% finite core signals. This does not guarantee generalization.'),
         'progressive_dl_eligible':(bool(supervised and progress),'Requires the supervised gate plus validated progress; split complete sessions/laps and use causal prefixes only.'),

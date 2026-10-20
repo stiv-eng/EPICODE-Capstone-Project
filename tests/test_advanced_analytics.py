@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from motorsport.analytics.timebase import time_support, weighted_signal, fraction_time
+from motorsport.analytics.timebase import time_support, weighted_signal, fraction_time, chart_values
 from motorsport.analytics.driver_inputs import braking_events, driver_metrics
 from motorsport.analytics.overview import overview_metrics, gear_distribution
 from motorsport.analytics.channels import corner_channels
@@ -69,7 +69,22 @@ def test_constant_and_invalid_channels_are_not_synthetic_activity():
         'FL':'tyre_core_fl','RR':'tyre_core_rr'}
 
 
+def test_repeated_clock_samples_do_not_fragment_a_braking_event():
+    frame=pd.DataFrame({'elapsed_s':[0,.1,.1,.2,.2,.3],
+                        'brake_pct':[0,0,50,30,40,0],'speed_kmh':100})
+    events=braking_events(frame,min_duration_s=.01)
+    assert len(events)==1 and events.complete.iloc[0]
+    assert events.duration_s.iloc[0]==pytest.approx(.2)
+    assert events.start_sample.iloc[0]==2
+
+
 def test_overview_valid_samples_and_missing_time():
     result=overview_metrics(pd.DataFrame({'elapsed_s':[0,.1,np.nan], 'speed_kmh':[100,-1,20]}))
     assert result['valid_time_speed_samples']==1
     assert weighted_signal(pd.DataFrame({'speed_kmh':[1]}),'speed_kmh')['time_mean'] is None
+
+
+def test_chart_gap_breaks_do_not_modify_calculation_values():
+    frame=pd.DataFrame({'elapsed_s':[0,.1,.2,4.,4.1], 'speed_kmh':[10,20,30,40,50]})
+    chart=chart_values(frame,frame,'speed_kmh')
+    assert np.isnan(chart[3]) and frame.speed_kmh.iloc[3]==40

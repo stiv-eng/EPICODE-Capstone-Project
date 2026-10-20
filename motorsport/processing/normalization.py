@@ -39,7 +39,7 @@ def normalize(frame, profile=CANONICAL):
                 if unit == 'fraction':
                     numeric = numeric * 100
                 elif unit == 'byte255':
-                    numeric = numeric / 2.55
+                    numeric = numeric * (100. / 255.)
                 elif unit != '%':
                     raise ValueError(f'Unknown control unit: {unit}')
         numeric = numeric.replace([np.inf, -np.inf], np.nan)

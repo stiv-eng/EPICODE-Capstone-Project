@@ -8,6 +8,9 @@ from motorsport.pipeline import load_session
 from motorsport.analytics.comparison import select_window,compare_windows,lap_trace,cumulative_lap_delta
 from motorsport.analytics.readiness import assess_capabilities,lap_features
 from motorsport.ingestion.gt7_importer import load_gt7_bundle,validate_gt7_laps
+from motorsport.processing.normalization import normalize
+from motorsport.processing.schema import SourceProfile
+from motorsport.analytics.timebase import time_support
 
 
 def simple_session(offset=0):
@@ -30,6 +33,20 @@ def test_invalid_and_empty_windows():
     with pytest.raises(ValueError):select_window(simple_session().data,1,1)
     with pytest.raises(ValueError):select_window(simple_session().data,2,3)
     with pytest.raises(ValueError):select_window(pd.DataFrame({'elapsed_s':[1,0]}),0,2)
+
+
+def test_byte_pedals_have_exact_valid_full_scale_without_clamping_bad_data():
+    out,_=normalize(pd.DataFrame({'raw':[0,255,256]}),
+                    SourceProfile('byte',{'throttle_pct':'raw'},{'throttle_pct':'byte255'}))
+    assert out.throttle_pct.iloc[1]==100.
+    assert out.throttle_pct.iloc[2]>100.
+
+
+def test_window_keeps_unknown_clock_rows_as_support_breaks():
+    frame=pd.DataFrame({'elapsed_s':[0,.1,np.nan,.3,.4],'speed_kmh':100})
+    selected=select_window(frame,0,.4)
+    assert len(selected)==5
+    assert time_support(selected)['observed_s']==pytest.approx(.2)
 
 
 def test_capabilities_are_not_enabled_by_column_names_alone():
