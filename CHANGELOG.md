@@ -1,3 +1,22 @@
+# Release v0.6.0 - 2026-10-20
+
+- Added a pinned 241.903 MB human MoTeC dataset subset with a bounded numeric
+  reader, verified source hashes, source-clock/target validation and quarantine.
+- Integrated 55 eligible Monza/Dallara laps from 11 physical recording sessions
+  and eight participant codes; excluded ambiguous series and inconsistent dates.
+- Added causal elapsed-time feature snapshots, separate retrospective summaries,
+  past-only allowed training-lap baselines and physical-session/lap split contracts.
+- Added training-only sklearn Ridge/Random Forest/SVR pipelines, fixed validation
+  selection, frozen test metrics, per-checkpoint/lap/session errors and importance.
+- Added independent inference, future-sample/label leakage tests and locally signed
+  model/preprocessing artifacts; unknown model files cannot be uploaded/loaded.
+- Added Machine Learning and Progressive Prediction pages with explicit training,
+  persistent bundles, eligibility explanations and optional retrospective target reveal.
+- Kept GT7 explicitly experimental and the original attachment ineligible for ML.
+- Preserved v0.5 datasets, historical SVR/Keras modules and VS Code F5 configuration.
+- Added measured dataset/evaluation evidence, offline/UI/browser regression coverage
+  and a technical guide for presenting the pipeline.
+
 # Release v0.5.0 - 2026-10-20
 
 - Added observed-time session metrics for irregular timestamps, repeated clocks,

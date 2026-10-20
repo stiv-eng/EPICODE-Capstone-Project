@@ -1,7 +1,7 @@
-# Motorsport Telemetry Analyzer - v0.5
+# Motorsport Telemetry Analyzer - v0.6
 
-Advanced local telemetry analysis, session-window comparison and audited dataset
-expansion. Python 3.11, Streamlit, Plotly, Pandas and NumPy; no running simulator
+Local telemetry analysis, causal ML features and progressive retrospective replay.
+Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
 ## Start in VS Code
@@ -27,9 +27,35 @@ once using **Python: Select Interpreter**. Ordinary startup needs no terminal co
 | Tyre Analysis | FL/FR/RL/RR core/inner/middle/outer temperatures, pressures, reported wear, wheel loads/speeds where present; temporal inspection and CSV summaries |
 | Telemetry Comparison | Two compatible session windows with relative time, up to 20 saved windows, or validated laps with approximate driven-distance-fraction alignment |
 | Position Analysis | Source trajectory colored by speed/pedals, time window, sample marker, hover details and coordinate-quality warnings |
+| Machine Learning | Dataset eligibility, causal feature selection, explicit Ridge/Random Forest/SVR training, chronological holdout errors, baseline comparison, importance and exports |
+| Progressive Prediction | Retrospective checkpoint replay, observed telemetry, prediction history and optional final-target reveal; baseline, experimental and evaluated modes |
 
 Legacy Formula 1 pages remain opt-in through the sidebar checkbox. Historical
-SVR and Keras source modules are preserved, with migration deferred to v0.6/v0.7.
+SVR and Keras source modules are preserved. New canonical ML is separate; sequence
+models remain future v0.7 work.
+
+## Train and replay
+
+Open **Machine Learning**, select **ACGym human Monza / Dallara**, inspect eligibility
+and features, then press **Addestra e valuta i tre modelli**. Training is explicit;
+page visits never train or download data. The local subset supplies **55 verified
+laps / 11 physical sessions / eight participant codes**, 275 causal snapshots and
+100% valid key-channel coverage. Split: 29 train / 11 validation / 15 test laps,
+keeping complete physical sessions together. The selected SVR's test MAE is
+**6.743 s**, versus **9.443 s** for a frozen historical median; this small single-domain
+result does not establish generalization. See [evaluation details](docs/ML_EVALUATION_V06.md).
+
+Navigate through the sidebar to **Progressive Prediction** to preserve the trained
+bundle. Select a lap/model and advance the 10/20/30/45/60 s slider. Only observed
+inputs and predictions are shown; the verified result/error requires the explicit
+retrospective checkbox. A browser/server restart clears the in-memory bundle.
+**Salva bundle locale verificabile** persists models and preprocessing under ignored
+`artifacts/models/`; only locally signed artifacts can be loaded through the Python API.
+
+GT7 remains an **experimental single-session case study — insufficient evidence
+for generalization**. Its eight laps require an explicit experimental opt-in;
+robust training stays disabled. The original attachment has no valid lap targets
+and therefore displays an eligibility explanation instead of training controls.
 
 ## Data and analytical definitions
 
@@ -47,7 +73,16 @@ The additional GT7 source is downloaded locally and hash-verified: **95,796 rows
 complete laps. Other source groups are rejected for timer repeats/resets, out-lap
 status or missing finish evidence. Session time is host capture time; accepted lap
 targets use the independent simulator lap timer/next-lap packet, not host duration.
-Both raw datasets remain unchanged and excluded from Git.
+Both v0.5 raw datasets remain unchanged and excluded from Git.
+
+The v0.6 [ACGym expansion](docs/DATASET_EXPANSION_V06.md) adds 48 pinned source
+files totaling **241,902,674 bytes**, below the authorized 300 MB payload budget.
+Safe numeric MoTeC decoding avoids pickle and downloaded code. One date-inconsistent
+recording and 51 identity-ambiguous A-series laps are excluded from robust training.
+Exports declare 50/100 Hz grids; native acquisition timing is not certified.
+Source: [AssettoCorsaGym research team / dasGringuen](https://huggingface.co/datasets/dasgringuen/assettoCorsaGym),
+publisher-declared CC BY 4.0. Originals stay local; normalization and filtering are
+documented derivations. The [manifest](docs/ACGYM_MANIFEST_V06.json) records every hash.
 
 GT7 attribution: Ricardo Queiroz (2026),
 [GT7 Telemetry: Porsche 962 C at Trial Mountain](https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c),
@@ -59,8 +94,10 @@ Unknown physical units remain labelled source units. Source-coordinate trajector
 are not verified circuit geometry. Normalized driven distance supports retrospective
 signal-shape comparison; **cumulative lap delta remains unavailable for both real
 datasets** because no verified common spatial reference exists. Arbitrary session
-windows never become laps. Neither integrated collection meets the conservative
-robust ML/DL eligibility gate; no new supervised model was trained.
+windows never become laps. The original/GT7 sources remain below the robust ML
+gate. Only the independently identified ACGym subset passes it for elapsed-time
+ML; certified causal common-distance progress and deep-learning adequacy remain
+unestablished. Whole-lap summaries are descriptive, never predictive inputs.
 
 ## Load and compare another session
 
@@ -80,8 +117,9 @@ Full-lap aggregates are retrospective and must not be used as causal progressive
 
 ## Environment and checks
 
-The existing Python 3.11.9 `.venv` already has the necessary packages. v0.5 adds no
-dependencies and does not reinstall deep learning libraries. On a new installation:
+The existing Python 3.11.9 `.venv` already has the necessary packages. v0.6 makes
+joblib explicit in core requirements; no packages or deep learning libraries were
+downloaded or reinstalled. On a new installation:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -95,13 +133,16 @@ Raw telemetry is not in Git. To reproduce the pinned GT7 working copy explicitly
 .\.venv\Scripts\python.exe -m scripts.download_gt7
 ```
 
-Current workspace: both working datasets are already present. For another machine,
-copy the original attachment to `data/raw/telemetry.parquet` separately.
+To reproduce ACGym explicitly, run `python -m scripts.download_acgym` (242 MB;
+cached verified files are reused). All three working datasets are present in this
+workspace. On another machine, copy the original attachment to
+`data/raw/telemetry.parquet` separately.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q tests
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe -m scripts.audit_v05
+.\.venv\Scripts\python.exe -m scripts.audit_v06
 .\.venv\Scripts\python.exe -m scripts.smoke_app
 ```
 
@@ -114,6 +155,12 @@ Screenshots/logs stay under ignored `artifacts/`; the temporary server/browser s
 
 ## Reports
 
+- [v0.6 dataset expansion and validation](docs/DATASET_EXPANSION_V06.md)
+- [Causal and retrospective feature contracts](docs/ML_FEATURES_V06.md)
+- [Real ML results and evaluation limitations](docs/ML_EVALUATION_V06.md)
+- [v0.6 architecture and Python function guide](docs/ARCHITECTURE_V06.md)
+- [v0.6 release and acceptance evidence](docs/RELEASE_V06_REPORT.md)
+- [Recommended next release](docs/NEXT_RELEASE_RECOMMENDATION.md)
 - [Dataset research, licenses and measured selection](docs/DATASET_SELECTION_V05.md)
 - [Architecture and analytical formulas](docs/ARCHITECTURE_V05.md)
 - [ML/DL readiness, eligibility and leakage prevention](docs/ML_DL_READINESS_V05.md)
@@ -122,5 +169,6 @@ Screenshots/logs stay under ignored `artifacts/`; the temporary server/browser s
 
 v0.4 audit/release/architecture reports remain in `docs/`. Earlier Formula 1 setup
 and model notes are retained in [the historical README](docs/README_LEGACY_V03.md).
-v0.6 should use the GT7 subset as a small feature-contract case study and acquire
-an audited multi-session human ACGym subset before meaningful supervised evaluation.
+The v0.6 source and evaluation manifests are reproducible offline. Further dataset
+expansion and source-clock validation should precede stronger v0.7 sequence-model
+claims; the eight GT7 laps remain a feature-contract demonstration.
