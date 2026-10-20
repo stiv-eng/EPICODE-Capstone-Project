@@ -1,3 +1,20 @@
+# Release v0.4.0 - 2026-10-20
+
+- Restored local Git history from the verified remote v0.3 branch without replacing
+  workspace files; recorded the supplied workspace baseline on feat/sim-telemetry-v04.
+- Added source-independent Parquet/CSV readers, explicit unit/column mappings,
+  quality reporting, full-session metrics and conservative complete-lap validation.
+- Added Data Explorer: cached local/uploaded telemetry, manual mappings, quality
+  summaries, signal charts with bounded extrema downsampling and position traces.
+- Renamed the homepage Motorsport Telemetry Analyzer; historical FastF1 pages are
+  opt-in. Core local analysis does not import FastF1, Keras or PyTorch.
+- Reused Python 3.11 .venv, split core/legacy requirements and configured VS Code F5.
+- Audited the actual 116,987-row attachment; preserved original and copy hashes.
+  Constant lap channels and integrated coordinates prevent certified lap segmentation.
+- Added offline unit, UI and real-file integration tests plus reproducible audit and
+  HTTP/browser smoke scripts. Added architecture and release documentation.
+- Preserved historical analytics, SVR, feature engineering and Keras model sources.
+
 # Release v0.2.0 — 2026-10-15
 
 ## Nuove funzioni

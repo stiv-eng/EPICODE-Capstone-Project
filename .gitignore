@@ -4,3 +4,15 @@ __pycache__/
 .fastf1_cache/
 artifacts/
 *.pyc
+
+# Local telemetry and derived datasets (keep directory instructions versioned).
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/.gitkeep
+data/demo/*
+!data/demo/README.md
+*.keras
+*.joblib
+*.pt
+*.pth
