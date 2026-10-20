@@ -87,6 +87,9 @@ def test_gt7_analytical_pages(page,key):
     app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=60).run()
     app.selectbox(key=f'{key}_source').set_value(str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())).run()
     assert not app.exception and len(app.get('plotly_chart'))>=1
+    if key=='tyres':
+        next(s for s in app.selectbox if s.label=='Famiglia pneumatici').set_value('Wheel speed').run()
+        assert not app.exception and len(app.get('plotly_chart'))==1
 
 
 @pytest.mark.skipif(not (ROOT/'data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet').exists(),reason='GT7 local bundle absent')

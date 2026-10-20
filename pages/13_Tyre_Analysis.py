@@ -13,6 +13,8 @@ session=select_telemetry('tyres')
 frame=time_window(session.data,'tyres_window')
 family=st.selectbox('Famiglia pneumatici',list(TYRE_FAMILIES))
 corners=corner_channels(frame,TYRE_FAMILIES[family])
+if family=='Wheel speed' and not corners:
+    corners=corner_channels(frame,'wheel_rps')
 if not corners:
     st.info('Famiglia non disponibile in questo dataset. Nessun segnale sostitutivo viene generato.')
     st.stop()
@@ -35,3 +37,5 @@ metric_export(table,'tyre_metrics.csv','tyre_csv')
 st.caption('FL/FR/RL/RR: anteriore sinistra/destra, posteriore sinistra/destra. '
            'I segnali sono riportati dalla sorgente; wear non viene reinterpretato come perdita di prestazione. '
            'Differenze termiche o correlazioni con i carichi non dimostrano degrado o causalità del setup.')
+if any(c.startswith('wheel_rps') for c in channels):
+    st.caption('Velocità rotazionale GT7 con segno sorgente: negativa in avanzamento. Non è convertita in velocità lineare della ruota.')
