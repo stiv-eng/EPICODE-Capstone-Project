@@ -58,13 +58,6 @@ def _load_session(year, event, code, cache_dir):
     fastf1.Cache.enable_cache(str(cache_dir))
     session = fastf1.get_session(year, event, code)
     session.load(laps=True, telemetry=True, weather=False, messages=False)
-    try:
-        laps = session.laps
-    except Exception as exc:
-        raise RuntimeError(f'FastF1: giri {code} non caricati per {event} {year}. '
-                           f'Controlla i log nel terminale. Dettaglio: {exc}') from exc
-    if laps.empty:
-        raise ValueError(f'FastF1: nessun giro disponibile in {code} per {event} {year}.')
     return session
 
 
@@ -80,10 +73,8 @@ def extract_laps(session, code, max_per_driver=None):
     if max_per_driver is not None:
         laps = laps.groupby('Driver', sort=False).head(max_per_driver)
     result = []
-    for idx in laps.index:
+    for _, lap in laps.iterrows():
         try:
-            # .loc mantiene la sottoclasse FastF1 Lap; iterrows() la perderebbe.
-            lap = laps.loc[idx]
             car = normalize_telemetry(lap.get_car_data())
             lap_time = seconds(lap['LapTime'])
             if car.empty or not 40 < lap_time < 250 or car['distance_m'].iloc[-1] < 1000:
