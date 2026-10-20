@@ -63,25 +63,27 @@ def capture(browser, base, artifacts):
                     body = call('Runtime.evaluate', {'expression': 'document.body.innerText', 'returnByValue': True})
                     raise RuntimeError(f'Browser did not render expected content: {body}')
 
-                def screenshot(name):
+                def screenshot(name,version='v05'):
                     image = call('Page.captureScreenshot', {'format': 'png', 'captureBeyondViewport': False})
-                    path = artifacts/f'{name}_v05.png'
+                    path = artifacts/f'{name}_{version}.png'
                     path.write_bytes(base64.b64decode(image['data']))
                     print(f'Captured {path}', flush=True)
+
+                def click_element(expression):
+                    ready('Boolean('+expression+')')
+                    call('Runtime.evaluate',{'expression':'('+expression+").scrollIntoView({block:'center'})"})
+                    script='(()=>{const r=('+expression+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()'
+                    coordinates=call('Runtime.evaluate',{'expression':script,'returnByValue':True})['result']['value']
+                    call('Input.dispatchMouseEvent',{'type':'mousePressed','button':'left','clickCount':1,**coordinates})
+                    call('Input.dispatchMouseEvent',{'type':'mouseReleased','button':'left','clickCount':1,**coordinates})
 
                 def choose(label,text):
                     html=call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).map(e=>e.outerHTML)",'returnByValue':True})
                     (artifacts/'browser_select_controls.json').write_text(json.dumps(html,indent=2),encoding='utf-8')
-                    def click(expression):
-                        script='(()=>{const r=('+expression+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()'
-                        result=call('Runtime.evaluate',{'expression':script,'returnByValue':True})
-                        coordinates=result['result']['value']
-                        call('Input.dispatchMouseEvent',{'type':'mousePressed','button':'left','clickCount':1,**coordinates})
-                        call('Input.dispatchMouseEvent',{'type':'mouseReleased','button':'left','clickCount':1,**coordinates})
-                    element="Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes("+json.dumps(label)+")).querySelector('[role=combobox]')"
-                    click(element)
+                    element="Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes("+json.dumps(label)+"))?.querySelector('[role=combobox]')"
+                    click_element(element)
                     ready("Array.from(document.querySelectorAll('[role=option]')).some(e=>e.innerText.includes("+json.dumps(text)+"))")
-                    click("Array.from(document.querySelectorAll('[role=option]')).find(e=>e.innerText.includes("+json.dumps(text)+"))")
+                    click_element("Array.from(document.querySelectorAll('[role=option]')).find(e=>e.innerText.includes("+json.dumps(text)+"))")
 
                 call('Emulation.setDeviceMetricsOverride', {'width': 1600, 'height': 1200,
                                                           'deviceScaleFactor': 1, 'mobile': False})
@@ -125,6 +127,45 @@ def capture(browser, base, artifacts):
                     ready("document.body.innerText.includes('Giro verificato A') && document.body.innerText.includes('shared track-distance reference')")
                     ready("document.querySelectorAll('[data-testid=stPlotlyChart]').length>0")
                     screenshot('gt7_lap_comparison')
+                call('Page.navigate',{'url':base+'/ml'})
+                ready("document.body.innerText.includes('Feature causali')")
+                screenshot('ml_eligibility','v06')
+                def navigate_sidebar(route):
+                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('a')).find(e=>e.getAttribute('href')?.endsWith('/"+route+"')).click()"})
+                def button(label):
+                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('button')).find(e=>e.innerText.includes("+json.dumps(label)+")).click()"})
+                navigate_sidebar('replay')
+                ready("document.body.innerText.includes('Baseline-only') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=2")
+                screenshot('replay_baseline','v06')
+                navigate_sidebar('ml')
+                ready("document.body.innerText.includes('Addestra e valuta i tre modelli')")
+                button('Addestra e valuta i tre modelli')
+                ready("document.body.innerText.includes('Risultati delle partizioni indipendenti') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=3")
+                screenshot('ml_evaluated','v06')
+                navigate_sidebar('replay')
+                ready("document.body.innerText.includes('Checkpoint trascorso') && document.body.innerText.includes('Evaluated ML') && document.querySelectorAll('[data-testid=stPlotlyChart]').length===2")
+                ready("document.querySelector('[role=slider],input[type=range]') !== null")
+                slider_html=call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[role=slider],input[type=range]')).map(e=>e.outerHTML)",'returnByValue':True})
+                (artifacts/'browser_slider_controls.json').write_text(json.dumps(slider_html,indent=2),encoding='utf-8')
+                call('Runtime.evaluate',{'expression':"document.querySelector('[role=slider],input[type=range]').focus()"})
+                for _ in range(2):
+                    call('Input.dispatchKeyEvent',{'type':'rawKeyDown','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39,'nativeVirtualKeyCode':39})
+                    call('Input.dispatchKeyEvent',{'type':'keyUp','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
+                    time.sleep(.5)
+                ready("!document.body.innerText.includes('Risultato finale verificato')")
+                screenshot('replay_ml_hidden_target','v06')
+                click_element("Array.from(document.querySelectorAll('[data-testid=stCheckbox] label')).find(e=>e.innerText.includes('Mostra valutazione retrospettiva'))")
+                ready("document.body.innerText.includes('Risultato finale verificato') && document.body.innerText.includes('Errore previsto')")
+                screenshot('replay_explicit_evaluation','v06')
+                navigate_sidebar('ml')
+                ready("document.body.innerText.includes('Feature causali')")
+                choose('Dataset ML','GT7')
+                ready("document.body.innerText.includes('Experimental single-session case study')")
+                click_element("Array.from(document.querySelectorAll('[data-testid=stCheckbox] label')).find(e=>e.innerText.includes('Abilita caso di studio sperimentale'))")
+                ready("Array.from(document.querySelectorAll('button')).some(e=>e.innerText.includes('Addestra e valuta') && !e.disabled)")
+                button('Addestra e valuta i tre modelli')
+                ready("document.body.innerText.includes('Risultati delle partizioni indipendenti') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=2")
+                screenshot('gt7_experimental_ml','v06')
         finally:
             chrome.terminate()
             try:
