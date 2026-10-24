@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.7 · Barcelona Dataset Audit & ML Validation · Python · Plotly')
+    st.caption('v0.7.1 · Barcelona Dataset Recovery & ML Training · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
                 'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
     st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
@@ -21,7 +21,7 @@ def home():
                 'Data Explorer raccoglie Signals, Driver Inputs, Vehicle Dynamics, Tyre Analysis, Cockpit e Position / Track Map.')
     st.info('I dati già installati si analizzano offline, senza FastF1 o un simulatore in esecuzione.')
     st.markdown('Il dominio ML principale è **Barcelona GP / Dallara F317**. '
-                '**Machine Learning** mostra l’audit e abilita Ridge, Random Forest e SVR solo dopo il gate sui gruppi indipendenti. '
+                '**Machine Learning** include tutti i giri tecnicamente validi e confronta Ridge, Random Forest e SVR con validazione e test separati. '
                 '**Progressive Prediction** mostra i prefissi osservati; le previsioni richiedono un modello compatibile verificato. '
                 'I moduli storici SVR e Keras restano disponibili nelle pagine legacy.')
     st.page_link('pages/20_Machine_Learning.py',label='Apri Machine Learning')
@@ -35,7 +35,7 @@ pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=
 pages['Machine Learning']=[st.Page('pages/20_Machine_Learning.py',title='Machine Learning',url_path='ml'),
                            st.Page('pages/21_Progressive_Prediction.py',title='Progressive Prediction',url_path='replay')]
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.7')
+    st.caption('Motorsport Telemetry Analyzer · v0.7.1')
     legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
     if legacy:
         st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')
