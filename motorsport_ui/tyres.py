@@ -2,20 +2,22 @@
 import pandas as pd
 import streamlit as st
 
-from motorsport.analytics.channels import TYRE_FAMILIES,corner_channels,signal_unit
+from motorsport.analytics.channels import TYRE_FAMILIES,available_corners,signal_unit
 from motorsport.analytics.timebase import weighted_signal
 from motorsport_ui.telemetry import signal_chart,metric_export
+from .widgets import valid_selectbox,valid_multiselect
 
 
 def render_tyres(session, frame):
-    family=st.selectbox('Famiglia pneumatici',list(TYRE_FAMILIES))
-    corners=corner_channels(frame,TYRE_FAMILIES[family])
-    if family=='Wheel speed' and not corners:
-        corners=corner_channels(frame,'wheel_rps')
-    if not corners:
+    families={name:available_corners(frame,prefix) for name,prefix in TYRE_FAMILIES.items()}
+    families['Wheel speed']=families['Wheel speed'] or available_corners(frame,'wheel_rps')
+    families={name:corners for name,corners in families.items() if corners}
+    family=valid_selectbox('Famiglia pneumatici',families,key='tyre_family')
+    if family is None:
         st.info('Famiglia non disponibile in questo dataset. Scegli un’altra famiglia o carica telemetria con i relativi canali pneumatici e unità dichiarate.')
         return
-    chosen=st.multiselect('Ruote',list(corners),default=list(corners))
+    corners=families[family]
+    chosen=valid_multiselect('Ruote',corners,key='tyre_corners',default=list(corners))
     channels=[corners[c] for c in chosen]
     signal_chart(frame,channels,session,key='tyres_signals')
     table=pd.DataFrame([{'corner':corner,'channel':corners[corner],'unit':signal_unit(session,corners[corner]),

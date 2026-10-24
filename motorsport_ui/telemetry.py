@@ -11,7 +11,7 @@ import streamlit as st
 
 from motorsport.pipeline import load_session
 from motorsport.processing.schema import SUPPLIED_V04
-from motorsport.analytics.channels import signal_unit
+from motorsport.analytics.channels import signal_unit,usable_channels
 from motorsport.analytics.session_metrics import chart_sample
 from motorsport.analytics.timebase import numeric, time_support, chart_values
 
@@ -19,12 +19,18 @@ ROOT=Path(__file__).resolve().parents[1]
 SUPPLIED_HASH='fcec6ac8a8625f493e3440646c499a6991d76a2bd15d81d87d765662eef0b9e7'
 
 
-def source_catalog(include_acgym=False):
+@st.cache_data(show_spinner=False,max_entries=8)
+def original_demo(path, signature):
+    with Path(path).open('rb') as stream:
+        return hashlib.file_digest(stream,'sha256').hexdigest()==SUPPLIED_HASH
+
+
+def source_catalog(include_acgym=False,include_original=False):
     sources={str(p.resolve()):str(p.relative_to(ROOT)) for folder in [ROOT/'data/raw',ROOT/'data/demo']
              for p in sorted(folder.glob('*')) if p.suffix.lower() in {'.csv','.parquet'}}
     bundle=ROOT/'data/raw/gt7_trial_mountain_962c'
     if (bundle/'data/laps/lap_015.parquet').exists():
-        sources[str(bundle.resolve())]='GT7 · Trial Mountain · Porsche 962 C'
+        sources={str(bundle.resolve()):'GT7 · Trial Mountain · Porsche 962 C',**sources}
     # Individual physical recordings are selectable without concatenating clocks
     # or changing the unchanged ML corpus catalog and its independence rules.
     if include_acgym:
@@ -38,6 +44,13 @@ def source_catalog(include_acgym=False):
         if key.startswith('acgym:') and not include_acgym:
             continue
         sources.setdefault(key,'Upload / '+session.metadata['filename'])
+    # Hide only this audited attachment, not the Parquet format or a future
+    # replacement with the same filename. Explicit uploads stay selectable.
+    supplied=ROOT/'data/raw/telemetry.parquet'
+    hidden=str(supplied.resolve())
+    if not include_original and hidden in sources and supplied.is_file():
+        if original_demo(hidden,source_signature(hidden)):
+            sources.pop(hidden)
     return sources
 
 
@@ -154,7 +167,7 @@ def quality_caption(frame):
 
 
 def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
-    channels=[c for c in channels if c in frame]
+    channels=usable_channels(frame,channels)
     if not channels or frame.empty:
         st.info('Nessun segnale disponibile per questa selezione. Seleziona un altro canale o verifica la mappatura del file.')
         return

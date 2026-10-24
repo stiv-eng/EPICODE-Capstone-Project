@@ -63,8 +63,8 @@ def test_manual_mapping_converts_uploaded_style_csv(tmp_path,monkeypatch):
 
 
 @pytest.mark.skipif(not (ROOT/'data/raw/telemetry.parquet').exists(), reason='Local attachment unavailable')
-def test_real_dataset_produces_telemetry_and_position_graphs():
-    app = AppTest.from_file(str(ROOT/'pages/00_Data_Explorer.py'), default_timeout=60).run()
+def test_real_dataset_produces_telemetry_and_position_graphs(original_app):
+    app = original_app(ROOT/'pages/00_Data_Explorer.py')
     assert not app.exception
     assert app.metric[0].value == '116,987'
     assert len(app.get('plotly_chart')) == 1

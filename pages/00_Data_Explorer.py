@@ -5,6 +5,8 @@ import streamlit as st
 from motorsport_ui.explorer_source import explorer_source
 from motorsport_ui.selection import shared_selection, SECTIONS
 from motorsport_ui.telemetry import signal_chart, render_unavailable
+from motorsport.analytics.channels import usable_channels
+from motorsport_ui.widgets import valid_multiselect
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,9 +36,9 @@ elif section=='Signals':
     missing=[c for c in expected if c not in frame]
     if missing:
         st.info('Canali canonici assenti: '+', '.join(missing)+'. Usa la mappatura se presenti con altri nomi.')
-    options=[c for c in frame.select_dtypes('number') if not c.startswith('_ui_')]
-    channels=st.multiselect('Segnali da visualizzare',options,
-        default=[c for c in expected if c in options][:4],max_selections=8,key='explorer_channels')
+    options=usable_channels(frame)
+    channels=valid_multiselect('Segnali da visualizzare',options,key='explorer_channels',
+        default=[c for c in expected if c in options][:4],max_selections=8)
     signal_chart(frame,channels,session,key='explorer_signals')
 elif section=='Driver Inputs':
     from motorsport_ui.inputs import render_driver_inputs

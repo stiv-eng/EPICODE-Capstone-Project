@@ -9,6 +9,9 @@ from motorsport.analytics.timebase import weighted_signal,numeric
 from motorsport_ui.telemetry import source_catalog,get_source,metric_export
 from motorsport_ui.selection import lap_labels,selected_frame
 from motorsport_ui.visuals import comparison_figure,session_label
+from motorsport_ui.comparison_hover import render_comparison
+from motorsport.analytics.channels import usable_channels
+from motorsport_ui.widgets import valid_multiselect
 
 st.title('Telemetry Comparison')
 sources=source_catalog(include_acgym=True)
@@ -27,10 +30,11 @@ modes=['Giri verificati','Finestre di sessione'] if lap_labels(a) and lap_labels
 mode=st.radio('Modalità confronto',modes,horizontal=True,key=f'comparison_mode_{ak}_{bk}')
 channels=['speed_kmh','throttle_pct','brake_pct','steering','rpm','gear','g_lat','g_lon']
 common,rejected=common_channels(a,b,channels)
+common=[c for c in common if c in usable_channels(a.data,[c]) and c in usable_channels(b.data,[c])]
 if rejected:
     with st.expander('Canali esclusi dal confronto'):
         st.json(rejected)
-selected=st.multiselect('Canali confrontati',common,default=common[:3],max_selections=8)
+selected=valid_multiselect('Canali confrontati',common,key='comparison_channels',default=common[:3],max_selections=8)
 saved=st.session_state.setdefault('comparison_windows',[])
 if mode=='Finestre di sessione':
     st.info('Le selezioni sono finestre di sessione. L’asse relativo permette confronti temporali; non viene calcolato un delta sul giro.')
@@ -94,7 +98,8 @@ else:
 if selected:
     selections=list(zip(identities,labels,[av,bv]))
     fig=comparison_figure(selections,selected,axis,axis_label,a)
-    st.plotly_chart(fig,width='stretch',key='comparison_signals')
+    st.caption('Passa sui segnali per leggere valori, unità e giro/finestra nel pannello laterale. La lettura resta visibile dopo il passaggio.')
+    render_comparison(fig)
 else:st.info('Seleziona almeno un canale compatibile.')
 st.dataframe(summary,hide_index=True,width='stretch')
 metric_export(summary,'comparison_metrics.csv','comparison_csv')

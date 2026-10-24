@@ -3,6 +3,8 @@ import pandas as pd
 import streamlit as st
 
 from motorsport.analytics.driver_inputs import driver_metrics
+from motorsport.analytics.channels import usable_channels
+from .widgets import valid_multiselect
 from motorsport_ui.telemetry import quality_caption,signal_chart,metric_export
 
 
@@ -33,6 +35,6 @@ def render_driver_inputs(session, frame):
         activity=metrics['steering_activity_source_units_per_s']
         st.write('Attività sterzo (variazione assoluta per secondo osservato):',activity)
         st.caption('Unità e calibrazione dello sterzo restano quelle della sorgente; non è una misura certificata del lavoro del pilota.')
-    channels=[c for c in ['throttle_pct','brake_pct','steering','speed_kmh','rpm','gear'] if c in frame]
-    selected=st.multiselect('Panoramica combinata degli input',channels,default=channels)
+    channels=usable_channels(frame,['throttle_pct','brake_pct','steering','speed_kmh','rpm','gear'])
+    selected=valid_multiselect('Panoramica combinata degli input',channels,key='driver_channels',default=channels)
     signal_chart(frame,selected,session,key='driver_combined')

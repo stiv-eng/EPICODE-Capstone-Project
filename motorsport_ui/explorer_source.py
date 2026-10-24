@@ -12,6 +12,17 @@ def mapped_session(content, filename, profile_name, columns, units, signature=()
     return load_session(content, filename, SourceProfile(profile_name,columns,units))
 
 
+def upload_session(content,filename):
+    from .telemetry import SUPPLIED_HASH
+    audited=hashlib.sha256(content).hexdigest()==SUPPLIED_HASH
+    profile=SUPPLIED_V04 if audited else CANONICAL
+    session=mapped_session(content,filename,profile.name,profile.columns,profile.units)
+    if audited:
+        session.metadata.update(position_provenance='integrated velocity; drift and accuracy unverified',
+                                time_basis='simulator timestamp; repeated values retained')
+    return session
+
+
 def explorer_source():
     kind=st.radio('Sorgente',['Dataset locale','Carica file'],horizontal=True,key='explorer_source_kind')
     selected=None
@@ -24,7 +35,7 @@ def explorer_source():
         try:
             from .telemetry import get_source
             session=(get_source(key) if key in st.session_state.get('telemetry_registry',{}) else
-                     mapped_session(content,filename,CANONICAL.name,CANONICAL.columns,CANONICAL.units))
+                     upload_session(content,filename))
         except Exception as exc:
             st.error(f'Impossibile leggere il dataset: {exc}');st.stop()
     else:

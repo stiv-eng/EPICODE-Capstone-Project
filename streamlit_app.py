@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.6.1 · Telemetry Explorer & Cockpit · Python · Plotly')
+    st.caption('v0.6.2 · UI Refinement & ML Health Assessment · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica che evolve verso sorgenti indipendenti '
                 'dal simulatore. Questa versione lavora con file **Parquet e CSV locali**.')
     st.markdown('Nel **Data Explorer** puoi aprire il dataset allegato, caricare altri file, '
@@ -28,13 +28,13 @@ def home():
 
 
 pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=True),
-                             st.Page('pages/10_Session_Overview.py', title='Session Overview',url_path='overview'),
+                             st.Page('pages/10_Session_Overview.py', title='Session Overview',icon='📈',url_path='overview'),
                              st.Page('pages/00_Data_Explorer.py', title='Data Explorer', icon='📊'),
-                             st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',url_path='comparison')]}
+                             st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',icon='📉',url_path='comparison')]}
 pages['Machine Learning']=[st.Page('pages/20_Machine_Learning.py',title='Machine Learning',url_path='ml'),
                            st.Page('pages/21_Progressive_Prediction.py',title='Progressive Prediction',url_path='replay')]
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.6.1')
+    st.caption('Motorsport Telemetry Analyzer · v0.6.2')
     legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
     if legacy:
         st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')

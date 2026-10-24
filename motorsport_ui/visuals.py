@@ -40,11 +40,13 @@ def comparison_figure(selections, channels, axis, axis_label, session):
         for row,channel in enumerate(channels,1):
             fig.add_trace(go.Scatter(x=sample[axis],y=chart_values(view,sample,channel,axis),
                 name=label,legendgroup=identity,showlegend=row==1,mode='lines',
-                line=dict(color=color),connectgaps=False),row=row,col=1)
+                line=dict(color=color),connectgaps=False,hoverinfo='none',
+                meta=dict(channel=channel,unit=signal_unit(session,channel))),row=row,col=1)
             fig.update_yaxes(title_text=signal_unit(session,channel),row=row,col=1)
     fig.update_layout(template='plotly_dark',height=max(350,220*len(channels)),
-                      hovermode='x unified',legend=dict(orientation='h',y=1.10),
-                      margin=dict(t=110),uirevision='comparison')
+                      hovermode='x',legend=dict(orientation='h',y=1.10,yanchor='bottom'),
+                      margin=dict(t=140),uirevision='comparison',
+                      meta=dict(comparison_axis=axis,selection_labels=[label for _,label,_ in selections]))
     fig.update_xaxes(title_text=axis_label,row=len(channels),col=1)
     return fig
 

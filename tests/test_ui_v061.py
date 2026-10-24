@@ -221,8 +221,8 @@ def test_overview_simplifies_presentation_preserves_weighted_mean_and_features(m
 
 
 @pytest.mark.parametrize('source',['original','gt7','acgym'])
-def test_real_sources_all_sections_laps_fallback_and_invalidation(source):
-    catalog=ui.source_catalog(include_acgym=True)
+def test_real_sources_all_sections_laps_fallback_and_invalidation(source,original_app):
+    catalog=ui.source_catalog(include_acgym=True,include_original=True)
     if source=='original':
         key=str((ROOT/'data/raw/telemetry.parquet').resolve())
     elif source=='gt7':
@@ -231,7 +231,9 @@ def test_real_sources_all_sections_laps_fallback_and_invalidation(source):
         key=next((k for k in catalog if k.startswith('acgym:')),None)
     if key not in catalog:
         pytest.skip('Audited local source unavailable')
-    app=AppTest.from_file(str(EXPLORER),default_timeout=60).run()
+    app=original_app(EXPLORER)
+    if source=='original':
+        key='upload:original'
     app.selectbox(key='explorer_source').set_value(key).run()
     assert not app.exception
     if source=='original':
@@ -259,7 +261,7 @@ def test_real_sources_all_sections_laps_fallback_and_invalidation(source):
         else:
             assert app.session_state['explorer_selected_laps']==all_ids[:2]
     if source=='gt7':
-        original=str((ROOT/'data/raw/telemetry.parquet').resolve())
+        original='upload:original'
         app.selectbox(key='explorer_source').set_value(original).run()
         assert not app.exception and app.session_state['explorer_selected_laps']==[]
         assert app.session_state['explorer_time_range'] is not None
@@ -273,11 +275,15 @@ def test_acgym_cross_recording_comparison_and_incompatible_track_guard():
     next(s for s in app.selectbox if s.label=='Sessione A').set_value(keys[0]).run()
     next(s for s in app.selectbox if s.label=='Sessione B').set_value(keys[1]).run()
     assert not app.exception and app.radio[0].value=='Giri verificati'
-    assert len(app.get('plotly_chart'))==1
-    spec=json.loads(app.get('plotly_chart')[0].proto.spec)
+    assert len(app.get('iframe'))==1
+    import re
+    def component_spec(app):
+        html=app.get('iframe')[0].proto.srcdoc
+        return json.loads(re.search(r'id="comparison-data" type="application/json">(.*?)</script>',html,re.S).group(1))
+    spec=component_spec(app)
     colors=[t['line']['color'] for t in spec['data']]
     app.multiselect[0].set_value(['rpm']).run()
-    spec=json.loads(app.get('plotly_chart')[0].proto.spec)
+    spec=component_spec(app)
     assert [t['line']['color'] for t in spec['data']]==[colors[0],colors[len(colors)//2]]
     gt7=str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())
     if gt7 in ui.source_catalog():

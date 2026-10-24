@@ -4,6 +4,7 @@ import pandas as pd
 
 from .timebase import numeric, time_support
 from .session_metrics import chart_sample
+from .channels import usable_channels
 
 
 def position_view(frame,color_channel='speed_kmh',max_points=5000):
@@ -20,9 +21,26 @@ def position_view(frame,color_channel='speed_kmh',max_points=5000):
 
 def color_channels(frame):
     """All finite real numeric channels, including preserved original signals."""
-    return [c for c in frame.select_dtypes(include=['number','bool']).columns
-            if not c.startswith('_ui_') and not pd.api.types.is_complex_dtype(frame[c])
-            and np.isfinite(numeric(frame,c)).any()]
+    return usable_channels(frame,include_bool=True)
+
+
+def position_adjacency(frame):
+    """Full-resolution edges shared by the line renderer and heading estimate."""
+    xy=np.c_[numeric(frame,'pos_x'),numeric(frame,'pos_y')]
+    dt=np.diff(numeric(frame,'elapsed_s'))
+    step=np.linalg.norm(np.diff(xy,axis=0),axis=1)
+    finite=np.isfinite(xy).all(axis=1)
+    gap=time_support(frame)['gap_threshold_s']
+    valid=finite[:-1]&finite[1:]&np.isfinite(dt)&(dt>0)&(dt<=gap)
+    if 'lap_id' in frame:
+        laps=numeric(frame,'lap_id')
+        valid &= np.isfinite(laps[:-1])&np.isfinite(laps[1:])&(laps[:-1]==laps[1:])
+    if pd.api.types.is_numeric_dtype(frame.index):
+        valid &= np.diff(frame.index.to_numpy())==1
+    positive=step[valid&(step>0)]
+    limit=20*float(np.median(positive)) if len(positive) else np.inf
+    valid &= step<=limit
+    return valid,{'gap_threshold_s':gap,'spatial_jump_threshold_source_units':limit}
 
 
 def position_segments(frame, color_channel=None, max_points=6000):
@@ -42,21 +60,8 @@ def position_segments(frame, color_channel=None, max_points=6000):
     finite_xy=xy[np.isfinite(xy).all(axis=1)]
     if n<2 or len(finite_xy)<3 or not np.any(np.ptp(finite_xy,axis=0)>0):
         return pd.DataFrame(columns=columns),stats
-    t=numeric(frame,'elapsed_s');dt=np.diff(t)
-    step=np.linalg.norm(np.diff(xy,axis=0),axis=1)
-    finite=np.isfinite(xy).all(axis=1)
-    valid=finite[:-1]&finite[1:]&np.isfinite(dt)&(dt>0)&(dt<=time_support(frame)['gap_threshold_s'])
-    if 'lap_id' in frame:
-        laps=numeric(frame,'lap_id')
-        valid &= np.isfinite(laps[:-1])&np.isfinite(laps[1:])&(laps[:-1]==laps[1:])
-    # Data Explorer retains original indices, so filtering cannot join fragments.
-    if pd.api.types.is_numeric_dtype(frame.index):
-        valid &= np.diff(frame.index.to_numpy())==1
-    positive=step[valid & (step>0)]
-    spatial_limit=20*float(np.median(positive)) if len(positive) else np.inf
-    valid &= step<=spatial_limit
-    stats['spatial_jump_threshold_source_units']=spatial_limit
-    stats['gap_threshold_s']=time_support(frame)['gap_threshold_s']
+    valid,limits=position_adjacency(frame)
+    stats.update(limits)
     edges=np.flatnonzero(valid)
     if not len(edges):
         return pd.DataFrame(columns=columns),stats
