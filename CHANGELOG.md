@@ -1,3 +1,21 @@
+# Release v0.7.2 - 2026-10-24
+
+- Diagnose original train/validation/historical-test pace distributions using
+  unique laps and frozen TRAIN quartiles; verify reference direct-target semantics,
+  telemetry dependence, central shrinkage, calibration and feature redundancy.
+- Add isolated causal recent-window/event/distance descriptors and compare F0/F1/
+  F2/F3 plus one separate training-only weighting intervention on five fixed
+  recording folds: 169 development laps / 40 blocks, no historical-test scoring.
+- Report measured OOF MAEs 13.361/13.381/13.424/13.400 s; weighting gives 13.317 s
+  with worse recording-macro error. No variant qualifies; production SVR stays v0.7.1.
+- Add optional Streamlit development diagnostics, signed research-only artifacts,
+  timestamp/causality/group/weighting/metadata tests and actual browser coverage.
+- Preserve all 205 usable laps and Monza/GT7/Barcelona historical files/models.
+  Document a bounded future sequence pilot; no deep learning, new acquisition,
+  live capture, parameter search or production model replacement is introduced.
+- See [release](docs/RELEASE_V072_REPORT.md), [experiments](docs/ML_FEATURE_EXPERIMENTS_V072.md)
+  and [model assessment](docs/ML_MODEL_ASSESSMENT_V072.md).
+
 # Release v0.7.1 - 2026-10-24
 
 - Recover all 116 Barcelona laps excluded only for uncertain identity/date metadata,

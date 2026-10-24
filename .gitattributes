@@ -2,3 +2,5 @@
 .gitattributes text eol=lf
 docs/*_V071.csv text eol=lf
 docs/*_V071.json text eol=lf
+docs/*_V072.csv text eol=lf
+docs/*_V072.json text eol=lf

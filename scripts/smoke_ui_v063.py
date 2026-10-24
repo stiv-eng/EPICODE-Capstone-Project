@@ -3,7 +3,7 @@ import json
 import time
 
 
-def exercise(call,ready,choose,click,screenshot,base,artifacts,fixture_only=False,barcelona=False,ml_only=False):
+def exercise(call,ready,choose,click,screenshot,base,artifacts,fixture_only=False,barcelona=False,ml_only=False,diagnosis=False):
     results=[]
     def value(expression):
         r=call('Runtime.evaluate',{'expression':expression,'returnByValue':True})
@@ -11,7 +11,7 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts,fixture_only=Fals
         return r['result'].get('value')
     def record(name,**evidence):
         results.append(dict(check=name,status='passed',**evidence))
-        (artifacts/('UI_BROWSER_V071.json' if barcelona else 'UI_BROWSER_V063.json')).write_text(json.dumps(results,indent=2),encoding='utf-8',newline='\n')
+        (artifacts/('UI_BROWSER_V072.json' if diagnosis else 'UI_BROWSER_V071.json' if barcelona else 'UI_BROWSER_V063.json')).write_text(json.dumps(results,indent=2),encoding='utf-8',newline='\n')
         print('PASS:',name,flush=True)
     def settled():
         time.sleep(.5)
@@ -58,7 +58,7 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts,fixture_only=Fals
                hover_frame_ms=value('Number(('+selected+').p.dataset.hoverLatencyMs||0)'),
                figure_payload_bytes=value('JSON.stringify(('+selected+').p.data).length'))
         return state
-    def snapshot(name):screenshot(name,'v071' if barcelona else 'v063')
+    def snapshot(name):screenshot(name,'v072' if diagnosis else 'v071' if barcelona else 'v063')
     if fixture_only:
         call('Page.navigate',{'url':base});ready("document.body.innerText.includes('Offline legacy chart fixtures')");settled()
         for i in range(3):hover('Offline legacy type fixture '+str(i),i)
@@ -187,6 +187,20 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts,fixture_only=Fals
         assert value("Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes('Modello da ispezionare'))?.querySelector('[role=combobox]')?.value==='SVR'")
         record('Barcelona training action reuses frozen evaluation; validation and selected-only test distinguished')
     snapshot('ML_external')
+    if diagnosis:
+        click("Array.from(document.querySelectorAll('[data-testid=stExpander] summary')).find(e=>e.innerText.includes('Diagnosi ML v0.7.2'))")
+        click("Array.from(document.querySelectorAll('[data-testid=stCheckbox]')).find(e=>e.innerText.includes('Mostra confronto delle feature'))?.querySelector('label')")
+        settled();ready('('+allcharts+').length===8')
+        assert value("document.body.innerText.includes('169')&&document.body.innerText.includes('40')&&document.body.innerText.includes('845')")
+        assert value("Array.from(document.querySelectorAll('[data-testid=stMetric]')).some(e=>e.innerText.includes('Test storico valutato dalle varianti')&&e.innerText.includes('0'))")
+        record('v072 development counts and historical-test exclusion visible')
+        choose('Variante di sviluppo','F3');settled()
+        for i in range(3,8):hover('v072 development diagnostic chart '+str(i),i)
+        assert value("Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes('Modello da ispezionare'))?.querySelector('[role=combobox]')?.value==='SVR'")
+        record('v072 feature selection leaves immutable production reference selected')
+        choose('Esempio di sviluppo','slow');settled()
+        hover('v072 predefined slow development example',7)
+        snapshot('development_diagnostics')
     navigate('replay','Progressive Prediction')
     for i in range(2):hover('Replay causal chart '+str(i),i)
     payload=value('('+allcharts+').map(o=>JSON.stringify(o.p.data))')

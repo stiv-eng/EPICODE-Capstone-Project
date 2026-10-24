@@ -12,6 +12,7 @@ from motorsport_ui.ml import select_corpus,show_eligibility,get_bundle,baseline_
 
 st.title('Progressive Prediction')
 st.caption('Replay retrospettivo locale · nessuna connessione live al simulatore')
+if barcelona_active():st.caption('Riferimento operativo: SVR v0.7.1 · feature causal-prefix-v06.')
 corpus=select_corpus('replay')
 gate=show_eligibility(corpus)
 if not corpus.laps:

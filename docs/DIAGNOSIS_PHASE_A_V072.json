@@ -1,0 +1,20 @@
+{
+  "corpus_id": "46884dc894e1b0a1dd0c76baa5beaf2fff79d02e24bebccdae9701c326da1523",
+  "lap_counts": {
+    "test": 36,
+    "train": 103,
+    "validation": 66
+  },
+  "common_pace_quartiles_s": [
+    109.734,
+    140.04333333333335
+  ],
+  "reference_formulation": "Direct final lap-time seconds, no median subtraction/addition or baseline feature",
+  "input_boundary": "Only the original 13 causal feature columns reach model.fit/predict; labels join after feature construction",
+  "diagnostic_development_laps": 169,
+  "historical_test_role": "Frozen descriptive rows only; excluded before feature diagnostics",
+  "experimental_models_fitted": 0,
+  "source_progress_decision": "Car Pos Norm exists; author paper documents normalized spline position. The exact ACTI export mapping/resampling semantics are not independently established. Omit raw normalized-progress F4; a causal integrated ground-speed distance proxy may be evaluated without a track-length normalization.",
+  "primary_source": "https://proceedings.neurips.cc/paper_files/paper/2024/file/b91ea2ba1b6521940e204b7b81d5ef47-Paper-Datasets_and_Benchmarks_Track.pdf",
+  "limitations": "Recording blocks and participant codes do not certify independent physical sessions; correlated checkpoints are not independent laps."
+}

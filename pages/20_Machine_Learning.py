@@ -10,7 +10,7 @@ from motorsport.ml.artifacts import LocalArtifactStore
 from motorsport_ui.ml import ROOT,select_corpus,show_eligibility,snapshot_table,get_bundle,display_table,barcelona_active
 
 st.title('Machine Learning')
-st.caption('v0.7.1 · Dominio singolo, feature causali e holdout per recording')
+st.caption('v0.7.2 · Riferimento v0.7.1 e diagnosi causale su fold di sviluppo')
 corpus=select_corpus('training')
 gate=show_eligibility(corpus)
 if not corpus.laps:
@@ -94,6 +94,11 @@ if bundle is not None:
                        'ml_errors_v06.csv','text/csv')
 else:
     st.info('Nessun modello addestrato per questo corpus. Il training parte soltanto dal pulsante esplicito.')
+if barcelona_active():
+    with st.expander('Diagnosi ML v0.7.2 · confronto di sviluppo'):
+        if st.checkbox('Mostra confronto delle feature sui fold di sviluppo',value=False,key='show_development_v072'):
+            from motorsport_ui.ml_diagnostics import render_development
+            render_development(corpus)
 with st.expander('Analisi descrittiva retrospettiva dei giri completi'):
     st.caption('Usa il giro completo: queste colonne non entrano nei modelli progressivi.')
     st.dataframe(display_table(retrospective_features(corpus)),width='stretch')

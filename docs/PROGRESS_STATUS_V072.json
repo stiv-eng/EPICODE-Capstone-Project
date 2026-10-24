@@ -1,0 +1,8 @@
+{
+  "development_laps_inspected": 169,
+  "channel": "Car Pos Norm",
+  "min_progress": 0.00036666666666651526,
+  "max_progress": 0.6603,
+  "laps_with_decreasing_prefix_steps": 19,
+  "decision": "Raw normalized-position F4 omitted as preregistered: exact ACTI export mapping/resampling semantics not established. Bounded position-like values are not proof of that mapping. Backward motion can be legitimate; no lap is removed. Only independent causal ground-speed integration enters F2/F3, in metres without final-distance normalization."
+}

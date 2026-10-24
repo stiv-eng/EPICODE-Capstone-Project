@@ -1,0 +1,44 @@
+{
+  "selected_development_variant": "F0",
+  "production_reference": "immutable v071 SVR",
+  "convincing_improvement": false,
+  "decisions": [
+    {
+      "variant": "F0W",
+      "mae_gain_s": 0.044183974131208004,
+      "relative_mae_gain": 0.0033068644391430493,
+      "macro_gain_s": -0.8223126460142858,
+      "improved_folds": 1,
+      "slow_guard_passed": true,
+      "qualifies": false
+    },
+    {
+      "variant": "F1",
+      "mae_gain_s": -0.019689611457973655,
+      "relative_mae_gain": -0.001473631044540367,
+      "macro_gain_s": -0.02911533366050989,
+      "improved_folds": 2,
+      "slow_guard_passed": true,
+      "qualifies": false
+    },
+    {
+      "variant": "F2",
+      "mae_gain_s": -0.06270901418935004,
+      "relative_mae_gain": -0.004693335380395511,
+      "macro_gain_s": -0.139679214148412,
+      "improved_folds": 1,
+      "slow_guard_passed": true,
+      "qualifies": false
+    },
+    {
+      "variant": "F3",
+      "mae_gain_s": -0.03871086203189833,
+      "relative_mae_gain": -0.002897239906073554,
+      "macro_gain_s": -0.053212703141351625,
+      "improved_folds": 2,
+      "slow_guard_passed": true,
+      "qualifies": false
+    }
+  ],
+  "historical_test_evaluations": 0
+}

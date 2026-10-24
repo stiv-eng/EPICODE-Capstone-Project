@@ -1,0 +1,8 @@
+{
+  "validation_mae_s": 9.867542228468796,
+  "historical_test_mae_s": 15.393290962555847,
+  "validation_band_errors_at_historical_test_mix_s": 12.593245537329516,
+  "composition_difference_s": 2.7257033088607194,
+  "remaining_within_band_difference_s": 2.8000454252263314,
+  "interpretation": "Descriptive frozen-score standardization only; assumes unchanged conditional band errors, does not establish a causal decomposition and is not training weighting or model selection."
+}

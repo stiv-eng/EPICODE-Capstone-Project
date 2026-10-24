@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer - v0.7.1
+# Motorsport Telemetry Analyzer - v0.7.2
 
 Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
 Barcelona GP / Dallara F317 is the primary ML demonstration: **205 usable complete
@@ -8,6 +8,55 @@ SVR has validation MAE **9.868 s** and frozen test MAE **15.393 s** (median base
 recording holdout, not a claim of unseen-session or live-racing generalization.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
+
+## v0.7.2 diagnosis and feature experiments
+
+The operational reference remains **SVR v0.7.1**. All 205 valid laps and its frozen
+results stay intact. New experiments use only the original training+validation
+pool: **169 laps / 40 recording blocks**, five group folds, with the 36 already
+observed historical test laps excluded before feature construction.
+
+| Development variant | Features | OOF MAE |
+|---|---:|---:|
+| F0, original reference configuration | 13 | 13.361 s |
+| F1, trailing-window summaries | 20 | 13.381 s |
+| F2, observed events/distance proxy | 18 | 13.424 s |
+| F3, combined compact history | 25 | 13.400 s |
+| F0W, separate pace-loss weighting | 13 | 13.317 s |
+
+No variant meets the fixed adoption rule. Weighting's 0.044 s pooled improvement
+comes with worse recording-macro and middle-pace errors. Preserve the current SVR
+as an educational reference; a limited sequence-model comparison is a future
+research option, with no demonstrated neural superiority and no DL added here.
+
+On **Machine Learning**, expand **Diagnosi ML v0.7.2** and enable **Mostra confronto
+delle feature sui fold di sviluppo** for tables, calibration, checkpoint/pace
+errors and predefined development examples. These are experimental development
+results, not a new final test. The existing training button and Progressive
+Prediction continue to use the compatible v0.7.1 reference with hidden targets.
+
+Explicit offline commands:
+
+These use the installed signed v0.7.1 reference. On a fresh local setup, first
+use its existing explicit training button to restore that reference from TRAIN
+while reusing frozen evaluation, then run the development commands.
+
+```powershell
+python -m scripts.run_barcelona_v072 --audit-only
+python -m scripts.run_barcelona_v072
+python -m scripts.report_barcelona_v072
+python -m scripts.verify_baselines_v072
+```
+
+The runner verifies/reuses frozen development evaluation. Missing research models
+can be rebuilt on development data without rescoring held-out folds/test. Research
+artifacts live separately in ignored `artifacts/barcelona_v072/models/`. Report
+figures use the already-installed optional Matplotlib; normal application/training
+does not require it. No new telemetry is downloaded and no live capture is added.
+
+See [release](docs/RELEASE_V072_REPORT.md), [pace diagnosis](docs/PACE_DISTRIBUTION_AUDIT_V072.md),
+[feature experiments](docs/ML_FEATURE_EXPERIMENTS_V072.md), [model assessment and sequence feasibility](docs/ML_MODEL_ASSESSMENT_V072.md),
+[architecture](docs/ARCHITECTURE_V072.md) and [next recommendation](docs/NEXT_RELEASE_RECOMMENDATION.md).
 
 ## Start in VS Code
 
@@ -301,7 +350,8 @@ For a core-only installation omit the two historical DL training modules with
 if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests.
 Optional browser checks use the installed `websockets` package and local Chrome:
 `python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-For current Barcelona workflows add `--release v071`; for the retained prior
+For the current Barcelona diagnosis workflow add `--release v072` (or `v072-ml`
+for the shorter ML/replay path). `--release v071` retains the previous workflow; for the retained prior
 workflow use `--release v063-baseline`, and type fixtures `--release v063-fixtures`.
 Screenshots/logs stay under ignored `artifacts/<release>/`; temporary servers and
 browsers stop afterward. Historical scenarios explicitly select the archive UI.

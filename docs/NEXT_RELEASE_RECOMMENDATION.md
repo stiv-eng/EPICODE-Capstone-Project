@@ -1,47 +1,51 @@
-# Recommendation after v0.7.1
+# Recommendation after v0.7.2
 
-**Keep the inclusive Barcelona A experiment as the measured reference and
-prioritize causal feature engineering.** The recovered data supports actual
-training; imperfect participant/date metadata is no longer a blocking condition.
-SVR beats the offline median on validation (9.868 vs 20.414 s) and the frozen test
-(15.393 vs 17.901 s), but slow-test MAE 31.213 s, bias -30.167 s and P90 overall
-36.705 s show that the present features do not cover the full legitimate pace range.
+**Preserve SVR v0.7.1 as the operational educational reference. The compact
+feature-engineering study has reached a practical plateau under the tested
+settings. A limited ordered-sequence pilot is the next research comparison;
+neural superiority has not been demonstrated.**
 
-1. Preserve all usable data and the current signed model/results. Compare a small
-   preregistered set of causal recent-window speed/pedal, observed stopping/recovery
-   and phase/event summaries against the same 13-feature baseline. Verify any
-   source progress semantics; never normalize by eventual distance or final target.
-   Keep training-only preprocessing and fixed inclusive development populations.
-2. Report checkpoint, recording-macro and slow/fast errors alongside pooled MAE.
-   Later prefixes help, but validation 60 s is worse than 45 s. The nested size
-   curve improves overall SVR MAE by 1.125 s while worsening slow-tail MAE by
-   2.573 s; do not optimize away difficult valid laps or claim size alone explains it.
-3. A bounded classical alternative may follow a feature comparison, with few
-   prespecified configurations. Current Ridge/RF/SVR results do not establish that
-   algorithm replacement alone fixes lost temporal information or future incidents.
-4. Additional same-domain recording diversity and better source timing/session
-   documentation would strengthen evidence. This is useful follow-up, not a new
-   eligibility gate. Retain anonymous/date-conflict laps when technically sound.
-   Native capture/resampling latency remains unproven by 50/100 Hz export grids.
-5. A limited Keras experiment is a later optional research step, after defining
-   a causal sequence representation and meaningful classical references. With
-   103 training laps and unknown cross-capture links, the current scores provide
-   no measured reason to prioritize deep learning now. No DL was added in v0.7.1.
+The five-fold development study uses 169 laps / 40 recording blocks and excludes
+the 36 already-observed historical test laps before feature generation. F0 MAE is
+13.361 s; recent/event/combined variants are 13.381/13.424/13.400 s. None improves
+recording-macro error or four of five folds. One weighting intervention reduces
+pooled MAE by only 0.044 s and slow MAE by 2.807 s, while worsening recording-macro
+MAE by 0.822 s and middle MAE by 1.563 s. Keep it as a documented tradeoff, not a
+new preferred model. All 205 valid laps remain available and none is filtered.
 
-The Barcelona test has already been evaluated and inspected. Use validation or
-development-only cross-validation for changes, then reserve a **new untouched
-holdout** before claiming a new final result. Do not reuse the present final test
-to pick features, filter laps, tune models or reverse the validation selection.
-No arbitrary number of drivers or independent groups should prevent useful
-development; document actual split strength and uncertainty instead.
+Training has 26 slow laps and the widest target range. Validation's fast-heavy
+composition plausibly contributes to its lower historical error, but does not
+explain development slow bias (-35.804 s). F0's SD ratio 0.511 and slope 0.351
+show central shrinkage. Identical early observed patterns can have different
+future outcomes; neither a scalar model nor a sequence network can know an
+unobserved incident with certainty.
 
-Keep the v0.6.3 shared hover/cursor design. Follow-up browser coverage can include
-Firefox/Safari, physical touch devices and longer laptop memory sessions; current
-Chrome evidence covers actual pointer/keyboard, zoom/pan, responsive widths and
-offline chart payloads. Unknown cross-recording links mean the new holdout does
-not establish unseen-session/driver or prospective generalization.
+For the next release:
 
-See [dataset audit](BARCELONA_DATASET_AUDIT_V071.md),
-[measured ML health](ML_EVALUATION_V071.md) and [comparison](ML_COMPARISON_V071.md).
-This recommendation does not authorize further acquisition, publication or Git
-push/merge, and imposes no new gate on the delivered functioning experiment.
+1. Keep the reference, raw files, original split and frozen metrics immutable.
+   Reuse the fixed development folds for research, with honest unknown-link limits.
+2. Predefine one small GRU or causal 1D CNN ordered-prefix pilot, with a modest
+   classical ordered-window comparator. Use six current source channels on a
+   causal timestamp-supported 10 Hz grid, masking unsupported/padded values.
+   A padded (845,600,6) float32 development tensor is about 12.17 MB; there remain
+   only 169 unique development laps. Avoid a large architecture/parameter search.
+3. Use training-only normalization and inner recording splits for early stopping;
+   report every outer fold, recording-macro, checkpoint and pace tail, plus
+   prediction spread/calibration and all deterministic baselines. Do not select
+   on greater variability alone or cherry-pick favorable example laps.
+4. Verify source phase/progress export semantics before adding a current-position
+   family. The speed integral already tested is a path-distance proxy, not a
+   certified phase or target-normalized fraction. Raw derivative spikes also need
+   an independently specified robust representation if studied again; do not
+   silently clip/remove difficult laps to rescue the present experiment.
+5. Require a **new untouched final holdout** for any new final-performance claim.
+   Existing historical test labels may describe distributions but cannot tune
+   features, weights or architecture. Additional diverse same-domain data would
+   strengthen evidence, but is not a gate on useful experiments and was not
+   acquired here.
+
+No deep-learning model was added in v0.7.2. The recommendation authorizes no push,
+merge, new acquisition or live simulator recording. Scope and tensor/evaluation
+details are in [model assessment](ML_MODEL_ASSESSMENT_V072.md), with actual numbers
+in [feature experiments](ML_FEATURE_EXPERIMENTS_V072.md) and
+[pace audit](PACE_DISTRIBUTION_AUDIT_V072.md).
