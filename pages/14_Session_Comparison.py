@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from motorsport_ui.hover import render_chart
 
 from motorsport.analytics.comparison import SessionWindow,compare_windows,common_channels,cumulative_lap_delta
 from motorsport.analytics.timebase import weighted_signal,numeric
@@ -93,7 +94,7 @@ else:
     else:
         fig=go.Figure(go.Scatter(x=delta.distance_m,y=delta.delta_s,name='B − A'))
         fig.update_layout(template='plotly_dark',xaxis_title='Distanza riferimento (m)',yaxis_title='Delta B − A (s)')
-        st.plotly_chart(fig,width='stretch')
+        render_chart(fig,width='stretch')
 
 if selected:
     selections=list(zip(identities,labels,[av,bv]))

@@ -10,6 +10,7 @@ from .visuals import trajectory_figure
 from .widgets import valid_selectbox
 from .vehicle import add_vehicle
 from .selection import selection_identity
+from .hover import render_chart
 
 
 @st.cache_data(show_spinner=False,max_entries=4)
@@ -46,7 +47,9 @@ def render_position(session,frame):
     st.caption(f'Campione sorgente {point.name} · '+description)
     fig.update_xaxes(title_text='pos_x · '+signal_unit(session,'pos_x'))
     fig.update_yaxes(title_text='pos_y · '+signal_unit(session,'pos_y'))
-    st.plotly_chart(fig,width='stretch',key='position_trajectory')
+    fig.data[-1].update(customdata=[[str(point.name)]],
+        hovertemplate='Campione sorgente %{customdata[0]}<br>X=%{x:.3f}<br>Y=%{y:.3f}<extra></extra>')
+    render_chart(fig,key='position_trajectory')
     columns=[c for c in ['elapsed_s','lap_id','lap_elapsed_s','speed_kmh','throttle_pct','brake_pct','gear',color] if c and c in frame]
     st.dataframe(pd.DataFrame([point[list(dict.fromkeys(columns))]]),hide_index=True)
     st.caption(f"{stats['rendered_segments']:,} segmenti · {stats['runs']} frammenti · {stats['finite_positions']:,}/{stats['samples']:,} posizioni finite. "

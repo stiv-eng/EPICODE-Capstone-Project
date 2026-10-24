@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from motorsport_ui.hover import render_chart,render_figures
 from motorsport_ui.analytics import clean_lap_table, driver_summary, stint_summary, degradation_regression
 from motorsport_ui.common import select_session, load_selected_session
 
@@ -26,21 +27,20 @@ a.metric('Giri validi', f'{len(filtered)}')
 b.metric('Miglior giro', f"{fastest['best']:.3f} s")
 c.metric('Pilota più veloce', str(fastest['Driver']))
 
-t1, t2, t3 = st.tabs(['Lap times', 'Pneumatici / Stint', 'Regressione passo'])
-with t1:
+section=st.radio('Analisi legacy',['Lap times', 'Pneumatici / Stint', 'Regressione passo'],horizontal=True)
+if section=='Lap times':
     fig = px.scatter(filtered, x='LapNumber', y='LapTimeSeconds', color='Driver',
                      symbol='Compound', hover_data=['Stint','TyreLife'],
                      labels={'LapNumber':'Numero giro', 'LapTimeSeconds':'Tempo sul giro (s)'},
                      title='Evoluzione tempi sul giro')
     fig.update_traces(marker={'size': 8})
-    st.plotly_chart(fig, use_container_width=True)
     box = px.box(filtered, x='Driver', y='LapTimeSeconds', color='Driver', points='all',
                  title='Distribuzione tempi (filtrati)')
-    st.plotly_chart(box, use_container_width=True)
+    render_figures([(fig,'xy'),(box,'xy')],key='legacy_lap_times')
     st.dataframe(summary, use_container_width=True, hide_index=True)
     st.download_button('Esporta giri CSV', filtered.to_csv(index=False).encode(),
                        file_name=f'{year}_{code}_lap_times.csv', mime='text/csv')
-with t2:
+elif section=='Pneumatici / Stint':
     stints = stint_summary(filtered)
     fig = go.Figure()
     tyre_colors = {'SOFT': '#e94b55', 'MEDIUM': '#f0c34e', 'HARD': '#dedede',
@@ -55,9 +55,9 @@ with t2:
                              showlegend=False))
     fig.update_layout(barmode='overlay', title='Sequenza stint (giri cronologici)',
                       xaxis_title='Numero giro', yaxis_title='Pilota')
-    st.plotly_chart(fig, use_container_width=True)
+    render_chart(fig, use_container_width=True)
     st.dataframe(stints, use_container_width=True, hide_index=True)
-with t3:
+else:
     result = degradation_regression(filtered)
     st.caption('Fit lineare osservazionale su TyreLife all’interno di ogni stint. '
                'Traffico, carburante, safety car e condizioni pista NON sono controllati: '
@@ -70,4 +70,4 @@ with t3:
         f = px.bar(positive, x='Driver', y='slope_s_per_tyre_lap', color='Compound',
                    hover_data=['Stint', 'r2', 'laps'], barmode='group',
                    title='Pendenza tempo sul giro vs TyreLife (s/giro gomma)')
-        st.plotly_chart(f, use_container_width=True)
+        render_chart(f, use_container_width=True)

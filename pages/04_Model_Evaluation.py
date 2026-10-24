@@ -1,6 +1,7 @@
 """Audit della rete: metrica FP holdout + test onesto su giri Q (mai nel train)."""
 import plotly.express as px
 import streamlit as st
+from motorsport_ui.hover import render_chart
 from motorsport_prediction.model import evaluate_qualifying, summarize_qualifying
 from motorsport_prediction.data import load_qualifying
 
@@ -41,7 +42,7 @@ if saved and saved[0] == key:
     c.metric('Keras · MAE macro', f"{metrics['keras_macro_mae_s']:.3f} s",
              delta=f"{metrics['improvement_s']:+.3f} s di miglioramento")
     stages_long = stages.melt('stage', var_name='Metodo', value_name='MAE (s)')
-    st.plotly_chart(px.bar(stages_long, x='stage', y='MAE (s)', color='Metodo',
+    render_chart(px.bar(stages_long, x='stage', y='MAE (s)', color='Metodo',
                            barmode='group', title='Errore medio per fase del giro'),
                     use_container_width=True)
     st.dataframe(lap_metrics, hide_index=True, use_container_width=True)

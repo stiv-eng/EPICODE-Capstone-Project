@@ -2,6 +2,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from motorsport_ui.hover import render_chart
 from motorsport_ui.common import event_names, session_data
 from motorsport_ui.svr import lap_features, fit_svr
 
@@ -46,7 +47,7 @@ if saved:
     vmax = max(results[['actual_s', 'predicted_s']].max())
     fig.add_shape(type='line', x0=vmin, x1=vmax, y0=vmin, y1=vmax,
                   line={'dash': 'dash', 'color': 'white'})
-    st.plotly_chart(fig, use_container_width=True)
+    render_chart(fig, use_container_width=True)
     st.dataframe(dataset, hide_index=True, use_container_width=True)
     st.caption('Suddivisione casuale train/test su giri Q/R di un pilota; metriche '
                'puramente dimostrative, non confrontabili direttamente al test Keras su Q.')

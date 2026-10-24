@@ -10,6 +10,7 @@ from plotly.subplots import make_subplots
 from motorsport.analytics.channels import signal_unit
 from motorsport.analytics.session_metrics import chart_sample
 from motorsport.analytics.timebase import chart_values, numeric
+from .hover import observed_tolerance
 
 
 SELECTION_COLORS=['#63b3ff','#ff8c42','#56e39f','#ff6b9d','#d5b8ff','#ffd166','#45d5e8','#ffffff']
@@ -30,7 +31,8 @@ def comparison_figure(selections, channels, axis, axis_label, session):
     fig=make_subplots(rows=len(channels),cols=1,shared_xaxes=True,
                       subplot_titles=[f'{c} · {signal_unit(session,c)}' for c in channels])
     used=set()
-    for identity,label,view in selections:
+    for slot,(source_identity,label,view) in enumerate(selections):
+        identity=f'{slot}:{source_identity}'
         color=selection_color(identity)
         # Deterministic collision resolution for the two compared selections.
         if color in used:
@@ -40,8 +42,10 @@ def comparison_figure(selections, channels, axis, axis_label, session):
         for row,channel in enumerate(channels,1):
             fig.add_trace(go.Scatter(x=sample[axis],y=chart_values(view,sample,channel,axis),
                 name=label,legendgroup=identity,showlegend=row==1,mode='lines',
-                line=dict(color=color),connectgaps=False,hoverinfo='none',
-                meta=dict(channel=channel,unit=signal_unit(session,channel))),row=row,col=1)
+                line=dict(color=color),connectgaps=False,hoverinfo='none',customdata=[[str(i)] for i in sample.index],
+                meta=dict(channel=channel,unit=signal_unit(session,channel),selection_id=identity,
+                          source_identity=source_identity,sample_label='Campione sorgente',
+                          tolerance=observed_tolerance(view[axis]))),row=row,col=1)
             fig.update_yaxes(title_text=signal_unit(session,channel),row=row,col=1)
     fig.update_layout(template='plotly_dark',height=max(350,220*len(channels)),
                       hovermode='x',legend=dict(orientation='h',y=1.10,yanchor='bottom'),
@@ -87,10 +91,14 @@ def trajectory_figure(segments, frame, channel, unit='source unit'):
             continue
         xs=np.c_[group.x0,group.x1,np.full(len(group),np.nan)].ravel()
         ys=np.c_[group.y0,group.y1,np.full(len(group),np.nan)].ravel()
-        custom=np.repeat(group.value.to_numpy(),3)
+        # Endpoint readouts must refer to that endpoint's actual source sample,
+        # not repeat the segment-start color value at its far endpoint.
+        offsets=np.c_[group.start,group.end,group.start].astype(int).ravel()
+        values=numeric(frame,channel) if channel else np.full(len(frame),np.nan)
+        custom=[[str(frame.index[i]),float(values[i])] for i in offsets]
         fig.add_trace(go.Scatter(x=xs,y=ys,mode='lines',line=dict(color=color,width=3),
             name=name,showlegend=legend,connectgaps=False,customdata=custom,
-            hovertemplate=f'x=%{{x:.2f}}<br>y=%{{y:.2f}}<br>{channel or "value"}=%{{customdata}} {unit}<extra></extra>'))
+            hovertemplate=f'Campione sorgente %{{customdata[0]}}<br>x=%{{x:.2f}}<br>y=%{{y:.2f}}<br>{channel or "value"}=%{{customdata[1]}} {unit}<extra></extra>'))
     fig.update_layout(template='plotly_dark',height=620,legend=dict(orientation='h'),
                       margin=dict(t=35),uirevision='trajectory')
     fig.update_yaxes(scaleanchor='x',scaleratio=1)

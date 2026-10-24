@@ -3,6 +3,7 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
+from motorsport_ui.hover import render_chart
 from motorsport_ui.analytics import sampled_car_data, telemetry_delta
 from motorsport_ui.common import select_session, load_selected_session, lap_choices
 
@@ -42,10 +43,13 @@ for idx, telemetry in enumerate((a, b)):
         y = telemetry[key].astype(float) if key != 'Brake' else telemetry[key].fillna(False).astype(float)
         fig.add_trace(go.Scatter(x=telemetry['Distance'], y=y, name=labels[idx],
                                  line_color=colors[idx], mode='lines', legendgroup=labels[idx],
+                                 meta=dict(channel=key,unit={'Speed':'km/h','Throttle':'%','Brake':'flag','RPM':'rpm','nGear':'integer'}[key],
+                                           selection_id=f'{idx}:{year}:{event}:{code}:{selection[idx][0]}:{int(selection[idx][1]["LapNumber"])}'),
+                                 hovertemplate=f'Distanza=%{{x}} m<br>{key}=%{{y}}<extra></extra>',
                                  showlegend=row == 1), row=row, col=1)
 fig.update_layout(height=850, hovermode='x unified', margin={'t': 65})
 fig.update_xaxes(title_text='Distanza (m)', row=5, col=1)
-st.plotly_chart(fig, use_container_width=True)
+render_chart(fig, use_container_width=True)
 
 delta = telemetry_delta(a, b)
 if not delta.empty:
@@ -54,6 +58,6 @@ if not delta.empty:
     chart.add_hline(y=0, line_dash='dash')
     chart.update_layout(title='Delta cumulato B − A · positivo = B più lento',
                         xaxis_title='Distanza (m)', yaxis_title='Differenza (s)', height=300)
-    st.plotly_chart(chart, use_container_width=True)
+    render_chart(chart, use_container_width=True)
     st.caption('Delta ottenuto per interpolazione della telemetria temporale sullo stesso '
                'asse distanza integrata. È un’approssimazione, non un timing ufficiale.')

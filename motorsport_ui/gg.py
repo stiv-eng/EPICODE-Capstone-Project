@@ -19,7 +19,8 @@ def gg_figure(session,frame):
     if radius<1e-5:
         radius=1.
     sample=chart_sample(frame,['g_lat','g_lon'],max_points=3500)
-    fig=px.scatter(sample,x='g_lat',y='g_lon',render_mode='svg',opacity=.55,
+    sample=sample.assign(**{'Campione sorgente':sample.index.astype(str)})
+    fig=px.scatter(sample,x='g_lat',y='g_lon',render_mode='svg',opacity=.55,hover_data=['Campione sorgente'],
         color='speed_kmh' if 'speed_kmh' in usable_channels(frame,['speed_kmh']) else None,
         title='Diagramma G-G · '+('g' if lat.lower()=='g' else 'scala sorgente'),template='plotly_dark',
         labels={'g_lat':f'Accelerazione laterale ({lat})','g_lon':f'Accelerazione longitudinale ({lon})',

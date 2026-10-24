@@ -1,0 +1,177 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<style>
+html,body{margin:0;background:#0e1117;color:#f5f7fc;font:14px system-ui,sans-serif;overflow-x:hidden}
+.comparison{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:10px;width:100%;align-items:start;margin-bottom:24px}
+.plot-wrap{position:relative;min-width:0}.chart{width:100%}.cursor-layer{position:absolute;inset:0;pointer-events:none;width:100%;height:100%;overflow:hidden}
+.time-cursor{stroke:#ffd166;stroke-width:1.5;stroke-dasharray:4 3}.point-focus{fill:none;stroke:#ffd166;stroke-width:2}
+.readout-column{min-width:0;padding:75px 5px 0 0;box-sizing:border-box}
+.readout{padding:12px;border:1px solid #40516a;border-radius:8px;background:#192230;overflow-wrap:anywhere}
+.readout h3{font-size:14px;margin:0 0 10px}.readout p{font-size:12px;color:#c1d0e3;margin:7px 0}
+.reading{margin:12px 0;padding-left:8px;border-left:4px solid}.value{font:600 17px monospace;margin-top:4px;white-space:pre-line}.identity{font-size:12px;line-height:1.5}
+.chart:focus-visible{outline:2px solid #ffd166;outline-offset:-3px}
+@media(max-width:760px){.comparison{grid-template-columns:minmax(0,1fr);gap:0}.readout-column{padding:0 5px}.readout{padding:10px}.reading{margin:8px 0}.value{font-size:15px}}
+</style></head><body><main id="figures"></main>
+<script>
+async function loadRuntime(){
+  const started=performance.now();
+  if(window.Plotly)return; // Standalone offline export already embeds the runtime.
+  const url=new URL('plotly.min.js',location.href).href;
+  let blobURL=null;
+  const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=reject;document.head.append(s);});
+  try{
+    // Streamlit 1.66's component asset route sends no freshness lifetime/ETag.
+    // Explicit browser CacheStorage avoids refetching the 4.85 MB local bundle.
+    const obtain=async()=>{
+      const cache=await caches.open('motorsport-plotly-runtime-v1');let response=await cache.match(url);
+      document.body.dataset.runtimeSource=response?'cache':'local-fetch';
+      if(!response){response=await fetch(url);if(!response.ok)throw Error('Plotly asset unavailable');await cache.put(url,response.clone());}
+      return response;
+    };
+    const response=await(navigator.locks?navigator.locks.request('motorsport-plotly-runtime',obtain):obtain());
+    const blob=await response.blob();document.body.dataset.runtimeBytes=blob.size;
+    blobURL=URL.createObjectURL(blob);await load(blobURL);
+  }catch(error){document.body.dataset.runtimeSource='direct-fallback';await load(url);}
+  finally{if(blobURL)URL.revokeObjectURL(blobURL);document.body.dataset.runtimeLoadMs=performance.now()-started;}
+}
+// No component value messages: hover, zoom and keyboard never rerun Streamlit.
+const NS='http://www.w3.org/2000/svg',states=[];
+let rendered='',lastTime=null,pending=null,renderQueue=Promise.resolve();
+const send=(type,extra={})=>window.parent.postMessage({isStreamlitMessage:true,type,...extra},'*');
+const fmt=v=>typeof v==='number'&&Number.isFinite(v)?v.toLocaleString('it-IT',{maximumFractionDigits:3}):v==null?'N/D':String(v);
+const finite=v=>typeof v==='number'&&Number.isFinite(v);
+function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+function svg(tag,attrs){const n=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);return n;}
+function resizeFrame(){requestAnimationFrame(()=>send('streamlit:setFrameHeight',{height:Math.ceil(document.body.scrollHeight)}));}
+function arrays(trace){return {x:trace.x||[],y:trace.y||[]};}
+function nearest(trace,time){
+  const {x,y}=arrays(trace);let best=-1,distance=Infinity;
+  // Sorted time axes use binary search; no O(samples) work per pointer move.
+  if(trace.meta.ordered_time===false){
+    for(let i=0;i<x.length;i++)if(finite(x[i])&&Math.abs(x[i]-time)<distance){best=i;distance=Math.abs(x[i]-time);}
+  }else{
+    let lo=0,hi=x.length;
+    while(lo<hi){const mid=(lo+hi)>>>1;if(x[mid]<time)lo=mid+1;else hi=mid;}
+    for(const i of [lo-1,lo])if(i>=0&&i<x.length&&finite(x[i])&&Math.abs(x[i]-time)<distance){best=i;distance=Math.abs(x[i]-time);}
+  }
+  const tolerance=trace.meta.tolerance||0;
+  return best>=0&&distance<=tolerance+1e-8&&finite(y[best])?{x:x[best],y:y[best],i:best}:null;
+}
+function axis(chart,ref,letter){return chart._fullLayout[(ref||letter).replace(letter,letter+'axis')];}
+function drawCursor(state,time){
+  const {chart,layer}=state;layer.replaceChildren();
+  if(state.mode!=='time'||time===null||!chart._fullLayout)return;
+  const seen=new Set();
+  for(const t of chart._fullData){
+    const xa=axis(chart,t.xaxis,'x'),ya=axis(chart,t.yaxis,'y');
+    if(!xa||!ya)continue;
+    const id=xa._id+':'+ya._id;if(seen.has(id))continue;seen.add(id);
+    const x=xa._offset+xa.c2p(time),[a,b]=xa.range.map(Number);
+    if(time<Math.min(a,b)||time>Math.max(a,b))continue;
+    layer.append(svg('line',{class:'time-cursor',x1:x,x2:x,y1:ya._offset,y2:ya._offset+ya._length,'data-time':time,'data-axis':id}));
+  }
+}
+function timeReadout(state,time,channel){
+  const traces=state.chart._fullData.filter(t=>t.meta?.channel&&t.hoverinfo!=='skip');
+  const selected=channel||state.channel||traces[0]?.meta.channel;state.channel=selected;
+  state.title.textContent=selected||'Lettura temporale';state.readout.dataset.hoveredChannel=selected;
+  state.note.textContent='Cursore '+fmt(time)+' s · campione osservato più vicino entro 0,51 × passo mediano originale; N/D oltre tolleranza.';
+  for(const [id,row] of state.rows){
+    const candidates=traces.filter(t=>t.meta.selection_id===id);
+    const trace=candidates.find(t=>t.meta.channel===selected)||(candidates.length===1?candidates[0]:null);
+    const p=trace?nearest(trace,time):null;
+    row.value.textContent=p?fmt(p.y)+' '+trace.meta.unit:'N/D';
+    row.time.textContent=p?'t = '+Number(p.x).toFixed(3)+' s · '+(trace.meta.sample_label||'Punto grafico')+' '+(trace.customdata?.[p.i]?.[0]??p.i):'Misura non disponibile';
+    row.element.dataset.sampleTime=p?p.x:'';
+  }
+  const trace=traces.find(t=>t.meta.channel===selected),ya=trace&&axis(state.chart,trace.yaxis,'y');
+  state.readout.style.marginTop=window.innerWidth>760&&ya?Math.max(0,Math.min(ya._offset-75,state.chart.clientHeight-state.readout.offsetHeight-90))+'px':'0px';
+}
+function updateTime(time,source,channel){lastTime=time;for(const state of states)if(state.mode==='time'){
+  drawCursor(state,time);timeReadout(state,time,state===source?channel:undefined);
+}}
+function templateText(template,p){
+  return template.replace(/<extra>[\s\S]*?<\/extra>/g,'').replace(/%\{([^}:]+)(?::[^}]+)?\}/g,(_,key)=>{
+    let v;if(key==='x'||key==='y')v=p[key];
+    else if(key==='marker.color')v=p.fullData?.marker?.color?.[p.pointNumber]??p['marker.color'];
+    else if(key==='text')v=p.text;
+    else if(key.startsWith('customdata')){const m=key.match(/\[(\d+)\]/);v=m?p.customdata?.[+m[1]]:p.customdata;}
+    return v===undefined?'N/D':fmt(v);
+  }).replace(/<br\s*\/?\s*>/gi,'\n').replace(/<[^>]*>/g,'');
+}
+function spatialReadout(state,event){
+  const p=event.points?.find(p=>p.data.hoverinfo!=='skip');if(!p)return;
+  state.title.textContent=p.data.name||'Lettura grafico';
+  state.note.textContent='Ultimo punto ispezionato · coordinate del grafico';
+  const full=state.chart._fullLayout,xa=p.xaxis||full.xaxis,ya=p.yaxis||full.yaxis;
+  for(const [id,row] of state.rows){
+    const active=id===p.data.meta.selection_id;
+    row.value.textContent=active?(p.data.meta.readout_template?templateText(p.data.meta.readout_template,p):
+      (xa?.title?.text||'X')+': '+fmt(p.x)+'\n'+(ya?.title?.text||'Y')+': '+fmt(p.y)):'N/D';
+    const number=p.pointNumber??p.pointIndex;
+    row.time.textContent=!active?'Selezione non ispezionata':Array.isArray(p.pointNumbers)?
+      'Distribuzione · '+p.pointNumbers.length+' campioni nel bin':number===undefined?'Statistica del grafico':
+      'Punto grafico '+(Array.isArray(number)?number.join(','):number);
+  }
+  state.layer.replaceChildren();
+  if(finite(p.x)&&finite(p.y)&&xa&&ya)state.layer.append(svg('circle',{class:'point-focus',cx:xa._offset+xa.c2p(p.x),cy:ya._offset+ya.c2p(p.y),r:7}));
+  resizeFrame();
+}
+async function mount(spec,index){
+  const panel=node('section','comparison'),wrap=node('div','plot-wrap'),chart=node('div','chart');
+  chart.id=index===0?'telemetry':'telemetry-'+index;chart.tabIndex=0;chart.setAttribute('aria-label','Grafico; frecce sinistra/destra per ispezionare campioni temporali');
+  chart.style.height=(spec.layout.height||450)+'px';
+  const layer=svg('svg',{class:'cursor-layer','aria-hidden':true});wrap.append(chart,layer);
+  const aside=node('aside','readout-column'),readout=node('section','readout');
+  if(index===0)readout.id='readout';readout.setAttribute('aria-live','polite');
+  const title=node('h3','','Lettura grafico'),note=node('p','','Passa sui dati per leggere le misure. L’ultima lettura rimane visibile.');
+  readout.append(title,note);aside.append(readout);panel.append(wrap,aside);document.getElementById('figures').append(panel);
+  const rows=new Map();for(const s of spec.layout.meta.hover_selections){
+    const element=node('div','reading');element.dataset.selectionId=s.id;element.style.borderColor=s.color;
+    const value=node('div','value','N/D'),time=node('p','','');element.append(node('div','identity',s.label),value,time);readout.append(element);
+    rows.set(s.id,{element,value,time});
+  }
+  const state={chart,layer,readout,title,note,rows,mode:spec.layout.meta.hover_mode};states.push(state);
+  await Plotly.newPlot(chart,spec.data,spec.layout,{responsive:true,displaylogo:false,scrollZoom:false});
+  chart.on('plotly_hover',event=>{
+    if(state.mode==='time'){
+      const p=event.points?.find(p=>p.data.meta?.channel);if(p&&finite(p.x))updateTime(p.x,state,p.data.meta.channel);
+    }else spatialReadout(state,event);
+  });
+  chart.addEventListener('pointermove',event=>{
+    if(state.mode!=='time')return;
+    const rect=chart.getBoundingClientRect(),x=event.clientX-rect.x,y=event.clientY-rect.y;
+    for(const t of chart._fullData){const xa=axis(chart,t.xaxis,'x'),ya=axis(chart,t.yaxis,'y');
+      if(xa&&ya&&x>=xa._offset&&x<=xa._offset+xa._length&&y>=ya._offset&&y<=ya._offset+ya._length){
+        const time=xa.p2c(x-xa._offset);if(pending)cancelAnimationFrame(pending);
+        const started=performance.now();
+        pending=requestAnimationFrame(()=>{updateTime(time,state,t.meta?.channel);chart.dataset.hoverLatencyMs=performance.now()-started;pending=null;});break;
+      }
+    }
+  });
+  chart.addEventListener('keydown',event=>{
+    if(state.mode!=='time'||!['ArrowLeft','ArrowRight'].includes(event.key))return;
+    const trace=chart._fullData.find(t=>t.meta?.channel===state.channel)||chart._fullData[0];
+    if(!trace)return;event.preventDefault();const x=trace.x;let i=lastTime===null?0:nearestIndex(x,lastTime);
+    i=Math.max(0,Math.min(x.length-1,i+(event.key==='ArrowRight'?1:-1)));if(finite(x[i]))updateTime(x[i],state,trace.meta.channel);
+  });
+  chart.on('plotly_relayout',()=>{drawCursor(state,lastTime);resizeFrame();});
+  chart.on('plotly_afterplot',()=>drawCursor(state,lastTime));
+  state.observer=new ResizeObserver(()=>{Plotly.Plots.resize(chart);drawCursor(state,lastTime);resizeFrame();});
+  state.observer.observe(wrap);
+  resizeFrame();
+}
+function nearestIndex(x,time){let best=0,d=Infinity;for(let i=0;i<x.length;i++)if(finite(x[i])&&Math.abs(x[i]-time)<d){best=i;d=Math.abs(x[i]-time);}return best;}
+window.addEventListener('message',event=>{
+  if(event.source!==window.parent||event.data.type!=='streamlit:render')return;
+  const specs=event.data.args.specs,signature=JSON.stringify(specs);if(signature===rendered)return;rendered=signature;
+  renderQueue=renderQueue.then(async()=>{
+    const started=performance.now();
+    document.body.dataset.ready='false';if(pending)cancelAnimationFrame(pending);pending=null;
+    for(const state of states){state.observer?.disconnect();Plotly.purge(state.chart);}
+    states.length=0;lastTime=null;document.getElementById('figures').replaceChildren();
+    for(let i=0;i<specs.length;i++)await mount(specs[i],i);
+    document.body.dataset.plotReadyMs=performance.now()-started;document.body.dataset.ready='true';resizeFrame();
+  });
+});
+loadRuntime().then(()=>send('streamlit:componentReady',{apiVersion:1}));
+</script></body></html>

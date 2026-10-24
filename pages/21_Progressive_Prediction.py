@@ -4,6 +4,7 @@ from dataclasses import asdict
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from motorsport_ui.hover import render_figures
 
 from motorsport.ml.features import CHECKPOINTS,prefix_features,causal_prefix
 from motorsport.ml.inference import predict,retrospective_error
@@ -66,11 +67,19 @@ st.caption(f"Qualità: {quality['status']} · copertura segnali {quality['min_co
 signals=prefix[['lap_elapsed_s','speed_kmh','throttle_pct','brake_pct']].copy()
 # Rendering is bounded; calculations above use every observed export sample.
 stride=max(1,len(signals)//3000)
-st.plotly_chart(px.line(signals.iloc[::stride],x='lap_elapsed_s',y=['speed_kmh','throttle_pct','brake_pct'],
-    labels={'lap_elapsed_s':'Tempo osservato del giro (s)'},title='Velocità (km/h) e input (%) osservati fino al checkpoint'),width='stretch')
+signals_figure=px.line(signals.iloc[::stride],x='lap_elapsed_s',y=['speed_kmh','throttle_pct','brake_pct'],
+    labels={'lap_elapsed_s':'Tempo osservato del giro (s)'},title='Velocità (km/h) e input (%) osservati fino al checkpoint')
 history_frame=pd.DataFrame([asdict(p) for p in predictions]).drop(columns='quality')
-st.plotly_chart(px.line(history_frame,x='checkpoint_s',y=['predicted_final_s','baseline_s'],markers=True,
-    title='Storia delle previsioni disponibili (s)'),width='stretch')
+history_figure=px.line(history_frame,x='checkpoint_s',y=['predicted_final_s','baseline_s'],markers=True,
+    title='Storia delle previsioni disponibili (s)')
+# Only causal prefix and predictions enter this component. No full-lap target,
+# source telemetry tail or corpus table is serialized into the browser payload.
+from motorsport_ui.hover import observed_tolerance
+for trace in signals_figure.data:
+    trace.update(meta=dict(unit='km/h' if trace.name=='speed_kmh' else '%',
+                           tolerance=observed_tolerance(signals.lap_elapsed_s)))
+for trace in history_figure.data:trace.update(meta=dict(unit='s'))
+render_figures([(signals_figure,'time'),(history_figure,'time')],key='replay_charts')
 st.dataframe(history_frame,width='stretch')
 if st.checkbox('Mostra valutazione retrospettiva e risultato finale',value=False):
     target=float(corpus.targets.set_index('lap_uid').loc[uid,'target_s'])

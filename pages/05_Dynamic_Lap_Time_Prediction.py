@@ -2,7 +2,9 @@
 import re
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 import streamlit as st
+from motorsport_ui.hover import render_chart,render_figures
 from motorsport_prediction.data import load_practice, load_qualifying
 from motorsport_prediction.features import build_dataset
 from motorsport_prediction.model import fit_model, replay_predictions, save_model_artifacts
@@ -75,7 +77,8 @@ with st.expander('Dataset e training'):
              ' · Keras', f"{trained.metrics['validation_macro_keras_mae_s']:.3f} s")
     history = pd.DataFrame(trained.history)
     if not history.empty:
-        st.line_chart(history[['loss', 'val_loss']], x_label='Epoch', y_label='Huber loss')
+        render_chart(px.line(history,y=['loss','val_loss'],labels={'index':'Epoch','value':'Huber loss'},
+                             title='Training FP · loss per epoca'),key='legacy_training_loss')
     safe_event = re.sub(r'[^a-zA-Z0-9_-]+', '_', event.strip())
     if st.button('Salva modello e preprocessing sul PC/server'):
         location = f'artifacts/{year}_{safe_event}'
@@ -154,7 +157,6 @@ def replay():
     fig.update_layout(title='Evoluzione tempo finale stimato',
                       xaxis_title='Giro completato (%)', yaxis_title='Tempo (s)',
                       legend={'orientation': 'h', 'y': -0.3}, margin={'t': 40, 'b': 40})
-    st.plotly_chart(fig, use_container_width=True)
     telemetry = chosen.telemetry
     shown = telemetry.loc[telemetry['elapsed_s'] <= current['elapsed_s']]
     tv = go.Figure()
@@ -162,6 +164,6 @@ def replay():
     tv.update_layout(title='Telemetria visibile fino allo snapshot',
                      xaxis_title='Distanza percorsa (m)', yaxis_title='Velocità (km/h)',
                      margin={'t': 40, 'b': 40})
-    st.plotly_chart(tv, use_container_width=True)
+    render_figures([(fig,'xy'),(tv,'xy')],key='legacy_progress_charts')
 
 replay()

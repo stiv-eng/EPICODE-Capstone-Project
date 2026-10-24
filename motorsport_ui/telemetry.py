@@ -167,7 +167,8 @@ def quality_caption(frame):
                f"({q['excluded_gap_s']:.3f} s esclusi). Medie temporali: mantenimento del campione precedente; ultimo campione senza durata aggiunta.")
 
 
-def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
+def signal_chart(frame,channels,session,x_column='elapsed_s',key=None,render=True):
+    from .hover import observed_tolerance,render_chart
     channels=usable_channels(frame,channels)
     if not channels or frame.empty:
         st.info('Nessun segnale disponibile per questa selezione. Seleziona un altro canale o verifica la mappatura del file.')
@@ -194,8 +195,11 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
             # across reruns and section remounts. The intermittent v0.6 symptom
             # was not reproduced in local Chrome; context loss is not asserted.
             fig.add_trace(go.Scatter(x=x,y=y,name=label or channel,mode='lines',connectgaps=False,
-                legendgroup=label,showlegend=bool(label) and row==1,
-                line=dict(color=color) if label else None),row=row,col=1)
+                legendgroup=label,showlegend=bool(label) and row==1,customdata=[[str(i)] for i in sample.index],
+                line=dict(color=color) if label else None,
+                meta=dict(channel=channel,unit=signal_unit(session,channel),
+                          selection_id=f'{session.metadata["session_id"]}:{label}',sample_label='Campione sorgente',
+                          tolerance=observed_tolerance(view[x_column]) if x_column in view else 0)),row=row,col=1)
             fig.update_yaxes(title_text=signal_unit(session,channel),row=row,col=1)
     fig.update_xaxes(title_text=x_column+' (s)' if x_column in ['elapsed_s','relative_s','lap_elapsed_s'] else x_column,
                      row=len(channels),col=1)
@@ -203,9 +207,10 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
                       hovermode='x unified',showlegend=len(groups)>1,
                       legend=dict(orientation='h',y=1.08),margin=dict(t=80 if len(groups)>1 else 35,b=30),
                       uirevision=key or 'signals')
-    st.plotly_chart(fig,width='stretch',key=key)
+    if render:render_chart(fig,mode='time',key=key)
     st.caption(f'{shown:,} punti nel grafico; {len(frame):,} campioni disponibili ai calcoli.'
                + (' Asse: tempo relativo del giro in secondi; nessun allineamento tramite timestamp assoluti.' if '_ui_lap' in frame else ''))
+    return fig
 
 
 def metric_export(table,filename,key):

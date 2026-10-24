@@ -2,6 +2,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from motorsport_ui.hover import render_chart,render_figures
 
 from motorsport.ml.features import FEATURES,retrospective_features
 from motorsport.ml.training import train,EXPERIMENTAL
@@ -57,10 +58,10 @@ if bundle is not None:
     model=st.selectbox('Modello da ispezionare',list(bundle.models),index=list(bundle.models).index(bundle.selected_model))
     result=bundle.predictions.query('partition==@partition and model==@model')
     if not result.empty:
-        left,right=st.columns(2)
-        left.plotly_chart(px.scatter(result,x='target_s',y='prediction_s',color='checkpoint_s',hover_data=['lap_uid'],
-            labels={'target_s':'Tempo verificato (s)','prediction_s':'Tempo previsto (s)'},title='Previsto e verificato'),width='stretch')
-        right.plotly_chart(px.histogram(result,x='error_s',nbins=15,title='Distribuzione errori · previsto − verificato (s)'),width='stretch')
+        render_figures([
+            (px.scatter(result,x='target_s',y='prediction_s',color='checkpoint_s',hover_data=['lap_uid'],
+                labels={'target_s':'Tempo verificato (s)','prediction_s':'Tempo previsto (s)'},title='Previsto e verificato'),'xy'),
+            (px.histogram(result,x='error_s',nbins=15,title='Distribuzione errori · previsto − verificato (s)'),'xy')],key='ml_results')
     for label,key in [('Errori per checkpoint','by_checkpoint'),('Errori per giro completo','by_lap'),('Errori per sessione fisica','by_session')]:
         with st.expander(label):
             st.dataframe(bundle.reports[key].query('partition==@partition and model==@model'),width='stretch')
@@ -71,7 +72,7 @@ if bundle is not None:
         st.info('Importanza non stimata: meno di cinque giri di validazione.')
     else:
         importance=bundle.importance.query('model==@model').sort_values('mae_increase_s')
-        st.plotly_chart(px.bar(importance,x='mae_increase_s',y='feature',orientation='h',
+        render_chart(px.bar(importance,x='mae_increase_s',y='feature',orientation='h',
             title='Aumento MAE dopo permutazione · 3 ripetizioni'),width='stretch')
         st.caption('Diagnostica descrittiva con prefissi correlati; non è una misura di causalità fisica né una prova statistica.')
     if st.button('Salva bundle locale verificabile'):

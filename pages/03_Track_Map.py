@@ -1,6 +1,7 @@
 """Mappa circuito e velocita' - traccia XY da FastF1 con Plotly."""
 import plotly.graph_objects as go
 import streamlit as st
+from motorsport_ui.hover import render_chart
 from motorsport_ui.common import select_session, load_selected_session, lap_choices
 
 st.set_page_config(layout='wide')
@@ -34,6 +35,6 @@ fig.update_layout(height=720, title=f'{event} · {driver} · giro {int(laps[idx]
                   xaxis={'visible': False, 'scaleanchor': 'y', 'scaleratio': 1},
                   yaxis={'visible': False}, showlegend=False,
                   margin={'t': 60, 'l': 15, 'r': 15, 'b': 15})
-st.plotly_chart(fig, use_container_width=True)
+render_chart(fig, use_container_width=True)
 st.caption('Le coordinate X/Y di FastF1 sono relative alla pista, non coordinate geografiche GPS. '
            'La mappa dipende dalla qualità del segnale di posizione disponibile.')
