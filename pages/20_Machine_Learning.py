@@ -10,7 +10,7 @@ from motorsport.ml.artifacts import LocalArtifactStore
 from motorsport_ui.ml import ROOT,select_corpus,show_eligibility,snapshot_table,get_bundle,display_table,barcelona_active
 
 st.title('Machine Learning')
-st.caption('v0.7 · Dominio singolo, feature causali e validazione per acquisizioni indipendenti')
+st.caption('v0.7.1 · Dominio singolo, feature causali e holdout per recording')
 corpus=select_corpus('training')
 gate=show_eligibility(corpus)
 if not corpus.laps:
@@ -39,7 +39,7 @@ if st.button('Addestra e valuta i tre modelli',disabled=not can_train,type='prim
     try:
         with st.spinner('Training separato da validazione e test…'):
             if barcelona_active():
-                from motorsport.ml.barcelona_experiment import run
+                from motorsport.ml.barcelona_experiment_v071 import run
                 bundle=run(corpus,st.session_state['barcelona_audit'])
             else:bundle=train(corpus,features,experimental=experimental)
             st.session_state.setdefault('ml_bundles',{})[corpus.identity]=bundle
@@ -47,11 +47,13 @@ if st.button('Addestra e valuta i tre modelli',disabled=not can_train,type='prim
         st.error(str(exc))
 bundle=get_bundle(corpus)
 if bundle is not None:
-    st.subheader('Risultati delle partizioni indipendenti')
+    st.subheader('Risultati di validazione e test')
     st.info(bundle.mode)
     st.write('Modello selezionato esclusivamente dalla validazione: **'+bundle.selected_model+'**')
     st.caption('Nessun refit su validazione/test. I prefissi di un giro restano nella stessa partizione. '
-               'I riferimenti storici usano soltanto target di training già conclusi prima del giro corrente.')
+               + ('La mediana è fissata sui giri di training; il giro precedente richiede ordine documentato. '
+                  'Il test contiene solo il modello selezionato; nuove esecuzioni riusano il risultato congelato.' if barcelona_active()
+                  else 'I riferimenti storici usano soltanto target di training già conclusi prima del giro corrente.'))
     st.dataframe(bundle.split,width='stretch')
     st.write('Feature usate dal bundle: '+', '.join(bundle.feature_names))
     partition=st.radio('Partizione di valutazione',['test','validation'],horizontal=True)
@@ -66,7 +68,7 @@ if bundle is not None:
             (px.scatter(result,x='target_s',y='prediction_s',color='checkpoint_s',hover_data=['lap_uid'],
                 labels={'target_s':'Tempo verificato (s)','prediction_s':'Tempo previsto (s)'},title='Previsto e verificato'),'xy'),
             (px.histogram(result,x='error_s',nbins=15,title='Distribuzione errori · previsto − verificato (s)'),'xy')],key='ml_results')
-    for label,key in [('Errori per checkpoint','by_checkpoint'),('Errori per giro completo','by_lap'),('Errori per sessione fisica','by_session')]:
+    for label,key in [('Errori per checkpoint','by_checkpoint'),('Errori per giro completo','by_lap'),('Errori per recording' if barcelona_active() else 'Errori per sessione fisica','by_session')]:
         with st.expander(label):
             st.dataframe(bundle.reports[key].query('partition==@partition and model==@model'),width='stretch')
     with st.expander('Errori individuali e copertura'):
@@ -77,13 +79,15 @@ if bundle is not None:
                 else 'Importanza non stimata: meno di cinque giri di validazione.')
     else:
         importance=bundle.importance.query('model==@model').sort_values('mae_increase_s')
-        render_chart(px.bar(importance,x='mae_increase_s',y='feature',orientation='h',
-            title='Aumento MAE dopo permutazione · 3 ripetizioni'),width='stretch')
-        st.caption('Diagnostica descrittiva con prefissi correlati; non è una misura di causalità fisica né una prova statistica.')
+        if importance.empty:st.info('Importanza di validazione disponibile soltanto per il modello selezionato.')
+        else:
+            render_chart(px.bar(importance,x='mae_increase_s',y='feature',orientation='h',
+                title='Aumento MAE dopo permutazione · 3 ripetizioni'),width='stretch')
+            st.caption('Diagnostica descrittiva con prefissi correlati; non è una misura di causalità fisica né una prova statistica.')
     if st.button('Salva bundle locale verificabile'):
         if barcelona_active():
-            from motorsport.ml.barcelona_experiment import save_bundle
-            path=save_bundle(bundle,ROOT/'artifacts/barcelona_v07/models')
+            from motorsport.ml.barcelona_experiment_v071 import save_bundle
+            path=save_bundle(bundle,ROOT/'artifacts/barcelona_v071/models')
         else:path=LocalArtifactStore(ROOT/'artifacts/models').save(bundle,'telemetry-'+corpus.identity[:16])
         st.success('Bundle e preprocessing salvati in '+str(path.relative_to(ROOT)))
     st.download_button('Esporta errori indipendenti CSV',bundle.predictions.to_csv(index=False).encode(),

@@ -1,6 +1,11 @@
-# Motorsport Telemetry Analyzer - v0.6.3
+# Motorsport Telemetry Analyzer - v0.7.1
 
 Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
+Barcelona GP / Dallara F317 is the primary ML demonstration: **205 usable complete
+laps**, including all 116 formerly excluded for uncertain metadata. The selected
+SVR has validation MAE **9.868 s** and frozen test MAE **15.393 s** (median baseline
+17.901 s). Slow-lap errors remain large; this is an educational retrospective
+recording holdout, not a claim of unseen-session or live-racing generalization.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
@@ -25,12 +30,12 @@ once using **Python: Select Interpreter**. Ordinary startup needs no terminal co
 | Session Overview | Essential session metrics; Channel / Time Measured [s] / Mean; explanations only for unavailable capabilities |
 | Data Explorer | One dataset and shared verified-lap/time selection across Signals, Driver Inputs, Vehicle Dynamics, Tyre Analysis, Cockpit and Position / Track Map |
 | Telemetry Comparison | Verified laps by default when both sources support them; source-relative lap time, compatible units, one shared legend and stable selection colors; saved-window fallback |
-| Machine Learning | Dataset eligibility, causal feature selection, explicit Ridge/Random Forest/SVR training, chronological holdout errors, baseline comparison, importance and exports |
+| Machine Learning | Inclusive Barcelona audit, explicit Ridge/Random Forest/SVR training, distinct validation and selected-model test results, baseline comparisons, importance and exports |
 | Progressive Prediction | Retrospective checkpoint replay, observed telemetry, prediction history and optional final-target reveal; baseline, experimental and evaluated modes |
 
 Legacy Formula 1 pages remain opt-in through the sidebar checkbox. Historical
 SVR and Keras source modules are preserved. New canonical ML is separate; sequence
-models remain future v0.7 work.
+models remain optional future research.
 
 ## Explore recorded telemetry
 
@@ -101,6 +106,55 @@ rather than embedded in each figure payload. See the architecture/chart audit
 and real Chrome limitations in the v0.6.3 reports.
 
 ## Train and replay
+
+Open **Machine Learning** for Barcelona / Dallara F317. The installed corpus has
+70 recordings, 62 with independently checkable timing, **205 usable laps / 1,025
+causal snapshots**. Participant/date uncertainty is flagged without rejecting
+valid telemetry. Seed-42 recording-block holdout: **103 train / 66 validation /
+36 test laps**, in 30/10/11 recording blocks. Unknown capture links remain a
+documented limitation; these are not certified independent physical sessions.
+
+Press **Addestra e valuta i tre modelli** to train on a fresh local installation
+or reuse the frozen experiment. The fixed 13 causal features, checkpoints and
+training-only preprocessing are preserved. Only validation chooses the model;
+only selected SVR is evaluated on test. Compatible locally signed models load
+automatically on page visits, with no fitting or download. Repeated training
+actions verify/reuse saved evaluation rather than reopening the final test.
+Dedicated artifacts live in ignored `artifacts/barcelona_v071/models/`.
+
+Navigate to **Progressive Prediction**, choose a lap and advance 10/20/30/45/60 s.
+Only observed telemetry and predictions enter the charts/readouts. The actual
+target/error requires explicit retrospective reveal. The median baseline is fixed
+from TRAIN targets; previous-lap comparisons require supported earlier history.
+Validation and test labels never update baseline history.
+
+All acquired data is used offline. If Barcelona is absent, the UI explains the
+separate acquisition commands and never downloads automatically:
+
+```powershell
+python -m scripts.download_barcelona inspect
+python -m scripts.download_barcelona sample
+python -m scripts.download_barcelona all
+python -m scripts.run_barcelona_v071
+```
+
+Acquisition is pinned to the public human Barcelona catalogue, with a 750 MB
+transfer cap and 1.5 GB free-space reserve; installed originals total 574,612,274
+bytes. No need to download again on this checkout. `--audit-only` reprocesses
+without fitting. `python -m scripts.report_barcelona_v071` regenerates reports and
+PNG/SVG figures from frozen CSVs without prediction or final-test access.
+Static figure regeneration uses Matplotlib, already installed in this environment;
+the application and training path do not import it.
+
+See [release](docs/RELEASE_V071_REPORT.md), [dataset recovery](docs/BARCELONA_DATASET_AUDIT_V071.md),
+[measured ML health](docs/ML_EVALUATION_V071.md), [comparison](docs/ML_COMPARISON_V071.md)
+and [next recommendation](docs/NEXT_RELEASE_RECOMMENDATION.md).
+
+### Historical Monza and GT7 reproduction
+
+Run `python -m scripts.archive_app` to open the historical corpus interface.
+Its source data, numerical models, snapshots and artifact namespace are separate
+from Barcelona. The following v0.6 measurements remain historical evidence:
 
 Open **Machine Learning**, select **ACGym human Monza / Dallara**, inspect eligibility
 and features, then press **Addestra e valuta i tre modelli**. Training is explicit;
@@ -247,7 +301,10 @@ For a core-only installation omit the two historical DL training modules with
 if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests.
 Optional browser checks use the installed `websockets` package and local Chrome:
 `python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-Current screenshots/logs stay under ignored `artifacts/v063/`; the temporary server/browser stop afterward.
+For current Barcelona workflows add `--release v071`; for the retained prior
+workflow use `--release v063-baseline`, and type fixtures `--release v063-fixtures`.
+Screenshots/logs stay under ignored `artifacts/<release>/`; temporary servers and
+browsers stop afterward. Historical scenarios explicitly select the archive UI.
 To investigate the original rendering independently, run
 `python -m scripts.investigate_rendering_v061 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
 This executes the archived local v0.6 explorer in an ignored artifact script without

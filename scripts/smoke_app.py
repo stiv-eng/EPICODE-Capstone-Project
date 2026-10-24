@@ -6,6 +6,7 @@ terminated when the check finishes. Screenshots are local ignored artifacts.
 import argparse
 import base64
 import json
+import os
 from pathlib import Path
 import socket
 import subprocess
@@ -88,8 +89,16 @@ def capture(browser, base, artifacts, scenario='v062'):
                     (artifacts/'browser_select_controls.json').write_text(json.dumps(html,indent=2),encoding='utf-8')
                     element="Array.from(document.querySelectorAll('[data-testid=stSelectbox]')).find(e=>e.innerText.includes("+json.dumps(label)+"))?.querySelector('[role=combobox]')"
                     click_element(element)
+                    visible=call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[role=option]')).some(e=>e.innerText.includes("+json.dumps(text)+"))",'returnByValue':True})
+                    if not visible.get('result',{}).get('value'):
+                        call('Runtime.evaluate',{'expression':'('+element+').focus()'})
+                        call('Input.dispatchKeyEvent',{'type':'keyDown','key':'a','code':'KeyA','modifiers':2,'windowsVirtualKeyCode':65})
+                        call('Input.dispatchKeyEvent',{'type':'keyUp','key':'a','code':'KeyA','modifiers':2,'windowsVirtualKeyCode':65})
+                        call('Input.insertText',{'text':text})
                     ready("Array.from(document.querySelectorAll('[role=option]')).some(e=>e.innerText.includes("+json.dumps(text)+"))")
                     click_element("Array.from(document.querySelectorAll('[role=option]')).find(e=>e.innerText.includes("+json.dumps(text)+"))")
+                    time.sleep(.5)
+                    ready("document.querySelector('[data-testid=stApp]')?.getAttribute('data-test-script-state')==='notRunning'")
 
                 call('Emulation.setDeviceMetricsOverride', {'width':1600,'height':1200,'deviceScaleFactor':1,'mobile':False})
                 call('Runtime.enable')
@@ -102,6 +111,10 @@ def capture(browser, base, artifacts, scenario='v062'):
                     exercise=partial(shared_exercise,fixture_only=True)
                 elif scenario=='v063':
                     from scripts.smoke_ui_v063 import exercise
+                elif scenario in ('v071','v071-ml'):
+                    from functools import partial
+                    from scripts.smoke_ui_v063 import exercise as shared_exercise
+                    exercise=partial(shared_exercise,barcelona=True,ml_only=scenario=='v071-ml')
                 elif scenario in ('v062','v063-baseline'):
                     from scripts.smoke_ui_v062 import exercise
                 else:
@@ -123,14 +136,17 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063')) else '')
+    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063','v071')) else '')
     artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
+        environment=dict(os.environ)
+        if scenario in ('v061','v062','v063','v063-baseline'):environment['MOTORSPORT_ML_ARCHIVE']='1'
+        else:environment.pop('MOTORSPORT_ML_ARCHIVE',None)
         server = subprocess.Popen([
             sys.executable, '-m', 'streamlit', 'run', entrypoint,
             '--server.headless=true', '--server.address=127.0.0.1',
             f'--server.port={port}', '--server.fileWatcherType=none',
-        ], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+        ], cwd=ROOT, env=environment, stdout=log, stderr=subprocess.STDOUT)
         try:
             base = f'http://127.0.0.1:{port}'
             deadline = time.monotonic() + 25
@@ -161,6 +177,8 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures'],default='v063')
+    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures','v071','v071-ml'],default='v063')
     options=parser.parse_args()
-    smoke(options.browser,entrypoint='scripts/hover_fixture_app.py' if options.release=='v063-fixtures' else 'streamlit_app.py',scenario=options.release)
+    entrypoint=('scripts/hover_fixture_app.py' if options.release=='v063-fixtures'
+                else 'streamlit_app.py')
+    smoke(options.browser,entrypoint=entrypoint,scenario=options.release)

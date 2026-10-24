@@ -1,77 +1,47 @@
-# Recommendation after v0.6.3
+# Recommendation after v0.7.1
 
-Preserve the current production models and prioritize independent data coverage
-and a new untouched holdout. The [ML health assessment](ML_HEALTH_ASSESSMENT_V062.md)
-found no confirmed target/leakage/preprocessing/split defect in the frozen experiment.
-It did find central shrinkage, poor slow-tail adaptation and concentration of SVR
-error in one recording. Small sample size, feature compression, session shift and
-future-event uncertainty cannot be causally separated with the present split.
+**Keep the inclusive Barcelona A experiment as the measured reference and
+prioritize causal feature engineering.** The recovered data supports actual
+training; imperfect participant/date metadata is no longer a blocking condition.
+SVR beats the offline median on validation (9.868 vs 20.414 s) and the frozen test
+(15.393 vs 17.901 s), but slow-test MAE 31.213 s, bias -30.167 s and P90 overall
+36.705 s show that the present features do not cover the full legitimate pace range.
 
-## First: strengthen evidence before model complexity
+1. Preserve all usable data and the current signed model/results. Compare a small
+   preregistered set of causal recent-window speed/pedal, observed stopping/recovery
+   and phase/event summaries against the same 13-feature baseline. Verify any
+   source progress semantics; never normalize by eventual distance or final target.
+   Keep training-only preprocessing and fixed inclusive development populations.
+2. Report checkpoint, recording-macro and slow/fast errors alongside pooled MAE.
+   Later prefixes help, but validation 60 s is worse than 45 s. The nested size
+   curve improves overall SVR MAE by 1.125 s while worsening slow-tail MAE by
+   2.573 s; do not optimize away difficult valid laps or claim size alone explains it.
+3. A bounded classical alternative may follow a feature comparison, with few
+   prespecified configurations. Current Ridge/RF/SVR results do not establish that
+   algorithm replacement alone fixes lost temporal information or future incidents.
+4. Additional same-domain recording diversity and better source timing/session
+   documentation would strengthen evidence. This is useful follow-up, not a new
+   eligibility gate. Retain anonymous/date-conflict laps when technically sound.
+   Native capture/resampling latency remains unproven by 50/100 Hz export grids.
+5. A limited Keras experiment is a later optional research step, after defining
+   a causal sequence representation and meaningful classical references. With
+   103 training laps and unknown cross-capture links, the current scores provide
+   no measured reason to prioritize deep learning now. No DL was added in v0.7.1.
 
-1. Verify source clock/export interpolation/hold semantics and capture-level absolute
-   chronology. Current 50/100 Hz export grids are not proof of native live latency.
-   Continue hash checks, complete-lap target validation, raw/lap deduplication and
-   quarantine of ambiguous A-series identity and the WL date conflict.
-2. Expand the same Monza/Dallara domain across independent dates, participants and
-   pace/condition profiles. A planning target is about 20–30 new physical recording
-   groups, with normal and slow/recovery behavior represented. This is a collection
-   design target, not a guarantee of statistical adequacy; no acquisition is
-   authorized merely by this document.
-3. Before experiments, reserve a new future holdout of roughly 8–10 recording groups
-   and 40–60 complete laps if feasible. Preserve full groups and specify whether
-   recurring or unseen participants are being evaluated. Assess precision at the
-   recording-group level, not by counting five prefixes as five independent laps.
-4. Use group-aware chronological validation and a modest learning curve inside
-   development sessions to distinguish data-size effects from feature/model limits.
-   The already inspected v0.6 test set remains historical evidence, not a new
-   selection set. Retain difficult valid laps rather than improving metrics by removal.
+The Barcelona test has already been evaluated and inspected. Use validation or
+development-only cross-validation for changes, then reserve a **new untouched
+holdout** before claiming a new final result. Do not reuse the present final test
+to pick features, filter laps, tune models or reverse the validation selection.
+No arbitrary number of drivers or independent groups should prevent useful
+development; document actual split strength and uncertainty instead.
 
-## Then: a small, preregistered diagnostic comparison
+Keep the v0.6.3 shared hover/cursor design. Follow-up browser coverage can include
+Firefox/Safari, physical touch devices and longer laptop memory sessions; current
+Chrome evidence covers actual pointer/keyboard, zoom/pan, responsive widths and
+offline chart payloads. Unknown cross-recording links mean the new holdout does
+not establish unseen-session/driver or prospective generalization.
 
-- Compare current aggregates with a reduced redundant allowlist and one bounded
-  causal phase/event/history representation. Current source progress may be useful
-  only with verified semantics and no eventual-distance/target normalization.
-- Consider checkpoint-specific behavior and already observed slowing/recovery,
-  evaluating all alternatives on the same rows with training-only preprocessing.
-  Do not infer that Deep Learning is the solution from the existing training gap.
-- Specify frozen-history and genuinely available rolling-history baselines as
-  separate protocols. GT7's previous-lap baseline already beats its selected SVR
-  on the two frozen test laps; ML superiority is not automatic.
-- Report MAE, RMSE, signed bias, tail errors, checkpoint and recording/participant
-  coverage, with group-aware uncertainty. Use one final new holdout evaluation
-  after decisions are frozen; avoid dozens of variants on two validation groups.
-- Only afterward consider a small sequence experiment against unchanged tabular
-  references. Preserve target-free inference, explicit retrospective evaluation,
-  trusted artifacts and source/unit contracts. New car/track claims need separate
-  domain holdouts; future incidents remain inherently unobserved at early checkpoints.
-
-## UI follow-up
-
-The shared external hover/cursor work is delivered in v0.6.3; do not reintroduce
-native labels or expand this into model experiments. See the release chart audit
-and browser evidence for the precise verified scope.
-
-
-- Test the shared readout on Firefox/Safari, physical touch devices and screen
-  readers. Desktop Chrome verifies temporal keyboard stepping, 1600/960/480 px
-  layout, real hover and cursor geometry; full accessibility certification remains.
-- Measure long-session memory and repeated selection changes on ordinary laptops,
-  including forced-GC diagnostics before calling growth a leak. Content-hashed
-  browser caching removes repeated runtime transfer and grouped figures reduce
-  runtime instances; separate components still parse their own Plotly runtime.
-- Evaluate the strict original-cadence nearest-sample policy with users. Preserve
-  explicit observed timestamps and honest missing states; do not silently enlarge
-  tolerance to hide decimation gaps or expose full-lap replay targets.
-- When optional FastF1 data is locally available, exercise all complete legacy page
-  workflows offline. Current migration/type fixtures do not establish a full
-  externally acquired weekend/Keras acceptance result.
-- Obtain documented ACGym world X/Y or a verified planar heading source if needed.
-  Race rank/progress must not become a fabricated map, and GT7 quaternions must not
-  become heading without a documented convention.
-- If the old FB-007 disappearance recurs on the user's device, collect its exact
-  browser/GPU/selection/scroll and console context. The old symptom remains
-  unreproduced; current SVG/section/marker/hover workflows passed the stated checks.
-
-No new Keras network, model change, large acquisition, push, merge or publication
-is authorized by this recommendation itself.
+See [dataset audit](BARCELONA_DATASET_AUDIT_V071.md),
+[measured ML health](ML_EVALUATION_V071.md) and [comparison](ML_COMPARISON_V071.md).
+This recommendation does not authorize further acquisition, publication or Git
+push/merge, and imposes no new gate on the delivered functioning experiment.

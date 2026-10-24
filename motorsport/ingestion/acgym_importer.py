@@ -40,7 +40,7 @@ def read_beacons(path):
     return np.asarray(beacons)
 
 
-def validate_laps(frame, beacons, hz):
+def validate_laps(frame, beacons, hz, *, target_rounding_s=0.):
     accepted, rejected = [], []
     count = frame.source_lap_count.to_numpy()
     if not np.isfinite(count).all() or not np.allclose(count,np.round(count),atol=1e-3):
@@ -59,7 +59,7 @@ def validate_laps(frame, beacons, hz):
             reasons.append('invalid target')
         if not np.isfinite(t).all() or len(t)<100 or (np.diff(t)<-1e-6).any() or (np.diff(t)>.2).any():
             reasons.append('lap timer reset/missing/gap over 200 ms')
-        if len(t) and (t[0]>.05 or not 0<=target-t[-1]<=.05):
+        if len(t) and (t[0]>.05 or not -target_rounding_s<=target-t[-1]<=.05):
             reasons.append('incomplete lap timer boundary coverage')
         if not (np.isfinite(frame.source_invalid.iloc[a:b]).all() and (frame.source_invalid.iloc[a:b]<.5).all()):
             reasons.append('source invalidates lap')
@@ -89,7 +89,8 @@ def validate_laps(frame, beacons, hz):
 def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
     path = Path(path)
     header, channels = read_ld(path,CHANNELS)
-    missing = set(CHANNELS)-set(channels)
+    optional={'Steering Angle','Gear','CG Accel Lateral','CG Accel Longitudinal'} if manifest.get('optional_feature_channels',False) else set()
+    missing = set(CHANNELS)-optional-set(channels)
     if missing:
         raise ValueError('Required source channels missing: '+', '.join(sorted(missing)))
     frequencies = {c.hz for c in channels.values()}
@@ -97,6 +98,7 @@ def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
     if len(frequencies)!=1 or len(lengths)!=1:
         raise ValueError('Mixed export rates/lengths require a separately validated alignment')
     for name,(canonical,unit) in CHANNELS.items():
+        if name not in channels:continue
         if channels[name].unit!=unit:
             raise ValueError(f'Unexpected unit for {name}: {channels[name].unit}')
     hz = frequencies.pop()
@@ -106,12 +108,16 @@ def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
     track=manifest.get('track','monza')
     if header['vehicle']!=car or header['venue']!=manifest.get('header_venue','monza'):
         raise ValueError('Car/track header disagrees with selected domain')
-    day = datetime.strptime(header['date'],'%d/%m/%Y')
-    date_matches=day.strftime('%Y%m%d')==entry['recording_label'][:8]
+    try:day = datetime.strptime(header['date'],'%d/%m/%Y')
+    except (ValueError,TypeError):
+        if not manifest.get('allow_unknown_date',False):raise
+        day=None
+    date_matches=day is not None and day.strftime('%Y%m%d')==entry['recording_label'][:8]
     if not date_matches and track=='monza':
         raise ValueError('Header date and recording folder disagree')
     timing_failure=None
-    try:result,elapsed,rejected = validate_laps(raw,read_beacons(path.with_suffix('.ldx')),hz)
+    try:result,elapsed,rejected = validate_laps(raw,read_beacons(path.with_suffix('.ldx')),hz,
+                                            target_rounding_s=manifest.get('target_rounding_s',0.))
     except ValueError as exc:
         if not analysis_only:raise
         timing_failure=str(exc)
@@ -125,9 +131,9 @@ def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
     stint = int(re.search(r'stint_(\d+)',path.stem).group(1))
     metadata = {'filename':recording+' / '+path.stem,'format':'MoTeC LD/LDX',
         'session_id':namespace+':'+entry['sha256'],'physical_session_id':physical,
-        'driver_id':'acgym:'+entry['driver_label'],'session_date':day.isoformat(),
+        'driver_id':'acgym:'+entry.get('driver_label','unknown'),'session_date':day.isoformat() if day else 'unknown',
         'recording_order':stint,'car_id':'ac:'+car,'track_id':'ac:'+track,'export_hz':hz,
-        'independence_verified':entry['driver_label']!='A' and (track=='monza' or (entry['driver_label']!='XX' and date_matches)),
+        'independence_verified':entry['driver_label']!='A' and (track=='monza' or (entry['driver_label'] not in ('XX','unknown') and date_matches)),
         'source_sha256':entry['sha256'],'source_url':entry['url'],
         'source_header':header,'license':manifest['license'],'revision':manifest['revision'],
         'channel_units':{'steering':'deg','g_lat':'g','g_lon':'g'},
@@ -135,7 +141,7 @@ def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
         'rejected_laps':rejected,'session_count':1,'driver_count':1}
     if track!='monza':
         metadata['recording_label']=recording
-        metadata['identity_quarantine']=(['unresolved participant/capture identity'] if entry['driver_label'] in ('A','XX') else [])
+        metadata['identity_quarantine']=(['unresolved participant/capture identity'] if entry['driver_label'] in ('A','XX','unknown') else [])
         if not date_matches:metadata['identity_quarantine'].append('header date and recording folder disagree')
         if timing_failure:
             metadata['identity_quarantine'].append(timing_failure)

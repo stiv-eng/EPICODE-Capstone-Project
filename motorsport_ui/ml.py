@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def corpus_catalog():
-    if not archive_mode():return {'barcelona':'Barcelona GP / Dallara F317 · human telemetry v0.7'}
+    if not archive_mode():return {'barcelona':'Barcelona GP / Dallara F317 · human telemetry v0.7.1'}
     catalog={}
     if (ROOT/'data/raw/acgym_monza_dallara').exists():
         catalog['acgym']='ACGym · human Monza / Dallara · verified independent subset'
@@ -26,7 +26,7 @@ def corpus_catalog():
 
 def signature(key):
     if key=='barcelona':
-        paths=sorted((ROOT/'data/raw/acgym_barcelona_dallara').rglob('*'))+[ROOT/'docs/BARCELONA_MANIFEST_V07.json',ROOT/'docs/BARCELONA_PROTOCOL_V07.json']
+        paths=sorted((ROOT/'data/raw/acgym_barcelona_dallara').rglob('*'))+[ROOT/'docs/BARCELONA_MANIFEST_V07.json',ROOT/'docs/BARCELONA_PROTOCOL_V071.json']
         return tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) for p in paths if p.is_file())
     if key=='acgym':
         paths=sorted((ROOT/'data/raw/acgym_monza_dallara').rglob('*'))+[ROOT/'docs/ACGYM_MANIFEST_V06.json']
@@ -56,7 +56,7 @@ def barcelona_active():
 
 @st.cache_data(show_spinner=False,max_entries=2)
 def load_barcelona(source_signature):
-    from motorsport.ml.barcelona import load_corpus as load
+    from motorsport.ml.barcelona_recovery import load_corpus as load
     return load(ROOT/'data/raw/acgym_barcelona_dallara',ROOT/'docs/BARCELONA_MANIFEST_V07.json')
 
 
@@ -76,7 +76,7 @@ def select_corpus(page):
         st.caption('Dominio ML attivo: Barcelona GP / Dallara F317 · nessun dato Monza o GT7 nel corpus.')
         if not (ROOT/'docs/BARCELONA_MANIFEST_V07.json').exists() or not any((ROOT/'data/raw/acgym_barcelona_dallara').rglob('*.ld')):
             st.info('Dataset Barcelona non installato. Acquisizione separata dall’avvio; nessun download automatico.')
-            st.code('python -m scripts.download_barcelona inspect\npython -m scripts.download_barcelona sample\npython -m scripts.download_barcelona all\npython -m scripts.run_barcelona_v07',language='powershell')
+            st.code('python -m scripts.download_barcelona inspect\npython -m scripts.download_barcelona sample\npython -m scripts.download_barcelona all\npython -m scripts.run_barcelona_v071',language='powershell')
             st.stop()
     try:
         # Uploaded sessions are browser-session state, not a global shared cache.
@@ -94,29 +94,34 @@ def select_corpus(page):
 
 def show_eligibility(corpus):
     if barcelona_active():
-        from motorsport.ml.barcelona import data_gate
+        from motorsport.ml.barcelona_recovery import data_gate
         gate=data_gate(corpus,st.session_state.get('barcelona_audit'))
     else:gate=eligibility(corpus)
     a,b,c,d=st.columns(4)
     a.metric('Giri validati',gate['validated_laps'])
-    b.metric('Sessioni fisiche',gate['physical_sessions'])
-    c.metric('Piloti identificati',gate['drivers'])
+    b.metric('Blocchi di recording' if barcelona_active() else 'Sessioni fisiche',gate['physical_sessions'])
+    c.metric('Codici fonte (anche incerti)' if barcelona_active() else 'Piloti identificati',gate['drivers'])
     d.metric('Copertura minima segnali chiave',f"{gate['min_core_coverage']:.1%}")
     if gate['eligible']:
-        st.success('Idoneità tecnica ML verificata: split per sessione disponibile.')
+        st.success('Idoneità tecnica ML verificata: split per recording disponibile.' if barcelona_active()
+                   else 'Idoneità tecnica ML verificata: split per sessione disponibile.')
     else:
         st.warning('Training robusto disabilitato: '+'; '.join(gate['reasons']))
-    st.caption('Le soglie di idoneità sono requisiti minimi di progetto; non dimostrano generalizzazione. '
-               'Le sessioni ACGym derivano da cartelle e date coerenti, con identità anonime dichiarate dalla fonte.')
+    if not barcelona_active():
+        st.caption('Le soglie di idoneità sono requisiti minimi di progetto; non dimostrano generalizzazione. '
+                   'Le sessioni ACGym derivano da cartelle e date coerenti, con identità anonime dichiarate dalla fonte.')
     if barcelona_active():
         audit=st.session_state.get('barcelona_audit',{})
-        st.caption(f"Audit Barcelona: {audit.get('validated_complete_laps',0)} giri completi verificati; {len(corpus.laps)} idonei dopo le quarantene. "
-                   'Gate preregistrato: almeno 12 gruppi indipendenti, 60 giri, 6/3/3 gruppi train/validation/test separati per data.')
+        st.caption(f"Audit Barcelona: {audit.get('validated_complete_laps',0)} giri completi verificati; {len(corpus.laps)} utilizzabili. "
+                   f"Recuperati {audit.get('recovered_metadata_laps',0)} giri esclusi per metadati e {audit.get('additional_recovered_laps',0)} per arrotondamento. "
+                   'Holdout retrospettivo per blocchi di recording; identità e collegamenti incerti restano dichiarati. '
+                   'Non dimostra generalizzazione a sessioni o piloti mai osservati.')
         if gate['eligible']:
-            st.write('Gruppi per partizione:',gate['group_counts'])
+            st.write('Blocchi per partizione:',gate['group_counts'])
+            st.write('Giri per partizione:',gate['lap_counts'])
         else:
-            st.info('Gate dati Barcelona non superato: nessun modello addestrato, nessuna partizione finale forzata e nessuna metrica ML inventata.')
-        with st.expander('Audit dei recording Barcelona e quarantene'):
+            st.info('Corpus tecnicamente non utilizzabile: controlla le motivazioni dell’audit.')
+        with st.expander('Audit dei recording Barcelona e metadati incerti'):
             st.dataframe(pd.DataFrame(audit.get('records',[])),width='stretch')
     return gate
 
@@ -129,18 +134,18 @@ def snapshot_table(corpus):
 def get_bundle(corpus):
     bundle=st.session_state.get('ml_bundles',{}).get(corpus.identity)
     if barcelona_active():
-        from motorsport.ml.barcelona import verify_compatibility,data_gate
-        from motorsport.ml.barcelona_experiment import load_bundle
+        from motorsport.ml.barcelona_recovery import verify_compatibility,data_gate
+        from motorsport.ml.barcelona_experiment_v071 import load_bundle
         if bundle is None and data_gate(corpus,st.session_state.get('barcelona_audit'))['eligible']:
-            directory=ROOT/'artifacts/barcelona_v07/models'
-            if (directory/('barcelona-v07-'+corpus.identity[:16]+'.joblib')).exists():
+            directory=ROOT/'artifacts/barcelona_v071/models'
+            if (directory/('barcelona-v071-'+corpus.identity[:16]+'.joblib')).exists():
                 try:bundle=load_bundle(corpus,directory)
                 except (ValueError,OSError) as exc:st.error('Modello Barcelona incompatibile/non verificato: '+str(exc));return None
         if bundle is not None:
             try:verify_compatibility(bundle,corpus)
             except ValueError as exc:st.error('Modello incompatibile: '+str(exc));return None
             if not data_gate(corpus,st.session_state.get('barcelona_audit'))['eligible']:
-                st.error('Modello non utilizzabile: il corpus Barcelona non supera il gate preregistrato.');return None
+                st.error('Modello non utilizzabile: il corpus Barcelona presenta difetti tecnici.');return None
     return bundle
 
 
@@ -156,7 +161,7 @@ def display_table(frame):
 def baseline_history(corpus,bundle):
     if bundle is not None:
         return bundle.history
-    if barcelona_active():return []  # No unapproved split/history when the gate is unmet.
+    if barcelona_active():return []  # References come from the explicitly fitted TRAIN population.
     try:
         split=chronological_split(corpus,experimental=not eligibility(corpus)['eligible'])
     except ValueError:

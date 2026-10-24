@@ -1,3 +1,27 @@
+# Release v0.7.1 - 2026-10-24
+
+- Recover all 116 Barcelona laps excluded only for uncertain identity/date metadata,
+  plus one verified 0.5 ms source-rounding case: 205 usable laps, 100% core coverage.
+- Replace the 12-group gate with seed-42 recording-block holdout: 103/66/36 laps.
+  Keep uncertain metadata, verified targets, causal prefixes and exact deduplication.
+- Actually train unchanged Ridge, Random Forest and SVR; validation selects SVR
+  (MAE 9.868 s). Evaluate selected SVR once on frozen test (15.393 s versus median
+  17.901 s), with checkpoint/lap/recording/pace diagnostics and a learning curve.
+- Retain inclusive experiment A; no training lap meets the preregistered optional
+  timing-quality filter. Preserve legitimate slow laps and report their large errors.
+- Integrate compatible signed Barcelona artifacts, frozen evaluation reuse and
+  causal target-hidden replay. Preserve v0.6.3 hover and historical Monza/GT7 results.
+- Add recovery/protocol/UI tests, actual Chrome workflows and measured reports.
+  See [release](docs/RELEASE_V071_REPORT.md) and [ML health](docs/ML_EVALUATION_V071.md).
+
+# Preserved v0.7 checkpoint - 2026-10-24
+
+- Acquire and hash 70 human Barcelona LD/LDX pairs plus 11 catalogue CSVs (574.6 MB).
+- Verify 204 complete targets; admit 88 under the original strict metadata policy.
+  Preserve the failed 11/12-group gate honestly, with no Barcelona fitting or scores.
+- Preserve this implementation on `feat/sim-telemetry-v07`, commit `23796be`.
+  v0.7.1 explicitly supersedes its restrictive inclusion policy.
+
 # Release v0.6.3 - 2026-10-24
 
 - Restore a relative-time SVG cursor across every telemetry panel; preserve

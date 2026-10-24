@@ -1,0 +1,42 @@
+{
+  "compatibility": {
+    "car": "dallara_f317",
+    "track": "ks_barcelona-layout_gp",
+    "domain": [
+      "ac:ks_barcelona-layout_gp",
+      "ac:dallara_f317"
+    ],
+    "schema_version": "canonical-telemetry-v06",
+    "units": {
+      "speed_kmh": "km/h",
+      "throttle_pct": "%",
+      "brake_pct": "%",
+      "rpm": "rpm",
+      "steering": "deg",
+      "gear": "reported source gear"
+    },
+    "feature_version": "causal-prefix-v06",
+    "features": [
+      "checkpoint_s",
+      "observed_elapsed_s",
+      "speed_current_kmh",
+      "speed_mean_kmh",
+      "speed_recent_mean_kmh",
+      "speed_recent_std_kmh",
+      "throttle_mean_pct",
+      "brake_mean_pct",
+      "throttle_high_fraction",
+      "braking_fraction",
+      "rpm_current",
+      "gear_current",
+      "steering_activity_deg_s"
+    ],
+    "corpus_id": "46884dc894e1b0a1dd0c76baa5beaf2fff79d02e24bebccdae9701c326da1523",
+    "model_version": "barcelona-v071-1",
+    "protocol_sha256": "103a3eea866946d8999eabf19588c40ca8ccaa49fe207865138c0cb676f71f55"
+  },
+  "selected_model": "SVR",
+  "experiment": "A",
+  "selection_sha256": "9ea0cde2d8ce8ba71e22ec3e4222665e0a7c3bc7f855bfbf939c972a71891b45",
+  "test_evaluations": 1
+}

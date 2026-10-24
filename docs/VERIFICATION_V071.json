@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-24",
+  "branch": "feat/sim-telemetry-v071",
+  "preserved_v07_commit": "23796be",
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "sklearn": "1.9.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "streamlit": "1.66.0",
+    "plotly": "6.9.0",
+    "chrome": "156.0.8078.47",
+    "matplotlib": "3.11.2"
+  },
+  "full_pytest": {
+    "status": "passed",
+    "tests": 211,
+    "warnings": 92,
+    "elapsed_s": 160.63,
+    "original_tests_retained": 193,
+    "new_tests": 18
+  },
+  "focused_after_final_metadata_flag": {
+    "status": "passed",
+    "tests": 38,
+    "elapsed_s": 42.78
+  },
+  "final_primary_ui": {
+    "status": "passed",
+    "tests": 2,
+    "elapsed_s": 25.1
+  },
+  "compileall": "passed",
+  "pip_check": "No broken requirements found",
+  "git_diff_check": "passed",
+  "historical_frozen": {
+    "status": "passed",
+    "monza_rows": 390,
+    "gt7_rows": 60,
+    "tolerance_s": 1e-09,
+    "maximum_prediction_deviation_s": {
+      "Monza": 2.842170943040401e-14,
+      "GT7": 1.4210854715202004e-14
+    }
+  },
+  "barcelona_frozen": {
+    "status": "passed",
+    "evidence_files": 19,
+    "test_evaluations": 1,
+    "explicit_rerun": "verified and reused frozen results without final-test re-evaluation"
+  },
+  "browser": {
+    "v063-baseline": {
+      "status": "passed",
+      "workflow_checks": 36,
+      "rendering_budget_records": 0,
+      "final_performance_records": 0,
+      "records": 36,
+      "runtime_exceptions": 0,
+      "console_errors": 0,
+      "max_cursor_pixel_error": null,
+      "artifact_evidence_sha256": "f9e971a596b218e2edf4f203b0be78cafc661ec987917eda904d269b0a86f309"
+    },
+    "v063": {
+      "status": "passed",
+      "workflow_checks": 47,
+      "rendering_budget_records": 36,
+      "final_performance_records": 1,
+      "records": 84,
+      "runtime_exceptions": 0,
+      "console_errors": 0,
+      "max_cursor_pixel_error": 0,
+      "artifact_evidence_sha256": "85a42a7078fa94a80330a439600e27e6ff81264c404c49b5981831fa71ea3119"
+    },
+    "v063-fixtures": {
+      "status": "passed",
+      "workflow_checks": 4,
+      "rendering_budget_records": 4,
+      "final_performance_records": 0,
+      "records": 8,
+      "runtime_exceptions": 0,
+      "console_errors": 0,
+      "max_cursor_pixel_error": null,
+      "artifact_evidence_sha256": "ebbad1abad12984b4585b100f1c9a759e3db03fb8ae4fe37a351449a1c312035"
+    },
+    "v071-ml": {
+      "status": "passed",
+      "workflow_checks": 13,
+      "rendering_budget_records": 9,
+      "final_performance_records": 1,
+      "records": 23,
+      "runtime_exceptions": 0,
+      "console_errors": 0,
+      "max_cursor_pixel_error": 0,
+      "artifact_evidence_sha256": "54ab47261383b80e10049bd7a2a81d9b640879dbdef12b2f04cab98f5666e7b7"
+    },
+    "v071": {
+      "status": "passed",
+      "workflow_checks": 65,
+      "rendering_budget_records": 49,
+      "final_performance_records": 1,
+      "records": 115,
+      "runtime_exceptions": 0,
+      "console_errors": 0,
+      "max_cursor_pixel_error": 0,
+      "artifact_evidence_sha256": "4787b4ae4c765b28403073cd28346f3ac358047df193a1d980b4175be956aa0c"
+    }
+  },
+  "limitations": [
+    "Desktop headless Chrome; other browsers and physical touch devices unverified",
+    "Recording blocks do not certify independent physical sessions or unseen-driver generalization",
+    "Slow test laps retain MAE 31.213 s; no high-error lap removed"
+  ]
+}

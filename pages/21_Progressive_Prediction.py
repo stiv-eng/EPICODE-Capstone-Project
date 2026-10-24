@@ -29,8 +29,8 @@ else:
 uid=st.selectbox('Giro validato',list(ids),index=default,format_func=labels.get)
 source=ids[uid]
 if barcelona_active():
-    from motorsport.ml.barcelona import permissible_history
-    history=permissible_history(source,history)
+    from motorsport.ml.barcelona_recovery import predict
+    st.caption('Mediana fissata sui giri di training: riferimento offline, senza aggiornamenti dai target di validazione/test.')
 options=['Baseline-only']+(([bundle.selected_model] if barcelona_active() else list(bundle.models)) if bundle is not None else [])
 choice=st.selectbox('Motore di previsione',options,index=options.index(bundle.selected_model) if bundle is not None else 0)
 model=None if choice=='Baseline-only' else bundle.models[choice]
@@ -58,8 +58,9 @@ checkpoint=st.select_slider('Checkpoint trascorso (s)',options=checkpoints,value
 predictions=[]
 for current in checkpoints:
     if current>checkpoint:break
+    options_v071={'date_reliability':bundle.date_reliability if bundle is not None else {}} if barcelona_active() else {}
     predictions.append(predict(source,current,model,bundle.feature_names if model is not None else (),history,
-        model_domain=bundle.domain if model is not None else None))
+        model_domain=bundle.domain if model is not None else None,**options_v071))
 current=predictions[-1]
 a,b,c=st.columns(3)
 a.metric('Tempo osservato',f'{current.observed_elapsed_s:.3f} s')

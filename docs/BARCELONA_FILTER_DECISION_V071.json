@@ -1,0 +1,6 @@
+{
+  "quality_category": "max positive source timer step >100 ms and <=200 ms",
+  "excluded_training_laps": [],
+  "decision": "A",
+  "reason": "No qualifying training laps; no filtering experiment invented"
+}
