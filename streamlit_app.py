@@ -7,9 +7,9 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 def home():
     st.title('Motorsport Telemetry Analyzer')
     st.caption('v0.6.2 · UI Refinement & ML Health Assessment · Python · Plotly')
-    st.markdown('Una piattaforma di analisi telemetrica che evolve verso sorgenti indipendenti '
-                'dal simulatore. Questa versione lavora con file **Parquet e CSV locali**.')
-    st.markdown('Nel **Data Explorer** puoi aprire il dataset allegato, caricare altri file, '
+    st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
+                'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
+    st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
                 'controllare la qualità dei segnali e studiare telemetria e posizione. '
                 'I calcoli usano tutti i campioni; i grafici limitano i punti visualizzati.')
     st.markdown('Le analisi sui giri sono disponibili soltanto con confini validati. '

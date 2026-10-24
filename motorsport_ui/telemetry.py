@@ -51,7 +51,8 @@ def source_catalog(include_acgym=False,include_original=False):
     if not include_original and hidden in sources and supplied.is_file():
         if original_demo(hidden,source_signature(hidden)):
             sources.pop(hidden)
-    return sources
+    priority=lambda key:0 if key==str(bundle.resolve()) else 1 if key.startswith('acgym:') else 2
+    return dict(sorted(sources.items(),key=lambda item:priority(item[0])))
 
 
 def source_signature(key):
