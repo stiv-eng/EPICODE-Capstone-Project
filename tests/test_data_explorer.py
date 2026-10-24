@@ -1,3 +1,4 @@
+from conftest import chart_specs
 """Streamlit script/widget checks; these do not claim visual browser inspection."""
 from pathlib import Path
 import importlib.abc
@@ -40,7 +41,7 @@ def test_missing_channels_still_plot_available_signal(tmp_path,monkeypatch):
     (tmp_path/'data/raw').mkdir(parents=True)
     pd.DataFrame({'elapsed_s': [0, 1, 2], 'speed_kmh': [50, 70, 60]}).to_csv(tmp_path/'data/raw/minimal.csv', index=False)
     app = explorer_at(tmp_path,monkeypatch)
-    assert not app.exception and len(app.get('plotly_chart')) == 1
+    assert not app.exception and len(chart_specs(app)) == 1
     assert any('Canali canonici assenti' in i.value for i in app.info)
     app.multiselect[0].set_value([]).run()
     assert not app.exception
@@ -67,9 +68,9 @@ def test_real_dataset_produces_telemetry_and_position_graphs(original_app):
     app = original_app(ROOT/'pages/00_Data_Explorer.py')
     assert not app.exception
     assert app.metric[0].value == '116,987'
-    assert len(app.get('plotly_chart')) == 1
+    assert len(chart_specs(app)) == 1
     assert any('Analisi sui giri non disponibile' in i.value for i in app.caption)
     app.multiselect[0].set_value(['rpm', 'gear']).run()
     assert not app.exception
     app.radio(key='explorer_section').set_value('Position / Track Map').run()
-    assert not app.exception and len(app.get('plotly_chart'))==1
+    assert not app.exception and len(chart_specs(app))==1

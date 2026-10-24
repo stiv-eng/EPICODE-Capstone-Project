@@ -27,26 +27,26 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts):
         settled()
     def snap(name):screenshot(name,'v062')
     def charts(name):
-        ready("document.querySelectorAll('[data-testid=stPlotlyChart] .scatterlayer path').length>0")
+        ready("(Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout)).reduce((n,p)=>n+p.querySelectorAll('.scatterlayer path').length,0)>0")
         for block in ('start','end','center'):
-            value("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).at(-1).scrollIntoView({block:"+json.dumps(block)+"})")
+            value("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).at(-1).scrollIntoView({block:"+json.dumps(block)+"})")
             time.sleep(.15)
-        assert value("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).every(e=>e.querySelectorAll('.scatterlayer path').length>0)")
+        assert value("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).every(e=>e.querySelectorAll('.scatterlayer path').length>0)")
         record(name)
     def gg_check(label):
-        ready("Array.from(document.querySelectorAll('.js-plotly-plot')).some(e=>e._fullLayout?.title?.text?.includes('G-G'))")
-        measured=value("(()=>{const p=Array.from(document.querySelectorAll('.js-plotly-plot')).find(e=>e._fullLayout?.title?.text?.includes('G-G')); const x=p._fullLayout.xaxis,y=p._fullLayout.yaxis;return {xPixels:x._length,yPixels:y._length,xRange:x.range,yRange:y.range,pixelsPerUnitRatio:(x._length/(x.range[1]-x.range[0]))/(y._length/(y.range[1]-y.range[0]))}})()")
+        ready("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).some(e=>e._fullLayout?.title?.text?.includes('G-G'))")
+        measured=value("(()=>{const p=Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e._fullLayout?.title?.text?.includes('G-G')); const x=p._fullLayout.xaxis,y=p._fullLayout.yaxis;return {xPixels:x._length,yPixels:y._length,xRange:x.range,yRange:y.range,pixelsPerUnitRatio:(x._length/(x.range[1]-x.range[0]))/(y._length/(y.range[1]-y.range[0]))}})()")
         assert abs(measured['pixelsPerUnitRatio']-1)<1e-6,measured
         assert abs(measured['xPixels']-measured['yPixels'])<2,measured
-        value("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).find(e=>e.innerText.includes('G-G')).scrollIntoView({block:'center'})")
+        value("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e.innerText.includes('G-G')).scrollIntoView({block:'center'})")
         snap(label)
         record(label,**measured)
     def key(name,code):
         call('Input.dispatchKeyEvent',{'type':'rawKeyDown','key':name,'code':name,'windowsVirtualKeyCode':code})
         call('Input.dispatchKeyEvent',{'type':'keyUp','key':name,'code':name,'windowsVirtualKeyCode':code})
     def marker_check(label):
-        ready("Array.from(document.querySelectorAll('.js-plotly-plot')).some(e=>e._fullLayout?.meta?.vehicle_sample!==undefined)")
-        measured=value("(()=>{const p=Array.from(document.querySelectorAll('.js-plotly-plot')).find(e=>e._fullLayout?.meta?.vehicle_sample!==undefined);const m=p._fullLayout.meta; const shapes=Array.from(p.querySelectorAll('.shapelayer path'));const front=shapes[1]?.getBBox();const x=p._fullLayout.xaxis.l2p(m.vehicle_x)+p._fullLayout.xaxis._offset,y=p._fullLayout.yaxis.l2p(m.vehicle_y)+p._fullLayout.yaxis._offset; return {...m,shapes:shapes.length,front:front?{x:front.x+front.width/2-x,y:front.y+front.height/2-y}:null,bodyBounds:shapes[0]?{width:shapes[0].getBBox().width,height:shapes[0].getBBox().height}:null}})()")
+        ready("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).some(e=>e._fullLayout?.meta?.vehicle_sample!==undefined)")
+        measured=value("(()=>{const p=Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e._fullLayout?.meta?.vehicle_sample!==undefined);const m=p._fullLayout.meta; const shapes=Array.from(p.querySelectorAll('.shapelayer path'));const front=shapes[1]?.getBBox();const x=p._fullLayout.xaxis.l2p(m.vehicle_x)+p._fullLayout.xaxis._offset,y=p._fullLayout.yaxis.l2p(m.vehicle_y)+p._fullLayout.yaxis._offset; return {...m,shapes:shapes.length,front:front?{x:front.x+front.width/2-x,y:front.y+front.height/2-y}:null,bodyBounds:shapes[0]?{width:shapes[0].getBBox().width,height:shapes[0].getBBox().height}:null}})()")
         assert measured['shapes']==6,measured
         import math
         front=measured['front'];angle=measured['vehicle_theta']
@@ -114,7 +114,7 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts):
                     marker_check('gt7_vehicle_middle')
                     # Pure data zoom: pixel-sized artwork must keep its screen size.
                     before=marker_check('gt7_vehicle_before_zoom')
-                    value("(()=>{const p=Array.from(document.querySelectorAll('.js-plotly-plot')).find(e=>e._fullLayout?.meta?.vehicle_sample!==undefined);const m=p._fullLayout.meta;return Plotly.relayout(p,{'xaxis.range':[m.vehicle_x-200,m.vehicle_x+200],'yaxis.range':[m.vehicle_y-200,m.vehicle_y+200]})})()")
+                    value("(()=>{const p=Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e._fullLayout?.meta?.vehicle_sample!==undefined);const m=p._fullLayout.meta;return p.ownerDocument.defaultView.Plotly.relayout(p,{'xaxis.range':[m.vehicle_x-200,m.vehicle_x+200],'yaxis.range':[m.vehicle_y-200,m.vehicle_y+200]})})()")
                     time.sleep(.5)
                     after=marker_check('gt7_vehicle_zoom')
                     assert abs(before['bodyBounds']['width']-after['bodyBounds']['width'])<.2
@@ -150,14 +150,14 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts):
     call('DOM.setFileInputFiles',{'nodeId':node,'files':[str(stationary)]})
     ready("document.body.innerText.includes('stationary.csv')")
     settled()
-    ready("Array.from(document.querySelectorAll('.js-plotly-plot')).some(e=>e._fullLayout?.meta?.vehicle_x===12)")
-    neutral=value("(()=>{const p=Array.from(document.querySelectorAll('.js-plotly-plot')).find(e=>e._fullLayout?.meta?.vehicle_x===12);return {meta:p._fullLayout.meta,shapes:p._fullLayout.shapes.length}})()")
+    ready("Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).some(e=>e._fullLayout?.meta?.vehicle_x===12)")
+    neutral=value("(()=>{const p=Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e._fullLayout?.meta?.vehicle_x===12);return {meta:p._fullLayout.meta,shapes:p._fullLayout.shapes.length}})()")
     assert neutral['meta']['vehicle_theta'] is None and neutral['meta']['vehicle_y']==-8 and neutral['shapes']==0
     snap('stationary_neutral_position');record('stationary actual coordinates with neutral indicator',**neutral)
     navigate('ml','Feature causali');snap('ml_unchanged')
-    assert value("document.body.innerText.includes('Addestra e valuta') && document.querySelectorAll('[data-testid=stPlotlyChart]').length===0")
+    assert value("document.body.innerText.includes('Addestra e valuta') && (Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout)).length===0")
     record('ML startup does not train')
-    navigate('replay','Checkpoint trascorso');ready("document.querySelectorAll('[data-testid=stPlotlyChart]').length>=2")
+    navigate('replay','Checkpoint trascorso');ready("(Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout)).length>=2")
     assert not value("document.body.innerText.includes('Risultato finale verificato')")
     snap('progressive_unchanged');record('Progressive Prediction hidden target preserved')
     print(f'PASS: {len(results)} Chrome v0.6.2 checks including rendered scales, heading, hover and upload.',flush=True)

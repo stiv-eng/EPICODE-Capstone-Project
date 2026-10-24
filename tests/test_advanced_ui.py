@@ -1,3 +1,4 @@
+from conftest import chart_specs
 from pathlib import Path
 
 import numpy as np
@@ -35,10 +36,10 @@ def test_pages_handle_missing_and_constant_channels(tmp_path,monkeypatch,page):
 def test_new_pages_plot_real_original_dataset(page,original_app):
     app=original_app(ROOT/'pages'/page)
     assert not app.exception
-    assert len(app.get('plotly_chart'))+len(app.get('iframe')) >= (0 if page=='10_Session_Overview.py' else 1)
+    assert len(chart_specs(app)) >= (0 if page=='10_Session_Overview.py' else 1)
     if page=='10_Session_Overview.py':
         assert list(app.dataframe[0].value)==['Channel','Time Measured [s]','Mean']
-        assert len(app.get('plotly_chart'))==0
+        assert len(chart_specs(app))==0
 
 
 def test_saved_windows_remain_session_windows(tmp_path,monkeypatch):
@@ -81,7 +82,7 @@ def test_gt7_comparison_and_features_ui():
     next(s for s in app.selectbox if s.label=='Sessione A').set_value(bundle)
     next(s for s in app.selectbox if s.label=='Sessione B').set_value(bundle)
     app.radio[0].set_value('Giri verificati').run()
-    assert not app.exception and len(app.get('iframe'))==1
+    assert not app.exception and len(app.get('component_instance'))==1
     assert any('shared track-distance' in info.value for info in app.info)
 
 
@@ -91,10 +92,10 @@ def test_gt7_analytical_pages(page,key):
     app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=60).run()
     app.selectbox(key=f'{key}_source').set_value(str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())).run()
     assert not app.exception
-    assert len(app.get('plotly_chart')) >= (0 if key=='overview' else 1)
+    assert len(chart_specs(app)) >= (0 if key=='overview' else 1)
     if key=='tyres':
         next(s for s in app.selectbox if s.label=='Famiglia pneumatici').set_value('Wheel speed').run()
-        assert not app.exception and len(app.get('plotly_chart'))==1
+        assert not app.exception and len(chart_specs(app))==1
 
 
 @pytest.mark.skipif(not (ROOT/'data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet').exists(),reason='GT7 local bundle absent')

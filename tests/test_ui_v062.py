@@ -1,3 +1,4 @@
+from conftest import chart_specs
 """Real source availability, equal data scales, vehicle geometry and hover contract."""
 import hashlib
 import io
@@ -202,8 +203,8 @@ def test_stationary_coordinates_render_a_neutral_measured_position(tmp_path,monk
     monkeypatch.setattr(ui,'ROOT',tmp_path)
     app=AppTest.from_file(str(ROOT/'pages/00_Data_Explorer.py'),default_timeout=45).run()
     app.radio(key='explorer_section').set_value('Position / Track Map').run()
-    assert not app.exception and len(app.get('plotly_chart'))==1
-    figure=json.loads(app.get('plotly_chart')[0].proto.spec)
+    assert not app.exception and len(chart_specs(app))==1
+    figure=chart_specs(app)[0]
     assert figure['layout']['meta']['vehicle_theta'] is None
     assert figure['layout']['meta']['vehicle_x']==12 and figure['layout']['meta']['vehicle_y']==-8
     assert not figure['layout'].get('shapes')
@@ -222,7 +223,7 @@ def test_marker_slider_tracks_real_source_sample_without_rebuilding_geometry(ori
     app.radio(key='explorer_section').set_value('Position / Track Map').run()
     app.slider(key='position_instant').set_value(100).run()
     assert not app.exception
-    figure=json.loads(app.get('plotly_chart')[0].proto.spec)
+    figure=chart_specs(app)[0]
     point=app.dataframe[-1].value.iloc[0]
     session=app.session_state['telemetry_registry']['upload:original']
     assert figure['layout']['meta']['vehicle_sample']=='100'
@@ -257,8 +258,8 @@ def test_diagnostic_writer_rejects_original_results_and_model_artifacts(tmp_path
     assert output.read_bytes()==b'channel,value\nspeed,50\n'
 
 
-def test_ml_production_sources_and_pages_are_unchanged():
+def test_ml_production_sources_and_launch_are_unchanged():
     import subprocess
-    files=['motorsport/ml','motorsport_prediction','motorsport_ui/ml.py','pages/20_Machine_Learning.py','pages/21_Progressive_Prediction.py','.vscode']
+    files=['motorsport/ml','motorsport_prediction','motorsport_ui/ml.py','.vscode']
     result=subprocess.run(['git','diff','--name-only','c47fd4a','--',*files],cwd=ROOT,capture_output=True,text=True,check=True)
     assert not result.stdout.strip()

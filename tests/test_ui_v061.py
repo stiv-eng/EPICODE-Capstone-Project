@@ -1,3 +1,4 @@
+from conftest import chart_specs
 """Release acceptance: state transitions, source truth and bounded SVG contracts."""
 import json
 from pathlib import Path
@@ -140,7 +141,7 @@ signal_chart(st.session_state['frame'],['speed_kmh'],st.session_state['session']
     app.session_state['session']=session
     app.run()
     assert not app.exception
-    spec=json.loads(app.get('plotly_chart')[0].proto.spec)
+    spec=chart_specs(app)[0]
     assert len({t['line']['color'] for t in spec['data']})==8
     assert all(t['type']=='scatter' for t in spec['data'])
     assert any('16,000 campioni' in c.value for c in app.caption)
@@ -211,7 +212,7 @@ def test_overview_simplifies_presentation_preserves_weighted_mean_and_features(m
     app=AppTest.from_file(str(ROOT/'pages/10_Session_Overview.py'),default_timeout=45).run()
     assert not app.exception
     table=app.dataframe[0].value
-    assert list(table)==['Channel','Time Measured [s]','Mean'] and not app.get('plotly_chart')
+    assert list(table)==['Channel','Time Measured [s]','Mean'] and not chart_specs(app)
     assert table.iloc[0]['Mean']==overview_metrics(session.data)['signals']['speed_kmh']['time_mean']
     titles=[s.value for s in app.subheader]
     assert not any('pedali' in s.lower() or 'feature' in s.lower() for s in titles)
@@ -275,11 +276,10 @@ def test_acgym_cross_recording_comparison_and_incompatible_track_guard():
     next(s for s in app.selectbox if s.label=='Sessione A').set_value(keys[0]).run()
     next(s for s in app.selectbox if s.label=='Sessione B').set_value(keys[1]).run()
     assert not app.exception and app.radio[0].value=='Giri verificati'
-    assert len(app.get('iframe'))==1
+    assert len(app.get('component_instance'))==1
     import re
     def component_spec(app):
-        html=app.get('iframe')[0].proto.srcdoc
-        return json.loads(re.search(r'id="comparison-data" type="application/json">(.*?)</script>',html,re.S).group(1))
+        return chart_specs(app)[0]
     spec=component_spec(app)
     colors=[t['line']['color'] for t in spec['data']]
     app.multiselect[0].set_value(['rpm']).run()
@@ -288,7 +288,7 @@ def test_acgym_cross_recording_comparison_and_incompatible_track_guard():
     gt7=str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())
     if gt7 in ui.source_catalog():
         next(s for s in app.selectbox if s.label=='Sessione B').set_value(gt7).run()
-        assert not app.exception and not app.get('plotly_chart')
+        assert not app.exception and not chart_specs(app)
         assert any('tracciato comune non verificata' in i.value for i in app.info)
 
 

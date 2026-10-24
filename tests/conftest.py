@@ -17,3 +17,13 @@ def original_app():
         app.session_state['telemetry_active_key']='upload:original'
         return app.run()
     return create
+
+
+def chart_specs(app):
+    """Inspect actual rendered figure payloads across native and shared components."""
+    import json
+    specs=[json.loads(n.proto.spec) for n in app.get('plotly_chart')]
+    for node in app.get('component_instance'):
+        if node.proto.component_name.endswith('motorsport_hover'):
+            specs.extend(json.loads(node.proto.json_args)['specs'])
+    return specs

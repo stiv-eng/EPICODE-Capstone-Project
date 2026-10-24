@@ -77,6 +77,7 @@ def capture(browser, base, artifacts, scenario='v062'):
                 def click_element(expression):
                     ready('Boolean('+expression+')')
                     call('Runtime.evaluate',{'expression':'('+expression+").scrollIntoView({block:'center'})"})
+                    time.sleep(.15)  # Allow responsive iframe height/layout to settle before the real click.
                     script='(()=>{const r=('+expression+').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}})()'
                     coordinates=call('Runtime.evaluate',{'expression':script,'returnByValue':True})['result']['value']
                     call('Input.dispatchMouseEvent',{'type':'mousePressed','button':'left','clickCount':1,**coordinates})
@@ -95,7 +96,13 @@ def capture(browser, base, artifacts, scenario='v062'):
                 call('Log.enable')
                 if scenario=='baseline':
                     from scripts.investigate_rendering_v061 import exercise
-                elif scenario=='v062':
+                elif scenario=='v063-fixtures':
+                    from functools import partial
+                    from scripts.smoke_ui_v063 import exercise as shared_exercise
+                    exercise=partial(shared_exercise,fixture_only=True)
+                elif scenario=='v063':
+                    from scripts.smoke_ui_v063 import exercise
+                elif scenario in ('v062','v063-baseline'):
                     from scripts.smoke_ui_v062 import exercise
                 else:
                     from scripts.smoke_ui_v061 import exercise
@@ -116,7 +123,7 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts'/('v062' if scenario=='v062' else '')
+    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063')) else '')
     artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         server = subprocess.Popen([
@@ -154,6 +161,6 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    parser.add_argument('--release',choices=['v061','v062'],default='v062')
+    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures'],default='v063')
     options=parser.parse_args()
-    smoke(options.browser,scenario=options.release)
+    smoke(options.browser,entrypoint='scripts/hover_fixture_app.py' if options.release=='v063-fixtures' else 'streamlit_app.py',scenario=options.release)
