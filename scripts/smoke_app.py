@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0,str(ROOT))  # Support both `python scripts/...` and `python -m scripts...`.
 
 
-def capture(browser, base, artifacts, scenario='release'):
+def capture(browser, base, artifacts, scenario='v062'):
     # This optional check uses the already installed websockets package. CDP
     # waits for rendered content in real time; virtual-time CLI screenshots can
     # capture Streamlit's loading placeholders before Python finishes.
@@ -95,12 +95,14 @@ def capture(browser, base, artifacts, scenario='release'):
                 call('Log.enable')
                 if scenario=='baseline':
                     from scripts.investigate_rendering_v061 import exercise
+                elif scenario=='v062':
+                    from scripts.smoke_ui_v062 import exercise
                 else:
                     from scripts.smoke_ui_v061 import exercise
                 try:
                     exercise(call,ready,choose,click_element,screenshot,base,artifacts)
                 finally:
-                    (artifacts/f'browser_console_{scenario}_v061.json').write_text(json.dumps(events,indent=2),encoding='utf-8')
+                    (artifacts/f'browser_console_{scenario}.json').write_text(json.dumps(events,indent=2),encoding='utf-8')
         finally:
             chrome.terminate()
             try:
@@ -110,12 +112,12 @@ def capture(browser, base, artifacts, scenario='release'):
                 chrome.wait()
 
 
-def smoke(browser=None,entrypoint='streamlit_app.py',scenario='release'):
+def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts'
-    artifacts.mkdir(exist_ok=True)
+    artifacts = ROOT/'artifacts'/('v062' if scenario=='v062' else '')
+    artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         server = subprocess.Popen([
             sys.executable, '-m', 'streamlit', 'run', entrypoint,
@@ -152,4 +154,6 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='release'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    smoke(parser.parse_args().browser)
+    parser.add_argument('--release',choices=['v061','v062'],default='v062')
+    options=parser.parse_args()
+    smoke(options.browser,scenario=options.release)
