@@ -176,6 +176,7 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None,render=Tru
     groups=list(frame.groupby('_ui_lap',sort=False)) if '_ui_lap' in frame else [('',frame)]
     if '_ui_lap' in frame:
         x_column='lap_elapsed_s'
+    temporal=x_column in frame and np.isfinite(numeric(frame,x_column)).any()
     fig=make_subplots(rows=len(channels),cols=1,shared_xaxes=True,subplot_titles=channels,
                       vertical_spacing=min(.04,.5/max(len(channels),1)))
     shown=0
@@ -188,7 +189,7 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None,render=Tru
         used_colors.add(color)
         sample=chart_sample(view,channels,max_points=max(4,5000//len(groups)))
         shown+=len(sample)
-        x=sample[x_column] if x_column in sample else sample.index
+        x=sample[x_column] if temporal else sample.index
         for row,channel in enumerate(channels,1):
             y=chart_values(view,sample,channel,x_column)
             # Bounded SVG paths remove dependence on GPU canvas restoration
@@ -199,15 +200,18 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None,render=Tru
                 line=dict(color=color) if label else None,
                 meta=dict(channel=channel,unit=signal_unit(session,channel),
                           selection_id=f'{session.metadata["session_id"]}:{label}',sample_label='Campione sorgente',
+                          readout_template=(None if temporal else f'Campione sorgente=%{{customdata[0]}}<br>{channel}=%{{y}} {signal_unit(session,channel)}'),
                           tolerance=observed_tolerance(view[x_column]) if x_column in view else 0)),row=row,col=1)
             fig.update_yaxes(title_text=signal_unit(session,channel),row=row,col=1)
-    fig.update_xaxes(title_text=x_column+' (s)' if x_column in ['elapsed_s','relative_s','lap_elapsed_s'] else x_column,
+    fig.update_xaxes(title_text=(x_column+' (s)' if x_column in ['elapsed_s','relative_s','lap_elapsed_s'] else x_column)
+                     if temporal else 'Indice campione sorgente (tempo non disponibile)',
                      row=len(channels),col=1)
     fig.update_layout(template='plotly_dark',height=max(330,190*len(channels)),
                       hovermode='x unified',showlegend=len(groups)>1,
                       legend=dict(orientation='h',y=1.08),margin=dict(t=80 if len(groups)>1 else 35,b=30),
-                      uirevision=key or 'signals')
-    if render:render_chart(fig,mode='time',key=key)
+                      uirevision=key or 'signals',meta=dict(temporal_axis=bool(temporal)))
+    if render:render_chart(fig,mode='time' if temporal else 'xy',key=key)
+    if not temporal:st.caption('Tempo non disponibile: asse per indice del campione sorgente; nessun cursore temporale.')
     st.caption(f'{shown:,} punti nel grafico; {len(frame):,} campioni disponibili ai calcoli.'
                + (' Asse: tempo relativo del giro in secondi; nessun allineamento tramite timestamp assoluti.' if '_ui_lap' in frame else ''))
     return fig

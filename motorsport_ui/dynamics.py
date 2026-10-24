@@ -42,8 +42,9 @@ def render_dynamics(session, frame):
     else:
         st.info('Nessuna famiglia dinamica aggiuntiva utilizzabile. Carica slip, carichi, sospensioni o velocità ruota con unità dichiarate.')
         family_figure=None
-    figures=([(accel,'time')] if accel is not None else [])+spatial
-    if family_figure is not None:figures.append((family_figure,'time'))
+    figures=([(accel,'time' if accel.layout.meta['temporal_axis'] else 'xy')] if accel is not None else [])+spatial
+    if family_figure is not None:
+        figures.append((family_figure,'time' if family_figure.layout.meta['temporal_axis'] else 'xy'))
     if figures:render_figures(figures,key='dynamics_charts')
     st.caption('Per GT7 wheel_rps ha convenzione di segno propria; non è convertito automaticamente in velocità lineare. '
                'sway/surge non hanno unità fisiche certificate: il diagramma non viene presentato come un inviluppo in g calibrati.')
