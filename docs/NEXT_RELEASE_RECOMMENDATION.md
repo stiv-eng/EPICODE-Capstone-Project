@@ -1,4 +1,4 @@
-# Recommendation after v0.6.2
+# Recommendation after v0.6.3
 
 Preserve the current production models and prioritize independent data coverage
 and a new untouched holdout. The [ML health assessment](ML_HEALTH_ASSESSMENT_V062.md)
@@ -48,9 +48,24 @@ future-event uncertainty cannot be causally separated with the present split.
 
 ## UI follow-up
 
-- Test Comparison's reserved readout on additional browser engines, mobile touch
-  and keyboard/accessibility paths. Current evidence is real desktop Chrome;
-  the inline installed Plotly bundle adds payload and reserves horizontal space.
+The shared external hover/cursor work is delivered in v0.6.3; do not reintroduce
+native labels or expand this into model experiments. See the release chart audit
+and browser evidence for the precise verified scope.
+
+
+- Test the shared readout on Firefox/Safari, physical touch devices and screen
+  readers. Desktop Chrome verifies temporal keyboard stepping, 1600/960/480 px
+  layout, real hover and cursor geometry; full accessibility certification remains.
+- Measure long-session memory and repeated selection changes on ordinary laptops,
+  including forced-GC diagnostics before calling growth a leak. Content-hashed
+  browser caching removes repeated runtime transfer and grouped figures reduce
+  runtime instances; separate components still parse their own Plotly runtime.
+- Evaluate the strict original-cadence nearest-sample policy with users. Preserve
+  explicit observed timestamps and honest missing states; do not silently enlarge
+  tolerance to hide decimation gaps or expose full-lap replay targets.
+- When optional FastF1 data is locally available, exercise all complete legacy page
+  workflows offline. Current migration/type fixtures do not establish a full
+  externally acquired weekend/Keras acceptance result.
 - Obtain documented ACGym world X/Y or a verified planar heading source if needed.
   Race rank/progress must not become a fabricated map, and GT7 quaternions must not
   become heading without a documented convention.

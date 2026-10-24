@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer - v0.6.2
+# Motorsport Telemetry Analyzer - v0.6.3
 
 Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
@@ -80,6 +80,25 @@ Detailed charts use bounded SVG traces and mount one analytical section at a tim
 Chrome scrolling and section/dataset switching passed. The original intermittent
 disappearance was **not reproduced** on the archived v0.6 page; a universal GPU/browser
 fix is not claimed. See the [UI validation report](docs/UI_TEST_REPORT_V061.md).
+
+## Shared hover interaction
+
+All chart renderers use the same external numerical readout. Temporal plots show
+an amber cursor at the same time across their panels; Dynamics and replay group
+related figures into one component. Comparison rows follow selection A then B,
+with stable source/lap/window identities and colors. Readouts and cursor persist
+when the pointer leaves. Left/right arrows on a focused temporal chart inspect
+observed samples without a Python rerun.
+
+Readouts identify the nearest **real displayed sample**, its recorded time and
+source sample where available. The tolerance is 0.51 times the original median
+positive recording step; missing/null/decimated samples outside this tolerance
+show `N/D`. There is no interpolation across gaps. XY, G-G, distributions, maps
+and categorical charts use coordinate/statistic readouts and no temporal cursor.
+On narrower component widths the panel moves below the plot. The installed
+Plotly runtime is served offline as a cacheable local asset, once per component,
+rather than embedded in each figure payload. See the architecture/chart audit
+and real Chrome limitations in the v0.6.3 reports.
 
 ## Train and replay
 
@@ -228,13 +247,17 @@ For a core-only installation omit the two historical DL training modules with
 if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests.
 Optional browser checks use the installed `websockets` package and local Chrome:
 `python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-Current screenshots/logs stay under ignored `artifacts/v062/`; the temporary server/browser stop afterward.
+Current screenshots/logs stay under ignored `artifacts/v063/`; the temporary server/browser stop afterward.
 To investigate the original rendering independently, run
 `python -m scripts.investigate_rendering_v061 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
 This executes the archived local v0.6 explorer in an ignored artifact script without
 changing the checkout. The full v0.6.1 suite and actual browser results are recorded below.
 
 ## Reports
+
+- [v0.6.3 release and FB-025/026/027 evidence](docs/RELEASE_V063_REPORT.md)
+- [v0.6.3 hover interaction and performance validation](docs/HOVER_UX_TEST_V063.md)
+- [v0.6.3 shared component, chart audit and study guide](docs/ARCHITECTURE_V063.md)
 
 - [v0.6.2 release and FB-018–FB-024 evidence](docs/RELEASE_V062_REPORT.md)
 - [v0.6.2 Chrome, unit and regression validation](docs/UI_TEST_REPORT_V062.md)

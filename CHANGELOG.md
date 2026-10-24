@@ -1,3 +1,20 @@
+# Release v0.6.3 - 2026-10-24
+
+- Restore a relative-time SVG cursor across every telemetry panel; preserve
+  external readouts through hover, zoom, pan, resize and channel/source changes.
+- Fix A/B row ordering with source/lap/window/slot identities, stable colors and
+  persistent unavailable rows; no hover-driven Python reruns or interpolation.
+- Share the hover renderer across Explorer, G-G/correlations, Position, Cockpit
+  context, ML/replay and optional legacy charts. Clockless Signals explicitly use
+  source sample indices without a time cursor. Preserve causal target visibility.
+- Group related figures, serve a content-hashed offline runtime with explicit
+  browser caching, resolve Streamlit palette tokens and support below-chart
+  readouts at narrow widths. Keep existing numerical pipelines and SVG budgets.
+- Retain 172 baseline tests and add 21; rerun all 36 prior Chrome checks plus 47
+  new workflow and 4 fixture interaction checks. Frozen 390 ACGym + 60 GT7
+  predictions remain within 1e-9 s. See [release](docs/RELEASE_V063_REPORT.md),
+  [validation](docs/HOVER_UX_TEST_V063.md) and [architecture/audit](docs/ARCHITECTURE_V063.md).
+
 # Release v0.6.2 - 2026-10-24
 
 - Prioritized installed GT7/ACGym examples and hid only the audited original demo
