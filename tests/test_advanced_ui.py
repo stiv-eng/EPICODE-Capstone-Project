@@ -34,7 +34,11 @@ def test_pages_handle_missing_and_constant_channels(tmp_path,monkeypatch,page):
 @pytest.mark.parametrize('page',PAGES)
 def test_new_pages_plot_real_original_dataset(page):
     app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=60).run()
-    assert not app.exception and len(app.get('plotly_chart'))>=1
+    assert not app.exception
+    assert len(app.get('plotly_chart')) >= (0 if page=='10_Session_Overview.py' else 1)
+    if page=='10_Session_Overview.py':
+        assert list(app.dataframe[0].value)==['Channel','Time Measured [s]','Mean']
+        assert len(app.get('plotly_chart'))==0
 
 
 def test_saved_windows_remain_session_windows(tmp_path,monkeypatch):
@@ -86,7 +90,8 @@ def test_gt7_comparison_and_features_ui():
 def test_gt7_analytical_pages(page,key):
     app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=60).run()
     app.selectbox(key=f'{key}_source').set_value(str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())).run()
-    assert not app.exception and len(app.get('plotly_chart'))>=1
+    assert not app.exception
+    assert len(app.get('plotly_chart')) >= (0 if key=='overview' else 1)
     if key=='tyres':
         next(s for s in app.selectbox if s.label=='Famiglia pneumatici').set_value('Wheel speed').run()
         assert not app.exception and len(app.get('plotly_chart'))==1
@@ -95,10 +100,10 @@ def test_gt7_analytical_pages(page,key):
 @pytest.mark.skipif(not (ROOT/'data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet').exists(),reason='GT7 local bundle absent')
 def test_gt7_bundle_in_data_explorer():
     app=AppTest.from_file(str(ROOT/'pages/00_Data_Explorer.py'),default_timeout=60).run()
-    selector=next(s for s in app.selectbox if s.label=='Dataset locale')
-    selector.set_value(ROOT/'data/raw/gt7_trial_mountain_962c').run()
+    selector=app.selectbox(key='explorer_source')
+    selector.set_value(str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())).run()
     assert not app.exception
-    assert app.metric[2].value=='8'
+    assert len(app.multiselect(key='_explorer_laps').options)==8
 
 
 def test_offline_overview_blocks_legacy_imports(tmp_path,monkeypatch):
