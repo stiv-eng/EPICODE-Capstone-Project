@@ -1,6 +1,6 @@
-# Motorsport Telemetry Analyzer - v0.6.1
+# Motorsport Telemetry Analyzer - v0.6.2
 
-Lap-based telemetry exploration, a recorded Cockpit, causal ML and retrospective replay.
+Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
@@ -9,7 +9,8 @@ or FastF1 connection is needed for local analysis.
 1. Open this project folder.
 2. In **Run and Debug**, select **Motorsport Telemetry Analyzer**.
 3. Press **F5**. Open **Data Explorer** from the sidebar.
-4. Select the original `data/raw/telemetry.parquet`, **GT7**, or an **ACGym** recording.
+4. Select **GT7** (the preferred installed demo) or an **ACGym** recording.
+   CSV/Parquet uploads remain available when examples are absent.
 
 The existing `.venv` and F5 configuration are preserved. VS Code uses the selected
 project interpreter; `.vscode/settings.json` points to `.venv/Scripts/python.exe`.
@@ -34,20 +35,40 @@ models remain future v0.7 work.
 ## Explore recorded telemetry
 
 Use **Dataset analizzato** in the sidebar once, then switch **Sezione analitica**.
+GT7 is preferred for validated laps and a map, followed by ACGym and other local
+files. The old 116,987-row `telemetry.parquet` attachment is preserved on disk but
+hidden from the built-in catalog by its audited hash. A future different Parquet
+file with the same filename is still discoverable. Uploading the original explicitly
+remains supported; its exact known mapping is recognized. Parquet ingestion and
+`pyarrow` are unchanged. There are no automatic downloads.
 GT7 and ACGym offer measured labels such as `Lap 2 — 1:48.650`. Select one or
 several verified laps; Signals overlays each using its own elapsed lap time.
-The original attachment has no complete validated laps and offers a recording-time
-window instead. Dataset, revision or mapping changes reset incompatible selections.
+The explicitly uploaded original attachment has no complete validated laps and
+offers a recording-time window instead. Dataset, revision or mapping changes reset incompatible selections.
 Uploaded compatible CSV/Parquet files use the same six sections and capability checks.
 
 Driver Inputs retains configurable pedal usage and braking events; Dynamics and
-Tyres retain their existing analytics and exports. Cockpit selects a real recorded
+Tyres retain their existing analytics and exports. Channel/family menus include only
+finite real numerical measurements in the active selection; all-missing, infinite,
+textual and complex signals are filtered, while legitimate constants remain usable.
+Stale channel choices reset safely without changing selected laps or windows.
+The G-G data area has matched axis ranges, `scaleanchor`/`scaleratio=1` and constrained
+domains; actual equal pixel scales were checked in Chrome at several widths.
+Unknown GT7 acceleration units remain source units rather than calibrated g.
+Cockpit selects a real recorded
 packet with an instant slider and shows only available measurements, including tyre
 temperatures with declared units. This is recorded replay. Position draws connected,
 colored source-coordinate segments, breaks at unsupported gaps/fragments/lap changes,
 and allows any finite real numeric channel as color. Continuous colors use 32 bands
 over the full measured range; gear uses discrete colors; missing color values are grey.
 The display is bounded to 6,000 position vertices, with full-resolution calculations.
+A small top-down vector car marks the selected real packet and stays the same pixel
+size under zoom. Current datasets use an explicitly labelled local `atan2` trajectory
+estimate with the same gap/lap/discontinuity guards as the line. A verified measured
+heading requires declared angle units, axes, zero direction, rotation and handedness;
+unlabelled angles/quaternions are never assumed to be heading. Undefined directions,
+including stationary coordinates, use a neutral marker. Trajectory preparation is
+cached across marker slider changes and never enters ML features.
 
 ACGym selection is per recording rather than a concatenation of independent clocks.
 Its UI adds declared tyre temperatures, pressures, loads and suspension travel without
@@ -144,6 +165,31 @@ labelled as windows. No unsupported cumulative delta is introduced. CSV exports 
 available for metrics and events; retrospective lap features remain available through
 the Python API, with no dedicated feature table in Overview.
 
+Comparison hover values now appear in a reserved side panel outside the signals.
+The last inspected values, units, measured relative times and lap/window identities
+remain readable after moving the pointer; colors and the single shared legend are
+preserved. The small offline HTML component uses the already installed Plotly runtime
+with no CDN or new frontend dependency. It reserves horizontal space and repeats
+the bundled runtime in its iframe; dense/narrow layouts have less plot width.
+
+## ML health assessment
+
+The [v0.6.2 assessment](docs/ML_HEALTH_ASSESSMENT_V062.md) verifies source targets,
+splits, preprocessing and frozen baseline calculations without changing models.
+SVR's exact test MAE remains **6.743072 s**; **61.62%** of its absolute test error
+is concentrated in the AB recording. Early predictions cluster near the training
+center and slower laps are underestimated. Data coverage and feature compression
+both warrant investigation; their relative effects are not established by one split.
+The recommendation is to preserve current models, collect more independent sessions
+with a new untouched holdout, and preregister small development-only feature tests.
+Deep Learning is not implemented or presumed better.
+
+Reproduce the separate safe audit with `python -m scripts.assess_ml_v062`.
+It writes only new v0.6.2 evidence, uses three fixed development-only model fits,
+and checks original frozen files/model-store hashes. It does not save trained artifacts
+or overwrite v0.6 metrics. The standalone diagnostic figure is
+`artifacts/v062/ml_health_residuals.html`.
+
 ## Environment and checks
 
 The existing Python 3.11.9 `.venv` already has the necessary packages. v0.6 makes
@@ -174,6 +220,7 @@ workspace. On another machine, copy the original attachment to
 .\.venv\Scripts\python.exe -m scripts.audit_v06
 .\.venv\Scripts\python.exe -m scripts.smoke_app
 .\.venv\Scripts\python.exe -m scripts.verify_ml_v061
+.\.venv\Scripts\python.exe -m scripts.assess_ml_v062
 ```
 
 For a core-only installation omit the two historical DL training modules with
@@ -181,7 +228,7 @@ For a core-only installation omit the two historical DL training modules with
 if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests.
 Optional browser checks use the installed `websockets` package and local Chrome:
 `python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
-Screenshots/logs stay under ignored `artifacts/`; the temporary server/browser stop afterward.
+Current screenshots/logs stay under ignored `artifacts/v062/`; the temporary server/browser stop afterward.
 To investigate the original rendering independently, run
 `python -m scripts.investigate_rendering_v061 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
 This executes the archived local v0.6 explorer in an ignored artifact script without
@@ -189,6 +236,10 @@ changing the checkout. The full v0.6.1 suite and actual browser results are reco
 
 ## Reports
 
+- [v0.6.2 release and FB-018–FB-024 evidence](docs/RELEASE_V062_REPORT.md)
+- [v0.6.2 Chrome, unit and regression validation](docs/UI_TEST_REPORT_V062.md)
+- [ML health assessment and recommended experiments](docs/ML_HEALTH_ASSESSMENT_V062.md)
+- [v0.6.2 UI architecture](docs/ARCHITECTURE_V062.md)
 - [v0.6.1 release, feedback traceability and limitations](docs/RELEASE_V061_REPORT.md)
 - [v0.6.1 UI architecture and selection lifecycle](docs/ARCHITECTURE_V061.md)
 - [v0.6.1 automated tests, Chrome checks and rendering investigation](docs/UI_TEST_REPORT_V061.md)

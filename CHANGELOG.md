@@ -1,3 +1,24 @@
+# Release v0.6.2 - 2026-10-24
+
+- Prioritized installed GT7/ACGym examples and hid only the audited original demo
+  attachment from the catalog; preserved its file, explicit upload, generic Parquet
+  ingestion, pyarrow and all canonical/source/model contracts.
+- Added consistent Overview/Comparison sidebar icons and shared actual finite-channel
+  filtering, dynamic tyre/dynamics families and safe stale-choice reconciliation.
+- Corrected G-G equal pixel-per-unit scaling with matched ranges, constrained domains
+  and a bounded plotting container; verified actual square data areas after resizing.
+- Added a small top-down pixel-sized vector car on source-coordinate trajectories,
+  verified heading conventions where declared, guarded atan2 fallback, neutral markers
+  for undefined directions and cached trajectory preparation across slider changes.
+- Moved Comparison readouts into a reserved offline side panel, preserving measured
+  values, units, source/lap/window identities, shared legend and consistent colors.
+- Added a separate ML health audit with verified frozen metrics, group/tail/checkpoint
+  residual analysis, three unchanged development-only diagnostic fits and safe outputs.
+- Kept production ML, splits, models, artifacts, target separation and prediction
+  results unchanged; no tuning, Keras experiment, dataset acquisition or v0.7 code.
+- Added geometry/availability/state/upload/audit tests, Chrome hover/marker/scale checks,
+  measured diagnostic evidence and release/architecture/scientific assessment reports.
+
 # Release v0.6.1 - 2026-10-24
 
 - Consolidated six detailed analytical sections inside Data Explorer; retained Home,
