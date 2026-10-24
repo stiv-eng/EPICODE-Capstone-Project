@@ -15,6 +15,8 @@ import time
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0,str(ROOT))  # Support both `python scripts/...` and `python -m scripts...`.
 
 
 def capture(browser, base, artifacts, scenario='release'):
@@ -92,9 +94,9 @@ def capture(browser, base, artifacts, scenario='release'):
                 call('Runtime.enable')
                 call('Log.enable')
                 if scenario=='baseline':
-                    from investigate_rendering_v061 import exercise
+                    from scripts.investigate_rendering_v061 import exercise
                 else:
-                    from smoke_ui_v061 import exercise
+                    from scripts.smoke_ui_v061 import exercise
                 try:
                     exercise(call,ready,choose,click_element,screenshot,base,artifacts)
                 finally:

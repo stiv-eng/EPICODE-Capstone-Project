@@ -8,9 +8,12 @@ import argparse
 import json
 from pathlib import Path
 import subprocess
+import sys
 import time
 
 ROOT=Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0,str(ROOT))
 
 
 def exercise(call,ready,choose,click,screenshot,base,artifacts):
@@ -59,5 +62,5 @@ if __name__=='__main__':
     script=artifacts/'v06_explorer_baseline.py'
     script.write_text("import streamlit as st\nst.set_page_config(layout='wide')\n"+
                       f"exec(compile({source!r}, 'v06_baseline_explorer', 'exec'), {{'__file__': {str(ROOT/'pages/00_Data_Explorer.py')!r}}})\n",encoding='utf-8')
-    from smoke_app import smoke
+    from scripts.smoke_app import smoke
     smoke(browser,str(script),'baseline')
