@@ -8,7 +8,7 @@ from motorsport_ui.hover import render_figures
 
 from motorsport.ml.features import CHECKPOINTS,prefix_features,causal_prefix
 from motorsport.ml.inference import predict,retrospective_error
-from motorsport_ui.ml import select_corpus,show_eligibility,get_bundle,baseline_history
+from motorsport_ui.ml import select_corpus,show_eligibility,get_bundle,baseline_history,barcelona_active
 
 st.title('Progressive Prediction')
 st.caption('Replay retrospettivo locale · nessuna connessione live al simulatore')
@@ -28,11 +28,16 @@ else:
     default=len(corpus.laps)-1
 uid=st.selectbox('Giro validato',list(ids),index=default,format_func=labels.get)
 source=ids[uid]
-options=['Baseline-only']+(list(bundle.models) if bundle is not None else [])
+if barcelona_active():
+    from motorsport.ml.barcelona import permissible_history
+    history=permissible_history(source,history)
+options=['Baseline-only']+(([bundle.selected_model] if barcelona_active() else list(bundle.models)) if bundle is not None else [])
 choice=st.selectbox('Motore di previsione',options,index=options.index(bundle.selected_model) if bundle is not None else 0)
 model=None if choice=='Baseline-only' else bundle.models[choice]
 mode='Baseline-only · riferimenti di training precedenti' if model is None else bundle.mode
 st.info(mode)
+if barcelona_active() and bundle is None:
+    st.info('Modello Barcelona non disponibile: replay dei soli segnali osservati. Nessuna previsione o baseline di training viene fabbricata.')
 partition=None
 if bundle is not None:
     partition=bundle.split.set_index('lap_uid').loc[uid,'partition']
@@ -79,7 +84,9 @@ for trace in signals_figure.data:
     trace.update(meta=dict(unit='km/h' if trace.name=='speed_kmh' else '%',
                            tolerance=observed_tolerance(signals.lap_elapsed_s)))
 for trace in history_figure.data:trace.update(meta=dict(unit='s'))
-render_figures([(signals_figure,'time'),(history_figure,'time')],key='replay_charts')
+figures=[(signals_figure,'time')]
+if history_frame[['predicted_final_s','baseline_s']].notna().any().any():figures.append((history_figure,'time'))
+render_figures(figures,key='replay_charts')
 st.dataframe(history_frame,width='stretch')
 if st.checkbox('Mostra valutazione retrospettiva e risultato finale',value=False):
     target=float(corpus.targets.set_index('lap_uid').loc[uid,'target_s'])

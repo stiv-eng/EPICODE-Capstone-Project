@@ -1,0 +1,24 @@
+{
+  "status": "data_gate_not_met",
+  "data_gate": {
+    "eligible": false,
+    "reasons": [
+      "11/12 independent groups",
+      "Insufficient date-separated groups for the preregistered 6/3/3 minimum"
+    ],
+    "validated_laps": 88,
+    "physical_sessions": 11,
+    "drivers": 8,
+    "min_core_coverage": 1.0,
+    "group_counts": {},
+    "lap_counts": {}
+  },
+  "corpus_id": "195baa18785a16483b0e9130ce0fa30012252a974e16254b70cb964a7d6dc1b5",
+  "protocol_sha256": "d035c28e2b64d0545de5d5263b56aa5cf7b4ec4569ca8448f930b88746f9ddb1",
+  "barcelona_models_fitted": 0,
+  "selected_model": null,
+  "validation_metrics": null,
+  "test_metrics": null,
+  "test_evaluations": 0,
+  "reason": "Preregistered minimum not met; no fitting, forced split, learning curve or test evaluation."
+}

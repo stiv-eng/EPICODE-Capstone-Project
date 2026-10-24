@@ -1,4 +1,8 @@
-"""Audited human Monza/Dallara LD exports, with witnessed timing targets."""
+"""Configured human ACGym LD exports, with witnessed timing targets.
+
+Historical manifests retain the original Monza defaults. New domains must declare
+their expected car, track/layout and LD venue explicitly; timing rules are shared.
+"""
 from pathlib import Path
 import hashlib
 import json
@@ -82,7 +86,7 @@ def validate_laps(frame, beacons, hz):
     return result,elapsed,rejected
 
 
-def load_acgym_recording(path, entry, manifest):
+def load_acgym_recording(path, entry, manifest, *, analysis_only=False):
     path = Path(path)
     header, channels = read_ld(path,CHANNELS)
     missing = set(CHANNELS)-set(channels)
@@ -98,27 +102,44 @@ def load_acgym_recording(path, entry, manifest):
     hz = frequencies.pop()
     raw = pd.DataFrame({CHANNELS[name][0]:c.values for name,c in channels.items()})
     raw['elapsed_s'] = np.arange(len(raw))/hz
-    if header['vehicle']!='dallara_f317' or header['venue']!='monza':
+    car=manifest.get('car','dallara_f317')
+    track=manifest.get('track','monza')
+    if header['vehicle']!=car or header['venue']!=manifest.get('header_venue','monza'):
         raise ValueError('Car/track header disagrees with selected domain')
     day = datetime.strptime(header['date'],'%d/%m/%Y')
-    if day.strftime('%Y%m%d')!=entry['recording_label'][:8]:
+    date_matches=day.strftime('%Y%m%d')==entry['recording_label'][:8]
+    if not date_matches and track=='monza':
         raise ValueError('Header date and recording folder disagree')
-    result,elapsed,rejected = validate_laps(raw,read_beacons(path.with_suffix('.ldx')),hz)
+    timing_failure=None
+    try:result,elapsed,rejected = validate_laps(raw,read_beacons(path.with_suffix('.ldx')),hz)
+    except ValueError as exc:
+        if not analysis_only:raise
+        timing_failure=str(exc)
+        result=LapResult(False,'Timing evidence unavailable: '+timing_failure,pd.DataFrame())
+        elapsed=np.full(len(raw),np.nan);rejected=[]
     recording = entry['recording_label']
     # A_12/A_21 order variants have uncertain independence: conservatively group
     # every A-coded export into one physical unit, rather than inflate sessions.
-    physical = 'acgym:A:unresolved-series' if entry['driver_label']=='A' else 'acgym:'+recording
+    namespace='acgym' if track=='monza' else 'acgym:'+track
+    physical = namespace+':A:unresolved-series' if entry['driver_label']=='A' else namespace+':'+recording
     stint = int(re.search(r'stint_(\d+)',path.stem).group(1))
     metadata = {'filename':recording+' / '+path.stem,'format':'MoTeC LD/LDX',
-        'session_id':'acgym:'+entry['sha256'],'physical_session_id':physical,
+        'session_id':namespace+':'+entry['sha256'],'physical_session_id':physical,
         'driver_id':'acgym:'+entry['driver_label'],'session_date':day.isoformat(),
-        'recording_order':stint,'car_id':'ac:dallara_f317','track_id':'ac:monza','export_hz':hz,
-        'independence_verified':entry['driver_label']!='A',
+        'recording_order':stint,'car_id':'ac:'+car,'track_id':'ac:'+track,'export_hz':hz,
+        'independence_verified':entry['driver_label']!='A' and (track=='monza' or (entry['driver_label']!='XX' and date_matches)),
         'source_sha256':entry['sha256'],'source_url':entry['url'],
         'source_header':header,'license':manifest['license'],'revision':manifest['revision'],
         'channel_units':{'steering':'deg','g_lat':'g','g_lon':'g'},
         'time_basis':f'{hz} Hz source export grid, checked against source countdown; native acquisition rate unproven',
         'rejected_laps':rejected,'session_count':1,'driver_count':1}
+    if track!='monza':
+        metadata['recording_label']=recording
+        metadata['identity_quarantine']=(['unresolved participant/capture identity'] if entry['driver_label'] in ('A','XX') else [])
+        if not date_matches:metadata['identity_quarantine'].append('header date and recording folder disagree')
+        if timing_failure:
+            metadata['identity_quarantine'].append(timing_failure)
+            metadata['independence_verified']=False
     return build_session(raw,metadata,validated_laps=result,lap_elapsed=elapsed)
 
 

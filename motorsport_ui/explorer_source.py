@@ -42,7 +42,7 @@ def explorer_source():
         session=select_telemetry('explorer')
         key=st.session_state['telemetry_active_key']
         filename=session.metadata['filename']
-        if not key.startswith(('acgym:','upload:')) and Path(key).is_file():
+        if not key.startswith(('acgym:','barcelona:','upload:')) and Path(key).is_file():
             selected=Path(key)
         content=str(selected) if selected else None
     if selected or kind=='Carica file':

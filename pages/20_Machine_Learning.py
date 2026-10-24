@@ -7,10 +7,10 @@ from motorsport_ui.hover import render_chart,render_figures
 from motorsport.ml.features import FEATURES,retrospective_features
 from motorsport.ml.training import train,EXPERIMENTAL
 from motorsport.ml.artifacts import LocalArtifactStore
-from motorsport_ui.ml import ROOT,select_corpus,show_eligibility,snapshot_table,get_bundle,display_table
+from motorsport_ui.ml import ROOT,select_corpus,show_eligibility,snapshot_table,get_bundle,display_table,barcelona_active
 
 st.title('Machine Learning')
-st.caption('v0.6 · Feature causali e valutazione su giri e sessioni separati')
+st.caption('v0.7 · Dominio singolo, feature causali e validazione per acquisizioni indipendenti')
 corpus=select_corpus('training')
 gate=show_eligibility(corpus)
 if not corpus.laps:
@@ -26,10 +26,10 @@ with st.expander('Provenienza, esclusioni e qualità degli snapshot'):
     st.download_button('Esporta snapshot con target e provenienza',table.to_csv(index=False).encode(),
                        'causal_snapshots_v06.csv','text/csv')
 available=[name for name in FEATURES if not table.empty and table[name].notna().any()]
-features=st.multiselect('Feature causali',list(FEATURES),default=available)
+features=st.multiselect('Feature causali',list(FEATURES),default=list(FEATURES) if barcelona_active() else available,disabled=barcelona_active())
 st.caption('Statistiche calcolate soltanto entro 10, 20, 30, 45 e 60 s. Attività sterzo disponibile solo con gradi dichiarati. '
            'Le feature selezionate e il preprocessing rimangono fissi dopo il training.')
-single=gate['physical_sessions']==1 and len(corpus.laps)>=6
+single=not barcelona_active() and gate['physical_sessions']==1 and len(corpus.laps)>=6
 experimental=False
 if not gate['eligible'] and single:
     st.warning(EXPERIMENTAL)
@@ -38,7 +38,10 @@ can_train=bool(features) and (gate['eligible'] or experimental)
 if st.button('Addestra e valuta i tre modelli',disabled=not can_train,type='primary'):
     try:
         with st.spinner('Training separato da validazione e test…'):
-            bundle=train(corpus,features,experimental=experimental)
+            if barcelona_active():
+                from motorsport.ml.barcelona_experiment import run
+                bundle=run(corpus,st.session_state['barcelona_audit'])
+            else:bundle=train(corpus,features,experimental=experimental)
             st.session_state.setdefault('ml_bundles',{})[corpus.identity]=bundle
     except ValueError as exc:
         st.error(str(exc))
@@ -55,7 +58,8 @@ if bundle is not None:
     st.dataframe(bundle.reports['overall'].query('partition==@partition'),width='stretch')
     st.subheader('Confronto con baseline sullo stesso insieme di snapshot')
     st.dataframe(bundle.reports['baselines'].query('partition==@partition'),width='stretch')
-    model=st.selectbox('Modello da ispezionare',list(bundle.models),index=list(bundle.models).index(bundle.selected_model))
+    models=[bundle.selected_model] if barcelona_active() and partition=='test' else list(bundle.models)
+    model=st.selectbox('Modello da ispezionare',models,index=models.index(bundle.selected_model))
     result=bundle.predictions.query('partition==@partition and model==@model')
     if not result.empty:
         render_figures([
@@ -69,14 +73,18 @@ if bundle is not None:
         st.dataframe(result[['lap_uid','physical_session_id','checkpoint_s','target_s','prediction_s','error_s']],width='stretch')
     st.subheader('Importanza delle feature sulla validazione')
     if bundle.importance.empty:
-        st.info('Importanza non stimata: meno di cinque giri di validazione.')
+        st.info('Importanza non calcolata nel protocollo Barcelona congelato.' if barcelona_active()
+                else 'Importanza non stimata: meno di cinque giri di validazione.')
     else:
         importance=bundle.importance.query('model==@model').sort_values('mae_increase_s')
         render_chart(px.bar(importance,x='mae_increase_s',y='feature',orientation='h',
             title='Aumento MAE dopo permutazione · 3 ripetizioni'),width='stretch')
         st.caption('Diagnostica descrittiva con prefissi correlati; non è una misura di causalità fisica né una prova statistica.')
     if st.button('Salva bundle locale verificabile'):
-        path=LocalArtifactStore(ROOT/'artifacts/models').save(bundle,'telemetry-'+corpus.identity[:16])
+        if barcelona_active():
+            from motorsport.ml.barcelona_experiment import save_bundle
+            path=save_bundle(bundle,ROOT/'artifacts/barcelona_v07/models')
+        else:path=LocalArtifactStore(ROOT/'artifacts/models').save(bundle,'telemetry-'+corpus.identity[:16])
         st.success('Bundle e preprocessing salvati in '+str(path.relative_to(ROOT)))
     st.download_button('Esporta errori indipendenti CSV',bundle.predictions.to_csv(index=False).encode(),
                        'ml_errors_v06.csv','text/csv')

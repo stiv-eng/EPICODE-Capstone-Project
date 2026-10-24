@@ -40,8 +40,14 @@ def source_catalog(include_acgym=False,include_original=False):
                 path=ROOT/'data/raw/acgym_monza_dallara'/entry['path']
                 if path.suffix=='.ld' and path.exists() and entry['driver_label']!='A':
                     sources['acgym:'+entry['path']]='ACGym · '+entry['recording_label']+' / '+path.stem
+        manifest=ROOT/'docs/BARCELONA_MANIFEST_V07.json'
+        if manifest.exists():
+            for entry in json.loads(manifest.read_text(encoding='utf-8'))['files']:
+                path=ROOT/'data/raw/acgym_barcelona_dallara'/entry['path']
+                if path.suffix=='.ld' and path.exists() and path.with_suffix('.ldx').exists():
+                    sources['barcelona:'+entry['path']]='ACGym · Barcelona GP / Dallara F317 · '+entry['recording_label']+' / '+path.stem
     for key,session in st.session_state.get('telemetry_registry',{}).items():
-        if key.startswith('acgym:') and not include_acgym:
+        if key.startswith(('acgym:','barcelona:')) and not include_acgym:
             continue
         sources.setdefault(key,'Upload / '+session.metadata['filename'])
     # Hide only this audited attachment, not the Parquet format or a future
@@ -51,7 +57,7 @@ def source_catalog(include_acgym=False,include_original=False):
     if not include_original and hidden in sources and supplied.is_file():
         if original_demo(hidden,source_signature(hidden)):
             sources.pop(hidden)
-    priority=lambda key:0 if key==str(bundle.resolve()) else 1 if key.startswith('acgym:') else 2
+    priority=lambda key:0 if key==str(bundle.resolve()) else 1 if key.startswith(('acgym:','barcelona:')) else 2
     return dict(sorted(sources.items(),key=lambda item:priority(item[0])))
 
 
@@ -61,6 +67,10 @@ def source_signature(key):
     if key.startswith('acgym:'):
         path=ROOT/'data/raw/acgym_monza_dallara'/key.removeprefix('acgym:')
         paths=[path,path.with_suffix('.ldx'),ROOT/'docs/ACGYM_MANIFEST_V06.json']
+        return tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) for p in paths if p.is_file())
+    if key.startswith('barcelona:'):
+        path=ROOT/'data/raw/acgym_barcelona_dallara'/key.removeprefix('barcelona:')
+        paths=[path,path.with_suffix('.ldx'),ROOT/'docs/BARCELONA_MANIFEST_V07.json']
         return tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) for p in paths if p.is_file())
     path=Path(key)
     if path.is_dir():
@@ -73,6 +83,20 @@ def source_signature(key):
 
 @st.cache_data(show_spinner=False,max_entries=3)
 def load_local(key, signature):
+    if key.startswith('barcelona:'):
+        from motorsport.ml.barcelona import manifest_entry_path,file_sha
+        from motorsport.ingestion.acgym_importer import load_acgym_recording
+        from .acgym import enrich_recording
+        manifest=json.loads((ROOT/'docs/BARCELONA_MANIFEST_V07.json').read_text(encoding='utf-8'))
+        entry=next(e for e in manifest['files'] if e['path']==key.removeprefix('barcelona:'))
+        directory=ROOT/'data/raw/acgym_barcelona_dallara'
+        path=manifest_entry_path(directory,entry)
+        for item in manifest['files']:
+            evidence=manifest_entry_path(directory,item)
+            if evidence in (path,path.with_suffix('.ldx')) and file_sha(evidence)!=item.get('sha256'):
+                raise ValueError('Barcelona source integrity mismatch')
+        session=enrich_recording(load_acgym_recording(path,entry,manifest,analysis_only=True),path)
+        return session
     if key.startswith('acgym:'):
         from motorsport.ingestion.acgym_importer import load_acgym_recording
         manifest=json.loads((ROOT/'docs/ACGYM_MANIFEST_V06.json').read_text(encoding='utf-8'))
@@ -143,6 +167,8 @@ def select_telemetry(page_key='analysis'):
         st.error(f'Dataset non disponibile: {exc}')
         st.stop()
     st.caption(session.metadata['filename'])
+    if session.metadata.get('identity_quarantine'):
+        st.info('Sorgente esplorabile; esclusa dal corpus ML: '+'; '.join(session.metadata['identity_quarantine']))
     if session.metadata.get('time_basis'):
         st.caption('Base temporale: '+session.metadata['time_basis'])
     return session

@@ -18,14 +18,18 @@ def test_ml_pages_handle_no_validated_targets(tmp_path,monkeypatch,page):
     pd.DataFrame({'elapsed_s':[0,.1,.2],'speed_kmh':[100]*3}).to_csv(tmp_path/'data/raw/minimal.csv',index=False)
     monkeypatch.setattr(ui,'ROOT',tmp_path)
     monkeypatch.setattr(telemetry,'ROOT',tmp_path)
-    app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=45).run()
+    app=AppTest.from_file(str(ROOT/'pages'/page),default_timeout=45)
+    app.session_state['ml_archive_mode']=True
+    app.run()
     assert not app.exception and app.metric[0].value=='0'
     assert not app.button and any('target' in info.value for info in app.info)
 
 
 @pytest.mark.skipif(not (ROOT/'data/raw/acgym_monza_dallara').exists(),reason='Optional bounded ACGym corpus absent')
 def test_explicit_training_persistence_and_replay_hides_final_target():
-    app=AppTest.from_file(str(ROOT/'pages/20_Machine_Learning.py'),default_timeout=60).run()
+    app=AppTest.from_file(str(ROOT/'pages/20_Machine_Learning.py'),default_timeout=60)
+    app.session_state['ml_archive_mode']=True
+    app.run()
     assert not app.exception and app.metric[0].value=='55'
     assert len(chart_specs(app))==0
     next(b for b in app.button if b.label=='Addestra e valuta i tre modelli').click().run(timeout=60)
@@ -34,6 +38,7 @@ def test_explicit_training_persistence_and_replay_hides_final_target():
     app.run()
     assert app.session_state['ml_bundles'].keys()==saved.keys()
     replay=AppTest.from_file(str(ROOT/'pages/21_Progressive_Prediction.py'),default_timeout=60)
+    replay.session_state['ml_archive_mode']=True
     replay.session_state['ml_bundles']=saved
     replay.run()
     assert not replay.exception and len(chart_specs(replay))==2
@@ -51,7 +56,9 @@ def test_explicit_training_persistence_and_replay_hides_final_target():
 
 @pytest.mark.skipif(not (ROOT/'data/raw/gt7_trial_mountain_962c').exists(),reason='Optional GT7 bundle absent')
 def test_gt7_training_is_explicit_experimental_opt_in():
-    app=AppTest.from_file(str(ROOT/'pages/20_Machine_Learning.py'),default_timeout=60).run()
+    app=AppTest.from_file(str(ROOT/'pages/20_Machine_Learning.py'),default_timeout=60)
+    app.session_state['ml_archive_mode']=True
+    app.run()
     bundle_key=str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve())
     next(s for s in app.selectbox if s.label=='Dataset ML').set_value(bundle_key).run()
     assert not app.exception and app.metric[0].value=='8'

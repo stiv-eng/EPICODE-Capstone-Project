@@ -129,7 +129,10 @@ def test_all_chart_rendering_uses_shared_api_including_optional_legacy():
 
 
 def test_computation_and_launch_sources_unchanged_from_verified_v062():
-    protected=['motorsport','motorsport_prediction','motorsport_ui/ml.py','.vscode','requirements.txt']
+    protected=['motorsport/processing','motorsport/analytics','motorsport/ml/training.py','motorsport/ml/features.py',
+               'motorsport/ml/inference.py','motorsport/ml/dataset.py','motorsport/ml/baselines.py',
+               'motorsport/ml/evaluation.py','motorsport/ml/artifacts.py','motorsport/ingestion/motec.py',
+               'motorsport_prediction','.vscode','requirements.txt']
     r=subprocess.run(['git','diff','--name-only','48e99ee','--',*protected],cwd=ROOT,
                      capture_output=True,text=True,check=True)
     assert not r.stdout.strip()

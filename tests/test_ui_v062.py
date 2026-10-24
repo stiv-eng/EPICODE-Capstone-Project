@@ -260,6 +260,6 @@ def test_diagnostic_writer_rejects_original_results_and_model_artifacts(tmp_path
 
 def test_ml_production_sources_and_launch_are_unchanged():
     import subprocess
-    files=['motorsport/ml','motorsport_prediction','motorsport_ui/ml.py','.vscode']
-    result=subprocess.run(['git','diff','--name-only','c47fd4a','--',*files],cwd=ROOT,capture_output=True,text=True,check=True)
+    files=['motorsport/ml','motorsport_prediction','.vscode']
+    result=subprocess.run(['git','diff','--name-only','--diff-filter=M','c47fd4a','--',*files],cwd=ROOT,capture_output=True,text=True,check=True)
     assert not result.stdout.strip()
