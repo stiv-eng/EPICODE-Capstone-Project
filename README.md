@@ -1,6 +1,6 @@
-# Motorsport Telemetry Analyzer - v0.6
+# Motorsport Telemetry Analyzer - v0.6.1
 
-Local telemetry analysis, causal ML features and progressive retrospective replay.
+Lap-based telemetry exploration, a recorded Cockpit, causal ML and retrospective replay.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
@@ -8,8 +8,8 @@ or FastF1 connection is needed for local analysis.
 
 1. Open this project folder.
 2. In **Run and Debug**, select **Motorsport Telemetry Analyzer**.
-3. Press **F5**. Open **Session Overview** from the sidebar.
-4. Select the original `data/raw/telemetry.parquet` or **GT7 - Trial Mountain - Porsche 962 C**.
+3. Press **F5**. Open **Data Explorer** from the sidebar.
+4. Select the original `data/raw/telemetry.parquet`, **GT7**, or an **ACGym** recording.
 
 The existing `.venv` and F5 configuration are preserved. VS Code uses the selected
 project interpreter; `.vscode/settings.json` points to `.venv/Scripts/python.exe`.
@@ -20,19 +20,45 @@ once using **Python: Select Interpreter**. Ordinary startup needs no terminal co
 
 | Page | What it does |
 |---|---|
-| Session Overview | Recorded span versus observed duration, acquisition quality, sample/time means, gear/RPM distributions, capability assessment and candidate lap-feature export |
-| Data Explorer | Cached local CSV/Parquet or in-memory uploads, explicit column/unit mappings, schema/quality and raw previews; audited GT7 bundle support |
-| Driver Inputs | Configurable pedal thresholds, observed-time usage/overlap, complete/partial braking events, entry speeds, steering activity and combined signal charts |
-| Vehicle Dynamics | Acceleration traces, source-scale G-G scatter, speed/lateral and steering/yaw relations, slip, loads, suspension and wheel signals |
-| Tyre Analysis | FL/FR/RL/RR core/inner/middle/outer temperatures, pressures, reported wear, wheel loads/speeds where present; temporal inspection and CSV summaries |
-| Telemetry Comparison | Two compatible session windows with relative time, up to 20 saved windows, or validated laps with approximate driven-distance-fraction alignment |
-| Position Analysis | Source trajectory colored by speed/pedals, time window, sample marker, hover details and coordinate-quality warnings |
+| Home | Offline entrypoint and links to the principal workflows |
+| Session Overview | Essential session metrics; Channel / Time Measured [s] / Mean; explanations only for unavailable capabilities |
+| Data Explorer | One dataset and shared verified-lap/time selection across Signals, Driver Inputs, Vehicle Dynamics, Tyre Analysis, Cockpit and Position / Track Map |
+| Telemetry Comparison | Verified laps by default when both sources support them; source-relative lap time, compatible units, one shared legend and stable selection colors; saved-window fallback |
 | Machine Learning | Dataset eligibility, causal feature selection, explicit Ridge/Random Forest/SVR training, chronological holdout errors, baseline comparison, importance and exports |
 | Progressive Prediction | Retrospective checkpoint replay, observed telemetry, prediction history and optional final-target reveal; baseline, experimental and evaluated modes |
 
 Legacy Formula 1 pages remain opt-in through the sidebar checkbox. Historical
 SVR and Keras source modules are preserved. New canonical ML is separate; sequence
 models remain future v0.7 work.
+
+## Explore recorded telemetry
+
+Use **Dataset analizzato** in the sidebar once, then switch **Sezione analitica**.
+GT7 and ACGym offer measured labels such as `Lap 2 — 1:48.650`. Select one or
+several verified laps; Signals overlays each using its own elapsed lap time.
+The original attachment has no complete validated laps and offers a recording-time
+window instead. Dataset, revision or mapping changes reset incompatible selections.
+Uploaded compatible CSV/Parquet files use the same six sections and capability checks.
+
+Driver Inputs retains configurable pedal usage and braking events; Dynamics and
+Tyres retain their existing analytics and exports. Cockpit selects a real recorded
+packet with an instant slider and shows only available measurements, including tyre
+temperatures with declared units. This is recorded replay. Position draws connected,
+colored source-coordinate segments, breaks at unsupported gaps/fragments/lap changes,
+and allows any finite real numeric channel as color. Continuous colors use 32 bands
+over the full measured range; gear uses discrete colors; missing color values are grey.
+The display is bounded to 6,000 position vertices, with full-resolution calculations.
+
+ACGym selection is per recording rather than a concatenation of independent clocks.
+Its UI adds declared tyre temperatures, pressures, loads and suspension travel without
+altering the ML adapter. The inspected export has no compatible world X/Y; race rank
+and normalized progress are not converted into coordinates. Original integrated
+positions and GT7 reported world positions retain their accuracy warnings.
+
+Detailed charts use bounded SVG traces and mount one analytical section at a time.
+Chrome scrolling and section/dataset switching passed. The original intermittent
+disappearance was **not reproduced** on the archived v0.6 page; a universal GPU/browser
+fix is not claimed. See the [UI validation report](docs/UI_TEST_REPORT_V061.md).
 
 ## Train and replay
 
@@ -64,8 +90,9 @@ boundaries, repeated simulator timestamps and a 2.36 s gap. Recorded span is
 **1,827.078 s**; observed support after excluding the gap is **1,824.718 s**.
 Time means and pedal usage use positive finite forward intervals, with left-hold
 values. Repeated time values get zero dwell; gaps are excluded and no terminal
-sample duration is invented. The UI distinguishes ordinary sample means and
-channel-specific temporal coverage. Braking events do not split at zero-duration
+sample duration is invented. Overview displays only time-weighted means and
+channel-specific temporal coverage. Sample statistics remain in the analytics APIs.
+Braking events do not split at zero-duration
 clock repeats; unsupported gaps and unknown samples do split them.
 
 The additional GT7 source is downloaded locally and hash-verified: **95,796 rows /
@@ -92,8 +119,9 @@ derivations. No game assets or raw source telemetry are committed.
 
 Unknown physical units remain labelled source units. Source-coordinate trajectories
 are not verified circuit geometry. Normalized driven distance supports retrospective
-signal-shape comparison; **cumulative lap delta remains unavailable for both real
-datasets** because no verified common spatial reference exists. Arbitrary session
+signal-shape comparison in the analytics API; the UI uses relative elapsed lap time.
+**Cumulative lap delta remains unavailable for the supplied datasets** because no
+verified common spatial reference exists. Arbitrary session
 windows never become laps. The original/GT7 sources remain below the robust ML
 gate. Only the independently identified ACGym subset passes it for elapsed-time
 ML; certified causal common-distance progress and deep-learning adequacy remain
@@ -103,17 +131,18 @@ unestablished. Whole-lap summaries are descriptive, never predictive inputs.
 
 Choose **Carica file** in Data Explorer to upload CSV/Parquet. Use
 **Mappatura colonne e unita** to declare names/units and press **Applica mappatura**.
-That mapped session becomes available to the analytical pages and comparison
+That mapped session becomes available to Data Explorer sections and comparison
 selectors for the current Streamlit session. Local files in `data/raw/` or
 `data/demo/` are also discovered. There are no startup downloads.
 
-In **Telemetry Comparison**, choose sessions A/B and two positive-duration time
-windows. Select compatible channels and use **Salva finestra A/B** to retain a
-selection in memory. Relative axes preserve each window's actual clock and duration.
-For GT7 on both sides, **Giri verificati** exposes the eight accepted source IDs;
-plots clearly describe approximate alignment and disable unsupported time delta.
-CSV exports are available for derived metrics, events and lap-level candidate features.
-Full-lap aggregates are retrospective and must not be used as causal progressive inputs.
+In **Telemetry Comparison**, choose sessions A/B and readable verified lap labels.
+Compatible recordings of the same verified track can be compared. Each selected lap
+keeps one color across channel subplots and appears once in the shared legend.
+When verified laps are unavailable, select positive-duration session windows and
+optionally save up to 20 windows with **Salva finestra A/B**. Windows are explicitly
+labelled as windows. No unsupported cumulative delta is introduced. CSV exports remain
+available for metrics and events; retrospective lap features remain available through
+the Python API, with no dedicated feature table in Overview.
 
 ## Environment and checks
 
@@ -144,6 +173,7 @@ workspace. On another machine, copy the original attachment to
 .\.venv\Scripts\python.exe -m scripts.audit_v05
 .\.venv\Scripts\python.exe -m scripts.audit_v06
 .\.venv\Scripts\python.exe -m scripts.smoke_app
+.\.venv\Scripts\python.exe -m scripts.verify_ml_v061
 ```
 
 For a core-only installation omit the two historical DL training modules with
@@ -152,9 +182,16 @@ if local raw datasets are absent. In VS Code, **Testing** discovers pytest tests
 Optional browser checks use the installed `websockets` package and local Chrome:
 `python -m scripts.smoke_app --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
 Screenshots/logs stay under ignored `artifacts/`; the temporary server/browser stop afterward.
+To investigate the original rendering independently, run
+`python -m scripts.investigate_rendering_v061 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"`.
+This executes the archived local v0.6 explorer in an ignored artifact script without
+changing the checkout. The full v0.6.1 suite and actual browser results are recorded below.
 
 ## Reports
 
+- [v0.6.1 release, feedback traceability and limitations](docs/RELEASE_V061_REPORT.md)
+- [v0.6.1 UI architecture and selection lifecycle](docs/ARCHITECTURE_V061.md)
+- [v0.6.1 automated tests, Chrome checks and rendering investigation](docs/UI_TEST_REPORT_V061.md)
 - [v0.6 dataset expansion and validation](docs/DATASET_EXPANSION_V06.md)
 - [Causal and retrospective feature contracts](docs/ML_FEATURES_V06.md)
 - [Real ML results and evaluation limitations](docs/ML_EVALUATION_V06.md)

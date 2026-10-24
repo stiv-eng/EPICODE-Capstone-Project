@@ -1,3 +1,26 @@
+# Release v0.6.1 - 2026-10-24
+
+- Consolidated six detailed analytical sections inside Data Explorer; retained Home,
+  Session Overview, Comparison, ML, Progressive Prediction and optional legacy tools.
+- Added shared cached source/lap/time selection with verified timing labels and
+  dataset/revision/mapping invalidation; GT7 no longer has a separate explorer layout.
+- Exposed ACGym recordings and declared tyre/load/suspension channels through a
+  UI-only adapter, preserving the audited ML corpus and all model implementations.
+- Simplified Overview to measured-time coverage and time-weighted Mean; removed
+  pedal usage, distributions and the visible verified-lap/features section.
+- Added a responsive recorded Cockpit, nearest actual packet selection, pedal bars,
+  available tyre temperatures and optional context traces.
+- Added bounded connected trajectories with gap/lap/discontinuity guards, numeric
+  source-channel coloring, discrete gear legends and full-range continuous scales.
+- Made verified laps the primary comparison mode; source-relative time alignment,
+  concise session labels, deterministic colors and one shared legend across subplots.
+- Replaced detailed analytical WebGL traces with bounded SVG and lazy section
+  mounting. Scrolling passed in Chrome; the original intermittent v0.6 symptom was
+  not reproduced, so the rendering issue remains qualified in the release report.
+- Added state/visualization/UI tests, a three-source Chrome smoke workflow, an archived
+  v0.6 rendering investigation and frozen v0.6 sklearn prediction regression checks.
+- Preserved raw datasets, Git history, historical modules and VS Code launch settings.
+
 # Release v0.6.0 - 2026-10-20
 
 - Added a pinned 241.903 MB human MoTeC dataset subset with a bounded numeric
