@@ -17,14 +17,14 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def capture(browser, base, artifacts):
+def capture(browser, base, artifacts, scenario='release'):
     # This optional check uses the already installed websockets package. CDP
     # waits for rendered content in real time; virtual-time CLI screenshots can
     # capture Streamlit's loading placeholders before Python finishes.
     from websockets.sync.client import connect
-    with tempfile.TemporaryDirectory(prefix='telemetry-browser-', dir=artifacts) as profile:
+    with tempfile.TemporaryDirectory(prefix='telemetry-browser-', dir=artifacts, ignore_cleanup_errors=True) as profile:
         chrome = subprocess.Popen([
-            str(browser), '--headless', '--disable-gpu', '--no-first-run',
+            str(browser), '--headless', '--no-first-run',
             '--no-default-browser-check', '--remote-debugging-port=0',
             f'--user-data-dir={profile}', '--window-size=1600,1200', 'about:blank',
         ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -41,6 +41,7 @@ def capture(browser, base, artifacts):
             target = next(t for t in targets if t['type'] == 'page')
             with connect(target['webSocketDebuggerUrl'], max_size=16*1024*1024) as connection:
                 sequence = 0
+                events=[]
 
                 def call(method, params=None):
                     nonlocal sequence
@@ -48,6 +49,8 @@ def capture(browser, base, artifacts):
                     connection.send(json.dumps({'id': sequence, 'method': method, 'params': params or {}}))
                     while True:
                         message = json.loads(connection.recv(timeout=10))
+                        if message.get('method') in ('Log.entryAdded','Runtime.consoleAPICalled','Runtime.exceptionThrown'):
+                            events.append(message)
                         if message.get('id') == sequence:
                             if 'error' in message:
                                 raise RuntimeError(message['error'])
@@ -85,87 +88,17 @@ def capture(browser, base, artifacts):
                     ready("Array.from(document.querySelectorAll('[role=option]')).some(e=>e.innerText.includes("+json.dumps(text)+"))")
                     click_element("Array.from(document.querySelectorAll('[role=option]')).find(e=>e.innerText.includes("+json.dumps(text)+"))")
 
-                call('Emulation.setDeviceMetricsOverride', {'width': 1600, 'height': 1200,
-                                                          'deviceScaleFactor': 1, 'mobile': False})
-                call('Page.navigate', {'url': base})
-                ready("document.body.innerText.includes('Apri Data Explorer')")
-                screenshot('home')
-                call('Page.navigate', {'url': base+'/Data_Explorer'})
-                ready("document.body.innerText.includes('116,987') && document.body.innerText.includes('Dataset e qualità')")
-                screenshot('explorer')
-                for name, label in [('signals', 'Segnali'), ('position', 'Posizione')]:
-                    call('Runtime.evaluate', {'expression': "Array.from(document.querySelectorAll('[role=tab]')).find(t=>t.innerText==="+json.dumps(label)+").click()"})
-                    ready("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).some(e=>e.getBoundingClientRect().height>100)")
-                    call('Runtime.evaluate', {'expression': "Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).find(e=>e.getBoundingClientRect().height>100).scrollIntoView({block:'start'})"})
-                    time.sleep(.5)
-                    screenshot(name)
-                for name,route,expected in [
-                    ('overview','overview','Statistiche dei segnali'),
-                    ('inputs','inputs','Eventi osservati / completi'),
-                    ('dynamics','dynamics','Diagramma G-G'),
-                    ('tyres','tyres','Famiglia pneumatici'),
-                    ('comparison','comparison','Canali confrontati'),
-                    ('trajectory','position','Campione selezionato nella finestra'),
-                ]:
-                    call('Page.navigate',{'url':base+'/'+route})
-                    ready('document.body.innerText.includes('+json.dumps(expected)+')')
-                    ready("Array.from(document.querySelectorAll('[data-testid=stPlotlyChart]')).some(e=>e.getBoundingClientRect().height>100)")
-                    time.sleep(.4)
-                    screenshot(name)
-                if (ROOT/'data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet').exists():
-                    call('Page.navigate',{'url':base+'/overview'})
-                    ready("document.body.innerText.includes('Statistiche dei segnali')")
-                    choose('Dataset analizzato','GT7')
-                    ready("document.body.innerText.includes('GT7 Trial Mountain / Porsche 962 C') && document.body.innerText.includes('Giri verificati e feature candidate')")
-                    screenshot('gt7_overview')
-                    call('Page.navigate',{'url':base+'/comparison'})
-                    ready("document.body.innerText.includes('Canali confrontati')")
-                    choose('Sessione A','GT7')
-                    ready("document.body.innerText.includes('Sessione B')")
-                    choose('Sessione B','GT7')
-                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[data-testid=stRadio] label')).find(e=>e.innerText.includes('Giri verificati')).click()"})
-                    ready("document.body.innerText.includes('Giro verificato A') && document.body.innerText.includes('shared track-distance reference')")
-                    ready("document.querySelectorAll('[data-testid=stPlotlyChart]').length>0")
-                    screenshot('gt7_lap_comparison')
-                call('Page.navigate',{'url':base+'/ml'})
-                ready("document.body.innerText.includes('Feature causali')")
-                screenshot('ml_eligibility','v06')
-                def navigate_sidebar(route):
-                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('a')).find(e=>e.getAttribute('href')?.endsWith('/"+route+"')).click()"})
-                def button(label):
-                    call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('button')).find(e=>e.innerText.includes("+json.dumps(label)+")).click()"})
-                navigate_sidebar('replay')
-                ready("document.body.innerText.includes('Baseline-only') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=2")
-                screenshot('replay_baseline','v06')
-                navigate_sidebar('ml')
-                ready("document.body.innerText.includes('Addestra e valuta i tre modelli')")
-                button('Addestra e valuta i tre modelli')
-                ready("document.body.innerText.includes('Risultati delle partizioni indipendenti') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=3")
-                screenshot('ml_evaluated','v06')
-                navigate_sidebar('replay')
-                ready("document.body.innerText.includes('Checkpoint trascorso') && document.body.innerText.includes('Evaluated ML') && document.querySelectorAll('[data-testid=stPlotlyChart]').length===2")
-                ready("document.querySelector('[role=slider],input[type=range]') !== null")
-                slider_html=call('Runtime.evaluate',{'expression':"Array.from(document.querySelectorAll('[role=slider],input[type=range]')).map(e=>e.outerHTML)",'returnByValue':True})
-                (artifacts/'browser_slider_controls.json').write_text(json.dumps(slider_html,indent=2),encoding='utf-8')
-                call('Runtime.evaluate',{'expression':"document.querySelector('[role=slider],input[type=range]').focus()"})
-                for _ in range(2):
-                    call('Input.dispatchKeyEvent',{'type':'rawKeyDown','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39,'nativeVirtualKeyCode':39})
-                    call('Input.dispatchKeyEvent',{'type':'keyUp','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
-                    time.sleep(.5)
-                ready("!document.body.innerText.includes('Risultato finale verificato')")
-                screenshot('replay_ml_hidden_target','v06')
-                click_element("Array.from(document.querySelectorAll('[data-testid=stCheckbox] label')).find(e=>e.innerText.includes('Mostra valutazione retrospettiva'))")
-                ready("document.body.innerText.includes('Risultato finale verificato') && document.body.innerText.includes('Errore previsto')")
-                screenshot('replay_explicit_evaluation','v06')
-                navigate_sidebar('ml')
-                ready("document.body.innerText.includes('Feature causali')")
-                choose('Dataset ML','GT7')
-                ready("document.body.innerText.includes('Experimental single-session case study')")
-                click_element("Array.from(document.querySelectorAll('[data-testid=stCheckbox] label')).find(e=>e.innerText.includes('Abilita caso di studio sperimentale'))")
-                ready("Array.from(document.querySelectorAll('button')).some(e=>e.innerText.includes('Addestra e valuta') && !e.disabled)")
-                button('Addestra e valuta i tre modelli')
-                ready("document.body.innerText.includes('Risultati delle partizioni indipendenti') && document.querySelectorAll('[data-testid=stPlotlyChart]').length>=2")
-                screenshot('gt7_experimental_ml','v06')
+                call('Emulation.setDeviceMetricsOverride', {'width':1600,'height':1200,'deviceScaleFactor':1,'mobile':False})
+                call('Runtime.enable')
+                call('Log.enable')
+                if scenario=='baseline':
+                    from investigate_rendering_v061 import exercise
+                else:
+                    from smoke_ui_v061 import exercise
+                try:
+                    exercise(call,ready,choose,click_element,screenshot,base,artifacts)
+                finally:
+                    (artifacts/f'browser_console_{scenario}_v061.json').write_text(json.dumps(events,indent=2),encoding='utf-8')
         finally:
             chrome.terminate()
             try:
@@ -175,7 +108,7 @@ def capture(browser, base, artifacts):
                 chrome.wait()
 
 
-def smoke(browser=None):
+def smoke(browser=None,entrypoint='streamlit_app.py',scenario='release'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
@@ -183,7 +116,7 @@ def smoke(browser=None):
     artifacts.mkdir(exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         server = subprocess.Popen([
-            sys.executable, '-m', 'streamlit', 'run', 'streamlit_app.py',
+            sys.executable, '-m', 'streamlit', 'run', entrypoint,
             '--server.headless=true', '--server.address=127.0.0.1',
             f'--server.port={port}', '--server.fileWatcherType=none',
         ], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
@@ -204,7 +137,7 @@ def smoke(browser=None):
                 assert response.status == 200
             print('PASS: Streamlit HTTP homepage and health endpoint return 200.')
             if browser:
-                capture(browser, base, artifacts)
+                capture(browser, base, artifacts,scenario)
         finally:
             server.terminate()
             try:

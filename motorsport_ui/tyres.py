@@ -13,7 +13,7 @@ def render_tyres(session, frame):
     if family=='Wheel speed' and not corners:
         corners=corner_channels(frame,'wheel_rps')
     if not corners:
-        st.info('Famiglia non disponibile in questo dataset. Nessun segnale sostitutivo viene generato.')
+        st.info('Famiglia non disponibile in questo dataset. Scegli un’altra famiglia o carica telemetria con i relativi canali pneumatici e unità dichiarate.')
         return
     chosen=st.multiselect('Ruote',list(corners),default=list(corners))
     channels=[corners[c] for c in chosen]

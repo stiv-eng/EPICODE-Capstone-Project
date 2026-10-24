@@ -2,16 +2,16 @@
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import streamlit as st
 
-from motorsport.analytics.comparison import SessionWindow,compare_windows,lap_trace,common_channels,cumulative_lap_delta
-from motorsport.analytics.session_metrics import chart_sample
-from motorsport.analytics.timebase import weighted_signal,numeric,chart_values
+from motorsport.analytics.comparison import SessionWindow,compare_windows,common_channels,cumulative_lap_delta
+from motorsport.analytics.timebase import weighted_signal,numeric
 from motorsport_ui.telemetry import source_catalog,get_source,metric_export
+from motorsport_ui.selection import lap_labels,selected_frame
+from motorsport_ui.visuals import comparison_figure,session_label
 
 st.title('Telemetry Comparison')
-sources=source_catalog()
+sources=source_catalog(include_acgym=True)
 if not sources:
     st.info('Apri Data Explorer e carica un dataset.');st.stop()
 keys=list(sources)
@@ -23,7 +23,8 @@ try:a,b=get_source(ak),get_source(bk)
 except Exception as exc:st.error(f'Dataset non disponibile: {exc}');st.stop()
 st.caption('Base temporale A: '+a.metadata.get('time_basis','tempo dichiarato dalla mappatura')+
            ' · B: '+b.metadata.get('time_basis','tempo dichiarato dalla mappatura'))
-mode=st.radio('Modalità confronto',['Finestre di sessione','Giri verificati'],horizontal=True)
+modes=['Giri verificati','Finestre di sessione'] if lap_labels(a) and lap_labels(b) else ['Finestre di sessione','Giri verificati']
+mode=st.radio('Modalità confronto',modes,horizontal=True,key=f'comparison_mode_{ak}_{bk}')
 channels=['speed_kmh','throttle_pct','brake_pct','steering','rpm','gear','g_lat','g_lon']
 common,rejected=common_channels(a,b,channels)
 if rejected:
@@ -61,23 +62,27 @@ if mode=='Finestre di sessione':
         av,bv,summary,_=compare_windows(a,b,*ranges,selected)
     except ValueError as exc:st.info(str(exc));st.stop()
     axis='relative_s';axis_label='Tempo dalla selezione (s)'
+    labels=[f"{session_label(a)} / Finestra A {ranges[0][0]:.1f}-{ranges[0][1]:.1f} s",
+            f"{session_label(b)} / Finestra B {ranges[1][0]:.1f}-{ranges[1][1]:.1f} s"]
+    identities=[f'{ak}:window:A:{ranges[0]}',f'{bk}:window:B:{ranges[1]}']
 else:
     if not a.laps.available or not b.laps.available:
         st.info('Modalità giri non disponibile: entrambe le sessioni richiedono confini completi validati. '
                 'Il Parquet originale v0.4 ha contatori costanti.');st.stop()
-    with left:aid=st.selectbox('Giro verificato A',a.laps.laps.lap_id.tolist())
-    with right:bid=st.selectbox('Giro verificato B',b.laps.laps.lap_id.tolist(),index=min(1,len(b.laps.laps)-1))
+    alabels,blabels=lap_labels(a),lap_labels(b)
+    with left:aid=st.selectbox('Giro verificato A',list(alabels),format_func=alabels.get,key=f'compare_lap_A_{ak}')
+    with right:bid=st.selectbox('Giro verificato B',list(blabels),format_func=blabels.get,index=min(1,len(blabels)-1),key=f'compare_lap_B_{bk}')
     if a.metadata.get('track_id')!=b.metadata.get('track_id') or not a.metadata.get('track_id'):
         st.info('Confronto giri non disponibile: identità del tracciato comune non verificata.');st.stop()
-    try:av,bv=lap_trace(a,aid),lap_trace(b,bid)
-    except ValueError as exc:st.info(str(exc));st.stop()
-    axis='normalized_driven_progress';axis_label='Frazione della distanza percorsa (0–1) · allineamento approssimativo'
-    st.warning('La frazione della distanza percorsa confronta la forma dei segnali; traiettorie diverse non corrispondono necessariamente allo stesso punto fisico. '
-               'Il delta cumulato richiede un riferimento comune del tracciato verificato.')
+    av,bv=selected_frame(a,[aid]),selected_frame(b,[bid])
+    axis='lap_elapsed_s';axis_label='Tempo relativo del giro (s)'
+    st.caption('Allineamento per tempo relativo del giro misurato dalla sorgente. Non rappresenta posizioni fisiche identiche.')
+    labels=[f"{session_label(a)} / {alabels[aid]}",f"{session_label(b)} / {blabels[bid]}"]
+    identities=[f'{ak}:lap:{aid}',f'{bk}:lap:{bid}']
     summary=pd.DataFrame([{'channel':c,'A_time_mean':weighted_signal(av.assign(elapsed_s=av.lap_elapsed_s),c)['time_mean'],
                             'B_time_mean':weighted_signal(bv.assign(elapsed_s=bv.lap_elapsed_s),c)['time_mean']} for c in selected])
-    st.dataframe(pd.concat([a.laps.laps.loc[a.laps.laps.lap_id.eq(aid)].assign(selection='A'),
-                            b.laps.laps.loc[b.laps.laps.lap_id.eq(bid)].assign(selection='B')]),hide_index=True)
+    st.dataframe(pd.DataFrame([{'Selection':'A','Session':session_label(a),'Lap':alabels[aid]},
+                              {'Selection':'B','Session':session_label(b),'Lap':blabels[bid]}]),hide_index=True,width='stretch')
     try:
         delta=cumulative_lap_delta(a,b,aid,bid)
     except ValueError as exc:st.info(str(exc))
@@ -87,15 +92,9 @@ else:
         st.plotly_chart(fig,width='stretch')
 
 if selected:
-    fig=make_subplots(rows=len(selected),cols=1,shared_xaxes=True,subplot_titles=selected)
-    for view,label,color in [(av,'A','#63b3ff'),(bv,'B','#ff6d55')]:
-        sample=chart_sample(view,selected,max_points=5000)
-        for row,c in enumerate(selected,1):
-            fig.add_trace(go.Scattergl(x=sample[axis],y=chart_values(view,sample,c,'elapsed_s' if mode=='Finestre di sessione' else 'lap_elapsed_s'),name=f'{label} · {c}',
-                                      legendgroup=label,line=dict(color=color),mode='lines',connectgaps=False),row=row,col=1)
-    fig.update_layout(template='plotly_dark',height=max(350,200*len(selected)),hovermode='x unified')
-    fig.update_xaxes(title_text=axis_label,row=len(selected),col=1)
-    st.plotly_chart(fig,width='stretch')
+    selections=list(zip(identities,labels,[av,bv]))
+    fig=comparison_figure(selections,selected,axis,axis_label,a)
+    st.plotly_chart(fig,width='stretch',key='comparison_signals')
 else:st.info('Seleziona almeno un canale compatibile.')
 st.dataframe(summary,hide_index=True,width='stretch')
 metric_export(summary,'comparison_metrics.csv','comparison_csv')

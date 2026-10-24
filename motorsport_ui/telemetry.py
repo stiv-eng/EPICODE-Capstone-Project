@@ -156,7 +156,7 @@ def quality_caption(frame):
 def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
     channels=[c for c in channels if c in frame]
     if not channels or frame.empty:
-        st.info('Nessun segnale disponibile per questa selezione.')
+        st.info('Nessun segnale disponibile per questa selezione. Seleziona un altro canale o verifica la mappatura del file.')
         return
     groups=list(frame.groupby('_ui_lap',sort=False)) if '_ui_lap' in frame else [('',frame)]
     if '_ui_lap' in frame:
@@ -164,8 +164,13 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
     fig=make_subplots(rows=len(channels),cols=1,shared_xaxes=True,subplot_titles=channels,
                       vertical_spacing=min(.04,.5/max(len(channels),1)))
     shown=0
-    from .visuals import selection_color
+    from .visuals import selection_color,SELECTION_COLORS
+    used_colors=set()
     for label,view in groups:
+        color=selection_color(label)
+        if color in used_colors and len(used_colors)<len(SELECTION_COLORS):
+            color=next(c for c in SELECTION_COLORS if c not in used_colors)
+        used_colors.add(color)
         sample=chart_sample(view,channels,max_points=max(4,5000//len(groups)))
         shown+=len(sample)
         x=sample[x_column] if x_column in sample else sample.index
@@ -176,7 +181,7 @@ def signal_chart(frame,channels,session,x_column='elapsed_s',key=None):
             # was not reproduced in local Chrome; context loss is not asserted.
             fig.add_trace(go.Scatter(x=x,y=y,name=label or channel,mode='lines',connectgaps=False,
                 legendgroup=label,showlegend=bool(label) and row==1,
-                line=dict(color=selection_color(label)) if label else None),row=row,col=1)
+                line=dict(color=color) if label else None),row=row,col=1)
             fig.update_yaxes(title_text=signal_unit(session,channel),row=row,col=1)
     fig.update_xaxes(title_text=x_column+' (s)' if x_column in ['elapsed_s','relative_s','lap_elapsed_s'] else x_column,
                      row=len(channels),col=1)
