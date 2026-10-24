@@ -28,7 +28,7 @@ def write_evidence(path,content):
     path=Path(path).resolve()
     if path not in {p.resolve() for p in ALLOWED_OUTPUTS}:
         raise ValueError('Only separate v0.6.2 diagnostic evidence can be written')
-    path.write_text(content,encoding='utf-8')
+    path.write_text(content,encoding='utf-8',newline='\n')
 
 
 def protected_state():
@@ -195,7 +195,7 @@ def assess():
             'date':s.metadata['source_header']['date'],'time':s.metadata['source_header']['time'],
             'export_hz':s.metadata['export_hz']} for s in sessions if s.metadata['independence_verified']]}
     write_evidence(ROOT/'docs/ML_HEALTH_EVIDENCE_V062.json',json.dumps(evidence,indent=2,allow_nan=False)+'\n')
-    write_evidence(ROOT/'docs/ML_HEALTH_GROUPS_V062.csv',group_table.to_csv(index=False))
+    write_evidence(ROOT/'docs/ML_HEALTH_GROUPS_V062.csv',group_table.to_csv(index=False,lineterminator='\n'))
     folder=ROOT/'artifacts/v062';folder.mkdir(parents=True,exist_ok=True)
     figure=make_subplots(rows=1,cols=2,subplot_titles=['Frozen test: mean prediction per complete lap','SVR frozen errors by checkpoint'])
     for name,frame in joined.query("partition=='test'").groupby('model'):

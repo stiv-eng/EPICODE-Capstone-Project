@@ -244,12 +244,17 @@ def test_comparison_readout_keeps_numeric_units_identity_legend_and_escapes_labe
     assert "chart.on('plotly_hover'" in document and 'readout-column' in document and '<script src=' not in document
 
 
-def test_diagnostic_writer_rejects_original_results_and_model_artifacts(tmp_path):
+def test_diagnostic_writer_rejects_original_results_and_model_artifacts(tmp_path,monkeypatch):
     before=protected_state()
     for path in [ROOT/'docs/ML_RESULTS_V06.json',ROOT/'docs/ACGYM_ML_ERRORS_V06.csv',ROOT/'artifacts/models/model.joblib',tmp_path/'any.json']:
         with pytest.raises(ValueError,match='separate v0.6.2'):
             write_evidence(path,'changed')
     assert before==protected_state()
+    import scripts.assess_ml_v062 as audit
+    output=tmp_path/'ML_HEALTH_GROUPS_V062.csv'
+    monkeypatch.setattr(audit,'ALLOWED_OUTPUTS',{output})
+    write_evidence(output,'channel,value\nspeed,50\n')
+    assert output.read_bytes()==b'channel,value\nspeed,50\n'
 
 
 def test_ml_production_sources_and_pages_are_unchanged():

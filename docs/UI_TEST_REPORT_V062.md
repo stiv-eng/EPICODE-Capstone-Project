@@ -10,7 +10,7 @@ Plotly 6.9.0 and local Chrome 156.0.8078.47 were reused without new dependencies
 |---|---|
 | Baseline suite | 135 passed, 92 warnings in 96.52 s |
 | New v0.6.2 suite | 37 passed in 14.13 s |
-| Final full acceptance suite | **172 passed, 92 warnings in 104.06 s**, no failures/skips |
+| Final full acceptance suite | **172 passed, 92 warnings in 102.12 s**, no failures/skips |
 | `python -m pip check` | No broken requirements found |
 | `git diff --check` | Pass; informational Windows LF/CRLF notices only |
 | Frozen prediction regression | All 390 ACGym + 60 GT7 rows match within 1e-9 s |
@@ -19,7 +19,7 @@ Plotly 6.9.0 and local Chrome 156.0.8078.47 were reused without new dependencies
 Commands used `.venv/Scripts/python.exe`. The 92 warnings are the unchanged
 historical Keras/PyTorch NumPy `copy` deprecations; existing small historical fixture
 tests ran, but no new Keras experiment was developed. Final output is retained in
-`artifacts/v062/pytest_v062_acceptance.txt`; other intermediate runs are labelled
+`artifacts/v062/pytest_v062_acceptance_final.txt`; other intermediate runs are labelled
 separately. No analytical/ingestion/ML test was deleted.
 
 ### New and preserved test coverage
@@ -156,6 +156,9 @@ Logs are `ml_health_run.txt` and `frozen_regression.txt`; the complete diagnosis
 - Initial new unit assertions wrongly omitted an available wheel-load family and
   treated an available elapsed-time channel as absent; fixture/expectations were
   corrected to test true availability, rather than hiding valid signals.
+- The final whole-release diff check found duplicated Windows line terminators
+  in the new diagnostic CSV. The writer now explicitly emits LF, with a byte-level
+  regression assertion; regenerating the evidence preserves every parsed value.
 - Real source examples do not have a verified planar heading declaration. Measured
   heading conversion is tested synthetically; real maps use labelled estimates.
 - Browser evidence covers one desktop Chrome version and narrow desktop resizing,

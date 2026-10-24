@@ -13,7 +13,7 @@ channel choices, corrects G-G data geometry, adds actual-position vehicle replay
 and moves comparison readouts outside the signals. Production predictive models,
 features, splits, targets, inference and ML/replay pages are unchanged.
 
-Final automated result: **172 passed, 92 warnings in 104.06 s**, no failures/skips.
+Final automated result: **172 passed, 92 warnings in 102.12 s**, no failures/skips.
 Real Chrome result: **36 checks passed**, exit 0, HTTP homepage/health 200.
 Frozen regression: **390 ACGym + 60 GT7 model-prediction rows unchanged** within
 `1e-9 s`. Dependency check reports no broken requirements. Detailed evidence and
@@ -212,8 +212,10 @@ Local component commits:
 - `927c172`: source-aware controls, square G-G, vehicle orientation and readout UI.
 - `ef660fb`: neutral measured positions and validated-example fallback priority.
 - `4f09b68`: safe ML health audit/evidence, 37 new tests and Chrome workflow.
-- The following documentation handoff commit contains this report and companion
-  documentation; its exact hash is available through `git log -1 --oneline`.
+- `e34dd6e`: release, architecture, validation and ML assessment documentation.
+- A final portable-newline correction makes generated diagnostic CSV output clean
+  on Windows without changing parsed values; its exact commit hash is available
+  through `git log -1 --oneline`.
 
 Final branch remains local with a clean working tree checked after committing.
 v0.6.1 is an ancestor and its branch is intact. No push, merge, reset, branch
