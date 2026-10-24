@@ -1,0 +1,79 @@
+{
+  "baseline_commit": "36b1267",
+  "branch": "feat/sim-telemetry-v080",
+  "tests": {
+    "passed": 257,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": 217,
+    "seconds": 189.514,
+    "retained": 233,
+    "added": 24
+  },
+  "browser": [
+    {
+      "scenario": "v080",
+      "workflow_checks": 88,
+      "render_budgets": 55,
+      "performance_records": 1,
+      "console_errors": 0,
+      "runtime_exceptions": 0
+    },
+    {
+      "scenario": "v063-baseline",
+      "workflow_checks": 36,
+      "render_budgets": 0,
+      "performance_records": 0,
+      "console_errors": 0,
+      "runtime_exceptions": 0
+    },
+    {
+      "scenario": "v063-fixtures",
+      "workflow_checks": 4,
+      "render_budgets": 4,
+      "performance_records": 0,
+      "console_errors": 0,
+      "runtime_exceptions": 0
+    }
+  ],
+  "chrome_version": "156.0.8078.47",
+  "python": "3.11.9",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1",
+    "streamlit": "1.66.0",
+    "plotly": "6.9.0",
+    "keras": "3.15.1",
+    "torch": "2.14.1",
+    "matplotlib": "3.11.2"
+  },
+  "preserved_files": 98,
+  "validated_laps": 205,
+  "development_laps": 169,
+  "development_blocks": 40,
+  "development_observations": 4134,
+  "historical_experimental_evaluations": 0,
+  "original_test_evaluations": 1,
+  "regression_file_sha256": "ae5e26a1ddadf7b4d739929e08bdf95e7fa39eb22da6423dc214efc618d07930",
+  "browser_file_sha256": "42a8672ff944e2a89c4c3ceb7637ef1e948277ecba9e7a4193ba56e6291a87cc",
+  "checks": {
+    "compileall": "passed",
+    "pip_check": "No broken requirements found",
+    "git_diff_check": "passed",
+    "frozen_result_reuse": "passed",
+    "all_installed_artifacts_verified": "passed",
+    "f5_configuration": "byte-identical",
+    "normal_ui_fitting": "none"
+  },
+  "limitations": [
+    "Development folds reused: no independent new final-performance claim",
+    "Recording blocks not certified physical independence",
+    "Percentage track progress unverified; elapsed-time fallback",
+    "Dense and sparse total loss mass differs at fixed C10",
+    "GRU inner-fit population smaller than classical fitting population",
+    "Chunking loses sub-two-second order",
+    "CPU process peak includes corpus, classical models and backend"
+  ]
+}

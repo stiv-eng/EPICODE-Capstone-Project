@@ -95,6 +95,8 @@ if bundle is not None:
 else:
     st.info('Nessun modello addestrato per questo corpus. Il training parte soltanto dal pulsante esplicito.')
 if barcelona_active():
+    st.caption('Il confronto sequenziale v0.8 è disponibile nella modalità sperimentale di Progressive Prediction; '
+               'questi risultati e il modello operativo restano v0.7.1.')
     with st.expander('Diagnosi ML v0.7.2 · confronto di sviluppo'):
         if st.checkbox('Mostra confronto delle feature sui fold di sviluppo',value=False,key='show_development_v072'):
             from motorsport_ui.ml_diagnostics import render_development

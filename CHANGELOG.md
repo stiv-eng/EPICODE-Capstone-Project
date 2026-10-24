@@ -1,3 +1,20 @@
+# Release v0.8 - 2026-10-24
+
+- Add causal configurable elapsed-time checkpoints, default5 s; retain sparse
+  compatibility and actual observation timestamps. Keep unverified ACTI normalized
+  progress out of predictive inputs; audit full development traces and wraps.
+- Compare sparse-fit/dense-inference SVR, dense direct and remaining-time SVR,
+  a survival-conditioned training reference, ordered Ridge and an actually trained
+  1737-parameter Keras GRU on the original development recording folds.
+- Use whole-prefix ordered chunks beyond 60 s, training-only normalization,
+  explicit masks, inner recording validation, lap-balanced metrics and visible
+  remaining-time projection evidence. No architecture/parameter search.
+- Add signed fold artifacts and opt-in target-hidden experimental replay, reports,
+  standalone figures, reproducible offline commands and regression/browser tests.
+- Preserve the operational v071 SVR, all 205 valid laps and historical evidence.
+  New results are exploratory development evidence; no automatic promotion.
+- See [release](docs/RELEASE_V080_REPORT.md) and [comparison](docs/ML_COMPARISON_V080.md).
+
 # Release v0.7.2 - 2026-10-24
 
 - Diagnose original train/validation/historical-test pace distributions using

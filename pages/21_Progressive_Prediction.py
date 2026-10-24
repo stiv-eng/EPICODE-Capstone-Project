@@ -19,6 +19,13 @@ if not corpus.laps:
     st.info('Il replay richiede giri completi con target verificati.')
     st.stop()
 bundle=get_bundle(corpus)
+if barcelona_active():
+    replay_mode=st.radio('Modalità di previsione', ['Riferimento operativo', 'Confronto sperimentale v0.8'],
+                         index=0, key='progressive_mode')
+    if replay_mode=='Confronto sperimentale v0.8':
+        from motorsport_ui.progressive_v080 import render
+        render(corpus,bundle)
+        st.stop()
 history=baseline_history(corpus,bundle)
 ids={lap.lap_uid:lap for lap in corpus.laps}
 labels={lap.lap_uid:f'{lap.physical_session_id} · giro {lap.lap_uid.split(":lap:")[-1]}' for lap in corpus.laps}

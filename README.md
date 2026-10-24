@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer - v0.7.2
+# Motorsport Telemetry Analyzer - v0.8
 
 Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
 Barcelona GP / Dallara F317 is the primary ML demonstration: **205 usable complete
@@ -9,7 +9,51 @@ recording holdout, not a claim of unseen-session or live-racing generalization.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
-## v0.7.2 diagnosis and feature experiments
+## v0.8 dense progressive prediction and sequence models
+
+Progressive Prediction keeps the original reference as default. Select
+**Confronto sperimentale v0.8** to compare dense/direct/remaining SVR, an ordered
+Ridge, a compact Keras GRU and deterministic baselines. Checkpoints use actual
+elapsed seconds, default5 s; circuit percentages remain disabled because the exact
+ACTI progress-export semantics are unverified. All205 valid laps remain available.
+
+Experiments use the same 169 development laps/40 recording blocks and five frozen
+folds. Whole observed prefixes, including late laps beyond 60 s, are compressed into
+ordered2 s telemetry chunks after backward-only 10 Hz sampling. GRU16 uses inner
+recording validation for early stopping. All candidates share observation cutoffs;
+scores weight laps equally. No historical test is reused for development. Final
+time/errors remain hidden in replay until retrospective reveal.
+
+Optional experiment dependencies are already installed on this development setup.
+On another Python3.11 environment, install `requirements-sequence.txt` for Keras,
+Torch and report figures. Ordinary startup needs only `requirements.txt`.
+With the verified local Barcelona dataset and original signed reference installed:
+
+```powershell
+python -m scripts.prepare_barcelona_v080
+python -m scripts.run_barcelona_v080
+python -m scripts.report_barcelona_v080
+python -m scripts.verify_baselines_v080
+python -m pytest -q
+python -m streamlit run streamlit_app.py
+```
+
+The runner verifies/reuses frozen scores; it does not repeatedly rescore or tune.
+If research artifacts are absent on a fresh checkout, explicitly restore them with
+`python -m scripts.run_barcelona_v080 --rebuild-artifacts`. This fits development
+models without rescoring held-out laps. Native Keras and classical artifacts are
+signed/verified locally under ignored `artifacts/barcelona_v080/models`; the UI
+never trains on normal reruns or downloads telemetry. OOF replay uses the fold
+that held out the selected lap. The separate all-development research fit is
+labelled in-sample and does not replace the operational SVR.
+
+Read the [release and eight conclusions](docs/RELEASE_V080_REPORT.md),
+[measured comparison](docs/ML_COMPARISON_V080.md), [checkpoint strategy](docs/CHECKPOINT_STRATEGY_V080.md),
+[dense/remaining SVR](docs/SVR_DENSE_EXPERIMENT_V080.md),
+[ordered Ridge and GRU](docs/SEQUENCE_MODEL_EXPERIMENTS_V080.md),
+[architecture](docs/ARCHITECTURE_V080.md) and [next steps](docs/NEXT_RELEASE_RECOMMENDATION.md).
+
+## Preserved v0.7.2 diagnosis and feature experiments
 
 The operational reference remains **SVR v0.7.1**. All 205 valid laps and its frozen
 results stay intact. New experiments use only the original training+validation

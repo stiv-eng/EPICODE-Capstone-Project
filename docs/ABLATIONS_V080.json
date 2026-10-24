@@ -1,0 +1,10 @@
+{
+  "cadence_only_max_change_at_shared_checkpoint_s": 2.842170943040401e-14,
+  "dense_minus_sparse_mae_shared_60s": -0.8585089085142936,
+  "remaining_minus_direct_mae_shared_60s": 0.6652234224916889,
+  "remaining_minus_direct_mae_last_scheduled": 0.8386078763760345,
+  "ordered_ridge_minus_remaining_svr_mae_shared_60s": 1.3581400741136314,
+  "gru_minus_ordered_ridge_mae_shared_60s": -0.4345573047778739,
+  "gru_minus_ordered_ridge_mae_all": -1.4151499587442835,
+  "caveats": "No causal architecture/order isolation: classical estimator/regularization differ, and GRU inner fit uses fewer laps. Dense loss weights have equal lap mass but sum to dense snapshot count, so total regularization mass changes relative to sparse C10. No verified position feature exists."
+}

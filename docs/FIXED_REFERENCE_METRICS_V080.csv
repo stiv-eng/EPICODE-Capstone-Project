@@ -1,0 +1,4 @@
+schedule,laps,snapshots,lap_balanced_mae_s
+sparse_compatibility,66,330,9.867542228468794
+dense_5_60s,66,792,10.460000611759396
+dense_all,66,1520,12.008554690711852
