@@ -6,3 +6,5 @@ docs/*_V072.csv text eol=lf
 docs/*_V072.json text eol=lf
 docs/*_V080.csv text eol=lf
 docs/*_V080.json text eol=lf
+docs/*_V082.json text eol=lf
+docs/archive/*_V082.json text eol=lf

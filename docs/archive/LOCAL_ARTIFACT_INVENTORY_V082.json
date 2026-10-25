@@ -1,0 +1,989 @@
+{
+  "archive_commit": "3b96553a10881ea654f5fe2a505cb7b3169d4d1d",
+  "policy": "Paths, byte counts and digests only. No model bytes or signing-key contents are committed. Files are not moved or removed.",
+  "untouched_local_files": {
+    "data/raw/README.md": {
+      "bytes": 932,
+      "sha256": "3d1c0351b784792cc4a8161ef9bed34b81fff505d14b5f047a0b82a9b60ea81c"
+    },
+    "data/raw/telemetry.parquet": {
+      "bytes": 55558924,
+      "sha256": "fcec6ac8a8625f493e3440646c499a6991d76a2bd15d81d87d765662eef0b9e7"
+    },
+    "data/raw/acgym_barcelona_dallara/20240229_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 21518496,
+      "sha256": "6dfb4bd32b17c058ef873d398b9f36e9a7e208311c0a78dfa948f3f87eb63806"
+    },
+    "data/raw/acgym_barcelona_dallara/20240229_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 1033,
+      "sha256": "ce32156eb2617add3adcbcc31a9136961ad87031fdc2a4779452755080012755"
+    },
+    "data/raw/acgym_barcelona_dallara/20240229_HC/laps/laps_info.csv": {
+      "bytes": 278,
+      "sha256": "d6c9b5f5a934bca1b2044b799b21ddee7ed4977602fa3f3acb67cb6b8121f749"
+    },
+    "data/raw/acgym_barcelona_dallara/20240304_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 15375684,
+      "sha256": "9b7988af921d7c9419faf64b8187e18fcbaf412335c231dd2808909cb6e827b3"
+    },
+    "data/raw/acgym_barcelona_dallara/20240304_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 1134,
+      "sha256": "c8cd9eddf4a1a9cca9a3d5dd7e11c5db67b34160ace2a52e470d0a7a0410ec24"
+    },
+    "data/raw/acgym_barcelona_dallara/20240304_AB/laps/laps_info.csv": {
+      "bytes": 323,
+      "sha256": "b7cd537216c38aba0c6001e45afc3e13853e487a78bfdc03a15ad0c2c4396d94"
+    },
+    "data/raw/acgym_barcelona_dallara/20240313_OP/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld": {
+      "bytes": 18406868,
+      "sha256": "81731ffd749544c7306c15e5bb044de21723d291427fb6912066649c8454752d"
+    },
+    "data/raw/acgym_barcelona_dallara/20240313_OP/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_1.ldx": {
+      "bytes": 1448,
+      "sha256": "27d543876e3f005941dacaa91796d0346d351182291eb495d73c3babff02d556"
+    },
+    "data/raw/acgym_barcelona_dallara/20240313_OP/laps/laps_info.csv": {
+      "bytes": 505,
+      "sha256": "1a80e7301b70c46c167bb18058d8b7e40da523f4d3aa01cd41bd98f1a5996be8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld": {
+      "bytes": 15318562,
+      "sha256": "3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de"
+    },
+    "data/raw/acgym_barcelona_dallara/20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ldx": {
+      "bytes": 2124,
+      "sha256": "ffe997773c531cf69b18bb376e9d64bccdb32f5a51c52171621a5c0c0a759ca4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240325_WL/laps/laps_info.csv": {
+      "bytes": 508,
+      "sha256": "b67242c918d4856699d4c7fee01480322fcfae3133f163924a8422f724df1e71"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld": {
+      "bytes": 11875694,
+      "sha256": "b572da04c70fac3ad5fb58a611b9232a6f9292df55e5f2612f1405fa250e1cf6"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ldx": {
+      "bytes": 1134,
+      "sha256": "a1583dc70999cef31d15b7f11a7ea631b00019766dbf442480fb17ccfb48b2f9"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_HC/laps/laps_info.csv": {
+      "bytes": 326,
+      "sha256": "3db9fe2fdd701d2488f5392b75c360dd8069237e00bb4a8899d2dd530cef31d5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_ST/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld": {
+      "bytes": 14615522,
+      "sha256": "ea170510e6c925e75b89ffddb3c7491599e5cafafbb0a2a7b679c7739e9b52b6"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_ST/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ldx": {
+      "bytes": 1053,
+      "sha256": "a077ac902ef4743425d5b836b319d70b3472410f98df7edccc1cb2d6f435094c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240329_ST/laps/laps_info.csv": {
+      "bytes": 324,
+      "sha256": "934576cb5e91ab881f03e5ef5d52700a1e2236157842daeaa32bc62691482814"
+    },
+    "data/raw/acgym_barcelona_dallara/20240405_NH/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 13631604,
+      "sha256": "d83f92f19b4298764b2f3b88b01ae3b106c0c03e895cc5eda2059288264f0762"
+    },
+    "data/raw/acgym_barcelona_dallara/20240405_NH/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 1033,
+      "sha256": "51ac4b4b1cde1fb424f0dbda0d21c3c5232470b071bd165795bcce6af3a55626"
+    },
+    "data/raw/acgym_barcelona_dallara/20240405_NH/laps/laps_info.csv": {
+      "bytes": 278,
+      "sha256": "c21c4da6ad34a3933a52d49d23807f00f1b6a0975b6f4ff44af516f0505c22a3"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld": {
+      "bytes": 12399932,
+      "sha256": "fe62f3640d5c4a72d6311aaf8cdfd7e6cd41953aa8d8fb6b5001402cafb5851c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_2.ldx": {
+      "bytes": 1062,
+      "sha256": "e173e83a176b901ca1cf7b4d3370a1d7c077770ca549d80d3895897498d3604b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld": {
+      "bytes": 20730618,
+      "sha256": "77e5c9d396a98ade8cd42a539f2d92f469594138678371ed0167e953d9892892"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_3.ldx": {
+      "bytes": 1554,
+      "sha256": "4448818e53017fec82cff6d4a3ffe3931b181f1ce7d1d1292e83722fe2260fba"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_12_123/laps/laps_info.csv": {
+      "bytes": 596,
+      "sha256": "b84b8b1d59d93f1a040001c18e7793038425d97bad6a71fcfe2355cae47d7cf1"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld": {
+      "bytes": 12327262,
+      "sha256": "729528096423013061a20f06fb88b8573329ea8d4f5efc09505c891a7b72d681"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_4.ldx": {
+      "bytes": 1062,
+      "sha256": "cc01d17c60da82202fa2f022759eddc61ce87ca0ea2e0c725d6ee25b9b704c34"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld": {
+      "bytes": 20518354,
+      "sha256": "792e053e0707fe10940611d37623344542511cc9566b174f509e6370e9430e32"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_5.ldx": {
+      "bytes": 1653,
+      "sha256": "991379f418645a85ef392e12087863fce330271c548088e7753a400f7a44789e"
+    },
+    "data/raw/acgym_barcelona_dallara/20240410_A_21_231/laps/laps_info.csv": {
+      "bytes": 590,
+      "sha256": "04e8cc869444128c91087287763bb67d6fea2eaf84c851154cbfcf5d7de4d123"
+    },
+    "data/raw/acgym_barcelona_dallara/20240411_A_12_312/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld": {
+      "bytes": 12127842,
+      "sha256": "56bcf3169fbfcba6b1ed825cbe290d8421b8949a4d8b401799701ec152698f03"
+    },
+    "data/raw/acgym_barcelona_dallara/20240411_A_12_312/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_6.ldx": {
+      "bytes": 1142,
+      "sha256": "b2aaa488227d8681d0e4c82416182d152a6229e6a6b620e933aed520875f89ca"
+    },
+    "data/raw/acgym_barcelona_dallara/20240411_A_12_312/laps/laps_info.csv": {
+      "bytes": 322,
+      "sha256": "3dbdb398966989232381ea8d6b90a03d4852b7c6b4f62f7ebf333a3e4b51798e"
+    },
+    "data/raw/acgym_barcelona_dallara/20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld": {
+      "bytes": 16954144,
+      "sha256": "3b99b03080cee271b81153fdb9e54dec6b201fcf31ea20b3942a58f5db23e5d1"
+    },
+    "data/raw/acgym_barcelona_dallara/20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ldx": {
+      "bytes": 1033,
+      "sha256": "f2c5f1c4dc4a4812bdd96cc3585f944d36732942786e5295474f050a43dbc534"
+    },
+    "data/raw/acgym_barcelona_dallara/20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld": {
+      "bytes": 11711764,
+      "sha256": "49f4149c6c3343a312597b73ecd9e212f5fff5f3c8bda3129e3b4317df8fc998"
+    },
+    "data/raw/acgym_barcelona_dallara/20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ldx": {
+      "bytes": 1054,
+      "sha256": "7954a4dc4a920daceceae5c30f06f15b5224f153558853586d32dca7011053ee"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 5669676,
+      "sha256": "8e68ccb32c40ca90dbab0ed14b0148a03123d585230bc72c7bea4f035a4a9ee4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 666,
+      "sha256": "95a14d95af7d3e577ff654b3de51c191a5c2ae870689bf6012ad23b5ca0a5bb0"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld": {
+      "bytes": 10201918,
+      "sha256": "2ea50a9e6a6f1f0f3b8b3deb451dcab22877c83484ec3d6fad93ee3cef92321b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ldx": {
+      "bytes": 577,
+      "sha256": "355bf084e0d371a7de5f754c4af5a7c3c9f49434e0c460eb16a630055ea13253"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld": {
+      "bytes": 4218980,
+      "sha256": "8595a191c9de6ccd42fabcc4618e3c25c8da8060e0bac1dbe9c617d1f6e950b5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ldx": {
+      "bytes": 569,
+      "sha256": "f3b55a6ef556084a26cc028f404afc992cd0ed36278b5480e00519b6cbe1cf52"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld": {
+      "bytes": 3554810,
+      "sha256": "841106b7dec95becb9bdfd5409545a6572a4fa7333ba160bcc64a0c81ff327fd"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ldx": {
+      "bytes": 569,
+      "sha256": "182cc055d291620335039ff4bcf4e17bd43a0bdb65efdcb0969c53042036c4c5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld": {
+      "bytes": 23174696,
+      "sha256": "f7e8e4948012700680059b6762f815c7b0814d2126a8fda423f0fedb07c62294"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ldx": {
+      "bytes": 1350,
+      "sha256": "0934ff8965020130943584bf843f2d3c97a421c7f03feacfa0e3adfebec997f0"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld": {
+      "bytes": 7421192,
+      "sha256": "1c484d28f9e2662ac7ef48683ec7c0f5899d69b162e55fc0dbfe52bf308f0d0a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ldx": {
+      "bytes": 763,
+      "sha256": "8326dadca542b06856b55d4ca3672bcb5b2f82af6d424c345cce5192935eff31"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 6725588,
+      "sha256": "51579e1d093ad66ac923020361b016c90750bb6798a3e4f79c7fa3cf01032e34"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 666,
+      "sha256": "af42518d9262402c63092c2a83f36bdafec0dd86a33b92eb0d5e83addac63ae8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld": {
+      "bytes": 14147730,
+      "sha256": "52704d43eb272bd6a44444802ab25b91578fa0d604426dff58a4383dc649b93c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ldx": {
+      "bytes": 859,
+      "sha256": "6764550074139847bb397a8e10ad39ed09ac7800a224034b64300c9dd01c060c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld": {
+      "bytes": 12824122,
+      "sha256": "582702f6427b0f59fea47f402e8610522a20e9229b9e7888f6af246cdb0611b8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ldx": {
+      "bytes": 956,
+      "sha256": "bfbb648159d4a65794739df47b39521e69ece11e4c93bca162b88242a465da15"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld": {
+      "bytes": 2966690,
+      "sha256": "b557e5df815bc555dbf13489a6de607a2f3226f0fe75e25b986b58618f709330"
+    },
+    "data/raw/acgym_barcelona_dallara/20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ldx": {
+      "bytes": 569,
+      "sha256": "b785e382bbebcb5343b3ad68c9317a4de7ce669b55d355eeedb4a3ee86e14685"
+    },
+    "data/raw/acgym_barcelona_dallara/20240425_RRK/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld": {
+      "bytes": 10472656,
+      "sha256": "192434f6b02d163e183dac49006f8c7f38bd960a462935e72d142a5e02bfd19f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240425_RRK/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ldx": {
+      "bytes": 1033,
+      "sha256": "e28b959257ecb307c68dcb91b30f034547a2f27554faf74a276e3d79abae5e2a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 13856712,
+      "sha256": "f44dc8829eec90878a074fac5e51e63f5022094af7347c4343bdef05b561352b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 1134,
+      "sha256": "b3b963a346f03ac64ee37d9a9e0d640c0decfed6a11fcf6f848c4c2c6ee7603d"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_NiM/laps/ks_barcelona_&_dallara_f317_&_NiM_&_stint_8.ld": {
+      "bytes": 12356330,
+      "sha256": "465abc248f53768f267dc641b7a0401fcfb7280a1c4812528ab1a26b96e4ec8f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_NiM/laps/ks_barcelona_&_dallara_f317_&_NiM_&_stint_8.ldx": {
+      "bytes": 965,
+      "sha256": "f288cda97acb84630b692e367ffbc88c611ee6a2bd9e205d9dd61d35d2ff62ed"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 6736066,
+      "sha256": "95846e1f72b0093cdba5401b28e19469097a25acaf3726ff27bc6ca30de44bfc"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 763,
+      "sha256": "2f930908904957a8809b364d2fc649c52715554bbd4d6c017bf5dc761fa5c030"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_10.ld": {
+      "bytes": 2103100,
+      "sha256": "29c8ba189a04e00414a061f583ce8f6a092e280a7c32d9e34f978c397f6d4207"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_10.ldx": {
+      "bytes": 569,
+      "sha256": "007c37f3245a59fa8d757b2336e516f34b0d1d63173ae35d9a37c28b6fc27766"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_11.ld": {
+      "bytes": 3780256,
+      "sha256": "75bf949e4390bca61115cc94dd4e0a6596954314e1613f106539b1db3a6f1db5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_11.ldx": {
+      "bytes": 569,
+      "sha256": "149d65a6b4d0d28d1a216afdbd9e3f29e3a1e3b959d7f5dd5ce301231b6d1dc7"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_12.ld": {
+      "bytes": 3141774,
+      "sha256": "bae1fea36d24c562d35c78e4ba1201fea158760e06a3f1d1ab6f607f09d51bb5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_12.ldx": {
+      "bytes": 569,
+      "sha256": "80510f8c9f907ce4b319cecde2e7ddce49b4cbc64d18d0fd549f2b30edeeeff4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_13.ld": {
+      "bytes": 4690828,
+      "sha256": "1f8559a757df455ab1a8ec090984155e0834473c119466ded936a09146a62857"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_13.ldx": {
+      "bytes": 666,
+      "sha256": "730f268bb01e9e350eb8f15cbe9b2fcc492aeb678a17a677148ded073a188d05"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_14.ld": {
+      "bytes": 3321928,
+      "sha256": "3a1ff8d800242d653c9cc025c9000a3002ea61a419cf95bbd2d2be6ce9486427"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_14.ldx": {
+      "bytes": 569,
+      "sha256": "c02b3dce2c305caa8cfd0647fd0c4a5114bf0151d53aa004a1d2ab324f94fead"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_15.ld": {
+      "bytes": 3325984,
+      "sha256": "a9c183c2bb67527f32e5be2629558b1bf2809cd6bf003efbb2124c4bf28f00fe"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_15.ldx": {
+      "bytes": 569,
+      "sha256": "7f1f1d495ac86460cbca80e52426af752046a6a6085cfd49e19fc7dafac2e16a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_16.ld": {
+      "bytes": 3320576,
+      "sha256": "cd24e61377cb802206327ee082223efdf01c7f2f2c16b4ce9f212437e3fe7f7c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_16.ldx": {
+      "bytes": 569,
+      "sha256": "01c9705efdbbd8bcfa2b106d80d9250d2b953941ea5efcb89feabc3ae0a687ab"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_17.ld": {
+      "bytes": 2779776,
+      "sha256": "fd311eab7a361f939c2c19276812e4e9a0fe79882bdc1a7f4dc6c5fe719fc2c0"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_17.ldx": {
+      "bytes": 568,
+      "sha256": "b9078ca53b12568d93e88ae35dcd45262dd423af9c84b7ee0f7211fd18776c79"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_18.ld": {
+      "bytes": 2691220,
+      "sha256": "586659d4863f8beaafb5652fa6398abcf7abad8a8e08eab002ad3b5bd8e9180b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_18.ldx": {
+      "bytes": 568,
+      "sha256": "65ad941143a4fc6fd9d1c1a71196bf41fa475f459ef2942882bc755f576de5d7"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_19.ld": {
+      "bytes": 12886652,
+      "sha256": "c05c8a0aeccb97e397241006174c8193b5c60b1c603b43d95130b4dda78758b8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_19.ldx": {
+      "bytes": 956,
+      "sha256": "127f6bd66fad08dac1ea0d69eae7cd9f8e3d0e5b83f9c15e420b8dfd21a3a49c"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld": {
+      "bytes": 2870022,
+      "sha256": "ea92d544525480da2e2dedac55b8d2144b846025a67199267501f04bc38c495e"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ldx": {
+      "bytes": 569,
+      "sha256": "460e8e6ede33193ec0e1da65c0fedc32ed18a32bad60ac7285ba4d49923de58a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_20.ld": {
+      "bytes": 9144654,
+      "sha256": "600431641db39524722812bf00d6bf4bc69cc5ca8df9cf7ce2acf3295a75d271"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_20.ldx": {
+      "bytes": 860,
+      "sha256": "e1240e0a2c96822f996e4169bb75281cd864ffe27cb7d46dec2590ad35aef262"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_21.ld": {
+      "bytes": 10713650,
+      "sha256": "d8331cac56272b25bbfcb515c3e5cf99700c4a4303535e18c6d3c268a678cc8f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_21.ldx": {
+      "bytes": 957,
+      "sha256": "9ff238442ef7cbe938f994c8c303ac390233723bad8cf8070dac71ca0eb4b074"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_22.ld": {
+      "bytes": 10486176,
+      "sha256": "4f3786cecd192de3407616093a3403839773d54b562e835d783c5676808341f0"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_22.ldx": {
+      "bytes": 957,
+      "sha256": "225bf18f01d5d1372435e7e248929facd3ca287e5d90de473a01a58544d81108"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_23.ld": {
+      "bytes": 2119662,
+      "sha256": "c9d05537d3f57299bb8f16959306fa30f40507181c35b3deda0ffe8c6ef0a8c5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_23.ldx": {
+      "bytes": 568,
+      "sha256": "bc7bfe14e433a563c3f43d1319bfd3a880779fc8598bc3e9640e2381b481b240"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_24.ld": {
+      "bytes": 11912198,
+      "sha256": "08a14062ec28313d6488bb7040c927f4c0af0f69c5ca80bbef7dfae9cd4f14bf"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_24.ldx": {
+      "bytes": 956,
+      "sha256": "96a8c2f10e14e487e7b297344de05f6079870e67becf0409361ec4fc145b075b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_25.ld": {
+      "bytes": 2011502,
+      "sha256": "122a997694cab7cf7b815781ac122c55eae0000d3ea55189bae8c7b16ebd9a64"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_25.ldx": {
+      "bytes": 569,
+      "sha256": "a0d69562d9b19693dd53bd500baa63323897f734548f77b0798cce4b0ae4f395"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_26.ld": {
+      "bytes": 3507490,
+      "sha256": "c6d49fead4890baee2da4bef53c906f221425f26dbe45be0d36b2c8d8b2676e8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_26.ldx": {
+      "bytes": 480,
+      "sha256": "ea7d0a8ba7f19663b6a5101536ad4b201088aa1df7ef9b034b1ca7168e9db878"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_27.ld": {
+      "bytes": 4205460,
+      "sha256": "b7842234178ea1eb47bab4179b8c4106e8860b14f1d2302ab48830532f1cb65f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_27.ldx": {
+      "bytes": 577,
+      "sha256": "9e5c56f729413006dd67d0e775e26c6b3abbe3a2fcf12a0d1760abeaee043aa2"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_28.ld": {
+      "bytes": 16867278,
+      "sha256": "6d86526773942b44636628abcbf69f4dbfbbb76c8ecb8ebb588619b05f7c9708"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_28.ldx": {
+      "bytes": 965,
+      "sha256": "a13d206639ab5360a734a0a8352d168f72c98a6f4f5fa121d5fc26e9075ebf7a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_29.ld": {
+      "bytes": 3479436,
+      "sha256": "c34e14b583eabdf875286135be0c8b848052d43042dcaeede1be6371ca65f681"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_29.ldx": {
+      "bytes": 480,
+      "sha256": "257717caf4923f16d0c313f67b9358c744097e3eeafee050fca72f42601509a9"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld": {
+      "bytes": 5568614,
+      "sha256": "f747f3bbe982a6c93a8ded2d69f7ba838e00de39949f04f4172fc33106a9a3c8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ldx": {
+      "bytes": 665,
+      "sha256": "455366db3ab61428f34e5d9461b18b920f58e873b92d38d5ebc6a2491be93a27"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_30.ld": {
+      "bytes": 6241572,
+      "sha256": "deb667fe01f37acaac0475a34f69c2187182b26ac8deceadfc68716f040570b4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_30.ldx": {
+      "bytes": 576,
+      "sha256": "bb41f39acc972e19dd7e50ff8e404eacb31aaebb1be9feca1349456a3f7186d2"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_31.ld": {
+      "bytes": 5096766,
+      "sha256": "cfe24c708ed3311993fbbc33e1bd6866784f36204a680c8c7b191069d8a4a5c2"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_31.ldx": {
+      "bytes": 576,
+      "sha256": "592c71dc03562d9651bd2c3322b05c8c45d323ce5f8df7f18b3479c38864b1e8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_32.ld": {
+      "bytes": 3078230,
+      "sha256": "8448da4b4823f52577a32a216d8d241b541e28c800696f07a9e891ae0def8f08"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_32.ldx": {
+      "bytes": 479,
+      "sha256": "cf20565aa91729faebbf9ddaf2e5412025e1e7e5fa0e2be8437839f2ec129860"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_33.ld": {
+      "bytes": 4127720,
+      "sha256": "a9acd6041d5460cf47ca65681c7f0d81c068fd0e8bbad1ddac2f42c1f01df31f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_33.ldx": {
+      "bytes": 480,
+      "sha256": "0d9424f0235c6fb3118c8e4b72c8fe4cd3d010ba8c4d4f88efcc46c13cb6a36e"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_34.ld": {
+      "bytes": 14530684,
+      "sha256": "1d25088b5f4f24ab4c0c3a817901aba0b8ea36451481aabba35778a5391fa8e9"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_34.ldx": {
+      "bytes": 867,
+      "sha256": "411fd79023b7b95ebd918ceefcc015524929cc9c706bc64a584d27afdf41a771"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_35.ldx": {
+      "bytes": 479,
+      "sha256": "104a45799b1bd7d70fad5842c806dc0ec72c03709cafde5d8250705e12ecca52"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_36.ld": {
+      "bytes": 8131668,
+      "sha256": "5f28073f86461b89aa15d5b44c5396643fe0642fc53f7932fdb32a01f2b77885"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_36.ldx": {
+      "bytes": 674,
+      "sha256": "165d9e26e72f107edefc378dc55e8d2c4da898d93d9ad549e15b3c1875416e84"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_37.ld": {
+      "bytes": 2819660,
+      "sha256": "04b072fe0622503b317538fd1bfdaa545ddac3ad1fd6422e4896f865c6e17dc1"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_37.ldx": {
+      "bytes": 480,
+      "sha256": "dd2fbedf8d84102b989c6be040c3b0ddaf49757fc29bc578107b57617f3375b7"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_38.ld": {
+      "bytes": 8777248,
+      "sha256": "e76cd39e48bb6a2a72d8800d8015ff145b2e6d0ebffa4fad4b190390d95b6637"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_38.ldx": {
+      "bytes": 674,
+      "sha256": "084a194de07de48b8d39a2aaeff4476bb47f8b687a9889f8ec3fcccf02d04e89"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_39.ld": {
+      "bytes": 3765384,
+      "sha256": "05e036fa2d864fc29a80f4c4054386719a31314216d9fa97a7a6f746ef617df7"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_39.ldx": {
+      "bytes": 479,
+      "sha256": "a2a18803a7c219690d7b73dd8c64d9c5c95e211e43c3359801f025e1c8b7033a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld": {
+      "bytes": 2105128,
+      "sha256": "0e46cec131dfe5dea9d419b6f7b84d6b4dcd887fe074826007b84a1179ec22db"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ldx": {
+      "bytes": 569,
+      "sha256": "faf38164bcdacad96064a4d5920f6830e6ed56ec207ce1deeb041f3360d498a4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_40.ld": {
+      "bytes": 5701448,
+      "sha256": "a260489708456e93325632bcc41d6a13962e1bb3fccd9e56cfc685f2dc051b0d"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_40.ldx": {
+      "bytes": 577,
+      "sha256": "b967abfb0a93bb3b4e2e10d0f591ce6dd8aecdf101fbbd6970d43a68e6d94812"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_41.ld": {
+      "bytes": 7200478,
+      "sha256": "633751aa750608ae3bac4cfd51dadc31dcd52ae0c3bc0840f8f3a96acc6280c8"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_41.ldx": {
+      "bytes": 674,
+      "sha256": "04eb6dbee2ffef18be0b6c482ceab3e23db5b51b59cf68276afa6686e60a39f4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_42.ld": {
+      "bytes": 5128538,
+      "sha256": "bf905613b18ace0ea4839f163d54012f57cd68f0162b2501aa45f867ca4eda1b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_42.ldx": {
+      "bytes": 577,
+      "sha256": "063aa2cf5d9f1059ed54dc72c14d04cae3c6c1c021e132822baf334cc0915888"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_43.ld": {
+      "bytes": 3390542,
+      "sha256": "ca8715c77486468340cf0bcc4da2c5ce06992094e548f6ea6eac6701ffd2567d"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_43.ldx": {
+      "bytes": 480,
+      "sha256": "ddacceab1fd82fce1eb0188ef1de5dccb386581ae19581ee758da2e01d4e2de9"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_44.ld": {
+      "bytes": 3715022,
+      "sha256": "64567efa89545e2b70be93647ea7a6883b4ed15fa580bce6633c25069797397b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_44.ldx": {
+      "bytes": 577,
+      "sha256": "c4426df561c71ea3df8b7096a237b4c1fa2a3dd05869a98af8fd7af5bbf2d16a"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld": {
+      "bytes": 4016856,
+      "sha256": "e331f649a81fc294875d80fea1f1e5e05283e6e050d0118bd815d1c174377760"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ldx": {
+      "bytes": 569,
+      "sha256": "a6f940bd60a6ca39a5bbb627bccdf02c95311f26899a5a2c574fa6dcd1cab47b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld": {
+      "bytes": 2013192,
+      "sha256": "1ef3529bd9d3e4424ce8c5669d152acf8a9d5c2d45555db7315011eb712266a4"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ldx": {
+      "bytes": 569,
+      "sha256": "6aee947bd861c234e2b996ae3705eeaaec9737a566044bb5e0f46c7fb9bd17e1"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld": {
+      "bytes": 2382964,
+      "sha256": "a25ecb836421f8ce442c89dea8366dccebac6487bb00cd52e6787841137b3de2"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ldx": {
+      "bytes": 569,
+      "sha256": "0e3b5c00f2850450604fe357964acaf92aa771f4381437f5d60cdf518ccd8eac"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_8.ld": {
+      "bytes": 3192474,
+      "sha256": "0c639a080420cf48a5829701c9e9c14ee3bf5a4f701940e42eed0903c0fd08e5"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_8.ldx": {
+      "bytes": 569,
+      "sha256": "b53cef847614554cffa060e2be699b8a4cc356a5da7e104f7f893bcb5f66303f"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_9.ld": {
+      "bytes": 2369106,
+      "sha256": "08319ecb3ef7754327c72cede0e3512c620dbfc6dc5a086def17158984b2520b"
+    },
+    "data/raw/acgym_barcelona_dallara/20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_9.ldx": {
+      "bytes": 569,
+      "sha256": "b7ea65c18ae6b97a82abb3eec962d07f47cd97a3a88ef310d5b49a8620e1756e"
+    },
+    "data/raw/acgym_monza_dallara/20240229_HC/laps_info.csv": {
+      "bytes": 191,
+      "sha256": "379cbdcad05e92065b9db36060ceb7a6bcec513e2dde8b758756422596f8d63c"
+    },
+    "data/raw/acgym_monza_dallara/20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 12220454,
+      "sha256": "90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d"
+    },
+    "data/raw/acgym_monza_dallara/20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 763,
+      "sha256": "352accc6477c6f8e7d3017eb739594f20862370b8056d77e42b5d0fb951224cc"
+    },
+    "data/raw/acgym_monza_dallara/20240304_AB/laps_info.csv": {
+      "bytes": 236,
+      "sha256": "d6bbe9224e3464ba3d8f2d0c042dc55977fc529e72ab3c90dcf025b2004494e9"
+    },
+    "data/raw/acgym_monza_dallara/20240304_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 9524566,
+      "sha256": "62ba7f64c40207203eeb0292fed3dce69bda5802c4538269881de6805bb2a940"
+    },
+    "data/raw/acgym_monza_dallara/20240304_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 860,
+      "sha256": "6ab7f2956c2e41c17e27fcb6859e0a161b208a85529f595faec447e65526dfb0"
+    },
+    "data/raw/acgym_monza_dallara/20240313_OP/laps_info.csv": {
+      "bytes": 370,
+      "sha256": "34e5737a3bc74a56d3dd87c77c2b2b8e702dfe878edc01b1e179190c9310466d"
+    },
+    "data/raw/acgym_monza_dallara/20240313_OP/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld": {
+      "bytes": 14146378,
+      "sha256": "96ac171618e3472008ee02ad2aef77662451e86e6ca330437545eb9dd4addf13"
+    },
+    "data/raw/acgym_monza_dallara/20240313_OP/monza_&_dallara_f317_&_KC Sim Racer_&_stint_1.ldx": {
+      "bytes": 1142,
+      "sha256": "bca86d352cf8d207a9326199a0479b4d14355b0a3725761a4d18bbd0204e2415"
+    },
+    "data/raw/acgym_monza_dallara/20240329_HC/laps_info.csv": {
+      "bytes": 328,
+      "sha256": "4d703c33c928c07738f7d5372d44f2e0dc10773ccc3c4858d1a45f4fe5657432"
+    },
+    "data/raw/acgym_monza_dallara/20240329_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ld": {
+      "bytes": 12266422,
+      "sha256": "dbd386eec1cabd603c7f6aedc8400e88a59ddadd72bed57d752fcd0b40202367"
+    },
+    "data/raw/acgym_monza_dallara/20240329_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_3.ldx": {
+      "bytes": 1054,
+      "sha256": "41269797e50c382cee2e6df3b02275f609c54733373b6681c44b87bda149e7f2"
+    },
+    "data/raw/acgym_monza_dallara/20240329_ST/laps_info.csv": {
+      "bytes": 281,
+      "sha256": "cfc916c76bf93c206371d0716042b6b6fe485473f48ca9ed4640330f5f15e302"
+    },
+    "data/raw/acgym_monza_dallara/20240329_ST/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 11225720,
+      "sha256": "f2d680116ec88c585e544ae21a305cfe00beeec7514641e88cb0aecf3c087455"
+    },
+    "data/raw/acgym_monza_dallara/20240329_ST/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 957,
+      "sha256": "72d37d157e7eca39a6a7a80c8cbb6ac7ee00620e00265d80e5cf8d597e371ff7"
+    },
+    "data/raw/acgym_monza_dallara/20240405_NH/laps_info.csv": {
+      "bytes": 280,
+      "sha256": "4a73303c2fe2a798c849f7803a7d8b6403c44aae62ef335347c7770ef4745dd8"
+    },
+    "data/raw/acgym_monza_dallara/20240405_NH/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 11331514,
+      "sha256": "93e2b66cba7b6bcc346f946f4759e7e1bf742d42aa221990d827500b6cc54985"
+    },
+    "data/raw/acgym_monza_dallara/20240405_NH/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 957,
+      "sha256": "2261f1f8715b58fba35817c9664bd352b45b6eb954cc8e9b3ed494c056770853"
+    },
+    "data/raw/acgym_monza_dallara/20240408_WL/laps_info.csv": {
+      "bytes": 237,
+      "sha256": "f327f4d734a13518089edcbd585a3f97a8a2c07c88218db4c8e0abe4f07e3c43"
+    },
+    "data/raw/acgym_monza_dallara/20240408_WL/monza_&_dallara_f317_&_WL_&_stint_1.ld": {
+      "bytes": 7771698,
+      "sha256": "24341bda806fdbc65670c4646b54e5cb0285026cb01790d2353cac6a4b3af440"
+    },
+    "data/raw/acgym_monza_dallara/20240408_WL/monza_&_dallara_f317_&_WL_&_stint_1.ldx": {
+      "bytes": 1610,
+      "sha256": "4fd3a97e32aba1902535f358e6413980cd64a745e16b383b20058667f5df60ec"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_12_123/laps_info.csv": {
+      "bytes": 598,
+      "sha256": "c88c6613dafe77b4efaa30da6b0123e0d47cae9958ab129778de6a78b3cd1734"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld": {
+      "bytes": 13018134,
+      "sha256": "1c17cc59c1fe8ccf3ce2ada4bdbaf9f34f27b1df0d2ec9f1df035f74a8e506f0"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_2.ldx": {
+      "bytes": 1062,
+      "sha256": "a5ae44f3c391049857e64e7758d145546f7ca3bf7175bf84ca7284f7047a97f7"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld": {
+      "bytes": 21858186,
+      "sha256": "d3a0f7cf7f69b13fe912c238a4aa95bb1b98c3d467a1b2aaf4dba78c44466389"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_12_123/monza_&_dallara_f317_&_KC Sim Racer_&_stint_3.ldx": {
+      "bytes": 1554,
+      "sha256": "5e91a7586338003550cbf782e6d481685b83c98dd4266958b04babe2f889fb91"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_21_231/laps_info.csv": {
+      "bytes": 606,
+      "sha256": "8518cc9d9f4307c89c63636075081dc99d6623e4a15e42ee142e025cf01b5740"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld": {
+      "bytes": 12917410,
+      "sha256": "e4381045c6ac037dd7fe779eb618aec48ecc47f2950ca9196d608a05538d3c8d"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_4.ldx": {
+      "bytes": 1062,
+      "sha256": "31bef60271380e600abc7dedf024b4759aac25868e4ae3bc8680c6cee515a371"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld": {
+      "bytes": 21792952,
+      "sha256": "47fd714d2fcb78f0227eca52c0dff85a0bf1b961005ca80260cdc804bbfd6f1a"
+    },
+    "data/raw/acgym_monza_dallara/20240410_A_21_231/monza_&_dallara_f317_&_KC Sim Racer_&_stint_5.ldx": {
+      "bytes": 1554,
+      "sha256": "7ebc03b3235850770510f13ce12795620471fcb7ebc2f38dcb983ac6ae5a7f14"
+    },
+    "data/raw/acgym_monza_dallara/20240411_A_12_312/laps_info.csv": {
+      "bytes": 595,
+      "sha256": "125f900a9ad5370465341a1cba4bfcc3569e2b9d682686197666657218067090"
+    },
+    "data/raw/acgym_monza_dallara/20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld": {
+      "bytes": 13374048,
+      "sha256": "09fac345878aaeef6aa829de78b7e751c1f936c3555d5e73df1b0c9dc6504a5d"
+    },
+    "data/raw/acgym_monza_dallara/20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_6.ldx": {
+      "bytes": 1062,
+      "sha256": "c55cb333ef4e455fb63cd1ee352674589eb6944c258d33bfe06ad6ebc32abd05"
+    },
+    "data/raw/acgym_monza_dallara/20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ld": {
+      "bytes": 21994400,
+      "sha256": "7ea92e0f4ff639f401c563f673f79762e0504f2b384c2f26cddcfe7fe43ac00e"
+    },
+    "data/raw/acgym_monza_dallara/20240411_A_12_312/monza_&_dallara_f317_&_KC Sim Racer_&_stint_7.ldx": {
+      "bytes": 1554,
+      "sha256": "a03e68a304be121de6d3d764bd330c76323a2f0d91e002f128594cb43f4142e2"
+    },
+    "data/raw/acgym_monza_dallara/20240417_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 9627318,
+      "sha256": "8398a2a83699831e413fb565fc7ff022b87451bc657faa6ecf97152f2cd9a597"
+    },
+    "data/raw/acgym_monza_dallara/20240417_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 957,
+      "sha256": "c19e1cdd4e9a2e3bb571d1e3fdcee118032cf8730e0aa82dc6bf49527187e836"
+    },
+    "data/raw/acgym_monza_dallara/20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 7637512,
+      "sha256": "6636291543d61e5fa757a7c2e193acfc7f17cc8f6f0710cd18877bff2b0666bf"
+    },
+    "data/raw/acgym_monza_dallara/20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 762,
+      "sha256": "9e67ee65c73ca9876145cc6319fceb6c2ff6c0a5abdd6cbae8e8eb6d262d566d"
+    },
+    "data/raw/acgym_monza_dallara/20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ld": {
+      "bytes": 8171890,
+      "sha256": "1d17d915b63a4f0808bf61483302980a9174ce75e9c741da4d12c721695b7ec7"
+    },
+    "data/raw/acgym_monza_dallara/20240423_IN/monza_&_dallara_f317_&_adrianremonda_&_stint_2.ldx": {
+      "bytes": 762,
+      "sha256": "da09ddc4664b7c16e07fa4ab617ea08e684315e31525f837f8039738877cab76"
+    },
+    "data/raw/acgym_monza_dallara/20240424_KW/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 10818768,
+      "sha256": "04791e46256c345057a0f7c1d1fb000da81e8d05b30946bb019a9f0130dbadf4"
+    },
+    "data/raw/acgym_monza_dallara/20240424_KW/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 957,
+      "sha256": "a607642cad3b98753111c618432321f5fb3fd6524b6ae9e9a74e9357ccca3945"
+    },
+    "data/raw/acgym_monza_dallara/20240425_RRK/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 10225578,
+      "sha256": "a348488a78946eaaba853022e5fdbfa781b76e816872b4e7d89245cedd0421f7"
+    },
+    "data/raw/acgym_monza_dallara/20240425_RRK/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 957,
+      "sha256": "9d367327b9e0d818f3b7e4df2ed308b949a0df745d896d7f965d72c05b34f396"
+    },
+    "data/raw/acgym_monza_dallara/20240426_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld": {
+      "bytes": 11955462,
+      "sha256": "1212953ae872bfdd3a7f6e399f0a708970939c22d87fd9f0aa87ba63c2816ef9"
+    },
+    "data/raw/acgym_monza_dallara/20240426_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ldx": {
+      "bytes": 956,
+      "sha256": "56feab58b0da8b3926e9c92a640104192ef2dcea45cbd0ce9db42b4f3a9f2ec4"
+    },
+    "data/raw/gt7_trial_mountain_962c/README.md": {
+      "bytes": 12369,
+      "sha256": "1e307b16fea59a4c1f071edbdabbeeecadb7c1ed9fa460915496ce19312a0c42"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/grid.parquet": {
+      "bytes": 3233648,
+      "sha256": "e338e1c97531074df95f1197a5f0ddd13206430a06161ee51710c35a4b75caf6"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/sectors.parquet": {
+      "bytes": 58683,
+      "sha256": "58adcc5dcc21989ac2e76bdf2b73f51ba6088be55baf43f80963b50600d28f23"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/track.json": {
+      "bytes": 3358,
+      "sha256": "20b54bf407d30c4b593df22c341825feddb1e0b2e63e76f5e2b388d7e052a414"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_000.parquet": {
+      "bytes": 146204,
+      "sha256": "e2535f480b9200e0c248198241b0fdb787ebbf86183f29e651319ce6791afaa2"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_001.parquet": {
+      "bytes": 1767072,
+      "sha256": "8c5bdd542170c0fb5e1f0b57f64264e42ef3f283602fd6fb4aae73e86fa784ba"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_002.parquet": {
+      "bytes": 1751266,
+      "sha256": "40df9bcdd282ca5fa961f65ef8d01dedd7e2f42fd8ce8e85e5b32b7f28cd224d"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_003.parquet": {
+      "bytes": 1717717,
+      "sha256": "536394498d548ee52d915a642163e8d7889da6c0da3c9abb59cd5f03ae50a644"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_004.parquet": {
+      "bytes": 1730395,
+      "sha256": "25333c33f64dbaacc36632421126f64b33f9b72d6f4b11ad2ecafe8a8ac74cf5"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_005.parquet": {
+      "bytes": 1707573,
+      "sha256": "aeb32095415cd0a180d18d1e1cfe98e0ef72c1e8d37bb892caac178c5fb92cc7"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_006.parquet": {
+      "bytes": 1712593,
+      "sha256": "c23866e3d51046e7f3561070aa0882c6117226912469907cd8f31ae1f847d94c"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_007.parquet": {
+      "bytes": 1716413,
+      "sha256": "cf4288121aade7bcc6ca18136ba2d86ef6f2a5ca333ca3017cef959e58700c6c"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_008.parquet": {
+      "bytes": 1707152,
+      "sha256": "b1fed6cd4ab9ce6ed2f68289b86adb1bb9e10cce1dd35f52edc08451f623d5fe"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_009.parquet": {
+      "bytes": 1712522,
+      "sha256": "79038c2a37eef501a4e3f85b07cbd357bb2cafda3083bb28a0fcd2e5ac39bfe2"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_010.parquet": {
+      "bytes": 1677244,
+      "sha256": "5480d16d3e30ae3ba3db3c47fd3551da55d8be6aa914c826972943b2b3b4e9fe"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_011.parquet": {
+      "bytes": 1701541,
+      "sha256": "9efe8535ed1a444bc43453d49955fb84263b913c95b1ad42fb864614e3982e7d"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_012.parquet": {
+      "bytes": 1695775,
+      "sha256": "cb95120ad2fe71107082a6351e55411b89edda2d84ed773ff7f7bd420341b607"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_013.parquet": {
+      "bytes": 1677723,
+      "sha256": "2d4bbeb1fee7e00b29f20a87136be31cf3f4f22abd4016a8d8eb3ef4dc819b96"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_014.parquet": {
+      "bytes": 1678937,
+      "sha256": "c43bc3d2e63b0154d7b96e669b3e99b06e3c31d7d477bdc78789e4ec69a905d6"
+    },
+    "data/raw/gt7_trial_mountain_962c/data/laps/lap_015.parquet": {
+      "bytes": 1714711,
+      "sha256": "e51eee60c2a9ce58dde5b20d64207b51b37cea4f152e28e9258f274a5df393f9"
+    },
+    "artifacts/barcelona_v071/models/barcelona-v071-46884dc894e1b0a1.joblib": {
+      "bytes": 389672,
+      "sha256": "27d6f9f6dfecafe67a15fbbc33d36a94a5e5409d6e9478d830bbb76a8ee65884"
+    },
+    "artifacts/barcelona_v072/models/development-v072-b277644d26eb2354.joblib": {
+      "bytes": 583292,
+      "sha256": "bc4d37cce228619572786e1410801e4973dc48e7107fcb72172de442561545cd"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-0.joblib": {
+      "bytes": 642832,
+      "sha256": "0b698a5743905c29ebb4427934c9e7d8a948837e0bac948bcc35e7cd8a4db83c"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-0.keras": {
+      "bytes": 59637,
+      "sha256": "28423781f9ea2a3abcc6ef7dd994af29284aeebd8ffe2c4fd1653b8f389199d7"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-1.joblib": {
+      "bytes": 594617,
+      "sha256": "9e90023a634fcb937991ce9530f7a5f85f085bc3aea1211dc25139496bee803a"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-1.keras": {
+      "bytes": 59637,
+      "sha256": "5fc0081738fdb2c3b688d591d3536ff1bf9038261e83ede67bfc8fed66f7b3fb"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-2.joblib": {
+      "bytes": 555696,
+      "sha256": "d3e94b717614888148420d7b6d521100d3dfcfef29f02a06c4b4e084ee156249"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-2.keras": {
+      "bytes": 59637,
+      "sha256": "d220125845f20f5e38a904fa1e270e16ba4e6ecd83a58dd8e78c7cdfc93a8520"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-3.joblib": {
+      "bytes": 522355,
+      "sha256": "2cb813b102f64aef3a68226a10d89e0e88f12050489cbc4376a42f45354758e7"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-3.keras": {
+      "bytes": 59637,
+      "sha256": "35f24665645d2e8fc2d713997096b880ceabc7543028ea019858e4392271f86f"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-4.joblib": {
+      "bytes": 574791,
+      "sha256": "e2b86eff3d0e855f3516502a6046699a5a60e9bc521cfc7bc3fafdf6ec984db1"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-4.keras": {
+      "bytes": 59637,
+      "sha256": "9123e6532bd311cc49bdf0bc86043035c2278a9651f6a34e5229be8876381f63"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-research.joblib": {
+      "bytes": 720264,
+      "sha256": "e9bf7c56513b58386593ea2778692b5768f3ad896036fd8c1e2c8dcc302af305"
+    },
+    "artifacts/barcelona_v080/models/dense-v080-research.keras": {
+      "bytes": 59637,
+      "sha256": "58fd92c0fdec19bca1e8c698b7b8c7dbe673a78afdac0b14ac57d737283106e7"
+    },
+    "artifacts/barcelona_v081/models/svr-1s-v081-0.joblib": {
+      "bytes": 1482558,
+      "sha256": "c95cd22dd3df51b1057a754b2ad57f9aab3f9c6b886dc24b4328276d2fe1c967"
+    },
+    "artifacts/barcelona_v081/models/svr-1s-v081-1.joblib": {
+      "bytes": 1367821,
+      "sha256": "e61bb018136b296635109ee7b6e69e5c1874f7045ae917ba1ff85bf7a98fbd9f"
+    },
+    "artifacts/barcelona_v081/models/svr-1s-v081-2.joblib": {
+      "bytes": 1270640,
+      "sha256": "079fa5fc4dc16db204c0fd919886b8d6d24e91f1e0bb816b54c0e2b3aa988cd7"
+    },
+    "artifacts/barcelona_v081/models/svr-1s-v081-3.joblib": {
+      "bytes": 1188916,
+      "sha256": "313a4afc21142472875987424bdc8f8536413690da0ec38afca65c9ffe675a4d"
+    },
+    "artifacts/barcelona_v081/models/svr-1s-v081-4.joblib": {
+      "bytes": 1334407,
+      "sha256": "3b302c5a7d3844de8cd8be7136c4c06cc3242a0b3d1fb740a8ae593ad10cd5d0"
+    },
+    "artifacts/models/audit-v06-acgym.joblib": {
+      "bytes": 161917,
+      "sha256": "4b194b5283a5d71189ab2912fd17317cead141a05c8a687016fcd942727b8cc3"
+    },
+    "artifacts/models/audit-v06-gt7.joblib": {
+      "bytes": 32161,
+      "sha256": "f00d77f5ed8e1b68b305e2c39df5a70aaea78b369eb0fb25eefc6751d2b24ffa"
+    },
+    ".vscode/launch.json": {
+      "bytes": 681,
+      "sha256": "20de709c98229c5cb0d59aad7a9f498951afb876c475af7528079efeab03ddcd"
+    },
+    ".vscode/settings.json": {
+      "bytes": 257,
+      "sha256": "e8bfdb258fc84b68a5da2bea6f77f569e8dd69ff0c703a9623a68613c9e66cbd"
+    }
+  },
+  "private_key_paths_manual_backup": [
+    "artifacts/barcelona_v071/models/.local-signing-key",
+    "artifacts/barcelona_v072/models/.local-signing-key",
+    "artifacts/barcelona_v080/models/.local-signing-key",
+    "artifacts/barcelona_v081/models/.local-signing-key",
+    "artifacts/models/.local-signing-key"
+  ]
+}

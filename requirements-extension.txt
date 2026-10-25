@@ -1,6 +1,3 @@
-# Optional legacy Formula 1, Keras/PyTorch and model artifact support.
+# Optional legacy Formula 1 analysis; the local application works without it.
 -r requirements.txt
 fastf1>=3.5,<4
-keras>=3.3,<4
-torch>=2.1,<3
-joblib>=1.3,<2

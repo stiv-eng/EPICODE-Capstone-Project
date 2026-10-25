@@ -11,7 +11,7 @@ from streamlit.testing.v1 import AppTest
 from motorsport.pipeline import build_session
 from motorsport.processing.laps import LapResult
 from motorsport.analytics.position import position_segments, color_channels
-from motorsport.analytics.readiness import assess_capabilities, lap_features
+from motorsport.analytics.readiness import assess_capabilities
 from motorsport.analytics.overview import overview_metrics
 from motorsport_ui.selection import (SECTIONS, lap_labels, reconcile_selection,
                                      selected_frame, sample_at, selection_identity)
@@ -218,7 +218,7 @@ def test_overview_simplifies_presentation_preserves_weighted_mean_and_features(m
     assert not any('pedali' in s.lower() or 'feature' in s.lower() for s in titles)
     unavailable=ui.unavailable_capabilities(session)
     assert len(unavailable)==sum(not c['available'] for c in assess_capabilities(session).values())
-    assert len(lap_features(session))==2
+    assert len(session.laps.laps)==2
 
 
 @pytest.mark.parametrize('source',['original','gt7','acgym'])
@@ -298,5 +298,7 @@ def test_navigation_has_only_consolidated_analytics_routes():
     source=(ROOT/'streamlit_app.py').read_text(encoding='utf-8')
     for legacy_analytics in ('11_Driver_Inputs.py','12_Vehicle_Dynamics.py','13_Tyre_Analysis.py','15_Position_Analysis.py'):
         assert f"st.Page('pages/{legacy_analytics}'" not in source
-    for route in ('overview','comparison','ml','replay'):
+    for route in ('overview','comparison'):
         assert f"url_path='{route}'" in source
+    for removed_route in ('ml','replay'):
+        assert f"url_path='{removed_route}'" not in source

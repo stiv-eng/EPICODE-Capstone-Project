@@ -1,0 +1,113 @@
+{
+  "version": "0.8.2",
+  "date": "2026-10-25",
+  "branch": "feat/scope-reset-v082",
+  "archive_ref": "archive/progressive-laptime-ml-v081",
+  "archive_commit": "3b96553a10881ea654f5fe2a505cb7b3169d4d1d",
+  "archived_baseline_tests": {
+    "passed": 287,
+    "warnings": 217,
+    "seconds": 222.14
+  },
+  "tests": {
+    "passed": 167,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": 0,
+    "seconds": 122.614,
+    "retired_prediction_cases": 128,
+    "relocated_data_validation_cases": 1,
+    "new_scope_checks": 8,
+    "junit_sha256": "c7b970a304ba539fd6fcdddb725a7bffe952534a55c9712c9a1568e988a032a5"
+  },
+  "removed_files": {
+    "prediction_modules": 30,
+    "prediction_pages": 5,
+    "research_scripts": 20,
+    "obsolete_mixed_browser_workflows": 5,
+    "prediction_tests": 19,
+    "obsolete_dependency_manifest": 1,
+    "archived_prediction_evidence": 160
+  },
+  "browser": [
+    {
+      "scenario": "v082",
+      "total_records": 97,
+      "workflow_checks": 56,
+      "render_budgets": 40,
+      "performance_records": 1,
+      "runtime_exceptions": 0,
+      "console_error_events": 6,
+      "expected_retired_route_network_404": 4,
+      "expected_page_not_found_messages": 2,
+      "unexpected_error_events": 0,
+      "model_imports_and_artifact_access": "blocked by verification-only sitecustomize guard",
+      "results_sha256": "d7310a14260c70f355dea0a807862738c53ac2e04ed2254395330ca2f3a39358",
+      "console_sha256": "1e0ff11144b53976fb91f9b8d1c028e37df8bcb18b2e373325319ecca096326c"
+    },
+    {
+      "scenario": "uploads",
+      "total_records": 34,
+      "workflow_checks": 34,
+      "render_budgets": 0,
+      "performance_records": 0,
+      "runtime_exceptions": 0,
+      "console_error_events": 0,
+      "expected_retired_route_network_404": 0,
+      "expected_page_not_found_messages": 0,
+      "unexpected_error_events": 0,
+      "model_imports_and_artifact_access": "blocked by verification-only sitecustomize guard",
+      "results_sha256": "0727bf91190cb1cf3317e0aabe8af2509bd85e41f644b31abc769c47132434b2",
+      "console_sha256": "0cd19270e0133b7862f06ddfc264bb61d7850a464e1fc06078b01cda323a9f9f"
+    },
+    {
+      "scenario": "fixtures",
+      "total_records": 8,
+      "workflow_checks": 4,
+      "render_budgets": 4,
+      "performance_records": 0,
+      "runtime_exceptions": 0,
+      "console_error_events": 0,
+      "expected_retired_route_network_404": 0,
+      "expected_page_not_found_messages": 0,
+      "unexpected_error_events": 0,
+      "model_imports_and_artifact_access": "blocked by verification-only sitecustomize guard",
+      "results_sha256": "50c339661868dda40eba7814b2cdeddf726efb791a19520e1c7337597a2e6fd9",
+      "console_sha256": "8f6902feaec7d405397e3cfdd80e1b49b75cca70fb56048610dca180ac108b3f"
+    }
+  ],
+  "preservation": {
+    "checked_local_files": 244,
+    "bytes_unchanged": 912978399,
+    "private_signing_keys_left_in_place": 5,
+    "source_signal_hashes_unchanged": 73,
+    "overview_summaries_unchanged": 73,
+    "barcelona_lap_trajectories_unchanged": 205,
+    "barcelona_analysis_laps": 205,
+    "previous_analysis_laps": 204,
+    "f5": "byte-for-byte unchanged"
+  },
+  "checks": {
+    "compileall": "passed",
+    "dependency_check": "No broken requirements found",
+    "whitespace": "passed",
+    "active_import_graph": "no prediction/model package imports",
+    "guarded_startup": "Home, Explorer, Overview and Comparison pass with models and prediction packages inaccessible"
+  },
+  "remote_actions": {
+    "push": false,
+    "merge": false,
+    "history_rewrite": false,
+    "branch_deletion": false
+  },
+  "evidence_sha256": {
+    "docs/DATA_ANALYSIS_BASELINE_V082.json": "1b4820ed99c8f14d1fb47d67ea9b5799f2b87b7a29e8cd80d3b6987b3a434835",
+    "docs/DATA_ANALYSIS_REGRESSION_V082.json": "016bdbbf6cf2114a0bf649e023211d3f1ec257ab448f147f00e87a0bb754a53b",
+    "docs/UI_BROWSER_V082.json": "af19410fc9153b84494ee2885200d8d5013bce6379a73850fb854dc0e468f836",
+    "docs/UI_BROWSER_CONSOLE_V082.json": "7e48e837965927b5f9e5802188b7628e4bf9333d7e96ea9acb0b14c6cecc4ee0",
+    "docs/archive/RETIRED_FILES_V082.json": "a4ed8e0177d8911c9249244ba2c3e28cc77d53498e3e380470396653e5a7a40c",
+    "docs/archive/RETIRED_TESTS_V082.json": "f81170fc3986aafa6878e37769a7246cfbb34b4483ce9cfde92a0082d68d6361",
+    "docs/archive/LOCAL_ARTIFACT_INVENTORY_V082.json": "f9be11dc18107c98aae51ad6418caccbd65fcd50d0f3cd05209a1789c4307d4e"
+  }
+}

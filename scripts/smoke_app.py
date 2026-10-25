@@ -103,28 +103,14 @@ def capture(browser, base, artifacts, scenario='v062'):
                 call('Emulation.setDeviceMetricsOverride', {'width':1600,'height':1200,'deviceScaleFactor':1,'mobile':False})
                 call('Runtime.enable')
                 call('Log.enable')
-                if scenario=='baseline':
-                    from scripts.investigate_rendering_v061 import exercise
-                elif scenario=='v063-fixtures':
+                if scenario=='fixtures':
                     from functools import partial
-                    from scripts.smoke_ui_v063 import exercise as shared_exercise
+                    from scripts.smoke_ui_v082 import exercise as shared_exercise
                     exercise=partial(shared_exercise,fixture_only=True)
-                elif scenario=='v063':
-                    from scripts.smoke_ui_v063 import exercise
-                elif scenario in ('v080','v080-ml'):
-                    from functools import partial
-                    from scripts.smoke_ui_v080 import exercise as current_exercise
-                    exercise=partial(current_exercise,ml_only=scenario.endswith('-ml'))
-                elif scenario=='v081':
-                    from scripts.smoke_ui_v081 import exercise
-                elif scenario in ('v071','v071-ml','v072','v072-ml'):
-                    from functools import partial
-                    from scripts.smoke_ui_v063 import exercise as shared_exercise
-                    exercise=partial(shared_exercise,barcelona=True,ml_only=scenario.endswith('-ml'),diagnosis=scenario.startswith('v072'))
-                elif scenario in ('v062','v063-baseline'):
+                elif scenario=='uploads':
                     from scripts.smoke_ui_v062 import exercise
                 else:
-                    from scripts.smoke_ui_v061 import exercise
+                    from scripts.smoke_ui_v082 import exercise
                 try:
                     exercise(call,ready,choose,click_element,screenshot,base,artifacts)
                 finally:
@@ -138,16 +124,20 @@ def capture(browser, base, artifacts, scenario='v062'):
                 chrome.wait()
 
 
-def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
+def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v082'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063','v071','v072','v080','v081')) else '')
+    artifacts = ROOT/'artifacts/v082'/scenario
     artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         environment=dict(os.environ)
-        if scenario in ('v061','v062','v063','v063-baseline'):environment['MOTORSPORT_ML_ARCHIVE']='1'
-        else:environment.pop('MOTORSPORT_ML_ARCHIVE',None)
+        # Verification runs with prediction dependencies and local model access
+        # forbidden. No ignored model files are moved or deleted for this test.
+        guard = artifacts/'import_guard'
+        guard.mkdir(exist_ok=True)
+        (guard/'sitecustomize.py').write_text('from scripts.analysis_guard import install\ninstall()\n',encoding='utf-8')
+        environment['PYTHONPATH'] = os.pathsep.join([str(guard), str(ROOT), environment.get('PYTHONPATH','')])
         server = subprocess.Popen([
             sys.executable, '-m', 'streamlit', 'run', entrypoint,
             '--server.headless=true', '--server.address=127.0.0.1',
@@ -183,8 +173,8 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures','v071','v071-ml','v072','v072-ml','v080','v080-ml','v081'],default='v063')
+    parser.add_argument('--release',choices=['v082','uploads','fixtures'],default='v082')
     options=parser.parse_args()
-    entrypoint=('scripts/hover_fixture_app.py' if options.release=='v063-fixtures'
+    entrypoint=('scripts/hover_fixture_app.py' if options.release=='fixtures'
                 else 'streamlit_app.py')
     smoke(options.browser,entrypoint=entrypoint,scenario=options.release)

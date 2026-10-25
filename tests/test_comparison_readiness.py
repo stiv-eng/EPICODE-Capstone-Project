@@ -6,7 +6,7 @@ import pytest
 
 from motorsport.pipeline import load_session
 from motorsport.analytics.comparison import select_window,compare_windows,lap_trace,cumulative_lap_delta
-from motorsport.analytics.readiness import assess_capabilities,lap_features
+from motorsport.analytics.readiness import assess_capabilities
 from motorsport.ingestion.gt7_importer import load_gt7_bundle,validate_gt7_laps
 from motorsport.processing.normalization import normalize
 from motorsport.processing.schema import SourceProfile
@@ -56,8 +56,7 @@ def test_capabilities_are_not_enabled_by_column_names_alone():
     assert flags['time_window_comparison']['available']
     assert not flags['track_position_analysis']['available']
     assert not flags['validated_lap_analysis']['available']
-    assert not flags['supervised_ml_eligible']['available']
-    assert lap_features(s).empty
+    assert not flags['verified_lap_timing']['available']
 
 
 def gt7_fixture():
@@ -101,10 +100,8 @@ def test_delta_requires_verified_reference_and_has_expected_sign():
     b.data.loc[b.data.lap_id.eq(1).fillna(False),'lap_elapsed_s']*=1.1
     delta=cumulative_lap_delta(a,b,1,1)
     assert delta.delta_s.iloc[-1]==pytest.approx(5.9)
-    features=lap_features(a)
-    assert features.target_verified.all()
-    assert not features.supervised_eligible.any()
-    assert features.feature_scope.str.contains('retrospective').all()
+    assert assess_capabilities(a)['verified_lap_timing']['available']
+    assert (a.laps.laps.duration_s > 0).all()
 
 
 REAL=Path(__file__).resolve().parents[1]/'data/raw/gt7_trial_mountain_962c'
@@ -118,9 +115,7 @@ def test_real_gt7_integration():
     assert len(session.metadata['lap_rejections'])==8
     assert session.data.throttle_pct.max()==pytest.approx(100)
     flags=assess_capabilities(session)
-    assert flags['full_lap_targets']['available'] and flags['validated_lap_analysis']['available']
+    assert flags['verified_lap_timing']['available'] and flags['validated_lap_analysis']['available']
     assert flags['lap_progress_comparison']['available']
     assert not flags['cumulative_lap_delta']['available']
-    assert not flags['progressive_dl_eligible']['available']
-    features=lap_features(session)
-    assert len(features)==8 and features.target_lap_time_s.min()==pytest.approx(103.712)
+    assert len(session.laps.laps)==8 and session.laps.laps.duration_s.min()==pytest.approx(103.712)

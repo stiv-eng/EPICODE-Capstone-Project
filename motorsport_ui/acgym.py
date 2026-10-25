@@ -1,4 +1,4 @@
-"""UI-only enrichment: keep the audited ML source adapter and corpus unchanged."""
+"""Analysis-only enrichment of aligned tyre and suspension source channels."""
 from motorsport.ingestion.motec import read_ld
 from motorsport.processing.validation import quality_report
 

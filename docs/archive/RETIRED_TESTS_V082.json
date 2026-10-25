@@ -1,0 +1,543 @@
+{
+  "baseline_cases": 287,
+  "surviving_cases_before_new_scope_checks": 158,
+  "retired_cases": 128,
+  "retired": [
+    {
+      "nodeid": "tests.test_barcelona_ui_v071::test_missing_barcelona_is_explicit_offline_and_never_downloads",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_ui_v071::test_primary_barcelona_frozen_training_and_progressive_hidden_target",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_actual_recovery_audit_and_old_release_preserved",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_artifact_domain_and_protocol_compatibility",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_baselines_use_training_only_and_require_supported_previous_order",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_exact_duplicate_hash_uses_full_trajectory_target",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_filter_rule_requires_meaningful_consistent_slow_safe_gain",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_frozen_evidence_tampering_and_interrupted_test_refused",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_loader_recovers_metadata_and_excludes_only_exact_copy",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_metadata_uncertainty_does_not_gate_and_split_stable",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_missing_artifact_rebuild_fits_only_train_without_heldout_prediction",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_progressive_target_hidden_and_future_invariance[10]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_progressive_target_hidden_and_future_invariance[20]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_progressive_target_hidden_and_future_invariance[30]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_progressive_target_hidden_and_future_invariance[45]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_progressive_target_hidden_and_future_invariance[60]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_barcelona_v071::test_selection_train_only_preprocessing_and_frozen_test",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_cadence_v081::test_current_recorded_replay_matches_frozen_moving_stop_and_long_lap_rows",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_cadence_v081::test_executed_development_evidence_folds_and_shared_predictions",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_cadence_v081::test_per_lap_and_total_loss_mass_match_original_dense_training",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_cadence_v081::test_preprocessing_fits_only_supplied_training_rows",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_dense_artifacts_v080::test_early_stopping_never_uses_outer_blocks",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_dense_artifacts_v080::test_executed_comparison_population_and_frozen_sparse_reference",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_dense_artifacts_v080::test_keras_digest_is_checked_before_deserializing",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_dense_artifacts_v080::test_rerun_reuses_frozen_results_without_model_fit",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_dense_artifacts_v080::test_saved_models_batch_replay_and_future_invariance",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_calibration_and_macro_metrics_do_not_treat_prefixes_as_unique_laps",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_development_excludes_historical_before_features_and_stable_group_folds",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_experimental_replay_uses_training_builder_and_version_domain_guards",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_no_historical_target_or_telemetry_usage_for_experiments",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_rebuild_missing_research_artifact_uses_development_only_without_rescoring",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_repeat_run_reads_signed_bundle_and_evidence_without_refitting",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_same_population_every_variant_preprocessing_and_per_lap_weights",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_selection_needs_fold_consistency_macro_gain_and_slow_tail_guard",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_development_v072::test_unique_lap_statistics_and_common_training_pace_thresholds",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_diagnostics_ui_v072::test_development_diagnostics_are_optional_and_never_replace_reference",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_diagnostics_ui_v072::test_frozen_distribution_and_fold_counts_match_unique_laps",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_diagnostics_ui_v072::test_reference_artifact_and_evidence_inventory_unchanged",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation::test_qualifying_evaluation_is_out_of_training",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation_v080::test_checkpoint_and_pace_reports_keep_survivor_counts",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation_v080::test_direct_negative_remaining_is_reported_without_claiming_projection",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation_v080::test_inner_groups_reproducible_and_disjoint",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation_v080::test_lap_balance_prevents_long_lap_snapshot_dominance",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_evaluation_v080::test_original_frozen_folds_are_reused_without_historical_ids",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_features::test_dataset_has_multi_lap_snapshots",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_features::test_fp3_reference_is_excluded_from_training",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_features::test_observed_features_ignore_unknown_final_lap_time",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_features::test_snapshots_are_causal_wrt_future_telemetry",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_features::test_telemetry_distance_nonnegative_and_increasing",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_hover_v063::test_replay_payload_is_explicitly_prefix_and_prediction_only",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_ui_v06::test_explicit_training_persistence_and_replay_hides_final_target",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_ui_v06::test_gt7_training_is_explicit_experimental_opt_in",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_ui_v06::test_ml_pages_handle_no_validated_targets[20_Machine_Learning.py]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_ui_v06::test_ml_pages_handle_no_validated_targets[21_Progressive_Prediction.py]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_ui_v06::test_offline_ml_module_imports_do_not_load_legacy_or_network",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_baselines_exclude_current_future_and_other_domain",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_changing_heldout_labels_does_not_change_fitted_models_or_baselines",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_checkpoints_missing_channels_gaps_and_out_of_range",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_corpus_identity_invalidates_models_after_mapping_or_unit_change",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_duplicate_ids_signatures_and_small_dataset_gates",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_future_telemetry_and_future_clock_reset_do_not_change_prefix[10]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_future_telemetry_and_future_clock_reset_do_not_change_prefix[20]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_future_telemetry_and_future_clock_reset_do_not_change_prefix[30]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_future_telemetry_and_future_clock_reset_do_not_change_prefix[45]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_future_telemetry_and_future_clock_reset_do_not_change_prefix[60]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_gt7_experimental_workflow",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_inference_domain_guard_baseline_and_explicit_evaluation",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_ldx_rejects_entities_missing_and_nonmonotonic_beacons",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_local_artifact_roundtrip_rejects_unknown_or_tampered_before_deserialization",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_optional_channels_and_sparse_invalid_current_value_are_missing_not_fabricated",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_real_acgym_manifest_targets_duplicate_captures_and_gate",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_safe_ld_numeric_scaling_units_and_corruption",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_source_laps_require_witnessed_target_beacons_and_no_gaps",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_split_integrity_no_heldout_baseline_labels_and_train_only_preprocessing",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ml_v06::test_target_is_not_part_of_predictive_source_or_features",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_model::test_training_and_replay_smoke",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_conditional_reference_uses_only_training_targets",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_dense_scheduling_is_configurable_and_compatible",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_real_source_cutoff_never_interpolates",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_schedule_and_features_unchanged_when_future_mutates",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_schedule_stops_at_source_discontinuity[backward]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_schedule_stops_at_source_discontinuity[gap]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progression_v080::test_schedule_stops_at_source_discontinuity[missing]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progressive_ui_v080::test_experimental_replay_is_opt_in_target_hidden_and_all_models_available",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progressive_ui_v080::test_new_modules_keep_keras_lazy_and_offline",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progressive_ui_v081::test_model_resource_cache_uses_artifact_identity",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_progressive_ui_v081::test_replay_default_cadence_pause_reveal_cache_and_operational_return",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_cached_queries_and_pause_do_not_add_wall_time",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_clock_discontinuity_quarantines_tail_without_false_stop[backward]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_clock_discontinuity_quarantines_tail_without_false_stop[gap]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_clock_discontinuity_quarantines_tail_without_false_stop[missing]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_cumulative_features_match_frozen_feature_builder",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_future_mutation_target_and_progress_cannot_change_prefix",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_model_and_operational_isolation[domain]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_model_and_operational_isolation[features]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_model_and_operational_isolation[protocol]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_model_and_operational_isolation[uid]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_model_and_operational_isolation[version]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_multiple_stops_and_invalid_samples_require_reconfirmation",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_physical_bound_and_extended_valid_slow_lap",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_schedule_uses_actual_source_cutoffs_and_fixed_elapsed_grid[0.5]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_schedule_uses_actual_source_cutoffs_and_fixed_elapsed_grid[1.0]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_schedule_uses_actual_source_cutoffs_and_fixed_elapsed_grid[5.0]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_shared_observations_are_cadence_invariant_including_stop_and_resume",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_short_low_speed_period_hysteresis_and_noise",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_slow_corner_and_braking_are_not_stops[12.0]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_slow_corner_and_braking_are_not_stops[25.0]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_slow_corner_and_braking_are_not_stops[3.0]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_stale_checkpoint_is_skipped_without_interpolation",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_stop_adds_elapsed_stationary_seconds_and_resumes_causally",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_replay_v081::test_unavailable_onset_uses_first_valid_observed_estimate",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_sequences_v080::test_actual_keras_gru_shape_mask_determinism_and_roundtrip",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_sequences_v080::test_missing_optional_channels_and_declared_steering_units",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_sequences_v080::test_order_and_full_prefix_past_sixty_seconds",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_sequences_v080::test_sequence_future_invariance_and_source_timestamp_support",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_sequences_v080::test_training_only_normalization_and_explicit_padding_mask",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_svr::test_svr_smoke",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_actual_timestamp_window_clips_left_hold_support_without_centering",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_all_variants_use_only_available_prefix_and_f0_bit_identity[10]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_all_variants_use_only_available_prefix_and_f0_bit_identity[20]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_all_variants_use_only_available_prefix_and_f0_bit_identity[30]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_all_variants_use_only_available_prefix_and_f0_bit_identity[45]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_all_variants_use_only_available_prefix_and_f0_bit_identity[60]",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_deceleration_is_metres_per_second_squared_with_actual_dt",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_gaps_invalid_boundaries_and_unavailable_optional_channels",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_no_target_or_final_distance_normalization_and_tail_length_invariance",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_temporal_features_v072::test_observed_event_durations_no_future_confirmation",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    },
+    {
+      "nodeid": "tests.test_ui_v062::test_diagnostic_writer_rejects_original_results_and_model_artifacts",
+      "reason": "Dedicated prediction training/inference/evaluation, model artifacts or prediction UI removed by explicit scope decision"
+    }
+  ],
+  "renamed_guards": {
+    "tests.test_ui_v062::test_ml_production_sources_and_launch_are_unchanged": "tests.test_ui_v062::test_launch_configuration_is_unchanged"
+  },
+  "relocated_data_validation": {
+    "tests.test_barcelona_v071::test_rounding_recovers_half_ms_but_invalid_target_still_rejected": "tests.test_scope_v082::test_rounding_recovers_half_ms_but_invalid_timing_is_still_rejected"
+  },
+  "mixed_test_changes": [
+    {
+      "file": "tests/test_ui_v061.py",
+      "reason": "Retain measured lap-table count and consolidated analysis routes; remove retired prediction-route expectations"
+    },
+    {
+      "file": "tests/test_ui_v062.py",
+      "reason": "Retire prediction diagnostic-writer test; preserve F5 guard with analysis-only name"
+    },
+    {
+      "file": "tests/test_hover_v063.py",
+      "reason": "Retire prediction-payload test; preserve original processing/analytics/ingestion/F5 source guard except deliberately removed readiness gates"
+    },
+    {
+      "file": "tests/test_comparison_readiness.py",
+      "reason": "Remove assertions about retired ML feature table/eligibility; preserve lap timing, GT7 data and deterministic comparison assertions"
+    }
+  ]
+}

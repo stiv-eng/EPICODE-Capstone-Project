@@ -8,7 +8,7 @@ from motorsport.processing.schema import SUPPLIED_V04
 from motorsport.ingestion.gt7_importer import load_gt7_bundle
 from motorsport.analytics.overview import overview_metrics
 from motorsport.analytics.driver_inputs import driver_metrics
-from motorsport.analytics.readiness import assess_capabilities,lap_features
+from motorsport.analytics.readiness import assess_capabilities
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -27,10 +27,11 @@ def audit():
             'driver_metrics':metrics,'source_quality':{k:v for k,v in session.raw_quality.items() if k!='channels'},
             'validated_laps':session.laps.laps.to_dict('records'),
             'rejected_laps':session.metadata.get('lap_rejections',[]),
-            'capabilities':assess_capabilities(session),'candidate_lap_features':lap_features(session).to_dict('records')}
+            'capabilities':assess_capabilities(session)}
         if path.is_file():
             with path.open('rb') as stream:evidence[name]['sha256']=hashlib.file_digest(stream,'sha256').hexdigest()
-    output=ROOT/'docs/DATASET_MEASUREMENTS_V05.json'
+    output=ROOT/'artifacts/data_analysis_audit.json'
+    output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(evidence,indent=2,ensure_ascii=False,allow_nan=False)+'\n',encoding='utf-8')
     print('Measured evidence:',output)
     for name,data in evidence.items():

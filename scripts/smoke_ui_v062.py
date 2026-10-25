@@ -154,10 +154,4 @@ def exercise(call,ready,choose,click,screenshot,base,artifacts):
     neutral=value("(()=>{const p=Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout).find(e=>e._fullLayout?.meta?.vehicle_x===12);return {meta:p._fullLayout.meta,shapes:p._fullLayout.shapes.length}})()")
     assert neutral['meta']['vehicle_theta'] is None and neutral['meta']['vehicle_y']==-8 and neutral['shapes']==0
     snap('stationary_neutral_position');record('stationary actual coordinates with neutral indicator',**neutral)
-    navigate('ml','Feature causali');snap('ml_unchanged')
-    assert value("document.body.innerText.includes('Addestra e valuta') && (Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout)).length===0")
-    record('ML startup does not train')
-    navigate('replay','Checkpoint trascorso');ready("(Array.from(document.querySelectorAll('iframe')).flatMap(f=>Array.from(f.contentDocument?.querySelectorAll('.js-plotly-plot')||[])).filter(p=>p._fullLayout)).length>=2")
-    assert not value("document.body.innerText.includes('Risultato finale verificato')")
-    snap('progressive_unchanged');record('Progressive Prediction hidden target preserved')
-    print(f'PASS: {len(results)} Chrome v0.6.2 checks including rendered scales, heading, hover and upload.',flush=True)
+    print(f'PASS: {len(results)} Chrome analysis checks including rendered scales, heading, hover and upload.',flush=True)

@@ -53,7 +53,7 @@ def build_session(raw, metadata, profile=CANONICAL, validated_laps=None, lap_ela
     metadata['source_time_column'] = time_source
     laps = validated_laps if validated_laps is not None else detect_laps(data)
     # Unvalidated source labels remain in raw; only validated complete laps
-    # become canonical labels consumable by future ML/DL pipelines.
+    # become canonical labels for verified-lap analysis and comparison.
     for column in ['lap_id', 'lap_elapsed_s']:
         if column in data:
             del data[column]

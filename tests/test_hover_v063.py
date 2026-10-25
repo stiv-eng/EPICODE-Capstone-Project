@@ -129,23 +129,10 @@ def test_all_chart_rendering_uses_shared_api_including_optional_legacy():
 
 
 def test_computation_and_launch_sources_unchanged_from_verified_v062():
-    protected=['motorsport/processing','motorsport/analytics','motorsport/ml/training.py','motorsport/ml/features.py',
-               'motorsport/ml/inference.py','motorsport/ml/dataset.py','motorsport/ml/baselines.py',
-               'motorsport/ml/evaluation.py','motorsport/ml/artifacts.py','motorsport/ingestion/motec.py',
-               'motorsport_prediction','.vscode','requirements.txt']
+    protected=['motorsport/processing','motorsport/analytics','motorsport/ingestion/motec.py','.vscode']
     r=subprocess.run(['git','diff','--name-only','48e99ee','--',*protected],cwd=ROOT,
                      capture_output=True,text=True,check=True)
-    assert not r.stdout.strip()
-
-
-def test_replay_payload_is_explicitly_prefix_and_prediction_only():
-    # Real replay/training behavior is also exercised by the retained ML UI tests.
-    source=(ROOT/'pages/21_Progressive_Prediction.py').read_text(encoding='utf-8')
-    tree=ast.parse(source)
-    rendering=next(i for i,n in enumerate(tree.body) if isinstance(n,ast.Expr)
-                   and isinstance(n.value,ast.Call) and getattr(n.value.func,'id','')=='render_figures')
-    reveal=next(i for i,n in enumerate(tree.body) if isinstance(n,ast.If)
-                and isinstance(n.test,ast.Call) and getattr(n.test.func,'attr','')=='checkbox')
-    assert rendering<reveal
-    assert "signals=prefix[['lap_elapsed_s','speed_kmh','throttle_pct','brake_pct']]" in source
-    assert "pd.DataFrame([asdict(p) for p in predictions]).drop(columns='quality')" in source
+    # The capability registry deliberately loses its ML/DL eligibility gates.
+    # Every surviving analytical formula, normalization rule and F5 file retains
+    # the original stronger historical byte/source guard.
+    assert set(r.stdout.splitlines()) <= {'motorsport/analytics/readiness.py'}

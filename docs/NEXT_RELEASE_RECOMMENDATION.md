@@ -1,14 +1,20 @@
-# Recommendation after v0.8.1
+# Next development after the v0.8.2 scope reset
 
-All scores are exploratory development OOF on the original **169 laps / 40 recording blocks**, using the original five v072 folds. All **205 validated laps** remain preserved. **Zero new predictions on the 36 historical test laps** for selection. Reused development folds and uncertain physical recording links limit generalization; this is not a new independent final test. Operational model: original signed **SVR v0.7.1**, unchanged.
+The progressive lap-time prediction research direction is closed. Keep the
+application focused on Motorsport telemetry Data Analysis. No new direction is
+selected or started by this release.
 
+Two small possibilities are reasonable only if the user confirms the need:
 
-Keep the original signed v0.7.1 operational. Use the existing five-second-trained SVR-DENSE with 1 s experimental replay, explicit physical bound and opt-in stop-aware comparison. Half-second inference is locally supported=True; it adds feedback frequency, not shared-cutoff accuracy.
+| Assessment | Find the right recording faster | Make unfamiliar CSV/Parquet imports easier |
+| --- | --- | --- |
+| User problem | Many similarly named recordings can slow source selection | A new source may use different channel names/units |
+| Simplest viable alternative | Improve naming/documentation and use the existing selector | Supply one canonical example and a short mapping guide |
+| Expected practical benefit | Fewer wrong-source selections and faster comparisons | Fewer mapping errors and quicker first useful chart |
+| Evidence required | Observe the user's source-selection workflow and measure mistakes/time | Collect a few representative upload difficulties and supported unit declarations |
+| Small feasibility check before coding | Compare existing labels against a small proposed label/filter sketch using three recording tasks | Manually map two representative files using the existing form and document ambiguities |
+| Development gate | Implement a small selector improvement only if existing naming is insufficient | Improve documentation first; consider UI changes only if the existing mapping flow remains insufficient |
 
-One-second training raw MAE **8.540758 s**, versus A **8.787312 s**: gain **0.246554 s (2.806%)**. Preregistered retention gate: gain ≥0.2 s and ≥2%, improvement in ≥4/5 folds. Gate passed: **True**.
-
-Deterministic physical/stop rules change one-second MAE 8.787312→8.708057→8.708926 s. Keep raw output auditable. 20 threshold-stop laps are exploratory evidence; speed-only detection and frozen remaining time have limits. Slow corrected MAE remains 22.275238 s. Do not remove these laps or confuse physical plausibility with learned generalization.
-
-The highest-value next step is a small preregistered untouched same-domain recording validation with independently annotated stationary episodes, slow laps, source timestamps and restart behavior. Audit conditional remaining-time calibration on those data. Author code confirms the progress-field rename, but exact ACTI interpolation/latency and reverse behavior remain unverified: keep position out of the feature contract until that is established, and keep scheduling time-based.
-
-Retain GRU and ordered Ridge as research demonstrations without architecture changes. No new dataset, live capture, broad grid or automatic promotion is justified by this release. [Prior v080 recommendation](NEXT_RELEASE_RECOMMENDATION_V080.md) remains preserved.
+Existing analysis and comparison methods should be used before adding new
+infrastructure. The user will choose a direction separately. This release
+implements neither option.

@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.8.1 · High-Frequency Progressive Prediction & Stop-Aware SVR · Python · Plotly')
+    st.caption('v0.8.2 · Motorsport Data Analysis · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
                 'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
     st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
@@ -20,28 +20,20 @@ def home():
                 'o giri verificati e ispeziona la traiettoria con un marcatore temporale. '
                 'Data Explorer raccoglie Signals, Driver Inputs, Vehicle Dynamics, Tyre Analysis, Cockpit e Position / Track Map.')
     st.info('I dati già installati si analizzano offline, senza FastF1 o un simulatore in esecuzione.')
-    st.markdown('Il dominio ML principale è **Barcelona GP / Dallara F317**. '
-                '**Machine Learning** include tutti i giri tecnicamente validi e confronta Ridge, Random Forest e SVR con validazione e test separati. '
-                '**Progressive Prediction** mostra i prefissi osservati; le previsioni richiedono un modello compatibile verificato. '
-                'I moduli storici SVR e Keras restano disponibili nelle pagine legacy.')
-    st.page_link('pages/20_Machine_Learning.py',label='Apri Machine Learning')
-    st.page_link('pages/21_Progressive_Prediction.py',label='Apri Progressive Prediction')
-    st.caption('Machine Learning include una diagnosi opzionale di passo e feature sui soli fold di sviluppo; '
-               'il riferimento operativo resta lo SVR v0.7.1.')
-    st.caption('Progressive Prediction offre un confronto sperimentale con checkpoint ogni 5 secondi, '
-               'SVR diretto/rimanente, Ridge su finestre ordinate e GRU Keras. Il risultato finale si rivela soltanto su richiesta.')
-    st.caption('Replay frequente v0.8.1 aggiunge aggiornamenti ogni 1 secondo, vincolo fisico e correzione '
-               'stop-aware sullo SVR-DENSE. Le pause del replay non avanzano il timer registrato.')
+    st.markdown('Sono disponibili le registrazioni **Barcelona GP / Dallara F317**, '
+                '**ACGym Monza** e **GT7 Trial Mountain**, quando installate. '
+                'Data Explorer e Telemetry Comparison usano i confini dei giri verificati e i campioni sorgente osservati.')
+    st.page_link('pages/14_Session_Comparison.py',label='Apri Telemetry Comparison',icon='📉')
+    st.caption('Seleziona una sessione, esplora i segnali e confronta giri o finestre temporali. '
+               'Hover e cursore condiviso mantengono sincronizzata la lettura dei grafici.')
 
 
 pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=True),
                              st.Page('pages/10_Session_Overview.py', title='Session Overview',icon='📈',url_path='overview'),
                              st.Page('pages/00_Data_Explorer.py', title='Data Explorer', icon='📊'),
                              st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',icon='📉',url_path='comparison')]}
-pages['Machine Learning']=[st.Page('pages/20_Machine_Learning.py',title='Machine Learning',url_path='ml'),
-                           st.Page('pages/21_Progressive_Prediction.py',title='Progressive Prediction',url_path='replay')]
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.8.1')
+    st.caption('Motorsport Telemetry Analyzer · v0.8.2')
     legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
     if legacy:
         st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')
@@ -50,8 +42,5 @@ if legacy:
         st.Page('pages/01_Lap_and_Stint_Analysis.py', title='Legacy · Lap & Stint'),
         st.Page('pages/02_Telemetry_Comparison.py', title='Legacy · Telemetry Comparison'),
         st.Page('pages/03_Track_Map.py', title='Legacy · Track Map'),
-        st.Page('pages/04_Legacy_SVR.py', title='Legacy · Historical SVR'),
-        st.Page('pages/04_Model_Evaluation.py', title='Legacy · Model Evaluation'),
-        st.Page('pages/05_Dynamic_Lap_Time_Prediction.py', title='Legacy · Keras Prediction'),
     ]
 st.navigation(pages).run()

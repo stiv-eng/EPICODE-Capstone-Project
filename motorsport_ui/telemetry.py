@@ -31,8 +31,7 @@ def source_catalog(include_acgym=False,include_original=False):
     bundle=ROOT/'data/raw/gt7_trial_mountain_962c'
     if (bundle/'data/laps/lap_015.parquet').exists():
         sources={str(bundle.resolve()):'GT7 · Trial Mountain · Porsche 962 C',**sources}
-    # Individual physical recordings are selectable without concatenating clocks
-    # or changing the unchanged ML corpus catalog and its independence rules.
+    # Individual physical recordings are selectable without concatenating clocks.
     if include_acgym:
         manifest=ROOT/'docs/ACGYM_MANIFEST_V06.json'
         if manifest.exists():
@@ -84,18 +83,11 @@ def source_signature(key):
 @st.cache_data(show_spinner=False,max_entries=3)
 def load_local(key, signature):
     if key.startswith('barcelona:'):
-        from motorsport.ml.barcelona import manifest_entry_path,file_sha
-        from motorsport.ingestion.acgym_importer import load_acgym_recording
+        from motorsport.ingestion.barcelona import load_barcelona_recording
         from .acgym import enrich_recording
-        manifest=json.loads((ROOT/'docs/BARCELONA_MANIFEST_V07.json').read_text(encoding='utf-8'))
-        entry=next(e for e in manifest['files'] if e['path']==key.removeprefix('barcelona:'))
         directory=ROOT/'data/raw/acgym_barcelona_dallara'
-        path=manifest_entry_path(directory,entry)
-        for item in manifest['files']:
-            evidence=manifest_entry_path(directory,item)
-            if evidence in (path,path.with_suffix('.ldx')) and file_sha(evidence)!=item.get('sha256'):
-                raise ValueError('Barcelona source integrity mismatch')
-        session=enrich_recording(load_acgym_recording(path,entry,manifest,analysis_only=True),path)
+        relative=key.removeprefix('barcelona:')
+        session=enrich_recording(load_barcelona_recording(relative,directory,ROOT/'docs/BARCELONA_MANIFEST_V07.json'),directory/relative)
         return session
     if key.startswith('acgym:'):
         from motorsport.ingestion.acgym_importer import load_acgym_recording
@@ -168,7 +160,7 @@ def select_telemetry(page_key='analysis'):
         st.stop()
     st.caption(session.metadata['filename'])
     if session.metadata.get('identity_quarantine'):
-        st.info('Sorgente esplorabile; esclusa dal corpus ML: '+'; '.join(session.metadata['identity_quarantine']))
+        st.info('Metadati della sorgente da verificare: '+'; '.join(session.metadata['identity_quarantine']))
     if session.metadata.get('time_basis'):
         st.caption('Base temporale: '+session.metadata['time_basis'])
     return session
@@ -262,9 +254,7 @@ def unavailable_capabilities(session):
         'validated_lap_analysis':('Lap comparison','Carica contatori giro affidabili e informazioni di timing con confini completi verificabili.'),
         'lap_progress_comparison':('Confronto in distanza','Fornisci giri completi e distanza monotona verificata; resta disponibile il tempo relativo.'),
         'cumulative_lap_delta':('Delta cumulato','Fornisci un riferimento comune verificato di distanza sul tracciato.'),
-        'full_lap_targets':('Target tempo giro','Fornisci timing indipendente e confini completi dei giri.'),
-        'supervised_ml_eligible':('Training multi-sessione','Apri Machine Learning per la verifica del corpus; fornisci più sessioni indipendenti e segnali completi.'),
-        'progressive_dl_eligible':('Deep Learning progressivo','Fornisci un corpus indipendente idoneo e progressione validata; modelli sequenziali fuori ambito v0.6.1.'),
+        'verified_lap_timing':('Tempi giro verificati','Fornisci timing indipendente e confini completi dei giri.'),
     }
     reasons={
         'session_analysis':'Nessun segnale numerico finito.',
@@ -273,9 +263,7 @@ def unavailable_capabilities(session):
         'validated_lap_analysis':'Mancano confini giro completi validati.',
         'lap_progress_comparison':'Mancano giri completi con distanza monotona valida.',
         'cumulative_lap_delta':'Manca un riferimento comune verificato di distanza.',
-        'full_lap_targets':'Manca un tempo finale validato indipendentemente.',
-        'supervised_ml_eligible':'Questa singola sorgente non supera i requisiti multi-sessione.',
-        'progressive_dl_eligible':'Corpus o progressione insufficienti per il gate sequenziale.',
+        'verified_lap_timing':'Manca un tempo finale validato indipendentemente.',
     }
     return pd.DataFrame([{'Feature':advice[k][0],'Why unavailable':reasons[k],'Recommended data':advice[k][1]}
                          for k,v in assess_capabilities(session).items() if not v['available']],
