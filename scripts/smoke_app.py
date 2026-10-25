@@ -115,6 +115,8 @@ def capture(browser, base, artifacts, scenario='v062'):
                     from functools import partial
                     from scripts.smoke_ui_v080 import exercise as current_exercise
                     exercise=partial(current_exercise,ml_only=scenario.endswith('-ml'))
+                elif scenario=='v081':
+                    from scripts.smoke_ui_v081 import exercise
                 elif scenario in ('v071','v071-ml','v072','v072-ml'):
                     from functools import partial
                     from scripts.smoke_ui_v063 import exercise as shared_exercise
@@ -140,7 +142,7 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063','v071','v072','v080')) else '')
+    artifacts = ROOT/'artifacts'/(scenario if scenario.startswith(('v062','v063','v071','v072','v080','v081')) else '')
     artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         environment=dict(os.environ)
@@ -181,7 +183,7 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v062'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures','v071','v071-ml','v072','v072-ml','v080','v080-ml'],default='v063')
+    parser.add_argument('--release',choices=['v061','v062','v063','v063-baseline','v063-fixtures','v071','v071-ml','v072','v072-ml','v080','v080-ml','v081'],default='v063')
     options=parser.parse_args()
     entrypoint=('scripts/hover_fixture_app.py' if options.release=='v063-fixtures'
                 else 'streamlit_app.py')

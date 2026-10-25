@@ -1,0 +1,64 @@
+{
+  "baseline_commit": "11c11f8",
+  "branch": "feat/sim-telemetry-v081",
+  "baseline_tests": {
+    "passed": 257,
+    "warnings": 217,
+    "seconds": 189.6
+  },
+  "tests": {
+    "passed": 287,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": 217,
+    "seconds": 194.178,
+    "retained": 257,
+    "added": 30,
+    "junit_sha256": "8a6e47b504de1d5aee93223abd7cdc678b124f537f7d47a6db1023cbffc45181"
+  },
+  "browser": {
+    "scenario": "v081",
+    "total_records": 155,
+    "workflow_checks": 99,
+    "render_budgets": 55,
+    "performance_records": 1,
+    "console_errors": 0,
+    "runtime_exceptions": 0,
+    "source_sha256": "03a616c53db78cbfe3feb42950b9e82af6a38aad801f122334cad0befc7837d8",
+    "console_sha256": "b4e5ac745ebc806c8d848e1afb855e20ec1408f0faba9d7e1e04345c7ef9f4a0",
+    "playback_wall_intervals": [
+      {
+        "check": "v081 playback and pause 5 secondi",
+        "median_s": null
+      },
+      {
+        "check": "v081 playback and pause 1 secondo",
+        "median_s": 1.1089999999967404
+      },
+      {
+        "check": "v081 playback and pause 0.5 secondi",
+        "median_s": 0.485000000015134
+      }
+    ]
+  },
+  "preservation": {
+    "files": 339,
+    "all_validated_laps": 205,
+    "status": "passed"
+  },
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "additional_checks": {
+    "compileall": "passed",
+    "pip_check": "No broken requirements found",
+    "whitespace": "passed",
+    "frozen_numerical_regression": "FROZEN_REGRESSION_V081.json",
+    "frozen_experiment_rerun": "verified without fitting/rescoring"
+  },
+  "remote_actions": {
+    "push": false,
+    "merge": false,
+    "operational_promotion": false
+  }
+}

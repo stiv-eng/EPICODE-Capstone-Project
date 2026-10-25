@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.8 · Dense Progressive Prediction & Sequential ML · Python · Plotly')
+    st.caption('v0.8.1 · High-Frequency Progressive Prediction & Stop-Aware SVR · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
                 'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
     st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
@@ -30,6 +30,8 @@ def home():
                'il riferimento operativo resta lo SVR v0.7.1.')
     st.caption('Progressive Prediction offre un confronto sperimentale con checkpoint ogni 5 secondi, '
                'SVR diretto/rimanente, Ridge su finestre ordinate e GRU Keras. Il risultato finale si rivela soltanto su richiesta.')
+    st.caption('Replay frequente v0.8.1 aggiunge aggiornamenti ogni 1 secondo, vincolo fisico e correzione '
+               'stop-aware sullo SVR-DENSE. Le pause del replay non avanzano il timer registrato.')
 
 
 pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=True),
@@ -39,7 +41,7 @@ pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=
 pages['Machine Learning']=[st.Page('pages/20_Machine_Learning.py',title='Machine Learning',url_path='ml'),
                            st.Page('pages/21_Progressive_Prediction.py',title='Progressive Prediction',url_path='replay')]
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.8')
+    st.caption('Motorsport Telemetry Analyzer · v0.8.1')
     legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
     if legacy:
         st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')

@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer - v0.8
+# Motorsport Telemetry Analyzer - v0.8.1
 
 Lap-based telemetry exploration, recorded vehicle/Cockpit replay and audited causal ML.
 Barcelona GP / Dallara F317 is the primary ML demonstration: **205 usable complete
@@ -9,7 +9,49 @@ recording holdout, not a claim of unseen-session or live-racing generalization.
 Python 3.11, Streamlit, Plotly, Pandas, NumPy and scikit-learn; no running simulator
 or FastF1 connection is needed for local analysis.
 
-## v0.8 dense progressive prediction and sequence models
+## v0.8.1 high-frequency replay and stop-aware SVR
+
+In Progressive Prediction select **Replay frequente v0.8.1**. The experimental
+SVR-DENSE now updates every **1 second** by default, with **5 s** and measured
+**0.5 s** options. Playback and pause use recorded timestamps. Compare preserved
+raw output, the physical elapsed-time bound and a separate stop-aware estimate.
+At a confirmed stop, predicted final time rises with observed stationary time.
+Final lap time remains hidden until explicit retrospective reveal.
+
+The existing five-second-trained model produces identical results at shared
+cutoffs. On 169 development laps, one-second MAE is **8.787 s raw**, **8.708 s
+bounded**, **8.709 s stop-aware**. The stop heuristic verifies the desired behavior
+but adds no overall accuracy gain over the bound; it leaves 149 no-stop laps
+unchanged. One controlled one-second-trained SVR, with matched per-lap penalty
+mass, gives **8.541 s raw** (2.81% better, all five folds). This remains research;
+the signed **v0.7.1 operational reference stays selected by default**.
+
+Half-second inference P95 is **2.01 ms**, with **321 MiB** isolated process peak
+including the corpus and results. Browser render timing is reported separately.
+All 205 valid laps and prior SVR/GRU artifacts remain preserved. The 36 historical
+test laps are excluded from new model selection. Slow-lap errors remain large.
+
+```powershell
+python -m scripts.prepare_barcelona_v081
+python -m scripts.run_barcelona_v081 --train-one-second
+python -m scripts.verify_baselines_v081
+python -m pytest -q
+python -m scripts.smoke_app --release v081 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"
+python -m scripts.report_barcelona_v081
+python -m streamlit run streamlit_app.py
+```
+
+The offline runner verifies existing evidence without retraining. Normal app
+startup never trains. Existing local v080 signed models and validated source
+recordings are required; no new dependency or live simulator capture is added.
+Read the [release and ten answers](docs/RELEASE_V081_REPORT.md),
+[inference timings](docs/HIGH_FREQUENCY_INFERENCE_V081.md),
+[stop rules and measured cohorts](docs/STOP_AWARE_PREDICTION_V081.md),
+[controlled training comparison](docs/SVR_CADENCE_COMPARISON_V081.md),
+[evaluation](docs/ML_EVALUATION_V081.md), [architecture](docs/ARCHITECTURE_V081.md)
+and [recommendation](docs/NEXT_RELEASE_RECOMMENDATION.md).
+
+## Preserved v0.8 dense progressive prediction and sequence models
 
 Progressive Prediction keeps the original reference as default. Select
 **Confronto sperimentale v0.8** to compare dense/direct/remaining SVR, an ordered

@@ -1,15 +1,14 @@
-# Recommendation after v0.8
+# Recommendation after v0.8.1
 
-**Keep SVR v0.7.1 operational. Dense direct SVR is the most useful candidate for a controlled follow-up; development evidence does not authorize promotion.**
+All scores are exploratory development OOF on the original **169 laps / 40 recording blocks**, using the original five v072 folds. All **205 validated laps** remain preserved. **Zero new predictions on the 36 historical test laps** for selection. Reused development folds and uncertain physical recording links limit generalization; this is not a new independent final test. Operational model: original signed **SVR v0.7.1**, unchanged.
 
-The 169-lap / 40-block experiment uses 4134 causal time checkpoints with equal lap weight. Dense direct SVR improves full-trajectory MAE 14.410 -> 8.602 s against sparse training, and shared 5-60 s 13.695 -> 12.836 s. Remaining-target SVR is slightly worse than dense direct overall and near completion. GRU 11.241 s beats ordered Ridge 12.656 s overall but remains behind dense SVR; it worsens middle-pace error versus Ridge. A deeper network or broad search is not justified by these results.
 
-The next bounded release should:
+Keep the original signed v0.7.1 operational. Use the existing five-second-trained SVR-DENSE with 1 s experimental replay, explicit physical bound and opt-in stop-aware comparison. Half-second inference is locally supported=True; it adds feedback frequency, not shared-cutoff accuracy.
 
-1. Preserve current raw files, valid laps, signed references and frozen results. Preregister genuinely untouched same-domain evaluation observations when available. The 36 historical test laps remain already-observed evidence.
-2. Match sparse/dense **total per-lap SVR penalty mass** in a focused control. Current inverse-prefix weights balance laps, but normalization to mean one changes total loss relative to the five-prefix fixed-C reference. Do not attribute the entire gain solely to density.
-3. Test one separately specified physically consistent late bound or calibrated remaining model. Dense direct has 43 predictions below observed time, and its single 255 s observation has 55.134 s error despite 3.227 s mean last-point error. Preserve raw outputs and slow-tail reporting.
-4. Obtain an authoritative ACTI `Car Pos Norm` mapping and interpolation/latency contract before percentage checkpoints. Numerical range/wrap evidence alone is insufficient. Keep causal elapsed cadence and survivor counts explicit; never infer percent from eventual duration.
-5. Retain the compact trained GRU as the capstone sequence demonstration. If a future study must isolate neural/order effects, preregister matched fitting groups and one order-destruction control. Current Ridge/GRU share chunks but differ in fitting population, regularization and nonlinear architecture.
+One-second training raw MAE **8.540758 s**, versus A **8.787312 s**: gain **0.246554 s (2.806%)**. Preregistered retention gate: gain ≥0.2 s and ≥2%, improvement in ≥4/5 folds. Gate passed: **True**.
 
-No new acquisition, push, merge, live capture or operational model replacement is part of this recommendation. See [eight conclusions](RELEASE_V080_REPORT.md), [comparison](ML_COMPARISON_V080.md), [protocol](ML_PROTOCOL_V080.json) and [sequence evidence](SEQUENCE_MODEL_EXPERIMENTS_V080.md).
+Deterministic physical/stop rules change one-second MAE 8.787312→8.708057→8.708926 s. Keep raw output auditable. 20 threshold-stop laps are exploratory evidence; speed-only detection and frozen remaining time have limits. Slow corrected MAE remains 22.275238 s. Do not remove these laps or confuse physical plausibility with learned generalization.
+
+The highest-value next step is a small preregistered untouched same-domain recording validation with independently annotated stationary episodes, slow laps, source timestamps and restart behavior. Audit conditional remaining-time calibration on those data. Author code confirms the progress-field rename, but exact ACTI interpolation/latency and reverse behavior remain unverified: keep position out of the feature contract until that is established, and keep scheduling time-based.
+
+Retain GRU and ordered Ridge as research demonstrations without architecture changes. No new dataset, live capture, broad grid or automatic promotion is justified by this release. [Prior v080 recommendation](NEXT_RELEASE_RECOMMENDATION_V080.md) remains preserved.

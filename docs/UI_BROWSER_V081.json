@@ -1,0 +1,3648 @@
+[
+  {
+    "check": "GT7 Signals",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 52,48 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n231,712 km/h\n\nt = 52.480 s \u00b7 Campione sorgente 10088",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "52.48",
+        "text": "Lap 2 \u2014 1:48.650\n231,712 km/h\n\nt = 52.480 s \u00b7 Campione sorgente 10088"
+      }
+    ],
+    "lines": [
+      {
+        "x": 425.27,
+        "y": 35,
+        "time": 52.48013768028846,
+        "axis": "x:y"
+      },
+      {
+        "x": 425.27,
+        "y": 209.72,
+        "time": 52.48013768028846,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 425.27,
+        "y": 384.44,
+        "time": 52.48013768028846,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 425.27,
+        "y": 559.16,
+        "time": 52.48013768028846,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 Signals rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 53008741,
+    "runtime": "local-fetch",
+    "runtime_load_ms": 937.2999999821186,
+    "plot_ready_ms": 109.40000000596046,
+    "hover_frame_ms": 8.400000005960464,
+    "figure_payload_bytes": 520507
+  },
+  {
+    "check": "GT7 Driver Inputs",
+    "status": "passed",
+    "text": "throttle_pct\n\nCursore 50,262 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n100 %\n\nt = 50.263 s \u00b7 Campione sorgente 9955",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "50.263",
+        "text": "Lap 2 \u2014 1:48.650\n100 %\n\nt = 50.263 s \u00b7 Campione sorgente 9955"
+      }
+    ],
+    "lines": [
+      {
+        "x": 410.67,
+        "y": 35,
+        "time": 50.26223897030704,
+        "axis": "x:y"
+      },
+      {
+        "x": 410.67,
+        "y": 217.34666666666666,
+        "time": 50.26223897030704,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 410.67,
+        "y": 399.6933333333333,
+        "time": 50.26223897030704,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 410.67,
+        "y": 582.04,
+        "time": 50.26223897030704,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 410.67,
+        "y": 764.3866666666667,
+        "time": 50.26223897030704,
+        "axis": "x5:y5"
+      },
+      {
+        "x": 410.67,
+        "y": 946.7333333333333,
+        "time": 50.26223897030704,
+        "axis": "x6:y6"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "throttle_pct",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 Driver Inputs rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 86257034,
+    "runtime": "cache",
+    "runtime_load_ms": 751.5999999940395,
+    "plot_ready_ms": 120.80000001192093,
+    "hover_frame_ms": 6.700000017881393,
+    "figure_payload_bytes": 618892
+  },
+  {
+    "check": "GT7 Vehicle Dynamics",
+    "status": "passed",
+    "text": "g_lat\n\nCursore 50,647 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n10,32 source unit\n\nt = 50.646 s \u00b7 Campione sorgente 9978",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "50.646",
+        "text": "Lap 2 \u2014 1:48.650\n10,32 source unit\n\nt = 50.646 s \u00b7 Campione sorgente 9978"
+      }
+    ],
+    "lines": [
+      {
+        "x": 413.2,
+        "y": 35,
+        "time": 50.646576959271194,
+        "axis": "x:y"
+      },
+      {
+        "x": 413.2,
+        "y": 186.84,
+        "time": 50.646576959271194,
+        "axis": "x2:y2"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "g_lat",
+    "pixelErrors": [
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 Vehicle Dynamics rendering budget",
+    "status": "passed",
+    "figures": 5,
+    "components": 1,
+    "heap_bytes": 110449826,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 444.19999998807907,
+    "hover_frame_ms": 8.400000005960464,
+    "figure_payload_bytes": 693871
+  },
+  {
+    "check": "GT7 dynamics chart 1",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nAccelerazione laterale (source unit)=-0,01\nAccelerazione longitudinale (source unit)=2,363\nCampione sorgente=13355\nVelocit\u00e0 (km/h)=241,871\n\nPunto grafico 2803",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nAccelerazione laterale (source unit)=-0,01\nAccelerazione longitudinale (source unit)=2,363\nCampione sorgente=13355\nVelocit\u00e0 (km/h)=241,871\n\nPunto grafico 2803"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "GT7 dynamics chart 1 rendering budget",
+    "status": "passed",
+    "figures": 5,
+    "components": 1,
+    "heap_bytes": 113110180,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 444.19999998807907,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 428670
+  },
+  {
+    "check": "GT7 dynamics chart 2",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nspeed_kmh (km/h)=228,329\ng_lat (source unit)=-0,369\nCampione sorgente=13253\n\nPunto grafico 2253",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nspeed_kmh (km/h)=228,329\ng_lat (source unit)=-0,369\nCampione sorgente=13253\n\nPunto grafico 2253"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "GT7 dynamics chart 2 rendering budget",
+    "status": "passed",
+    "figures": 5,
+    "components": 1,
+    "heap_bytes": 114746989,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 444.19999998807907,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 349248
+  },
+  {
+    "check": "GT7 dynamics chart 3",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nsteering (source unit)=0,005\nang_vel_y (source unit)=0,002\nCampione sorgente=13241\nspeed_kmh=226,469\n\nPunto grafico 2243",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nsteering (source unit)=0,005\nang_vel_y (source unit)=0,002\nCampione sorgente=13241\nspeed_kmh=226,469\n\nPunto grafico 2243"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "GT7 dynamics chart 3 rendering budget",
+    "status": "passed",
+    "figures": 5,
+    "components": 1,
+    "heap_bytes": 116096397,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 444.19999998807907,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 332202
+  },
+  {
+    "check": "GT7 dynamics chart 4",
+    "status": "passed",
+    "text": "susp_fl\n\nCursore 50,13 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n0,265 m\n\nt = 50.130 s \u00b7 Campione sorgente 9947",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "50.13",
+        "text": "Lap 2 \u2014 1:48.650\n0,265 m\n\nt = 50.130 s \u00b7 Campione sorgente 9947"
+      }
+    ],
+    "lines": [
+      {
+        "x": 409.8,
+        "y": 35,
+        "time": 50.13007758618335,
+        "axis": "x:y"
+      },
+      {
+        "x": 409.8,
+        "y": 209.72,
+        "time": 50.13007758618335,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 409.8,
+        "y": 384.44,
+        "time": 50.13007758618335,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 409.8,
+        "y": 559.16,
+        "time": 50.13007758618335,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "susp_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 dynamics chart 4 rendering budget",
+    "status": "passed",
+    "figures": 5,
+    "components": 1,
+    "heap_bytes": 118840002,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 444.19999998807907,
+    "hover_frame_ms": 3,
+    "figure_payload_bytes": 1141221
+  },
+  {
+    "check": "GT7 equal GG geometry",
+    "status": "passed",
+    "width": 479.99999999999994,
+    "height": 480,
+    "ratio": 0.9999999999999998
+  },
+  {
+    "check": "GT7 Tyre Analysis",
+    "status": "passed",
+    "text": "tyre_core_fl\n\nCursore 51,481 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n62,997 \u00b0C\n\nt = 51.480 s \u00b7 Campione sorgente 10028",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "51.48",
+        "text": "Lap 2 \u2014 1:48.650\n62,997 \u00b0C\n\nt = 51.480 s \u00b7 Campione sorgente 10028"
+      }
+    ],
+    "lines": [
+      {
+        "x": 418.69,
+        "y": 35,
+        "time": 51.48056406318291,
+        "axis": "x:y"
+      },
+      {
+        "x": 418.69,
+        "y": 209.72,
+        "time": 51.48056406318291,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 418.69,
+        "y": 384.44,
+        "time": 51.48056406318291,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 418.69,
+        "y": 559.16,
+        "time": 51.48056406318291,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "tyre_core_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 Tyre Analysis rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 127669456,
+    "runtime": "cache",
+    "runtime_load_ms": 906.6999999880791,
+    "plot_ready_ms": 103.59999999403954,
+    "hover_frame_ms": 6.9000000059604645,
+    "figure_payload_bytes": 557683
+  },
+  {
+    "check": "GT7 Cockpit",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 48,213 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 2 \u2014 1:48.650\n204,913 km/h\n\nt = 48.213 s \u00b7 Campione sorgente 9832",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "gt7:a2e0709efc751904552890bf8398f3090763c8da:Lap 2 \u2014 1:48.650",
+        "color": "rgb(255, 255, 255)",
+        "time": "48.213",
+        "text": "Lap 2 \u2014 1:48.650\n204,913 km/h\n\nt = 48.213 s \u00b7 Campione sorgente 9832"
+      }
+    ],
+    "lines": [
+      {
+        "x": 397.18,
+        "y": 35,
+        "time": 48.21296795031141,
+        "axis": "x:y"
+      },
+      {
+        "x": 397.18,
+        "y": 214.29599999999996,
+        "time": 48.21296795031141,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 397.18,
+        "y": 393.59200000000004,
+        "time": 48.21296795031141,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 397.18,
+        "y": 572.888,
+        "time": 48.21296795031141,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 397.18,
+        "y": 752.1840000000001,
+        "time": 48.21296795031141,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 Cockpit rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 158628001,
+    "runtime": "cache",
+    "runtime_load_ms": 820.7000000178814,
+    "plot_ready_ms": 108.09999999403954,
+    "hover_frame_ms": 7,
+    "figure_payload_bytes": 531849
+  },
+  {
+    "check": "GT7 Position / Track Map",
+    "status": "passed",
+    "text": "speed_kmh\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nspeed_kmh\nCampione sorgente 12148\nx=-633,798\ny=-659,823\nspeed_kmh=65,378 km/h\n\nPunto grafico 318\n\nVeicolo selezionato\nN/D\n\nSelezione non ispezionata",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "speed_kmh",
+        "color": "rgb(52, 29, 84)",
+        "text": "speed_kmh\nCampione sorgente 12148\nx=-633,798\ny=-659,823\nspeed_kmh=65,378 km/h\n\nPunto grafico 318"
+      },
+      {
+        "id": "Veicolo selezionato",
+        "color": "rgb(245, 249, 255)",
+        "text": "Veicolo selezionato\nN/D\n\nSelezione non ispezionata"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "GT7 Position / Track Map rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 139042000,
+    "runtime": "cache",
+    "runtime_load_ms": 878.0999999940395,
+    "plot_ready_ms": 218.80000001192093,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 1999493
+  },
+  {
+    "check": "GT7 preserved vehicle orientation",
+    "status": "passed",
+    "vehicle_sample": "6944",
+    "vehicle_x": -394.6713562011719,
+    "vehicle_y": 209.37733459472656,
+    "vehicle_theta": 1.7210371038967045,
+    "orientation_basis": "Orientation estimated from trajectory (forward difference).",
+    "hover_mode": "xy",
+    "hover_selections": [
+      {
+        "id": "speed_kmh",
+        "label": "speed_kmh",
+        "color": "rgb(52, 29, 84)"
+      },
+      {
+        "id": "Veicolo selezionato",
+        "label": "Veicolo selezionato",
+        "color": "#f5f9ff"
+      }
+    ]
+  },
+  {
+    "check": "ACGym Signals",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 54,157 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n160,36 km/h\n\nt = 54.158 s \u00b7 Campione sorgente 5413",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "54.158",
+        "text": "Lap 1 \u2014 1:56.688\n160,36 km/h\n\nt = 54.158 s \u00b7 Campione sorgente 5413"
+      }
+    ],
+    "lines": [
+      {
+        "x": 411.81,
+        "y": 35,
+        "time": 54.15732578346946,
+        "axis": "x:y"
+      },
+      {
+        "x": 411.81,
+        "y": 209.72,
+        "time": 54.15732578346946,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 411.81,
+        "y": 384.44,
+        "time": 54.15732578346946,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 411.81,
+        "y": 559.16,
+        "time": 54.15732578346946,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym Signals rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 156237055,
+    "runtime": "cache",
+    "runtime_load_ms": 847.1999999880791,
+    "plot_ready_ms": 105.7999999821186,
+    "hover_frame_ms": 6,
+    "figure_payload_bytes": 592661
+  },
+  {
+    "check": "ACGym Driver Inputs",
+    "status": "passed",
+    "text": "throttle_pct\n\nCursore 52,141 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n56,25 %\n\nt = 52.140 s \u00b7 Campione sorgente 5211",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "52.14",
+        "text": "Lap 1 \u2014 1:56.688\n56,25 %\n\nt = 52.140 s \u00b7 Campione sorgente 5211"
+      }
+    ],
+    "lines": [
+      {
+        "x": 399.45,
+        "y": 35,
+        "time": 52.140625628107244,
+        "axis": "x:y"
+      },
+      {
+        "x": 399.45,
+        "y": 217.34666666666666,
+        "time": 52.140625628107244,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 399.45,
+        "y": 399.6933333333333,
+        "time": 52.140625628107244,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 399.45,
+        "y": 582.04,
+        "time": 52.140625628107244,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 399.45,
+        "y": 764.3866666666667,
+        "time": 52.140625628107244,
+        "axis": "x5:y5"
+      },
+      {
+        "x": 399.45,
+        "y": 946.7333333333333,
+        "time": 52.140625628107244,
+        "axis": "x6:y6"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "throttle_pct",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym Driver Inputs rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 181892378,
+    "runtime": "cache",
+    "runtime_load_ms": 841.5,
+    "plot_ready_ms": 121.7999999821186,
+    "hover_frame_ms": 6.800000011920929,
+    "figure_payload_bytes": 791838
+  },
+  {
+    "check": "ACGym Vehicle Dynamics",
+    "status": "passed",
+    "text": "g_lat\n\nCursore 54,241 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n-2,499 g\n\nt = 54.240 s \u00b7 Campione sorgente 5421",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "54.24",
+        "text": "Lap 1 \u2014 1:56.688\n-2,499 g\n\nt = 54.240 s \u00b7 Campione sorgente 5421"
+      }
+    ],
+    "lines": [
+      {
+        "x": 412.32,
+        "y": 35,
+        "time": 54.2405408314098,
+        "axis": "x:y"
+      },
+      {
+        "x": 412.32,
+        "y": 186.84,
+        "time": 54.2405408314098,
+        "axis": "x2:y2"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "g_lat",
+    "pixelErrors": [
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym Vehicle Dynamics rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 144731761,
+    "runtime": "cache",
+    "runtime_load_ms": 867.3000000119209,
+    "plot_ready_ms": 384.7000000178814,
+    "hover_frame_ms": 8.900000005960464,
+    "figure_payload_bytes": 705324
+  },
+  {
+    "check": "ACGym dynamics chart 1",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nAccelerazione laterale (g)=-2,369\nAccelerazione longitudinale (g)=-0,415\nCampione sorgente=5431\nVelocit\u00e0 (km/h)=156,97\n\nPunto grafico 1312",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nAccelerazione laterale (g)=-2,369\nAccelerazione longitudinale (g)=-0,415\nCampione sorgente=5431\nVelocit\u00e0 (km/h)=156,97\n\nPunto grafico 1312"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "ACGym dynamics chart 1 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 147440686,
+    "runtime": "cache",
+    "runtime_load_ms": 867.3000000119209,
+    "plot_ready_ms": 384.7000000178814,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 389409
+  },
+  {
+    "check": "ACGym dynamics chart 2",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nspeed_kmh (km/h)=164,865\ng_lat (g)=-2,505\nCampione sorgente=5375\n\nPunto grafico 1055",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nspeed_kmh (km/h)=164,865\ng_lat (g)=-2,505\nCampione sorgente=5375\n\nPunto grafico 1055"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "ACGym dynamics chart 2 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 149016734,
+    "runtime": "cache",
+    "runtime_load_ms": 867.3000000119209,
+    "plot_ready_ms": 384.7000000178814,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 307260
+  },
+  {
+    "check": "ACGym dynamics chart 3",
+    "status": "passed",
+    "text": "load_fl\n\nCursore 53,18 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n3011,6 N\n\nt = 53.180 s \u00b7 Campione sorgente 5315",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "53.18",
+        "text": "Lap 1 \u2014 1:56.688\n3011,6 N\n\nt = 53.180 s \u00b7 Campione sorgente 5315"
+      }
+    ],
+    "lines": [
+      {
+        "x": 405.82,
+        "y": 35,
+        "time": 53.17997719504616,
+        "axis": "x:y"
+      },
+      {
+        "x": 405.82,
+        "y": 209.72,
+        "time": 53.17997719504616,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 405.82,
+        "y": 384.44,
+        "time": 53.17997719504616,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 405.82,
+        "y": 559.16,
+        "time": 53.17997719504616,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "load_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym dynamics chart 3 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 151715268,
+    "runtime": "cache",
+    "runtime_load_ms": 867.3000000119209,
+    "plot_ready_ms": 384.7000000178814,
+    "hover_frame_ms": 4.700000017881393,
+    "figure_payload_bytes": 1057236
+  },
+  {
+    "check": "ACGym equal GG geometry",
+    "status": "passed",
+    "width": 479.99999999999994,
+    "height": 480,
+    "ratio": 0.9999999999999998
+  },
+  {
+    "check": "ACGym Tyre Analysis",
+    "status": "passed",
+    "text": "tyre_core_fl\n\nCursore 53,42 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n53,619 \u00b0C\n\nt = 53.420 s \u00b7 Campione sorgente 5339",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "53.42",
+        "text": "Lap 1 \u2014 1:56.688\n53,619 \u00b0C\n\nt = 53.420 s \u00b7 Campione sorgente 5339"
+      }
+    ],
+    "lines": [
+      {
+        "x": 407.29,
+        "y": 35,
+        "time": 53.41982296031605,
+        "axis": "x:y"
+      },
+      {
+        "x": 407.29,
+        "y": 209.72,
+        "time": 53.41982296031605,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 407.29,
+        "y": 384.44,
+        "time": 53.41982296031605,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 407.29,
+        "y": 559.16,
+        "time": 53.41982296031605,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "tyre_core_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym Tyre Analysis rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 176509647,
+    "runtime": "cache",
+    "runtime_load_ms": 844,
+    "plot_ready_ms": 107.19999998807907,
+    "hover_frame_ms": 6.4000000059604645,
+    "figure_payload_bytes": 411429
+  },
+  {
+    "check": "ACGym Cockpit",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 52,141 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:90a6de1c8add93b9d35858e6a677b6903fd8be4b62eb934ba1e975759ecada1d:Lap 1 \u2014 1:56.688",
+        "color": "rgb(213, 184, 255)",
+        "time": "52.14",
+        "text": "Lap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211"
+      }
+    ],
+    "lines": [
+      {
+        "x": 399.45,
+        "y": 35,
+        "time": 52.140625628107244,
+        "axis": "x:y"
+      },
+      {
+        "x": 399.45,
+        "y": 214.29599999999996,
+        "time": 52.140625628107244,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 399.45,
+        "y": 393.59200000000004,
+        "time": 52.140625628107244,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 399.45,
+        "y": 572.888,
+        "time": 52.140625628107244,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 399.45,
+        "y": 752.1840000000001,
+        "time": 52.140625628107244,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym Cockpit rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 203447620,
+    "runtime": "cache",
+    "runtime_load_ms": 788.9000000059605,
+    "plot_ready_ms": 114,
+    "hover_frame_ms": 6.5,
+    "figure_payload_bytes": 631601
+  },
+  {
+    "check": "ACGym unavailable XY explained",
+    "status": "passed"
+  },
+  {
+    "check": "Barcelona Signals",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,557 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n160,905 km/h\n\nt = 45.557 s \u00b7 Campione sorgente 7528",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "45.5575",
+        "text": "Lap 8 \u2014 1:40.268\n160,905 km/h\n\nt = 45.557 s \u00b7 Campione sorgente 7528"
+      }
+    ],
+    "lines": [
+      {
+        "x": 404.82,
+        "y": 35,
+        "time": 45.55726641141451,
+        "axis": "x:y"
+      },
+      {
+        "x": 404.82,
+        "y": 209.72,
+        "time": 45.55726641141451,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 404.82,
+        "y": 384.44,
+        "time": 45.55726641141451,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 404.82,
+        "y": 559.16,
+        "time": 45.55726641141451,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona Signals rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 232375770,
+    "runtime": "cache",
+    "runtime_load_ms": 809.1999999880791,
+    "plot_ready_ms": 102.5,
+    "hover_frame_ms": 7,
+    "figure_payload_bytes": 583095
+  },
+  {
+    "check": "Barcelona Driver Inputs",
+    "status": "passed",
+    "text": "throttle_pct\n\nCursore 45,081 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n100 %\n\nt = 45.080 s \u00b7 Campione sorgente 7504",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "45.08",
+        "text": "Lap 8 \u2014 1:40.268\n100 %\n\nt = 45.080 s \u00b7 Campione sorgente 7504"
+      }
+    ],
+    "lines": [
+      {
+        "x": 401.42,
+        "y": 35,
+        "time": 45.0806091425969,
+        "axis": "x:y"
+      },
+      {
+        "x": 401.42,
+        "y": 217.34666666666666,
+        "time": 45.0806091425969,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 401.42,
+        "y": 399.6933333333333,
+        "time": 45.0806091425969,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 401.42,
+        "y": 582.04,
+        "time": 45.0806091425969,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 401.42,
+        "y": 764.3866666666667,
+        "time": 45.0806091425969,
+        "axis": "x5:y5"
+      },
+      {
+        "x": 401.42,
+        "y": 946.7333333333333,
+        "time": 45.0806091425969,
+        "axis": "x6:y6"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "throttle_pct",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona Driver Inputs rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 247521297,
+    "runtime": "cache",
+    "runtime_load_ms": 779.1999999880791,
+    "plot_ready_ms": 119.7999999821186,
+    "hover_frame_ms": 6.300000011920929,
+    "figure_payload_bytes": 800305
+  },
+  {
+    "check": "Barcelona Vehicle Dynamics",
+    "status": "passed",
+    "text": "g_lat\n\nCursore 45,4 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n0,059 g\n\nt = 45.400 s \u00b7 Campione sorgente 7520",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "45.4",
+        "text": "Lap 8 \u2014 1:40.268\n0,059 g\n\nt = 45.400 s \u00b7 Campione sorgente 7520"
+      }
+    ],
+    "lines": [
+      {
+        "x": 403.7,
+        "y": 35,
+        "time": 45.400251711331876,
+        "axis": "x:y"
+      },
+      {
+        "x": 403.7,
+        "y": 186.84,
+        "time": 45.400251711331876,
+        "axis": "x2:y2"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "g_lat",
+    "pixelErrors": [
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona Vehicle Dynamics rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 293090977,
+    "runtime": "cache",
+    "runtime_load_ms": 787.3000000119209,
+    "plot_ready_ms": 366.59999999403954,
+    "hover_frame_ms": 11.199999988079071,
+    "figure_payload_bytes": 622892
+  },
+  {
+    "check": "Barcelona dynamics chart 1",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nAccelerazione laterale (g)=0,677\nAccelerazione longitudinale (g)=0,265\nCampione sorgente=7607\nVelocit\u00e0 (km/h)=182,38\n\nPunto grafico 1246",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nAccelerazione laterale (g)=0,677\nAccelerazione longitudinale (g)=0,265\nCampione sorgente=7607\nVelocit\u00e0 (km/h)=182,38\n\nPunto grafico 1246"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "Barcelona dynamics chart 1 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 295580197,
+    "runtime": "cache",
+    "runtime_load_ms": 787.3000000119209,
+    "plot_ready_ms": 366.59999999403954,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 344676
+  },
+  {
+    "check": "Barcelona dynamics chart 2",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nspeed_kmh (km/h)=172,18\ng_lat (g)=0,526\nCampione sorgente=7567\n\nPunto grafico 1153",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nspeed_kmh (km/h)=172,18\ng_lat (g)=0,526\nCampione sorgente=7567\n\nPunto grafico 1153"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "Barcelona dynamics chart 2 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 297119385,
+    "runtime": "cache",
+    "runtime_load_ms": 787.3000000119209,
+    "plot_ready_ms": 366.59999999403954,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 312773
+  },
+  {
+    "check": "Barcelona dynamics chart 3",
+    "status": "passed",
+    "text": "load_fl\n\nCursore 45,12 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n1171,571 N\n\nt = 45.120 s \u00b7 Campione sorgente 7506",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "45.12",
+        "text": "Lap 8 \u2014 1:40.268\n1171,571 N\n\nt = 45.120 s \u00b7 Campione sorgente 7506"
+      }
+    ],
+    "lines": [
+      {
+        "x": 401.7,
+        "y": 35,
+        "time": 45.11986709594726,
+        "axis": "x:y"
+      },
+      {
+        "x": 401.7,
+        "y": 209.72,
+        "time": 45.11986709594726,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 401.7,
+        "y": 384.44,
+        "time": 45.11986709594726,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 401.7,
+        "y": 559.16,
+        "time": 45.11986709594726,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "load_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona dynamics chart 3 rendering budget",
+    "status": "passed",
+    "figures": 4,
+    "components": 1,
+    "heap_bytes": 299828914,
+    "runtime": "cache",
+    "runtime_load_ms": 787.3000000119209,
+    "plot_ready_ms": 366.59999999403954,
+    "hover_frame_ms": 3.0999999940395355,
+    "figure_payload_bytes": 1118753
+  },
+  {
+    "check": "Barcelona equal GG geometry",
+    "status": "passed",
+    "width": 479.99999999999994,
+    "height": 480,
+    "ratio": 0.9999999999999998
+  },
+  {
+    "check": "Barcelona Tyre Analysis",
+    "status": "passed",
+    "text": "tyre_core_fl\n\nCursore 55,962 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n86,179 \u00b0C\n\nt = 55.962 s \u00b7 Campione sorgente 8048",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "55.9625",
+        "text": "Lap 8 \u2014 1:40.268\n86,179 \u00b0C\n\nt = 55.962 s \u00b7 Campione sorgente 8048"
+      }
+    ],
+    "lines": [
+      {
+        "x": 479.04,
+        "y": 35,
+        "time": 55.96233538114107,
+        "axis": "x:y"
+      },
+      {
+        "x": 479.04,
+        "y": 209.72,
+        "time": 55.96233538114107,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 479.04,
+        "y": 384.44,
+        "time": 55.96233538114107,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 479.04,
+        "y": 559.16,
+        "time": 55.96233538114107,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "tyre_core_fl",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona Tyre Analysis rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 302705993,
+    "runtime": "cache",
+    "runtime_load_ms": 841.8000000119209,
+    "plot_ready_ms": 94.2000000178814,
+    "hover_frame_ms": 6.700000017881393,
+    "figure_payload_bytes": 539397
+  },
+  {
+    "check": "Barcelona Cockpit",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,257 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nLap 8 \u2014 1:40.268\n156,54 km/h\n\nt = 45.258 s \u00b7 Campione sorgente 7513",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "acgym:ks_barcelona-layout_gp:3aeab6272c572efefb4054684fdab1eb93084f10413fd59e0e72a334ed3115de:Lap 8 \u2014 1:40.268",
+        "color": "rgb(255, 140, 66)",
+        "time": "45.2575",
+        "text": "Lap 8 \u2014 1:40.268\n156,54 km/h\n\nt = 45.258 s \u00b7 Campione sorgente 7513"
+      }
+    ],
+    "lines": [
+      {
+        "x": 402.68,
+        "y": 35,
+        "time": 45.25725281935471,
+        "axis": "x:y"
+      },
+      {
+        "x": 402.68,
+        "y": 214.29599999999996,
+        "time": 45.25725281935471,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 402.68,
+        "y": 393.59200000000004,
+        "time": 45.25725281935471,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 402.68,
+        "y": 572.888,
+        "time": 45.25725281935471,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 402.68,
+        "y": 752.1840000000001,
+        "time": 45.25725281935471,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona Cockpit rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 331494114,
+    "runtime": "cache",
+    "runtime_load_ms": 799.2000000178814,
+    "plot_ready_ms": 111.40000000596046,
+    "hover_frame_ms": 7.300000011920929,
+    "figure_payload_bytes": 598411
+  },
+  {
+    "check": "ACGym unavailable XY explained",
+    "status": "passed"
+  },
+  {
+    "check": "GT7 comparison four channels",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 51,98 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n229,742 km/h\n\nt = 51.980 s \u00b7 Campione sorgente 10058\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n234,122 km/h\n\nt = 51.980 s \u00b7 Campione sorgente 16577",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "51.98",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n229,742 km/h\n\nt = 51.980 s \u00b7 Campione sorgente 10058"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "51.98",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n234,122 km/h\n\nt = 51.980 s \u00b7 Campione sorgente 16577"
+      }
+    ],
+    "lines": [
+      {
+        "x": 421.98,
+        "y": 140,
+        "time": 51.98034623579545,
+        "axis": "x:y"
+      },
+      {
+        "x": 421.98,
+        "y": 325.625,
+        "time": 51.98034623579545,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 421.98,
+        "y": 511.25,
+        "time": 51.98034623579545,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 421.98,
+        "y": 696.875,
+        "time": 51.98034623579545,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 comparison four channels rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 264898889,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 8.299999982118607,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "Shuffled hover points preserve selection rows",
+    "status": "passed",
+    "ids": [
+      "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+      "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3"
+    ]
+  },
+  {
+    "check": "Gap and null samples never interpolate",
+    "status": "passed",
+    "gap": null,
+    "missing": null,
+    "observed": {
+      "x": 0.1,
+      "y": 2,
+      "i": 1
+    }
+  },
+  {
+    "check": "Unavailable second selection keeps its fixed row",
+    "status": "passed",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "text": "248,432 km/h"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "text": "N/D"
+      }
+    ]
+  },
+  {
+    "check": "GT7 comparison channel 1",
+    "status": "passed",
+    "text": "throttle_pct\n\nCursore 22,08 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n100 %\n\nt = 22.080 s \u00b7 Campione sorgente 8264\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "22.08",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n100 %\n\nt = 22.080 s \u00b7 Campione sorgente 8264"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 225.15,
+        "y": 140,
+        "time": 22.079811261199733,
+        "axis": "x:y"
+      },
+      {
+        "x": 225.15,
+        "y": 325.625,
+        "time": 22.079811261199733,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 225.15,
+        "y": 511.25,
+        "time": 22.079811261199733,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 225.15,
+        "y": 696.875,
+        "time": 22.079811261199733,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "throttle_pct",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 comparison channel 1 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 245335324,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 3.399999976158142,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "GT7 comparison channel 2",
+    "status": "passed",
+    "text": "brake_pct\n\nCursore 76,83 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n0 %\n\nt = 76.830 s \u00b7 Campione sorgente 11549\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n0 %\n\nt = 76.830 s \u00b7 Campione sorgente 18068",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "76.83",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n0 %\n\nt = 76.830 s \u00b7 Campione sorgente 11549"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "76.83",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n0 %\n\nt = 76.830 s \u00b7 Campione sorgente 18068"
+      }
+    ],
+    "lines": [
+      {
+        "x": 585.56,
+        "y": 140,
+        "time": 76.82986670604785,
+        "axis": "x:y"
+      },
+      {
+        "x": 585.56,
+        "y": 325.625,
+        "time": 76.82986670604785,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 585.56,
+        "y": 511.25,
+        "time": 76.82986670604785,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 585.56,
+        "y": 696.875,
+        "time": 76.82986670604785,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "brake_pct",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 comparison channel 2 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 250143830,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 4.199999988079071,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "GT7 comparison channel 3",
+    "status": "passed",
+    "text": "rpm\n\nCursore 91,83 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n6641 rpm\n\nt = 91.830 s \u00b7 Campione sorgente 12449\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n6868 rpm\n\nt = 91.830 s \u00b7 Campione sorgente 18968",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "91.83",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n6641 rpm\n\nt = 91.830 s \u00b7 Campione sorgente 12449"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "91.83",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n6868 rpm\n\nt = 91.830 s \u00b7 Campione sorgente 18968"
+      }
+    ],
+    "lines": [
+      {
+        "x": 684.3,
+        "y": 140,
+        "time": 91.82951622869317,
+        "axis": "x:y"
+      },
+      {
+        "x": 684.3,
+        "y": 325.625,
+        "time": 91.82951622869317,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 684.3,
+        "y": 511.25,
+        "time": 91.82951622869317,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 684.3,
+        "y": 696.875,
+        "time": 91.82951622869317,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "rpm",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 comparison channel 3 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 254901871,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 4,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "GT7 zoom cursor alignment",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,18 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "45.18",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 394.42,
+        "y": 140,
+        "time": 45.17985822770979,
+        "axis": "x:y"
+      },
+      {
+        "x": 394.42,
+        "y": 325.625,
+        "time": 45.17985822770979,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 394.42,
+        "y": 511.25,
+        "time": 45.17985822770979,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 394.42,
+        "y": 696.875,
+        "time": 45.17985822770979,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 zoom cursor alignment rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 265595732,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 3.4000000059604645,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "GT7 pan cursor alignment",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 56,48 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n240,251 km/h\n\nt = 56.480 s \u00b7 Campione sorgente 10328\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n239,63 km/h\n\nt = 56.480 s \u00b7 Campione sorgente 16847",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "56.48",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n240,251 km/h\n\nt = 56.480 s \u00b7 Campione sorgente 10328"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "56.48",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\n239,63 km/h\n\nt = 56.480 s \u00b7 Campione sorgente 16847"
+      }
+    ],
+    "lines": [
+      {
+        "x": 406.04,
+        "y": 140,
+        "time": 56.47999754152098,
+        "axis": "x:y"
+      },
+      {
+        "x": 406.04,
+        "y": 325.625,
+        "time": 56.47999754152098,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 406.04,
+        "y": 511.25,
+        "time": 56.47999754152098,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 406.04,
+        "y": 696.875,
+        "time": 56.47999754152098,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 pan cursor alignment rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 216039770,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 3,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "Keyboard sample inspection leaves figure data and Python idle unchanged",
+    "status": "passed"
+  },
+  {
+    "check": "Twenty pointer updates without rerun or numerical mutation",
+    "status": "passed",
+    "elapsed_s": 0.32357059998321347
+  },
+  {
+    "check": "Last readout retained on leave",
+    "status": "passed"
+  },
+  {
+    "check": "comparison responsive 960",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,181 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "45.18",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 183.87,
+        "y": 140,
+        "time": 45.18060487689394,
+        "axis": "x:y"
+      },
+      {
+        "x": 183.87,
+        "y": 325.625,
+        "time": 45.18060487689394,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 183.87,
+        "y": 511.25,
+        "time": 45.18060487689394,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 183.87,
+        "y": 696.875,
+        "time": 45.18060487689394,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "comparison responsive 960 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 249094690,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 1.800000011920929,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "comparison responsive 480",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,18 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "45.18",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 167.5,
+        "y": 140,
+        "time": 45.17985611510791,
+        "axis": "x:y"
+      },
+      {
+        "x": 167.5,
+        "y": 325.625,
+        "time": 45.17985611510791,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 167.5,
+        "y": 511.25,
+        "time": 45.17985611510791,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 167.5,
+        "y": 696.875,
+        "time": 45.17985611510791,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "comparison responsive 480 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 232320086,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 1.699999988079071,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "comparison responsive 1600",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,18 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "45.18",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n175,198 km/h\n\nt = 45.180 s \u00b7 Campione sorgente 9650"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 305.05,
+        "y": 140,
+        "time": 45.1804182145979,
+        "axis": "x:y"
+      },
+      {
+        "x": 305.05,
+        "y": 325.625,
+        "time": 45.1804182145979,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 305.05,
+        "y": 511.25,
+        "time": 45.1804182145979,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 305.05,
+        "y": 696.875,
+        "time": 45.1804182145979,
+        "axis": "x4:y4"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "comparison responsive 1600 rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 235708198,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.900000005960464,
+    "hover_frame_ms": 2.5,
+    "figure_payload_bytes": 1035081
+  },
+  {
+    "check": "Changed channels preserve cursor and identity",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 48,213 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n204,913 km/h\n\nt = 48.213 s \u00b7 Campione sorgente 9832\n\nGT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:2",
+        "color": "rgb(213, 184, 255)",
+        "time": "48.213",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 2 \u2014 1:48.650\n204,913 km/h\n\nt = 48.213 s \u00b7 Campione sorgente 9832"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:lap:3",
+        "color": "rgb(255, 140, 66)",
+        "time": "",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Lap 3 \u2014 1:46.657\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 397.18,
+        "y": 156,
+        "time": 48.21296795031141,
+        "axis": "x:y"
+      },
+      {
+        "x": 397.18,
+        "y": 346.08,
+        "time": 48.21296795031141,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 397.18,
+        "y": 536.16,
+        "time": 48.21296795031141,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 397.18,
+        "y": 726.24,
+        "time": 48.21296795031141,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 397.18,
+        "y": 916.32,
+        "time": 48.21296795031141,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Changed channels preserve cursor and identity rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 252058264,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 46.599999994039536,
+    "hover_frame_ms": 2.5,
+    "figure_payload_bytes": 1059516
+  },
+  {
+    "check": "GT7 time windows",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 13,681 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nGT7 Trial Mountain / Porsche 962 C / Finestra A 0.0-30.0 s\n225,178 km/h\n\nt = 13.681 s \u00b7 Campione sorgente 801\n\nGT7 Trial Mountain / Porsche 962 C / Finestra B 0.0-30.0 s\n225,178 km/h\n\nt = 13.681 s \u00b7 Campione sorgente 801",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:window:A:(0.0, 30.0)",
+        "color": "rgb(255, 140, 66)",
+        "time": "13.681423425674438",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Finestra A 0.0-30.0 s\n225,178 km/h\n\nt = 13.681 s \u00b7 Campione sorgente 801"
+      },
+      {
+        "id": "1:C:\\Users\\stefa\\Desktop\\EPICODE\\CAPSTONE PROJECT\\data\\raw\\gt7_trial_mountain_962c:window:B:(0.0, 30.0)",
+        "color": "rgb(99, 179, 255)",
+        "time": "13.681423425674438",
+        "text": "GT7 Trial Mountain / Porsche 962 C / Finestra B 0.0-30.0 s\n225,178 km/h\n\nt = 13.681 s \u00b7 Campione sorgente 801"
+      }
+    ],
+    "lines": [
+      {
+        "x": 406.1,
+        "y": 156,
+        "time": 13.681483003920453,
+        "axis": "x:y"
+      },
+      {
+        "x": 406.1,
+        "y": 346.08,
+        "time": 13.681483003920453,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 406.1,
+        "y": 536.16,
+        "time": 13.681483003920453,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 406.1,
+        "y": 726.24,
+        "time": 13.681483003920453,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 406.1,
+        "y": 916.32,
+        "time": 13.681483003920453,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "GT7 time windows rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 261229363,
+    "runtime": "cache",
+    "runtime_load_ms": 807.1999999880791,
+    "plot_ready_ms": 50.5,
+    "hover_frame_ms": 2.5,
+    "figure_payload_bytes": 1600645
+  },
+  {
+    "check": "ACGym verified comparison",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 52,141 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nACGym 20240229_HC \u00b7 stint 1 / Lap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211\n\nACGym 20240229_HC \u00b7 stint 1 / Lap 2 \u2014 2:05.554\nN/D\n\nMisura non disponibile",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:acgym:20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld:lap:1",
+        "color": "rgb(99, 179, 255)",
+        "time": "52.14",
+        "text": "ACGym 20240229_HC \u00b7 stint 1 / Lap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211"
+      },
+      {
+        "id": "1:acgym:20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld:lap:2",
+        "color": "rgb(255, 107, 157)",
+        "time": "",
+        "text": "ACGym 20240229_HC \u00b7 stint 1 / Lap 2 \u2014 2:05.554\nN/D\n\nMisura non disponibile"
+      }
+    ],
+    "lines": [
+      {
+        "x": 376.93,
+        "y": 140,
+        "time": 52.14078696596372,
+        "axis": "x:y"
+      },
+      {
+        "x": 376.93,
+        "y": 333.59999999999997,
+        "time": 52.14078696596372,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 376.93,
+        "y": 527.1999999999999,
+        "time": 52.14078696596372,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 376.93,
+        "y": 720.8000000000001,
+        "time": 52.14078696596372,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 376.93,
+        "y": 914.4,
+        "time": 52.14078696596372,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "ACGym verified comparison rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 249888424,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 113.5,
+    "hover_frame_ms": 7.199999988079071,
+    "figure_payload_bytes": 1258607
+  },
+  {
+    "check": "Compatible ACGym recordings retain distinct selection identities",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 52,14 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nACGym 20240229_HC \u00b7 stint 1 / Lap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211\n\nACGym 20240304_AB \u00b7 stint 1 / Lap 2 \u2014 2:23.060\n17,64 km/h\n\nt = 52.145 s \u00b7 Campione sorgente 9823",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:acgym:20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld:lap:1",
+        "color": "rgb(99, 179, 255)",
+        "time": "52.14",
+        "text": "ACGym 20240229_HC \u00b7 stint 1 / Lap 1 \u2014 1:56.688\n161,78 km/h\n\nt = 52.140 s \u00b7 Campione sorgente 5211"
+      },
+      {
+        "id": "1:acgym:20240304_AB/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld:lap:2",
+        "color": "rgb(255, 107, 157)",
+        "time": "52.144999999999996",
+        "text": "ACGym 20240304_AB \u00b7 stint 1 / Lap 2 \u2014 2:23.060\n17,64 km/h\n\nt = 52.145 s \u00b7 Campione sorgente 9823"
+      }
+    ],
+    "lines": [
+      {
+        "x": 340.6,
+        "y": 140,
+        "time": 52.1395741368007,
+        "axis": "x:y"
+      },
+      {
+        "x": 340.6,
+        "y": 333.59999999999997,
+        "time": 52.1395741368007,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 340.6,
+        "y": 527.1999999999999,
+        "time": 52.1395741368007,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 340.6,
+        "y": 720.8000000000001,
+        "time": 52.1395741368007,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 340.6,
+        "y": 914.4,
+        "time": 52.1395741368007,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Compatible ACGym recordings retain distinct selection identities rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 247358426,
+    "runtime": "cache",
+    "runtime_load_ms": 833.2999999821186,
+    "plot_ready_ms": 48.89999997615814,
+    "hover_frame_ms": 4.800000011920929,
+    "figure_payload_bytes": 1224328
+  },
+  {
+    "check": "Barcelona verified comparison",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 45,257 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nACGym 20240325_WL \u00b7 stint 2 / Lap 8 \u2014 1:40.268\n156,54 km/h\n\nt = 45.258 s \u00b7 Campione sorgente 7513\n\nACGym 20240325_WL \u00b7 stint 2 / Lap 9 \u2014 1:38.629\n167,47 km/h\n\nt = 45.252 s \u00b7 Campione sorgente 12526",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "0:barcelona:20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld:lap:8",
+        "color": "rgb(213, 184, 255)",
+        "time": "45.2575",
+        "text": "ACGym 20240325_WL \u00b7 stint 2 / Lap 8 \u2014 1:40.268\n156,54 km/h\n\nt = 45.258 s \u00b7 Campione sorgente 7513"
+      },
+      {
+        "id": "1:barcelona:20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld:lap:9",
+        "color": "rgb(255, 255, 255)",
+        "time": "45.2525",
+        "text": "ACGym 20240325_WL \u00b7 stint 2 / Lap 9 \u2014 1:38.629\n167,47 km/h\n\nt = 45.252 s \u00b7 Campione sorgente 12526"
+      }
+    ],
+    "lines": [
+      {
+        "x": 402.72,
+        "y": 140,
+        "time": 45.257370997288845,
+        "axis": "x:y"
+      },
+      {
+        "x": 402.72,
+        "y": 333.59999999999997,
+        "time": 45.257370997288845,
+        "axis": "x2:y2"
+      },
+      {
+        "x": 402.72,
+        "y": 527.1999999999999,
+        "time": 45.257370997288845,
+        "axis": "x3:y3"
+      },
+      {
+        "x": 402.72,
+        "y": 720.8000000000001,
+        "time": 45.257370997288845,
+        "axis": "x4:y4"
+      },
+      {
+        "x": 402.72,
+        "y": 914.4,
+        "time": 45.257370997288845,
+        "axis": "x5:y5"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "check": "Barcelona verified comparison rendering budget",
+    "status": "passed",
+    "figures": 1,
+    "components": 1,
+    "heap_bytes": 285799567,
+    "runtime": "cache",
+    "runtime_load_ms": 846.2000000178814,
+    "plot_ready_ms": 104.80000001192093,
+    "hover_frame_ms": 7.800000011920929,
+    "figure_payload_bytes": 2667408
+  },
+  {
+    "check": "Barcelona inclusive population and frozen split visible",
+    "status": "passed",
+    "laps": 205
+  },
+  {
+    "check": "ML chart 0",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nTempo verificato (s)=106,225\nTempo previsto (s)=109,936\nlap_uid=b572da04c70fac3ad5fb58a611b9232a6f9292df55e5f2612f1405fa250e1cf6:lap:6\ncheckpoint_s=20\n\nPunto grafico 81",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nTempo verificato (s)=106,225\nTempo previsto (s)=109,936\nlap_uid=b572da04c70fac3ad5fb58a611b9232a6f9292df55e5f2612f1405fa250e1cf6:lap:6\ncheckpoint_s=20\n\nPunto grafico 81"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "ML chart 0 rendering budget",
+    "status": "passed",
+    "figures": 3,
+    "components": 2,
+    "heap_bytes": 267953152,
+    "runtime": "cache",
+    "runtime_load_ms": 851.5999999940395,
+    "plot_ready_ms": 85.09999999403954,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 34674
+  },
+  {
+    "check": "ML chart 1",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nerror_s=-35\ncount=6\n\nDistribuzione \u00b7 6 campioni nel bin",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nerror_s=-35\ncount=6\n\nDistribuzione \u00b7 6 campioni nel bin"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "ML chart 1 rendering budget",
+    "status": "passed",
+    "figures": 3,
+    "components": 2,
+    "heap_bytes": 268523377,
+    "runtime": "cache",
+    "runtime_load_ms": 851.5999999940395,
+    "plot_ready_ms": 85.09999999403954,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 8629
+  },
+  {
+    "check": "ML chart 2",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nmae_increase_s=1,196\nfeature=braking_fraction\n\nPunto grafico 5",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nmae_increase_s=1,196\nfeature=braking_fraction\n\nPunto grafico 5"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 0
+  },
+  {
+    "check": "ML chart 2 rendering budget",
+    "status": "passed",
+    "figures": 3,
+    "components": 2,
+    "heap_bytes": 269053336,
+    "runtime": "cache",
+    "runtime_load_ms": 1539.2000000178814,
+    "plot_ready_ms": 56.80000001192093,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 1252
+  },
+  {
+    "check": "Barcelona validation Random Forest scatter",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nTempo verificato (s)=99,555\nTempo previsto (s)=100,291\nlap_uid=77e5c9d396a98ade8cd42a539f2d92f469594138678371ed0167e953d9892892:lap:11\ncheckpoint_s=60\n\nPunto grafico 164",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nTempo verificato (s)=99,555\nTempo previsto (s)=100,291\nlap_uid=77e5c9d396a98ade8cd42a539f2d92f469594138678371ed0167e953d9892892:lap:11\ncheckpoint_s=60\n\nPunto grafico 164"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "Barcelona validation Random Forest scatter rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 280451037,
+    "runtime": "cache",
+    "runtime_load_ms": 851.5999999940395,
+    "plot_ready_ms": 41.400000005960464,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 63243
+  },
+  {
+    "check": "Barcelona validation Ridge scatter",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nTempo verificato (s)=99,898\nTempo previsto (s)=102,891\nlap_uid=77e5c9d396a98ade8cd42a539f2d92f469594138678371ed0167e953d9892892:lap:8\ncheckpoint_s=60\n\nPunto grafico 149",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nTempo verificato (s)=99,898\nTempo previsto (s)=102,891\nlap_uid=77e5c9d396a98ade8cd42a539f2d92f469594138678371ed0167e953d9892892:lap:8\ncheckpoint_s=60\n\nPunto grafico 149"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "Barcelona validation Ridge scatter rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 290259378,
+    "runtime": "cache",
+    "runtime_load_ms": 851.5999999940395,
+    "plot_ready_ms": 34.400000005960464,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 63297
+  },
+  {
+    "check": "Barcelona training action reuses frozen evaluation; validation and selected-only test distinguished",
+    "status": "passed"
+  },
+  {
+    "check": "v072 development counts and historical-test exclusion visible",
+    "status": "passed"
+  },
+  {
+    "check": "v072 development diagnostic chart 3",
+    "status": "passed",
+    "text": "F1\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nF0\nN/D\n\nSelezione non ispezionata\n\nF0W\nN/D\n\nSelezione non ispezionata\n\nF1\nvariant=F1\nMAE (s)=13,381\n\nPunto grafico 0\n\nF2\nN/D\n\nSelezione non ispezionata\n\nF3\nN/D\n\nSelezione non ispezionata",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "F0",
+        "color": "rgb(99, 110, 250)",
+        "text": "F0\nN/D\n\nSelezione non ispezionata"
+      },
+      {
+        "id": "F0W",
+        "color": "rgb(239, 85, 59)",
+        "text": "F0W\nN/D\n\nSelezione non ispezionata"
+      },
+      {
+        "id": "F1",
+        "color": "rgb(0, 204, 150)",
+        "text": "F1\nvariant=F1\nMAE (s)=13,381\n\nPunto grafico 0"
+      },
+      {
+        "id": "F2",
+        "color": "rgb(171, 99, 250)",
+        "text": "F2\nN/D\n\nSelezione non ispezionata"
+      },
+      {
+        "id": "F3",
+        "color": "rgb(255, 161, 90)",
+        "text": "F3\nN/D\n\nSelezione non ispezionata"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 0
+  },
+  {
+    "check": "v072 development diagnostic chart 3 rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 350328239,
+    "runtime": "cache",
+    "runtime_load_ms": 1515.2000000178814,
+    "plot_ready_ms": 77.40000000596046,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 2296
+  },
+  {
+    "check": "v072 development diagnostic chart 4",
+    "status": "passed",
+    "text": "F0\n\nCursore 30 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nF0\n12,053\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF3\n11,759\n\nt = 30.000 s \u00b7 Punto grafico 2",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "F0",
+        "color": "rgb(99, 110, 250)",
+        "time": "30",
+        "text": "F0\n12,053\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F3",
+        "color": "rgb(239, 85, 59)",
+        "time": "30",
+        "text": "F3\n11,759\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      }
+    ],
+    "lines": [
+      {
+        "x": 357.5,
+        "y": 100,
+        "time": 30,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "F0",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "v072 development diagnostic chart 4 rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 350921438,
+    "runtime": "cache",
+    "runtime_load_ms": 1515.2000000178814,
+    "plot_ready_ms": 77.40000000596046,
+    "hover_frame_ms": 3.699999988079071,
+    "figure_payload_bytes": 1875
+  },
+  {
+    "check": "v072 development diagnostic chart 5",
+    "status": "passed",
+    "text": "F0\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nF0\nvariant=F0\nFascia=slow\nMAE (s)=36,922\n\nPunto grafico 2\n\nF3\nN/D\n\nSelezione non ispezionata",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "F0",
+        "color": "rgb(99, 110, 250)",
+        "text": "F0\nvariant=F0\nFascia=slow\nMAE (s)=36,922\n\nPunto grafico 2"
+      },
+      {
+        "id": "F3",
+        "color": "rgb(239, 85, 59)",
+        "text": "F3\nN/D\n\nSelezione non ispezionata"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 0
+  },
+  {
+    "check": "v072 development diagnostic chart 5 rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 351423882,
+    "runtime": "cache",
+    "runtime_load_ms": 1515.2000000178814,
+    "plot_ready_ms": 77.40000000596046,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 1231
+  },
+  {
+    "check": "v072 development diagnostic chart 6",
+    "status": "passed",
+    "text": "Lettura grafico\n\nUltimo punto ispezionato \u00b7 coordinate del grafico\n\nSerie\nTarget verificato (s)=113,818\nPrevisione (s)=114,761\ncheckpoint_s=60\n\nPunto grafico 839",
+    "mode": "xy",
+    "rows": [
+      {
+        "id": "0",
+        "color": "rgb(99, 110, 250)",
+        "text": "Serie\nTarget verificato (s)=113,818\nPrevisione (s)=114,761\ncheckpoint_s=60\n\nPunto grafico 839"
+      }
+    ],
+    "lines": [],
+    "native": 0,
+    "outside": true,
+    "point": 1
+  },
+  {
+    "check": "v072 development diagnostic chart 6 rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 352125199,
+    "runtime": "cache",
+    "runtime_load_ms": 1515.2000000178814,
+    "plot_ready_ms": 77.40000000596046,
+    "hover_frame_ms": 0,
+    "figure_payload_bytes": 96231
+  },
+  {
+    "check": "v072 development diagnostic chart 7",
+    "status": "passed",
+    "text": "F0\n\nCursore 30 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nF0\n138,292\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF1\n139,253\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF2\n142,078\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF3\n141,486\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF0W\n148,489\n\nt = 30.000 s \u00b7 Punto grafico 2",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "F0",
+        "color": "rgb(99, 110, 250)",
+        "time": "30",
+        "text": "F0\n138,292\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F1",
+        "color": "rgb(239, 85, 59)",
+        "time": "30",
+        "text": "F1\n139,253\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F2",
+        "color": "rgb(0, 204, 150)",
+        "time": "30",
+        "text": "F2\n142,078\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F3",
+        "color": "rgb(171, 99, 250)",
+        "time": "30",
+        "text": "F3\n141,486\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F0W",
+        "color": "rgb(255, 161, 90)",
+        "time": "30",
+        "text": "F0W\n148,489\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      }
+    ],
+    "lines": [
+      {
+        "x": 352.99,
+        "y": 100,
+        "time": 29.999999172544904,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "F0",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "v072 development diagnostic chart 7 rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 353267380,
+    "runtime": "cache",
+    "runtime_load_ms": 827.5,
+    "plot_ready_ms": 59.20000001788139,
+    "hover_frame_ms": 9,
+    "figure_payload_bytes": 4785
+  },
+  {
+    "check": "v072 feature selection leaves immutable production reference selected",
+    "status": "passed"
+  },
+  {
+    "check": "v072 predefined slow development example",
+    "status": "passed",
+    "text": "F0\n\nCursore 30 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nF0\n121,915\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF1\n122,45\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF2\n121,945\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF3\n121,123\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nF0W\n127,819\n\nt = 30.000 s \u00b7 Punto grafico 2",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "F0",
+        "color": "rgb(99, 110, 250)",
+        "time": "30",
+        "text": "F0\n121,915\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F1",
+        "color": "rgb(239, 85, 59)",
+        "time": "30",
+        "text": "F1\n122,45\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F2",
+        "color": "rgb(0, 204, 150)",
+        "time": "30",
+        "text": "F2\n121,945\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F3",
+        "color": "rgb(171, 99, 250)",
+        "time": "30",
+        "text": "F3\n121,123\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "F0W",
+        "color": "rgb(255, 161, 90)",
+        "time": "30",
+        "text": "F0W\n127,819\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      }
+    ],
+    "lines": [
+      {
+        "x": 352.99,
+        "y": 100,
+        "time": 29.999999172544904,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "F0",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "v072 predefined slow development example rendering budget",
+    "status": "passed",
+    "figures": 8,
+    "components": 4,
+    "heap_bytes": 308966007,
+    "runtime": "cache",
+    "runtime_load_ms": 827.5,
+    "plot_ready_ms": 26.400000005960464,
+    "hover_frame_ms": 4.199999988079071,
+    "figure_payload_bytes": 4786
+  },
+  {
+    "check": "Replay causal chart 0",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 4,513 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nspeed_kmh\n181,505 km/h\n\nt = 4.513 s \u00b7 Punto grafico 450\n\nthrottle_pct\n100 %\n\nt = 4.513 s \u00b7 Punto grafico 450\n\nbrake_pct\n0 %\n\nt = 4.513 s \u00b7 Punto grafico 450",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "speed_kmh",
+        "color": "rgb(99, 110, 250)",
+        "time": "4.512500000000003",
+        "text": "speed_kmh\n181,505 km/h\n\nt = 4.513 s \u00b7 Punto grafico 450"
+      },
+      {
+        "id": "throttle_pct",
+        "color": "rgb(239, 85, 59)",
+        "time": "4.512500000000003",
+        "text": "throttle_pct\n100 %\n\nt = 4.513 s \u00b7 Punto grafico 450"
+      },
+      {
+        "id": "brake_pct",
+        "color": "rgb(0, 204, 150)",
+        "time": "4.512500000000003",
+        "text": "brake_pct\n0 %\n\nt = 4.513 s \u00b7 Punto grafico 450"
+      }
+    ],
+    "lines": [
+      {
+        "x": 374.89,
+        "y": 100,
+        "time": 4.512503587448632,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "Replay causal chart 0 rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 334914237,
+    "runtime": "cache",
+    "runtime_load_ms": 789.0999999940395,
+    "plot_ready_ms": 244.69999998807907,
+    "hover_frame_ms": 7,
+    "figure_payload_bytes": 234090
+  },
+  {
+    "check": "Replay causal chart 1",
+    "status": "passed",
+    "text": "predicted_final_s\n\nCursore 10 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\npredicted_final_s\n137,606 s\n\nt = 10.000 s \u00b7 Punto grafico 0\n\nbaseline_s\n122,164 s\n\nt = 10.000 s \u00b7 Punto grafico 0",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "predicted_final_s",
+        "color": "rgb(99, 110, 250)",
+        "time": "10",
+        "text": "predicted_final_s\n137,606 s\n\nt = 10.000 s \u00b7 Punto grafico 0"
+      },
+      {
+        "id": "baseline_s",
+        "color": "rgb(239, 85, 59)",
+        "time": "10",
+        "text": "baseline_s\n122,164 s\n\nt = 10.000 s \u00b7 Punto grafico 0"
+      }
+    ],
+    "lines": [
+      {
+        "x": 391,
+        "y": 100,
+        "time": 10,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "predicted_final_s",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "Replay causal chart 1 rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 335757753,
+    "runtime": "cache",
+    "runtime_load_ms": 789.0999999940395,
+    "plot_ready_ms": 244.69999998807907,
+    "hover_frame_ms": 3.5,
+    "figure_payload_bytes": 1390
+  },
+  {
+    "check": "Replay hidden target absent from hover payload",
+    "status": "passed"
+  },
+  {
+    "check": "Barcelona progressive 60-second causal signal",
+    "status": "passed",
+    "text": "speed_kmh\n\nCursore 27,013 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nspeed_kmh\n177,35 km/h\n\nt = 27.012 s \u00b7 Punto grafico 2700\n\nthrottle_pct\n98,83 %\n\nt = 27.012 s \u00b7 Punto grafico 2700\n\nbrake_pct\n0 %\n\nt = 27.012 s \u00b7 Punto grafico 2700",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "speed_kmh",
+        "color": "rgb(99, 110, 250)",
+        "time": "27.012499999999996",
+        "text": "speed_kmh\n177,35 km/h\n\nt = 27.012 s \u00b7 Punto grafico 2700"
+      },
+      {
+        "id": "throttle_pct",
+        "color": "rgb(239, 85, 59)",
+        "time": "27.012499999999996",
+        "text": "throttle_pct\n98,83 %\n\nt = 27.012 s \u00b7 Punto grafico 2700"
+      },
+      {
+        "id": "brake_pct",
+        "color": "rgb(0, 204, 150)",
+        "time": "27.012499999999996",
+        "text": "brake_pct\n0 %\n\nt = 27.012 s \u00b7 Punto grafico 2700"
+      }
+    ],
+    "lines": [
+      {
+        "x": 374.39,
+        "y": 100,
+        "time": 27.01288081597845,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "speed_kmh",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "Barcelona progressive 60-second causal signal rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 312706190,
+    "runtime": "cache",
+    "runtime_load_ms": 789.0999999940395,
+    "plot_ready_ms": 115.40000000596046,
+    "hover_frame_ms": 6.299999982118607,
+    "figure_payload_bytes": 1344582
+  },
+  {
+    "check": "Barcelona progressive prediction history",
+    "status": "passed",
+    "text": "predicted_final_s\n\nCursore 30 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\npredicted_final_s\n123,893 s\n\nt = 30.000 s \u00b7 Punto grafico 2\n\nbaseline_s\n122,164 s\n\nt = 30.000 s \u00b7 Punto grafico 2",
+    "mode": "time",
+    "rows": [
+      {
+        "id": "predicted_final_s",
+        "color": "rgb(99, 110, 250)",
+        "time": "30",
+        "text": "predicted_final_s\n123,893 s\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      },
+      {
+        "id": "baseline_s",
+        "color": "rgb(239, 85, 59)",
+        "time": "30",
+        "text": "baseline_s\n122,164 s\n\nt = 30.000 s \u00b7 Punto grafico 2"
+      }
+    ],
+    "lines": [
+      {
+        "x": 335.77,
+        "y": 100,
+        "time": 30.000001768174002,
+        "axis": "x:y"
+      }
+    ],
+    "native": 0,
+    "outside": true,
+    "point": 0,
+    "channel": "predicted_final_s",
+    "pixelErrors": [
+      0
+    ]
+  },
+  {
+    "check": "Barcelona progressive prediction history rendering budget",
+    "status": "passed",
+    "figures": 2,
+    "components": 1,
+    "heap_bytes": 315194581,
+    "runtime": "cache",
+    "runtime_load_ms": 789.0999999940395,
+    "plot_ready_ms": 115.40000000596046,
+    "hover_frame_ms": 2.9000000059604645,
+    "figure_payload_bytes": 1990
+  },
+  {
+    "check": "Barcelona retrospective target reveal leaves causal chart payload unchanged",
+    "status": "passed"
+  },
+  {
+    "check": "Final browser performance",
+    "status": "passed",
+    "heap": 314431481,
+    "figures": 2,
+    "components": 1,
+    "runtimeResources": []
+  },
+  {
+    "check": "v080 experimental opt-in keeps selected final target hidden",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection RIDGE-ORDERED",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection GRU",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection SVR-DENSE",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection SVR-SPARSE",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection MEDIAN",
+    "status": "passed"
+  },
+  {
+    "check": "v080 valid artifact selection SVR v0.7.1",
+    "status": "passed"
+  },
+  {
+    "check": "v080 dense replay supports late observed prefixes beyond sixty seconds",
+    "status": "passed",
+    "elapsed": "169.990 s"
+  },
+  {
+    "check": "v080 actual pointer inspects all model trajectories with external cursor readout",
+    "status": "passed",
+    "readout": "SVR-REMAINING\n\nCursore 89,989 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nSVR-REMAINING\n156,856 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nREMAINING-REFERENCE\n112,968 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nRIDGE-ORDERED\n137,566 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nGRU\n147,257 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nSVR-DENSE\n154,914 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nSVR-SPARSE\n139,616 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nMEDIAN\n112,968 s\n\nt = 89.990 s \u00b7 Punto grafico 17\n\nSVR v0.7.1\n144,933 s\n\nt = 89.990 s \u00b7 Punto grafico 17"
+  },
+  {
+    "check": "v080 retrospective reveal preserves every causal chart payload",
+    "status": "passed"
+  },
+  {
+    "check": "v080 compatibility and configurable elapsed-time cadence work",
+    "status": "passed"
+  },
+  {
+    "check": "v080 responsive experimental replay 960",
+    "status": "passed"
+  },
+  {
+    "check": "v080 responsive experimental replay 480",
+    "status": "passed"
+  },
+  {
+    "check": "v080 responsive experimental replay 1600",
+    "status": "passed"
+  },
+  {
+    "check": "v080 original working SVR mode remains operational after experimental inspection",
+    "status": "passed"
+  },
+  {
+    "check": "v081 opt-in defaults to one second and hidden final target",
+    "status": "passed"
+  },
+  {
+    "check": "v081 late chart payload contains only observed samples and target-free estimates",
+    "status": "passed",
+    "observed": "173.990 s"
+  },
+  {
+    "check": "v081 actual hover preserves numerical payload and Python model-call count",
+    "status": "passed",
+    "readout": "Vincolo fisico\n\nCursore 87,989 s \u00b7 campione osservato pi\u00f9 vicino entro 0,51 \u00d7 passo mediano originale; N/D oltre tolleranza.\n\nVincolo fisico\n154,39 s\n\nt = 87.990 s \u00b7 Punto grafico 87\n\nStop-aware\n154,39 s\n\nt = 87.990 s \u00b7 Punto grafico 87",
+    "model_calls": "174"
+  },
+  {
+    "check": "v081 explicit reveal preserves both causal charts",
+    "status": "passed"
+  },
+  {
+    "check": "v081 playback and pause 5 secondi",
+    "status": "passed",
+    "samples": [
+      {
+        "wall_s": 0.0,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.125,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.25,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.375,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.485000000015134,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.610000000015134,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.735000000015134,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.860000000015134,
+        "observed": "4.990 s"
+      },
+      {
+        "wall_s": 0.9690000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.0940000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.2190000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.3440000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.485000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.610000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.7190000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.8440000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 1.9690000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.0940000000118744,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.2030000000086147,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.3280000000086147,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.4530000000086147,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.5780000000086147,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.687999999994645,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.812999999994645,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 2.937999999994645,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.062999999994645,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.172000000020489,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.297000000020489,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.422000000020489,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.547000000020489,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.6570000000065193,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.7820000000065193,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 3.9070000000065193,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.032000000006519,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.14100000000326,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.26600000000326,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.39100000000326,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.51600000000326,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.625,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.75,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.875,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 4.985000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.110000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.235000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.360000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.485000000015134,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.594000000011874,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.719000000011874,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.844000000011874,
+        "observed": "9.990 s"
+      },
+      {
+        "wall_s": 5.953000000008615,
+        "observed": "9.990 s"
+      }
+    ],
+    "median_observed_wall_interval_s": null,
+    "paused_observation": "14.970 s"
+  },
+  {
+    "check": "v081 playback and pause 1 secondo",
+    "status": "passed",
+    "samples": [
+      {
+        "wall_s": 0.0,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.125,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.23499999998603016,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.35999999998603016,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.48499999998603016,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.6099999999860302,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.7189999999827705,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.8439999999827705,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 0.9849999999860302,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.0939999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.2189999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.3439999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.4689999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.5939999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.7189999999827705,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.827999999979511,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 1.952999999979511,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 2.0939999999827705,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.202999999979511,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.327999999979511,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.452999999979511,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.577999999979511,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.687999999994645,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.812999999994645,
+        "observed": "2.970 s"
+      },
+      {
+        "wall_s": 2.937999999994645,
+        "observed": "2.970 s"
+      }
+    ],
+    "median_observed_wall_interval_s": 1.1089999999967404,
+    "paused_observation": "3.990 s"
+  },
+  {
+    "check": "v081 playback and pause 0.5 secondi",
+    "status": "passed",
+    "samples": [
+      {
+        "wall_s": 0.0,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.125,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.26600000000325963,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.375,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.5,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.625,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.75,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 0.8589999999967404,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 1.0,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 1.125,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 1.2339999999967404,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 1.3589999999967404,
+        "observed": "0.490 s"
+      },
+      {
+        "wall_s": 1.4839999999967404,
+        "observed": "0.990 s"
+      },
+      {
+        "wall_s": 1.6089999999967404,
+        "observed": "1.470 s"
+      },
+      {
+        "wall_s": 1.7339999999967404,
+        "observed": "1.470 s"
+      },
+      {
+        "wall_s": 1.8589999999967404,
+        "observed": "1.470 s"
+      },
+      {
+        "wall_s": 1.9839999999967404,
+        "observed": "1.470 s"
+      },
+      {
+        "wall_s": 2.1089999999967404,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 2.2339999999967404,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 2.3440000000118744,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 2.4690000000118744,
+        "observed": "1.990 s"
+      },
+      {
+        "wall_s": 2.5940000000118744,
+        "observed": "2.490 s"
+      },
+      {
+        "wall_s": 2.7190000000118744,
+        "observed": "2.490 s"
+      },
+      {
+        "wall_s": 2.8440000000118744,
+        "observed": "2.490 s"
+      },
+      {
+        "wall_s": 2.9690000000118744,
+        "observed": "2.490 s"
+      }
+    ],
+    "median_observed_wall_interval_s": 0.485000000015134,
+    "paused_observation": "2.970 s"
+  },
+  {
+    "check": "v081 responsive replay 480",
+    "status": "passed"
+  },
+  {
+    "check": "v081 responsive replay 960",
+    "status": "passed"
+  },
+  {
+    "check": "v081 responsive replay 1600",
+    "status": "passed"
+  },
+  {
+    "check": "v081 operational signed SVR remains default and available",
+    "status": "passed"
+  }
+]

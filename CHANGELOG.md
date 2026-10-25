@@ -1,3 +1,21 @@
+# Release v0.8.1 - 2026-10-25
+
+- Add isolated 1 s default / 5 s / measured 0.5 s recorded SVR-DENSE replay,
+  causal prefix caches and fragment updates; preserve actual source cutoffs,
+  pause semantics, shared hover and explicit retrospective target reveal.
+- Preserve raw outputs and add explicit elapsed-time physical bounds plus a
+  sample-based stop detector with hysteresis and a transparent remaining-time
+  freeze / resume transition. Separate rule behavior from learned accuracy.
+- Measure 4134/21054/42204 development checkpoints and identical shared outputs.
+  One-second raw/bounded/stop-aware MAE: 8.787/8.708/8.709 s. No-stop predictions
+  are unchanged by the stop rule; slow-tail errors remain significant.
+- Execute one 1 s-trained SVR with matched per-lap/total penalty mass: raw MAE
+  8.541 s, 2.81% gain across all five folds. Keep it as a signed research artifact.
+- Preserve 205 valid laps, original models, reports and F5 files. No historical
+  test reuse, live capture, automatic promotion, GRU change or new dependency.
+- Add quantitative reports, reproducible evidence, regression tests and Chrome
+  replay checks. See [release](docs/RELEASE_V081_REPORT.md).
+
 # Release v0.8 - 2026-10-24
 
 - Add causal configurable elapsed-time checkpoints, default5 s; retain sparse

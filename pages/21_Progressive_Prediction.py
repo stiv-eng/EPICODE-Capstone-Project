@@ -20,8 +20,12 @@ if not corpus.laps:
     st.stop()
 bundle=get_bundle(corpus)
 if barcelona_active():
-    replay_mode=st.radio('Modalità di previsione', ['Riferimento operativo', 'Confronto sperimentale v0.8'],
+    replay_mode=st.radio('Modalità di previsione', ['Riferimento operativo', 'Confronto sperimentale v0.8', 'Replay frequente v0.8.1'],
                          index=0, key='progressive_mode')
+    if replay_mode=='Replay frequente v0.8.1':
+        from motorsport_ui.progressive_v081 import render
+        render(corpus)
+        st.stop()
     if replay_mode=='Confronto sperimentale v0.8':
         from motorsport_ui.progressive_v080 import render
         render(corpus,bundle)
