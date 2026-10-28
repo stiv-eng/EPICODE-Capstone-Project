@@ -24,8 +24,15 @@ def session(key,track,car,ids=(1,2),duration=2.):
 
 
 def select(app,label,value):
-    next(s for s in app.selectbox if s.label==label).set_value(value).run()
+    widget(app,label).set_value(value).run()
     assert not app.exception
+
+
+def widget(app,label):
+    roles={'Giro di riferimento':'lap_analysis_ref_','Giro analizzato':'lap_analysis_lap_',
+           'Sessione del giro analizzato':'lap_analysis_source_b_','Sessione di riferimento':'lap_analysis_source'}
+    return next(s for s in app.selectbox if s.key.startswith(roles[label]) and
+                (label!='Sessione di riferimento' or s.key==roles[label]))
 
 
 def test_session_switches_bind_laps_to_source_revision_and_restore_valid_choices(monkeypatch):
@@ -44,31 +51,48 @@ def test_session_switches_bind_laps_to_source_revision_and_restore_valid_choices
     ui.cached_analysis.clear();ui.cached_spatial.clear()
     app=AppTest.from_file(str(ROOT/'pages/16_Telemetry_Lap_Analysis.py')).run()
     assert not app.exception
+    assert not app.sidebar.selectbox
+    columns=app.get('column')[:2]
+    assert [c.subheader[0].value for c in columns]==['Reference Lap','Analysis Lap']
+    assert all([s.label for s in column.selectbox]==['Session','Lap'] for column in columns)
     select(app,'Giro di riferimento',2)
     select(app,'Giro analizzato',1)
     select(app,'Sessione di riferimento','upload:barcelona')
-    assert next(s for s in app.selectbox if s.label=='Giro di riferimento').value==1
+    assert widget(app,'Giro di riferimento').value==1
+    assert widget(app,'Sessione del giro analizzato').value=='upload:porsche'
+    assert any('incompatibili' in w.value for w in app.warning)
+    select(app,'Sessione del giro analizzato','upload:barcelona')
     assert next(m for m in app.metric if m.label=='Tempo riferimento').value=='3.000 s'
-    # Registry metadata filters incompatible sessions without inspecting payloads.
+    # Both independent selectors keep the full catalog; compatibility is checked
+    # explicitly after showing the actual laps belonging to both sources.
     app.session_state['telemetry_registry']=sources
     app.run()
-    options=next(s for s in app.selectbox if s.label=='Sessione del giro analizzato').options
-    assert options==['upload:barcelona','upload:barcelona-b']
+    options=widget(app,'Sessione del giro analizzato').options
+    assert options==list(sources)
     select(app,'Sessione del giro analizzato','upload:barcelona-b')
-    assert next(s for s in app.selectbox if s.label=='Giro analizzato').options[0].startswith('Lap 3 ')
+    assert widget(app,'Giro analizzato').options[0].startswith('Lap 3 ')
     select(app,'Giro analizzato',4)
     select(app,'Sessione di riferimento','upload:porsche')
-    assert next(s for s in app.selectbox if s.label=='Giro di riferimento').value==2
-    assert next(s for s in app.selectbox if s.label=='Giro analizzato').value==1
+    assert widget(app,'Giro di riferimento').value==2
+    assert widget(app,'Sessione del giro analizzato').value=='upload:barcelona-b'
+    select(app,'Sessione del giro analizzato','upload:porsche')
+    assert widget(app,'Giro analizzato').value==1
     select(app,'Sessione di riferimento','upload:barcelona')
-    assert next(s for s in app.selectbox if s.label=='Sessione del giro analizzato').value=='upload:barcelona-b'
-    assert next(s for s in app.selectbox if s.label=='Giro analizzato').value==4
+    assert widget(app,'Sessione del giro analizzato').value=='upload:porsche'
+    select(app,'Sessione del giro analizzato','upload:barcelona-b')
+    assert widget(app,'Giro analizzato').value==4
     # Replace the source under the same key: an old lap ID must not survive.
     sources['upload:barcelona-b']=session('barcelona-b-v2','barcelona','dallara',ids=(7,8),duration=5.)
     app.session_state['telemetry_registry']=sources
     app.run()
     assert not app.exception
-    assert next(s for s in app.selectbox if s.label=='Giro analizzato').value==7
+    assert widget(app,'Giro analizzato').value==7
+    sources.pop('upload:barcelona-b')
+    app.session_state['telemetry_registry']=sources
+    app.run()
+    assert not app.exception
+    assert widget(app,'Sessione del giro analizzato').value=='upload:barcelona'
+    assert widget(app,'Giro analizzato').value in (1,2)
 
 
 def test_kpi_labels_cover_existing_metrics_without_mutating_json_identifiers():

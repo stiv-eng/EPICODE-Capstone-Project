@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer — v0.9.1
+# Motorsport Telemetry Analyzer — v0.9.2
 
 A local Motorsport **Data Analysis** application built with Python, Streamlit,
 Plotly, NumPy and Pandas. Explore recorded sessions, inspect driver inputs and
@@ -50,7 +50,9 @@ Open **Telemetry Lap Analysis**, choose the reference recording/lap and analyzed
 recording/lap, then inspect the measured total delta, section contributions and
 selected-corner signals/KPIs. The default corner radius threshold is **150 m**;
 expand the geometry parameters to change it. The curvature-weighted centre is an
-operational apex proxy; maximum curvature is an optional diagnostic marker.
+operational apex proxy. Reference and analysis laps have independent session/lap
+selectors in two columns. Rejected spatial comparisons show reasons and observed
+problem regions while preserving the verified recorded laps.
 Export the full comparison with **Esporta fatti JSON**.
 
 The raw Barcelona LD files contain actual metre world coordinates omitted by the
@@ -86,7 +88,7 @@ Browser verification forbids prediction-package imports and model-file access
 without moving or deleting those files. Existing environments may still contain
 historical libraries; they are not required by the active app.
 
-Read the [v0.9.1 release report](docs/RELEASE_V091_REPORT.md),
+Read the [v0.9.2 release report](docs/RELEASE_V092_REPORT.md),
 [feasibility audit](docs/TELEMETRY_DATA_FEASIBILITY_V090.md),
 [architecture](docs/ARCHITECTURE_V090.md),
 [verification](docs/VERIFICATION_V090.json) and

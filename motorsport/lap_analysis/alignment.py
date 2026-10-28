@@ -58,6 +58,19 @@ class AlignedLap:
     offsets: np.ndarray
     time_map: TimeMap | None
     quality: dict
+    problem_masks: dict | None = None
+
+
+def _issue(code,mask,values,limit,unit,t,progress):
+    indexes=np.flatnonzero(mask)
+    if not len(indexes):
+        return None
+    worst=int(indexes[np.argmax(values[indexes])]) if values is not None else int(indexes[0])
+    return dict(code=code,sample_count=len(indexes),first_sample=int(indexes[0]),
+        last_sample=int(indexes[-1]),worst_sample=worst,first_time_s=float(t[indexes[0]]),
+        last_time_s=float(t[indexes[-1]]),worst_time_s=float(t[worst]),
+        worst_reference_s_m=float(progress[worst]),
+        maximum_observed=float(values[worst]) if values is not None else None,limit=limit,unit=unit)
 
 
 def ambiguity_mask(geometry, config=AlignmentConfig()):
@@ -103,6 +116,11 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
     vv = np.sum(vectors*vectors, axis=1)
     ambiguous = ambiguity_mask(geometry, config) if ambiguous is None else ambiguous
     progress, offsets = np.empty(len(t)), np.empty(len(t))
+    ambiguous_flags=np.zeros(len(t),bool)
+    reverse_flags=np.zeros(len(t),bool)
+    jump_flags=np.zeros(len(t),bool)
+    drawdown=np.zeros(len(t))
+    jump_excess=np.zeros(len(t))
     bad_ambiguity, backward, leaps = 0, 0, 0
     previous, maximum = 0., 0.
     back = int(np.ceil(config.reverse_tolerance_m/h))+3
@@ -124,12 +142,17 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
         progress[i], offsets[i] = current, distances[j]
         if ambiguous[indexes[j]]:
             bad_ambiguity += 1
+            ambiguous_flags[i]=True
+        drawdown[i]=max(0.,maximum-current)
         if maximum-current > config.reverse_tolerance_m:
             backward += 1
+            reverse_flags[i]=True
         if i:
             source_step = float(np.linalg.norm(xy[i]-xy[i-1]))
             if current-previous > max(5., 2*source_step+2.):
                 leaps += 1
+                jump_flags[i]=True
+                jump_excess[i]=current-previous-max(5.,2*source_step+2.)
         maximum = max(maximum, current)
         previous = current
     if not np.isfinite(offsets).all() or np.max(offsets) > config.max_offset_m:
@@ -144,7 +167,19 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
         failures.append('Observed circuit coverage does not match both reference boundaries')
     if np.any(progress > length+config.boundary_margin_m) or np.any(progress < -config.boundary_margin_m):
         failures.append('More than one circuit / invalid progress range')
+    coverage_error=np.maximum(0.,np.maximum(-progress,progress-length))
+    coverage_error[0]=max(coverage_error[0],abs(progress[0]))
+    coverage_error[-1]=max(coverage_error[-1],abs(length-progress[-1]))
+    masks=dict(offset=offsets>config.max_offset_m,reverse_progress=reverse_flags,
+        ambiguous=ambiguous_flags,progress_jump=jump_flags,coverage=coverage_error>config.boundary_margin_m)
+    measurements={'offset':(offsets,config.max_offset_m,'m'),
+        'reverse_progress':(drawdown,config.reverse_tolerance_m,'m'),
+        'ambiguous':(None,None,''),'progress_jump':(jump_excess,0.,'m beyond source-step allowance'),
+        'coverage':(coverage_error,config.boundary_margin_m,'m')}
+    issues=[issue for code,mask in masks.items()
+            if (issue:=_issue(code,mask,*measurements[code],t,progress)) is not None]
     quality = dict(status='valid' if not failures else 'unavailable', reasons=failures,
+        issues=issues,
         observed_samples=len(t), maximum_offset_m=float(np.max(offsets)), p95_offset_m=float(np.percentile(offsets, 95)),
         ambiguous_samples=bad_ambiguity, reverse_samples=backward, implausible_jumps=leaps,
         start_projection_m=float(progress[0]), finish_projection_gap_m=float(length-progress[-1]),
@@ -156,7 +191,8 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
     if time_map:
         quality['repeated_projected_position_time_s'] = time_map.repeated_progress_time_s
         quality['repeated_position_interpretation'] = 'Includes stationary observations, projection plateaus and boundary anchoring; not an independent vehicle-stop detector'
-    return AlignedLap(lap, np.clip(np.maximum.accumulate(progress), 0., length), t, offsets, time_map, quality)
+    return AlignedLap(lap, np.clip(np.maximum.accumulate(progress), 0., length), t, offsets, time_map, quality,
+                      {code:mask for code,mask in masks.items() if mask.any()})
 
 
 def section_time(aligned, section, length):

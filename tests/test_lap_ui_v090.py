@@ -40,9 +40,13 @@ def test_actual_page_laps_thresholds_metric_cursor_and_cached_corner_selection(m
     next(n for n in app.number_input if n.key=='lap_analysis_radius').set_value(200.).run()
     assert not app.exception and len(calls)==2
     assert any('raggio soglia 200' in c.value for c in app.caption)
-    next(c for c in app.checkbox if c.key=='lap_analysis_maximum').check().run()
-    assert not app.exception and len(calls)==2
-    assert any('Maximum-curvature point' in t.get('name','') for s in chart_specs(app) for t in s['data'])
+    assert not any(c.key=='lap_analysis_maximum' for c in app.checkbox)
+    assert not any('Maximum-curvature point' in t.get('name','') for s in chart_specs(app) for t in s['data'])
+    assert any(t.get('name')=='Curvature-Weighted Apex Proxy' for s in chart_specs(app) for t in s['data'])
+    assert any('Geometric Corner' in a['text'] and 'Analysis Context' in a['text'] for a in signals['layout']['annotations'])
+    rectangles=sorted({(s['x0'],s['x1']) for s in signals['layout']['shapes'] if s['type']=='rect'})
+    assert len(rectangles)==3 and rectangles[0][1]-rectangles[0][0]==pytest.approx(200.)
+    assert rectangles[2][1]-rectangles[2][0]==pytest.approx(120.)
 
 
 def test_page_reports_missing_geometry_without_fabricated_coordinates(monkeypatch):

@@ -68,6 +68,8 @@ def kpi_label(metric):
 
 def remembered_selectbox(label,options,role,identity,default,format_func):
     """Widget identity follows its source; durable choices outlive widget cleanup."""
+    if default not in options:
+        default=next(iter(options))
     token=role+':'+identity
     key='lap_analysis_'+role+'_'+hashlib.sha256(token.encode()).hexdigest()[:20]
     memory=st.session_state.setdefault('lap_analysis_choices',{})
@@ -81,28 +83,16 @@ def remembered_selectbox(label,options,role,identity,default,format_func):
     return value
 
 
-def compatible_catalog(reference,key_a,catalog):
-    """Filter known incompatible domains without loading every recording."""
-    expected=tuple(reference.metadata.get(k) for k in ('track_id','car_id'))
-    domains={}
-    for prefix,name in [('acgym:','ACGYM_MANIFEST_V06.json'),('barcelona:','BARCELONA_MANIFEST_V07.json')]:
-        path=ROOT/'docs'/name
-        if path.exists():
-            manifest=json.loads(path.read_text(encoding='utf-8'))
-            domains[prefix]=('ac:'+manifest.get('track','monza'),'ac:'+manifest.get('car','dallara_f317'))
-    result={}
-    registry=st.session_state.get('telemetry_registry',{})
-    for key,label in catalog.items():
-        known=None
-        if key in registry:
-            known=tuple(registry[key].metadata.get(k) for k in ('track_id','car_id'))
-        elif key==str((ROOT/'data/raw/gt7_trial_mountain_962c').resolve()):
-            known=('gt7:trial_mountain:forward','gt7:3373')
-        else:
-            known=next((v for prefix,v in domains.items() if key.startswith(prefix)),None)
-        if key==key_a or known is None or known==expected:
-            result[key]=label
-    return result
+def lap_control(session,source_key,role,other_lap=None,same_source=False):
+    labels=lap_labels(session)
+    identity=source_key+':'+selection_identity(session)
+    if not labels:
+        st.selectbox('Lap',[],index=None,placeholder='Nessun giro completo verificato',
+                     disabled=True,key='lap_analysis_empty_'+role)
+        return None,identity
+    candidates=session.laps.laps.sort_values('duration_s').lap_id.tolist()
+    default=next((lap for lap in candidates if not same_source or lap!=other_lap),candidates[0])
+    return remembered_selectbox('Lap',labels,role,identity,default,labels.get),identity
 
 
 @st.cache_data(show_spinner=False,max_entries=4)
@@ -116,7 +106,18 @@ def cached_analysis(key_a,key_b,signature_a,signature_b,lap_a,lap_b,configuratio
     return analyze_laps(_reference,_analyzed,GeometryConfig(**options['geometry']),AlignmentConfig(**options['alignment']))
 
 
-def trajectory_figure(result,maximum=False):
+ISSUE_LABELS={
+    'offset':'Scostamento dal riferimento',
+    'reverse_progress':'Arretramento della progressione proiettata',
+    'ambiguous':'Rami geometrici ambigui',
+    'progress_jump':'Salto di progressione proiettata',
+    'coverage':'Copertura del giro insufficiente',
+}
+ISSUE_COLORS={'offset':'#ff6378','reverse_progress':'#ffd166','ambiguous':'#dc8af2',
+              'progress_jump':'#ff965c','coverage':'#ffffff'}
+
+
+def trajectory_figure(result):
     geometry=result.geometry
     fig=go.Figure()
     seen=set()
@@ -130,21 +131,65 @@ def trajectory_figure(result,maximum=False):
             customdata=[[section['section_id']]]*len(xy),hovertemplate='%{customdata[0]}<br>x=%{x:.2f} m<br>y=%{y:.2f} m<extra></extra>'))
         seen.add(kind)
     corners=[section for section in geometry.sections if section['kind']=='corner']
-    for field,label,color,symbol in [('curvature_weighted_apex_proxy','Curvature-weighted apex proxy','#4bd8db','circle'),
-                                      ('maximum_curvature_point','Maximum-curvature point','#dc8af2','x')]:
-        if field=='maximum_curvature_point' and not maximum:
-            continue
-        selected=[s for s in corners if s[field]]
-        if selected:
-            fig.add_trace(go.Scatter(x=[s[field]['xy'][0] for s in selected],y=[s[field]['xy'][1] for s in selected],
-                mode='markers+text' if field=='curvature_weighted_apex_proxy' else 'markers',text=[s['section_id'] for s in selected],
-                textposition='top center',name=label,marker=dict(color=color,symbol=symbol,size=9),
-                customdata=[[s['section_id'],s[field]['s_m']] for s in selected],
-                hovertemplate='%{customdata[0]}<br>s=%{customdata[1]:.2f} m<br>x=%{x:.2f} m<br>y=%{y:.2f} m<extra></extra>'))
+    field='curvature_weighted_apex_proxy'
+    selected=[s for s in corners if s[field]]
+    if selected:
+        fig.add_trace(go.Scatter(x=[s[field]['xy'][0] for s in selected],y=[s[field]['xy'][1] for s in selected],
+            mode='markers+text',text=[s['section_id'] for s in selected],
+            textposition='top center',name='Curvature-Weighted Apex Proxy',marker=dict(color='#4bd8db',symbol='circle',size=9),
+            customdata=[[s['section_id'],s[field]['s_m']] for s in selected],
+            hovertemplate='%{customdata[0]}<br>s=%{customdata[1]:.2f} m<br>x=%{x:.2f} m<br>y=%{y:.2f} m<extra></extra>'))
+    if result.report['status']!='valid':
+        for aligned,label in ((result.reference,'Reference Lap'),(result.analyzed,'Analysis Lap')):
+            if aligned is None or not aligned.problem_masks:
+                continue
+            xy=aligned.lap.frame[['pos_x','pos_y']].to_numpy(float)
+            for code,mask in aligned.problem_masks.items():
+                indexes=np.flatnonzero(mask)
+                if not len(indexes):
+                    continue
+                # Mark actual observations; bounded display never connects
+                # separate failed regions or changes the projection result.
+                peak=next(i['worst_sample'] for i in aligned.quality['issues'] if i['code']==code)
+                indexes=np.unique(np.r_[indexes[::max(1,int(np.ceil(len(indexes)/800)))],indexes[-1],peak])
+                fig.add_trace(go.Scatter(x=xy[indexes,0],y=xy[indexes,1],mode='markers',
+                    name=ISSUE_LABELS[code]+' · '+label,marker=dict(color=ISSUE_COLORS[code],size=6),
+                    customdata=np.c_[indexes,aligned.time[indexes]],
+                    hovertemplate='Campione %{customdata[0]:.0f}<br>t=%{customdata[1]:.3f} s<br>x=%{x:.2f} m<br>y=%{y:.2f} m<extra></extra>'))
     fig.update_layout(title='Traiettoria di riferimento osservata · geometria deterministica',height=570,
         xaxis_title='X sorgente (m)',yaxis_title='Y sorgente (m)',legend=dict(orientation='h'),uirevision='lap-analysis-map')
     fig.update_yaxes(scaleanchor='x',scaleratio=1)
     return fig
+
+
+def alignment_diagnostics(result):
+    reasons=result.report['alignment']['reasons']
+    explanations={
+        'Projection too far from reference':'La traiettoria supera lo scostamento massimo consentito dal riferimento.',
+        'Reverse motion / inconsistent lap direction exceeds tolerance':'La posizione proiettata arretra oltre la tolleranza: il confronto spaziale non è univoco. Questo non prova da solo una retromarcia del veicolo.',
+        'Reference has ambiguous nearby branches at matched observations':'La traiettoria incontra rami vicini del riferimento che non possono essere distinti con sicurezza.',
+        'Sequential projection contains implausible progress jumps':'Sono presenti salti di progressione incompatibili con gli spostamenti osservati.',
+        'Observed circuit coverage does not match both reference boundaries':'I campioni non coprono entrambi i confini spaziali del giro di riferimento.',
+        'More than one circuit / invalid progress range':'La progressione supera l’intervallo spaziale consentito per un giro.',
+        'Source clock discontinuity or gap':'Il tempo sorgente presenta una discontinuità o una lacuna oltre la soglia.',
+        'Witnessed lap timing lacks sufficiently recent boundary observations':'I campioni temporali sono troppo lontani dai confini verificati del giro.',
+        'Analyzed trajectory does not satisfy spatial closure tolerance':'La traiettoria analizzata non rispetta la tolleranza di chiusura spaziale.',
+        'Open reference geometry: no cyclic lap alignment or complete circuit decomposition':'La traiettoria di riferimento non è chiusa: non è possibile scomporre l’intero giro.',
+    }
+    for reason in dict.fromkeys(reasons):
+        st.write(explanations.get(reason,reason))
+    rows=[]
+    for aligned,label in ((result.reference,'Reference Lap'),(result.analyzed,'Analysis Lap')):
+        if aligned is None:
+            continue
+        for issue in aligned.quality.get('issues',[]):
+            rows.append({'Lap':label,'Controllo':ISSUE_LABELS[issue['code']],
+                'Campioni':issue['sample_count'],'Massimo':issue['maximum_observed'],
+                'Limite':issue['limit'],'Unità':issue['unit'],
+                'Primo tempo [s]':issue['first_time_s'],'Posizione critica [m]':issue['worst_reference_s_m']})
+    if rows:
+        st.dataframe(pd.DataFrame(rows),hide_index=True,width='stretch')
+        st.caption('I punti colorati sulla mappa sono campioni osservati nelle regioni problematiche; la tabella e il JSON conservano i conteggi completi.')
 
 
 def _distance_axis(fig):
@@ -192,43 +237,54 @@ def corner_signals(result,section):
             fig.update_yaxes(title=dict(text=short_label+'<br>['+(unit or aligned.lap.units.get(channel,'?'))+']',standoff=12),
                              automargin=True,row=row,col=1)
     fig.add_vrect(x0=start,x1=end,fillcolor='#4bd8db',opacity=.06,line_width=0,row='all',col=1)
+    for first,last in ((start-200.,start),(end,end+120.)):
+        fig.add_vrect(x0=first,x1=last,fillcolor='#b6c2d2',opacity=.06,line_width=0,row='all',col=1)
     for position in (start,end):
         fig.add_vline(x=position,line_dash='dot',line_color='#b6c2d2',line_width=1,row='all',col=1)
     fig.add_vline(x=apex,line_dash='dash',line_color='#4bd8db',line_width=1,row='all',col=1)
     fig.update_xaxes(title_text='Posizione sul riferimento comune (m)',row=len(choices),col=1)
-    fig.update_layout(height=max(520,210*len(choices)),
-        title='Contesto curva: approccio 200 m e uscita 120 m · limiti puntinati, proxy apice tratteggiato',
-        margin=dict(t=85,b=65,l=110,r=25))
+    fig.add_annotation(x=0,y=1.02,xref='paper',yref='paper',showarrow=False,xanchor='left',yanchor='bottom',font=dict(size=11),
+        text='<span style="color:#4bd8db">■ Geometric Corner</span> · <span style="color:#b6c2d2">■ Analysis Context</span> · <span style="color:#4bd8db">┆ Weighted Apex Proxy</span>')
+    fig.update_layout(height=max(520,210*len(choices)),title='Selected Corner · approccio, curva e uscita',
+        margin=dict(t=105,b=65,l=110,r=25))
     return _distance_axis(fig)
 
 
 def render():
     st.title('Telemetry Lap Analysis')
-    st.caption('v0.9.1 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
-    reference_session=select_telemetry('lap_analysis',label='Sessione di riferimento')
-    key_a=st.session_state['telemetry_active_key']
-    identity_a=key_a+':'+selection_identity(reference_session)
-    catalog=compatible_catalog(reference_session,key_a,source_catalog(include_acgym=True))
-    key_b=remembered_selectbox('Sessione del giro analizzato',catalog,'source_b',identity_a,key_a,catalog.get)
-    try:
-        analyzed_session=get_source(key_b)
-    except (OSError,ValueError) as exc:
-        st.info('Sessione analizzata non disponibile: '+str(exc));return
+    st.caption('v0.9.2 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
+    left,right=st.columns(2)
+    with left:
+        st.subheader('Reference Lap')
+        reference_session=select_telemetry('lap_analysis',label='Session',sidebar=False)
+        key_a=st.session_state['telemetry_active_key']
+        lap_a,identity_a=lap_control(reference_session,key_a,'ref')
+    with right:
+        st.subheader('Analysis Lap')
+        catalog=source_catalog(include_acgym=True)
+        # Migrate the previous reference-bound B choice once, then keep the two
+        # session selectors independent, including when A changes.
+        previous=st.session_state.get('lap_analysis_choices',{}).get('source_b:'+identity_a,key_a)
+        key_b=remembered_selectbox('Session',catalog,'source_b','independent-sessions',previous,catalog.get)
+        try:
+            analyzed_session=get_source(key_b)
+        except (OSError,ValueError) as exc:
+            st.info('Sessione analizzata non disponibile: '+str(exc));return
+        st.caption(analyzed_session.metadata['filename'])
+        if analyzed_session.metadata.get('time_basis'):
+            st.caption('Base temporale: '+analyzed_session.metadata['time_basis'])
+        lap_b,identity_b=lap_control(analyzed_session,key_b,'lap',lap_a,key_a==key_b)
     if any(reference_session.metadata.get(k)!=analyzed_session.metadata.get(k) for k in ('track_id','car_id')):
-        st.warning('La sessione scelta ha vettura o circuito incompatibili. Seleziona una sessione con la stessa vettura e lo stesso circuito.');return
-    identity_b=key_b+':'+selection_identity(analyzed_session)
+        st.warning('Reference Lap e Analysis Lap usano vetture o circuiti incompatibili. Seleziona due sessioni con la stessa vettura e lo stesso circuito.')
+        st.caption('Reference: '+str(reference_session.metadata.get('track_id','non verificato'))+' · '+str(reference_session.metadata.get('car_id','non verificata'))+
+                   ' | Analysis: '+str(analyzed_session.metadata.get('track_id','non verificato'))+' · '+str(analyzed_session.metadata.get('car_id','non verificata')))
+        return
     if st.session_state.get('lap_analysis_pair')!=(identity_a,identity_b):
         st.session_state['lap_analysis_pair']=(identity_a,identity_b)
         st.session_state.pop('lap_analysis_corner',None)
-    labels_a,labels_b=lap_labels(reference_session),lap_labels(analyzed_session)
-    if not labels_a or not labels_b:
+    if lap_a is None or lap_b is None:
         st.info('Servono giri completi verificati in entrambe le sessioni. Le finestre generiche restano disponibili in Telemetry Comparison.')
         return
-    fastest=reference_session.laps.laps.sort_values('duration_s').lap_id.tolist()
-    lap_a=remembered_selectbox('Giro di riferimento',labels_a,'ref',identity_a,fastest[0],labels_a.get)
-    candidates=analyzed_session.laps.laps.sort_values('duration_s').lap_id.tolist()
-    default_b=next((value for value in candidates if key_a!=key_b or value!=lap_a),candidates[0])
-    lap_b=remembered_selectbox('Giro analizzato',labels_b,'lap',identity_b,default_b,labels_b.get)
     with st.expander('Parametri geometrici e limiti di qualità',expanded=False):
         radius=st.number_input('Soglia raggio curva (m)',20.,500.,150.,10.,key='lap_analysis_radius')
         spacing=st.number_input('Risoluzione spaziale (m)',.25,10.,1.5,.25,key='lap_analysis_spacing')
@@ -260,17 +316,17 @@ def render():
     facts=json_facts(result)
     st.download_button('Esporta fatti JSON',json.dumps(facts,indent=2,ensure_ascii=False,allow_nan=False),
         file_name='telemetry_lap_analysis_v090.json',mime='application/json',key='lap_analysis_export',on_click='ignore')
-    maximum=st.checkbox('Mostra maximum-curvature point (diagnostica)',False,key='lap_analysis_maximum')
     if result.geometry is not None:
-        render_chart(trajectory_figure(result,maximum),mode='xy',key='lap_analysis_geometry')
+        render_chart(trajectory_figure(result),mode='xy',key='lap_analysis_geometry')
         st.caption(f"{sum(s['kind']=='corner' for s in result.geometry.sections)} curve geometriche · "
                    f"{result.geometry.length_m:.1f} m sul riferimento · raggio soglia {radius:g} m · "
                    'apice operativo: curvature-weighted apex proxy, non apice fisico verificato.')
         if not result.geometry.quality.get('seam_curvature_available',True):
             st.caption('La piccola giunzione al traguardo non verifica una tangente continua: la zona B conserva il tempo, con curvatura e tipo di curva non classificati.')
     if report['status']!='valid':
-        st.warning('Analisi spaziale non disponibile: '+'; '.join(report['alignment']['reasons']))
-        st.caption('Tempi giro e riepiloghi temporali restano misurabili. Nessuna curva o perdita di tempo viene inventata per il confronto.')
+        st.warning('Analisi spaziale non disponibile per questa coppia. I giri restano registrazioni complete con timing verificato; questo non garantisce un confronto spaziale affidabile.')
+        alignment_diagnostics(result)
+        st.caption('Tempi giro e riepiloghi temporali restano misurabili. Nessun delta di sezione o KPI di confronto viene inventato.')
         return
     st.success('Allineamento spaziale valido nei limiti dichiarati')
     qa,qb=report['alignment']['reference'],report['alignment']['analyzed']
@@ -311,7 +367,7 @@ def render():
     delta.update_layout(title='Delta cumulato sul riferimento comune',xaxis_title='Posizione comune (m)',yaxis_title='Δ tempo (s)',height=350)
     _distance_axis(delta)
     render_figures([(delta,'time'),(corner_signals(result,section),'time')],key='lap_analysis_spatial_signals')
-    st.caption('Area evidenziata: curva geometrica; contesto: 200 m prima e 120 m dopo. Al traguardo i frammenti appartengono allo stesso giro, senza presumere continuità degli eventi tra fine e inizio.')
+    st.caption('Geometric Corner: regione rilevata dalla soglia di raggio corrente (predefinita 150 m). Analysis Context: approccio 200 m e uscita 120 m aggiuntivi. Curvature-Weighted Apex Proxy: linea tratteggiata. Al traguardo i frammenti appartengono allo stesso giro, senza presumere continuità degli eventi.')
     with st.expander('Definizioni, finestre effettive e qualità'):
         st.dataframe(kpis[['name','definition','temporal_window_s','source_signals']].rename(columns={
             'name':'KPI','definition':'Engineering Definition','temporal_window_s':'Observed Time Windows [s]',
