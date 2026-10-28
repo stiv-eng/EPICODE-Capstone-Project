@@ -1,0 +1,220 @@
+[
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "timestamp": 1793193346637.106,
+          "url": "http://127.0.0.1:60379/ml/_stcore/health",
+          "networkRequestId": "28812.666"
+        }
+      }
+    }
+  },
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "timestamp": 1793193346637.302,
+          "url": "http://127.0.0.1:60379/ml/_stcore/host-config",
+          "networkRequestId": "28812.667"
+        }
+      }
+    }
+  },
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "error",
+        "args": [
+          {
+            "type": "string",
+            "value": "The page that you have requested does not seem to exist. Running the app's main page."
+          }
+        ],
+        "executionContextId": 24,
+        "timestamp": 1793193346771.228,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "showError",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 43482
+            },
+            {
+              "functionName": "onPageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 21713
+            },
+            {
+              "functionName": "handlePageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 14977
+            },
+            {
+              "functionName": "handlePageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 21873
+            },
+            {
+              "functionName": "pageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 19290
+            },
+            {
+              "functionName": "t",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 18910
+            },
+            {
+              "functionName": "handleMessage",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 18964
+            },
+            {
+              "functionName": "handleMessage",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 28,
+              "columnNumber": 4886
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "timestamp": 1793193347411.607,
+          "url": "http://127.0.0.1:60379/replay/_stcore/health",
+          "networkRequestId": "28812.829"
+        }
+      }
+    }
+  },
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "timestamp": 1793193347411.78,
+          "url": "http://127.0.0.1:60379/replay/_stcore/host-config",
+          "networkRequestId": "28812.830"
+        }
+      }
+    }
+  },
+  {
+    "scenario": "v090",
+    "event": {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "error",
+        "args": [
+          {
+            "type": "string",
+            "value": "The page that you have requested does not seem to exist. Running the app's main page."
+          }
+        ],
+        "executionContextId": 25,
+        "timestamp": 1793193347556.631,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "showError",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 43482
+            },
+            {
+              "functionName": "onPageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 21713
+            },
+            {
+              "functionName": "handlePageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 14977
+            },
+            {
+              "functionName": "handlePageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 21873
+            },
+            {
+              "functionName": "pageNotFound",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 19290
+            },
+            {
+              "functionName": "t",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 18910
+            },
+            {
+              "functionName": "handleMessage",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 32,
+              "columnNumber": 18964
+            },
+            {
+              "functionName": "handleMessage",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:60379/static/js/index.DucWPHXi.js",
+              "lineNumber": 28,
+              "columnNumber": 4886
+            }
+          ]
+        }
+      }
+    }
+  }
+]

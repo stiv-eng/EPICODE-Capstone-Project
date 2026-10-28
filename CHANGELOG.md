@@ -1,3 +1,25 @@
+# Release v0.9.0 — 2026-10-28
+
+- Add Telemetry Lap Analysis alongside existing workflows: reference/analyzed
+  sessions and laps, actual metric geometry, shared sections, delta decomposition,
+  35 engineering KPI definitions, observed-signal overlays and strict JSON facts.
+- Audit all 70 Barcelona LD exports / 205 verified laps and eight GT7 laps.
+  Correct the earlier coordinate-availability conclusion: Barcelona raw metre
+  world channels exist, although the old adapter omitted them.
+- Implement 1.5 m spatial resampling, signed three-point curvature, configurable
+  150 m corner threshold, weighted apex proxy and diagnostic maximum curvature.
+  Mark unverified endpoint tangents as unclassified boundary sections.
+- Align sequentially on one reference with offset, ambiguity, reverse-motion,
+  timing and coverage checks. Retain stationary time and reconcile all section
+  contributions with measured lap delta. Unsupported comparisons remain explicit.
+- Define event persistence, units, measurement windows and quality per KPI.
+  Withhold uncertain event associations and unverified physical units.
+- Validate synthetic known solutions, recorded lap pairs, existing workflows,
+  actual Chrome interactions, exports and the shared metre-based cursor.
+  Preserve datasets, archived prediction work and F5. Add no ML/DL/LLM dependency.
+
+See [release evidence and limitations](docs/RELEASE_V090_REPORT.md).
+
 # Release v0.8.2 — 2026-10-25
 
 - Close the progressive final-lap-time prediction research direction. Remove

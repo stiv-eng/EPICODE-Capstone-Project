@@ -1,0 +1,6116 @@
+{
+  "audit": "Real raw signals; initial feasibility gate documented before geometry implementation",
+  "baseline_commit": "1e91142",
+  "manifest_sha256": "716efe7a60564ea8875a3e61e8559c24bb9dc8438ed9cd08561e48557e0777a1",
+  "barcelona_recordings": 70,
+  "barcelona_laps": 205,
+  "missing_xy_laps": 0,
+  "barcelona_sources": [
+    {
+      "source": "20240229_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240229_HC",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 100,
+          "samples": 63566,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240304_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240304_AB",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 45392,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240313_OP/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld",
+      "recording_label": "20240313_OP",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 54360,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld",
+      "recording_label": "20240325_WL",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 45223,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240329_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld",
+      "recording_label": "20240329_HC",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35037,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240329_ST/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "recording_label": "20240329_ST",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 43143,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240405_NH/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240405_NH",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 40232,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld",
+      "recording_label": "20240410_A_12_123",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36588,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld",
+      "recording_label": "20240410_A_12_123",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 61235,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld",
+      "recording_label": "20240410_A_21_231",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36373,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld",
+      "recording_label": "20240410_A_21_231",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 60607,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240411_A_12_312/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld",
+      "recording_label": "20240411_A_12_312",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35783,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "recording_label": "20240417_HC",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 50062,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "recording_label": "20240417_HC",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 34552,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16676,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30085,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12384,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10419,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 68466,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "recording_label": "20240423_IN",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 21858,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240424_KW",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 19800,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "recording_label": "20240424_KW",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 41759,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "recording_label": "20240424_KW",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 37843,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "recording_label": "20240424_KW",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8679,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240425_RRK/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "recording_label": "20240425_RRK",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30886,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240426_AB",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 40898,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_NiM/laps/ks_barcelona_&_dallara_f317_&_NiM_&_stint_8.ld",
+      "recording_label": "20240426_NiM",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 36459,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 19831,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_10.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6124,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_11.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11086,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_12.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9197,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_13.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 13780,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_14.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9730,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_15.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9742,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_16.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9726,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_17.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8126,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_18.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 7864,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_19.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 38028,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8393,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_20.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 26957,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_21.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 31599,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_22.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 30926,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_23.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6173,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_24.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 35145,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_25.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 5853,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_26.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10279,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_27.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12344,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_28.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 49805,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_29.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10196,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16377,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_30.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 18368,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_31.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 14981,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_32.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9009,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_33.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 12114,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_34.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 42892,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_36.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 23960,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_37.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 8244,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_38.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 25870,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_39.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11042,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6130,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_40.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 16770,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_41.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 21205,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_42.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 15075,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_43.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9933,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_44.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 10893,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 11786,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 5858,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6952,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_8.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 9347,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    },
+    {
+      "source": "20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_9.ld",
+      "recording_label": "20240426_XX",
+      "channels": {
+        "Brake Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Lateral": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "CG Accel Longitudinal": {
+          "unit": "G",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Car Coord X": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Y": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Car Coord Z": {
+          "unit": "m",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Car Pos Norm": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Engine RPM": {
+          "unit": "rpm",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Gear": {
+          "unit": "",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Ground Speed": {
+          "unit": "km/h",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Lap Time": {
+          "unit": "s",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Steering Angle": {
+          "unit": "deg",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        },
+        "Throttle Pos": {
+          "unit": "%",
+          "export_hz": 50,
+          "samples": 6911,
+          "finite_fraction": 1.0
+        }
+      },
+      "coordinate_mapping": "world X=Car Coord Y, world Y=-Car Coord X, elevation=Car Coord Z",
+      "coordinate_origin": "direct source simulator coordinates, declared metres; no progress/velocity reconstruction"
+    }
+  ],
+  "coordinate_frame_evidence": "Same declared metre channels, plausible closed circuits, finish-area agreement across 70 recordings, observed path distance agrees with integrated ground speed; not surveyed track geometry",
+  "normalized_progress_decision": "Do not use for alignment: exact export interpolation/latency/reverse contract unverified",
+  "gt7": {
+    "validated_laps": 8,
+    "coordinate_source": "packet world X/Z, metre declaration in pinned adapter",
+    "derived_signals": [
+      "speed_kmh",
+      "distance_m",
+      "steer_angle_l",
+      "steer_angle_r"
+    ],
+    "unverified_signals": [
+      "derived steering calibration",
+      "sway/surge physical acceleration units"
+    ],
+    "laps": [
+      {
+        "lap_id": 2,
+        "duration_s": 108.65,
+        "samples": 6515,
+        "closure_m": 2.5093776967116104,
+        "length_m": 5081.950464644642,
+        "max_clock_gap_s": 0.06700000000000017
+      },
+      {
+        "lap_id": 3,
+        "duration_s": 106.657,
+        "samples": 6398,
+        "closure_m": 4.521783543781174,
+        "length_m": 5086.42899777119,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 4,
+        "duration_s": 107.559,
+        "samples": 6453,
+        "closure_m": 1.980124187074821,
+        "length_m": 5086.077734984543,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 5,
+        "duration_s": 105.834,
+        "samples": 6349,
+        "closure_m": 2.7752143032391503,
+        "length_m": 5084.22089826265,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 6,
+        "duration_s": 106.25,
+        "samples": 6374,
+        "closure_m": 4.0158401073146335,
+        "length_m": 5087.924385292993,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 11,
+        "duration_s": 105.547,
+        "samples": 6332,
+        "closure_m": 2.8915934271087655,
+        "length_m": 5089.7732904210625,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 13,
+        "duration_s": 103.806,
+        "samples": 6227,
+        "closure_m": 3.4246567946286355,
+        "length_m": 5107.853497900559,
+        "max_clock_gap_s": 0.017000000000010118
+      },
+      {
+        "lap_id": 14,
+        "duration_s": 103.712,
+        "samples": 6222,
+        "closure_m": 2.164932697509119,
+        "length_m": 5086.3856732843415,
+        "max_clock_gap_s": 0.017000000000010118
+      }
+    ]
+  },
+  "original_attachment": {
+    "validated_complete_laps": 0,
+    "geometry": "integrated-position provenance unverified; unsupported for circuit-section comparison"
+  }
+}

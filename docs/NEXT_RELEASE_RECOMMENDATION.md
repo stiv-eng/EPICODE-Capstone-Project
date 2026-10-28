@@ -1,20 +1,21 @@
-# Next development after the v0.8.2 scope reset
+# Recommendation after deterministic Telemetry Lap Analysis v0.9.0
 
-The progressive lap-time prediction research direction is closed. Keep the
-application focused on Motorsport telemetry Data Analysis. No new direction is
-selected or started by this release.
+Keep this release deterministic. The next step is a **small manual technical
+validation**, not another model or an automatic coaching layer.
 
-Two small possibilities are reasonable only if the user confirms the need:
+| Decision item | Focused proposal |
+| --- | --- |
+| User problem | Determine whether displayed corner and pedal differences are useful and correctly associated with the selected driving phase |
+| Simplest viable alternative | Use the existing raw telemetry comparison and the new fact table side by side, without new algorithms |
+| Expected practical benefit | Identify misleading phase associations or unstable geometric proxies before users interpret them as driving advice |
+| Evidence needed | Human annotations for a few corners on two fixed accepted Barcelona lap pairs, plus visible raw brake/throttle/speed traces |
+| Small feasibility check | Review three corners, compare weighted/maximum-curvature landmarks, explain null/uncertain KPIs and repeat with one modest threshold change |
+| Development gate | Add a narrowly justified refinement only when the manual review demonstrates a concrete measurement or usability problem |
 
-| Assessment | Find the right recording faster | Make unfamiliar CSV/Parquet imports easier |
-| --- | --- | --- |
-| User problem | Many similarly named recordings can slow source selection | A new source may use different channel names/units |
-| Simplest viable alternative | Improve naming/documentation and use the existing selector | Supply one canonical example and a short mapping guide |
-| Expected practical benefit | Fewer wrong-source selections and faster comparisons | Fewer mapping errors and quicker first useful chart |
-| Evidence required | Observe the user's source-selection workflow and measure mistakes/time | Collect a few representative upload difficulties and supported unit declarations |
-| Small feasibility check before coding | Compare existing labels against a small proposed label/filter sketch using three recording tasks | Manually map two representative files using the existing form and document ambiguities |
-| Development gate | Implement a small selector improvement only if existing naming is insufficient | Improve documentation first; consider UI changes only if the existing mapping flow remains insufficient |
-
-Existing analysis and comparison methods should be used before adding new
-infrastructure. The user will choose a direction separately. This release
-implements neither option.
+Retain all valid timing laps and the explicit spatial rejection rules. Do not
+relax quality thresholds merely to increase the successful alignment count. If
+GT7 steering/acceleration measurements become important, obtain their source
+calibration/unit contract first. If a later LLM demonstration is selected, limit
+it initially to faithful summaries of these structured facts and validity flags;
+evaluate it separately for unsupported causal statements. No ML, DL or LLM
+development is justified merely by the future Capstone architecture.

@@ -73,12 +73,12 @@ from scripts.analysis_guard import install,FORBIDDEN_ROOTS
 install()
 from streamlit.testing.v1 import AppTest
 root=Path.cwd()
-for path in ['streamlit_app.py','pages/00_Data_Explorer.py','pages/10_Session_Overview.py','pages/14_Session_Comparison.py']:
+for path in ['streamlit_app.py','pages/00_Data_Explorer.py','pages/10_Session_Overview.py','pages/14_Session_Comparison.py','pages/16_Telemetry_Lap_Analysis.py']:
     app=AppTest.from_file(str(root/path),default_timeout=90).run()
     assert not app.exception,app.exception
 assert not (FORBIDDEN_ROOTS & set(sys.modules))
 assert 'motorsport.ml' not in sys.modules
-print('All four active local pages start without prediction dependencies or artifacts')
+print('All active local pages start without prediction dependencies or artifacts')
 '''
     result = subprocess.run([sys.executable, '-c', code], cwd=ROOT, capture_output=True, text=True, timeout=150)
     assert result.returncode == 0, result.stdout+result.stderr

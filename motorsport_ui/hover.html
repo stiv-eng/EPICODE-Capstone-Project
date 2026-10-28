@@ -71,16 +71,17 @@ function drawCursor(state,time){
   }
 }
 function timeReadout(state,time,channel){
+  const cursorMeta=state.chart._fullLayout.meta||{},cursorUnit=cursorMeta.cursor_unit||'s',cursorLabel=cursorMeta.cursor_label||'t';
   const traces=state.chart._fullData.filter(t=>t.meta?.channel&&t.hoverinfo!=='skip');
   const selected=channel||state.channel||traces[0]?.meta.channel;state.channel=selected;
   state.title.textContent=selected||'Lettura temporale';state.readout.dataset.hoveredChannel=selected;
-  state.note.textContent='Cursore '+fmt(time)+' s · campione osservato più vicino entro 0,51 × passo mediano originale; N/D oltre tolleranza.';
+  state.note.textContent='Cursore '+fmt(time)+' '+cursorUnit+' · '+(cursorMeta.cursor_sample_policy||'campione osservato più vicino entro 0,51 × passo mediano originale; N/D oltre tolleranza.');
   for(const [id,row] of state.rows){
     const candidates=traces.filter(t=>t.meta.selection_id===id);
     const trace=candidates.find(t=>t.meta.channel===selected)||(candidates.length===1?candidates[0]:null);
     const p=trace?nearest(trace,time):null;
     row.value.textContent=p?fmt(p.y)+' '+trace.meta.unit:'N/D';
-    row.time.textContent=p?'t = '+Number(p.x).toFixed(3)+' s · '+(trace.meta.sample_label||'Punto grafico')+' '+(trace.customdata?.[p.i]?.[0]??p.i):'Misura non disponibile';
+    row.time.textContent=p?cursorLabel+' = '+Number(p.x).toFixed(3)+' '+cursorUnit+' · '+(trace.meta.sample_label||'Punto grafico')+' '+(trace.customdata?.[p.i]?.[0]??p.i):'Misura non disponibile';
     row.element.dataset.sampleTime=p?p.x:'';
   }
   const trace=traces.find(t=>t.meta.channel===selected),ya=trace&&axis(state.chart,trace.yaxis,'y');

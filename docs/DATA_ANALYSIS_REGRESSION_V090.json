@@ -1,0 +1,531 @@
+{
+  "status": "passed",
+  "archive_commit": "3b96553a10881ea654f5fe2a505cb7b3169d4d1d",
+  "analysis_sources": 73,
+  "signal_hashes_unchanged": 73,
+  "overview_summaries_unchanged": 73,
+  "barcelona_validated_laps": 205,
+  "original_lap_trajectories_unchanged": 205,
+  "checked_local_files": 244,
+  "barcelona_rounding_recovery": [
+    {
+      "key": "barcelona:20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld",
+      "previous_laps": 7,
+      "current_laps": 8
+    }
+  ],
+  "explanation": "Analysis previously exposed 204 laps. Apply the already verified v071 1 ms target-rounding tolerance to expose the missing independently validated lap. Raw signals, source files and existing timings unchanged.",
+  "sources": [
+    {
+      "key": "barcelona:20240229_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 63566,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240304_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 45392,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240313_OP/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_1.ld",
+      "samples": 54360,
+      "laps": 9,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240325_WL/laps/ks_barcelona_&_dallara_f317_&_WL_&_stint_2.ld",
+      "samples": 45223,
+      "laps": 8,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240329_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld",
+      "samples": 35037,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240329_ST/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "samples": 43143,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240405_NH/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 40232,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_2.ld",
+      "samples": 36588,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240410_A_12_123/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_3.ld",
+      "samples": 61235,
+      "laps": 11,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_4.ld",
+      "samples": 36373,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240410_A_21_231/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_5.ld",
+      "samples": 60607,
+      "laps": 11,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240411_A_12_312/laps/ks_barcelona_&_dallara_f317_&_KC Sim Racer_&_stint_6.ld",
+      "samples": 35783,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "samples": 50062,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240417_HC/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "samples": 34552,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 16676,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "samples": 30085,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "samples": 12384,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "samples": 10419,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "samples": 68466,
+      "laps": 9,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240423_IN/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "samples": 21858,
+      "laps": 3,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 19800,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "samples": 41759,
+      "laps": 4,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "samples": 37843,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240424_KW/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "samples": 8679,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240425_RRK/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "samples": 30886,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_AB/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 40898,
+      "laps": 6,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_NiM/laps/ks_barcelona_&_dallara_f317_&_NiM_&_stint_8.ld",
+      "samples": 36459,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 19831,
+      "laps": 3,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_10.ld",
+      "samples": 6124,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_11.ld",
+      "samples": 11086,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_12.ld",
+      "samples": 9197,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_13.ld",
+      "samples": 13780,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_14.ld",
+      "samples": 9730,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_15.ld",
+      "samples": 9742,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_16.ld",
+      "samples": 9726,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_17.ld",
+      "samples": 8126,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_18.ld",
+      "samples": 7864,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_19.ld",
+      "samples": 38028,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_2.ld",
+      "samples": 8393,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_20.ld",
+      "samples": 26957,
+      "laps": 4,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_21.ld",
+      "samples": 31599,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_22.ld",
+      "samples": 30926,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_23.ld",
+      "samples": 6173,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_24.ld",
+      "samples": 35145,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_25.ld",
+      "samples": 5853,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_26.ld",
+      "samples": 10279,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_27.ld",
+      "samples": 12344,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_28.ld",
+      "samples": 49805,
+      "laps": 5,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_29.ld",
+      "samples": 10196,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_3.ld",
+      "samples": 16377,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_30.ld",
+      "samples": 18368,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_31.ld",
+      "samples": 14981,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_32.ld",
+      "samples": 9009,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_33.ld",
+      "samples": 12114,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_34.ld",
+      "samples": 42892,
+      "laps": 4,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_36.ld",
+      "samples": 23960,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_37.ld",
+      "samples": 8244,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_38.ld",
+      "samples": 25870,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_39.ld",
+      "samples": 11042,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_4.ld",
+      "samples": 6130,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_40.ld",
+      "samples": 16770,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_41.ld",
+      "samples": 21205,
+      "laps": 2,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_42.ld",
+      "samples": 15075,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_43.ld",
+      "samples": 9933,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_44.ld",
+      "samples": 10893,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_5.ld",
+      "samples": 11786,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_6.ld",
+      "samples": 5858,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_7.ld",
+      "samples": 6952,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_8.ld",
+      "samples": 9347,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "barcelona:20240426_XX/laps/ks_barcelona_&_dallara_f317_&_adrianremonda_&_stint_9.ld",
+      "samples": 6911,
+      "laps": 1,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "acgym:20240229_HC/monza_&_dallara_f317_&_adrianremonda_&_stint_1.ld",
+      "samples": 36057,
+      "laps": 3,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "local:data/raw/gt7_trial_mountain_962c",
+      "samples": 95796,
+      "laps": 8,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    },
+    {
+      "key": "local:data/raw/telemetry.parquet",
+      "samples": 116987,
+      "laps": 0,
+      "signal_hash_unchanged": true,
+      "overview_unchanged": true
+    }
+  ]
+}

@@ -25,7 +25,7 @@ def enrich_recording(session,path):
             session.data[source]=channel.values
             session.data[canonical]=channel.values
             units[source]=units[canonical]='°C' if unit=='C' else unit
-    session.metadata['position_provenance']='No compatible world X/Y channels in the inspected MoTeC export; Position is race rank and Car Pos Norm is dimensionless progress.'
+    session.metadata['position_provenance']='World X/Y are not mapped by this view. Telemetry Lap Analysis separately inspects metric Car Coord channels when available; Position is race rank and Car Pos Norm is dimensionless progress.'
     session.raw_quality=quality_report(session.raw)
     session.quality=quality_report(session.data,'elapsed_s')
     return session

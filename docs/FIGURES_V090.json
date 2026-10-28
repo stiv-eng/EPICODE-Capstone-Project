@@ -1,0 +1,13 @@
+{
+  "source": "actual recorded Barcelona/GT7; no synthetic circuit presented as real",
+  "files": [
+    "docs/figures/geometry_barcelona_v090.png",
+    "docs/figures/geometry_barcelona_v090.svg",
+    "docs/figures/corner_barcelona_v090.png",
+    "docs/figures/corner_barcelona_v090.svg",
+    "docs/figures/geometry_gt7_v090.png",
+    "docs/figures/geometry_gt7_v090.svg",
+    "docs/figures/corner_gt7_v090.png",
+    "docs/figures/corner_gt7_v090.svg"
+  ]
+}

@@ -103,7 +103,9 @@ def capture(browser, base, artifacts, scenario='v062'):
                 call('Emulation.setDeviceMetricsOverride', {'width':1600,'height':1200,'deviceScaleFactor':1,'mobile':False})
                 call('Runtime.enable')
                 call('Log.enable')
-                if scenario=='fixtures':
+                if scenario=='v090':
+                    from scripts.smoke_ui_v090 import exercise
+                elif scenario=='fixtures':
                     from functools import partial
                     from scripts.smoke_ui_v082 import exercise as shared_exercise
                     exercise=partial(shared_exercise,fixture_only=True)
@@ -128,7 +130,7 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v082'):
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
-    artifacts = ROOT/'artifacts/v082'/scenario
+    artifacts = ROOT/('artifacts/v090' if scenario=='v090' else 'artifacts/v082')/scenario
     artifacts.mkdir(parents=True,exist_ok=True)
     with (artifacts/'smoke_server.log').open('w', encoding='utf-8') as log:
         environment=dict(os.environ)
@@ -173,7 +175,7 @@ def smoke(browser=None,entrypoint='streamlit_app.py',scenario='v082'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--browser', type=Path, help='Optional local Chrome/Chromium executable')
-    parser.add_argument('--release',choices=['v082','uploads','fixtures'],default='v082')
+    parser.add_argument('--release',choices=['v082','v090','uploads','fixtures'],default='v090')
     options=parser.parse_args()
     entrypoint=('scripts/hover_fixture_app.py' if options.release=='fixtures'
                 else 'streamlit_app.py')
