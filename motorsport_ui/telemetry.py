@@ -135,7 +135,7 @@ def get_source(key):
     return load_local(key,source_signature(key))
 
 
-def select_telemetry(page_key='analysis'):
+def select_telemetry(page_key='analysis',label='Dataset analizzato'):
     sources=source_catalog(include_acgym=True)
     if not sources:
         st.info('Apri Data Explorer e carica un file, oppure inserisci CSV/Parquet in data/raw/.')
@@ -149,7 +149,7 @@ def select_telemetry(page_key='analysis'):
     def changed():
         st.session_state['telemetry_active_key']=st.session_state[widget_key]
     with st.sidebar:
-        key=st.selectbox('Dataset analizzato',keys,
+        key=st.selectbox(label,keys,
                          format_func=sources.get,key=widget_key,on_change=changed)
     st.session_state['telemetry_active_key']=key
     try:

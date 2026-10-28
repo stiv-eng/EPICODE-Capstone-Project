@@ -26,7 +26,7 @@ def test_home_starts_without_importing_fastf1_or_deep_learning(monkeypatch):
     app = AppTest.from_file(str(ROOT/'streamlit_app.py'), default_timeout=45).run()
     assert not app.exception
     assert app.title[0].value == 'Motorsport Telemetry Analyzer'
-    assert app.checkbox[0].value is False
+    assert not app.checkbox  # Legacy F1 navigation has been removed.
 
 
 def test_explorer_no_local_dataset_and_upload_prompt(tmp_path,monkeypatch):

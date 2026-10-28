@@ -35,19 +35,21 @@ def test_active_import_graph_and_dependencies_do_not_reference_prediction():
             for node in ast.walk(tree):
                 imports = [a.name for a in node.names] if isinstance(node, ast.Import) else ([node.module or ''] if isinstance(node, ast.ImportFrom) else [])
                 assert not any(name.startswith(forbidden) for name in imports), path
-    for filename in ('requirements.txt', 'requirements-extension.txt'):
+    for filename in ('requirements.txt',):
         dependencies = (ROOT/filename).read_text(encoding='utf-8').lower()
         assert all(name not in dependencies for name in ('keras', 'torch', 'scikit-learn', 'joblib'))
 
 
-def test_home_and_optional_legacy_navigation_are_analysis_only(monkeypatch):
+def test_home_navigation_is_analysis_only(monkeypatch):
     app = AppTest.from_file(str(ROOT/'streamlit_app.py'), default_timeout=45).run()
     assert not app.exception
     text = ' '.join(x.value for x in app.markdown)+str(app.caption)
     assert not any(name in text for name in ('Progressive Prediction', 'Machine Learning', 'SVR', 'GRU'))
-    app.checkbox[0].check().run()
-    assert not app.exception
+    assert not app.checkbox
     source = (ROOT/'streamlit_app.py').read_text(encoding='utf-8')
+    assert 'FastF1' not in source and 'Formula 1' not in source
+    assert not (ROOT/'motorsport_ui/common.py').exists()
+    assert not (ROOT/'requirements-extension.txt').exists()
     tree = ast.parse(source)
     pages = [n.args[0].value for n in ast.walk(tree) if isinstance(n, ast.Call) and
              getattr(n.func, 'attr', '') in ('Page','page_link') and n.args and isinstance(n.args[0], ast.Constant)]

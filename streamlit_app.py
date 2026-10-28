@@ -1,4 +1,4 @@
-"""Offline-first entrypoint; legacy pages are opt-in and lazily executed."""
+"""Offline simulator telemetry analysis entrypoint."""
 import streamlit as st
 
 st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎️', layout='wide')
@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.9.0 · Deterministic Telemetry Lap Analysis · Python · Plotly')
+    st.caption('v0.9.1 · Deterministic Telemetry Lap Analysis · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
                 'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
     st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
@@ -19,7 +19,7 @@ def home():
     st.markdown('Analizza input del pilota, dinamica e pneumatici; confronta finestre di sessione '
                 'o giri verificati e ispeziona la traiettoria con un marcatore temporale. '
                 'Data Explorer raccoglie Signals, Driver Inputs, Vehicle Dynamics, Tyre Analysis, Cockpit e Position / Track Map.')
-    st.info('I dati già installati si analizzano offline, senza FastF1 o un simulatore in esecuzione.')
+    st.info('I dati già installati si analizzano offline, senza un simulatore in esecuzione.')
     st.markdown('Sono disponibili le registrazioni **Barcelona GP / Dallara F317**, '
                 '**ACGym Monza** e **GT7 Trial Mountain**, quando installate. '
                 'Data Explorer e Telemetry Comparison usano i confini dei giri verificati e i campioni sorgente osservati.')
@@ -35,14 +35,5 @@ pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=
                              st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',icon='📉',url_path='comparison'),
                              st.Page('pages/16_Telemetry_Lap_Analysis.py',title='Telemetry Lap Analysis',icon='🏁',url_path='lap-analysis')]}
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.9.0')
-    legacy = st.checkbox('Mostra pagine legacy Formula 1', value=False)
-    if legacy:
-        st.warning('Le pagine legacy usano FastF1 e possono richiedere rete e dipendenze opzionali.')
-if legacy:
-    pages['Legacy Formula 1 · FastF1'] = [
-        st.Page('pages/01_Lap_and_Stint_Analysis.py', title='Legacy · Lap & Stint'),
-        st.Page('pages/02_Telemetry_Comparison.py', title='Legacy · Telemetry Comparison'),
-        st.Page('pages/03_Track_Map.py', title='Legacy · Track Map'),
-    ]
+    st.caption('Motorsport Telemetry Analyzer · v0.9.1')
 st.navigation(pages).run()

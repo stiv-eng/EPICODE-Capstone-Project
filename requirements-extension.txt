@@ -1,3 +1,0 @@
-# Optional legacy Formula 1 analysis; the local application works without it.
--r requirements.txt
-fastf1>=3.5,<4

@@ -1,4 +1,4 @@
-# Motorsport Telemetry Analyzer — v0.9.0
+# Motorsport Telemetry Analyzer — v0.9.1
 
 A local Motorsport **Data Analysis** application built with Python, Streamlit,
 Plotly, NumPy and Pandas. Explore recorded sessions, inspect driver inputs and
@@ -21,8 +21,7 @@ python -m venv .venv
 ```
 
 The local application needs no simulator connection, trained models or model
-artifacts. Existing optional Formula 1 analysis pages require
-`requirements-extension.txt` (FastF1) and may access external timing services.
+artifacts. Simulator telemetry support is independent of external timing services.
 
 ## Use the application
 
@@ -80,11 +79,6 @@ The active app contains telemetry analysis; this release adds no replacement pre
 
 ```powershell
 python -m pytest -q
-python -m scripts.audit_telemetry_v090
-python -m scripts.evaluate_lap_analysis_v090
-python -m scripts.smoke_app --release v090 --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"
-python -m scripts.smoke_app --release uploads --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"
-python -m scripts.smoke_app --release fixtures --browser "C:\Program Files\Google\Chrome\Application\chrome.exe"
 ```
 
 The optional real-source integration checks require the installed local recordings.
@@ -92,7 +86,7 @@ Browser verification forbids prediction-package imports and model-file access
 without moving or deleting those files. Existing environments may still contain
 historical libraries; they are not required by the active app.
 
-Read the [release report](docs/RELEASE_V090_REPORT.md),
+Read the [v0.9.1 release report](docs/RELEASE_V091_REPORT.md),
 [feasibility audit](docs/TELEMETRY_DATA_FEASIBILITY_V090.md),
 [architecture](docs/ARCHITECTURE_V090.md),
 [verification](docs/VERIFICATION_V090.json) and

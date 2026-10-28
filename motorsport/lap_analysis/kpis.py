@@ -12,8 +12,8 @@ class KPIConfig:
     brake_off_persistence_s: float = .1
     throttle_on_pct: float = 20.
     throttle_persistence_s: float = .3
-    approach_m: float = 120.
-    exit_m: float = 80.
+    approach_m: float = 200.
+    exit_m: float = 120.
     maximum_release_before_entry_m: float = 30.
 
     def validate(self):
@@ -25,7 +25,7 @@ class KPIConfig:
 
 # name: (unit, engineering definition, source channels)
 SPECS = {
-    'braking_event_count':('count','Confirmed events with observed onset in the approach-to-apex window',['brake_pct']),
+    'braking_event_count':('count','Confirmed approach events uniquely assigned to the first eligible following reference apex; spanning phases remain uncertain',['brake_pct']),
     'brake_onset_position_m':('m','First observed sample reaching configured brake-on threshold of the unique confirmed approach event, on common reference',['brake_pct','pos_x','pos_y']),
     'brake_release_position_m':('m','First observed sample below the configured brake-off threshold of a sustained release',['brake_pct','pos_x','pos_y']),
     'braking_distance_m':('m','Observed driven XY distance during the unique braking event',['brake_pct','pos_x','pos_y']),
@@ -150,6 +150,44 @@ def _sustained(t, y, begin, end, threshold, persistence):
     return None
 
 
+def associated_braking_events(aligned,geometry,config):
+    """Each observed event has one owner, even when approach windows overlap.
+
+    Choose the first eligible apex after onset within the approach bound. A
+    phase spanning multiple apex landmarks is retained once and marked uncertain.
+    End/start fragments of the same recorded lap never form a synthetic event.
+    """
+    t=aligned.time;length=geometry.length_m;duration=aligned.lap.duration_s
+    corners=[s for s in geometry.sections if s['kind']=='corner']
+    assigned={s['section_id']:[] for s in corners}
+    events=confirmed_events(t,channel(aligned.lap,'brake_pct'),config)
+    for event in events:
+        a,b=event['onset_index'],event['release_index']
+        candidates=[]
+        for section in corners:
+            start=section['start_s_m'];apex=section['curvature_weighted_apex_proxy']['s_m']
+            apex+=length if section['wraps_start_finish'] and apex<start else 0.
+            for shift in ((0,1) if section['wraps_start_finish'] else (0,)):
+                onset=float(aligned.progress[a]+shift*length)
+                if start-config.approach_m<=onset<=apex:
+                    candidates.append((apex-onset,section['section_id'],shift,onset,apex))
+        if not candidates:
+            continue
+        _,owner,shift,onset,apex=min(candidates)
+        release=float(aligned.progress[b]+shift*length) if b is not None else None
+        reason=None
+        if release is not None:
+            others=[s['curvature_weighted_apex_proxy']['s_m']+cycle*length
+                    for s in corners if s['section_id']!=owner for cycle in (0,1)]
+            if any(apex<other<=release for other in others):
+                reason='Braking association uncertain: one observed phase spans multiple corner apex landmarks'
+        assigned[owner].append(dict(onset_s=onset,onset_t=float(t[a]+shift*duration),
+            release_t=float(t[b]+shift*duration) if b is not None else None,
+            onset_index=a,release_index=b,censored=event['censored'],shift=shift,
+            association_reason=reason))
+    return assigned
+
+
 def _corner_values(aligned, section, geometry, own_geometry, config):
     lap, t = aligned.lap, aligned.time
     length, duration = geometry.length_m, lap.duration_s
@@ -224,8 +262,13 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
             measured('maximum_exit_throttle_pct',float(throttle[exit_mask].max()))
         # Follow the same reference for a short exit window, never the next lap
         # unless this corner itself wraps start/finish.
-        exit_s = min(length, end_s+config.exit_m)
-        search_end = aligned.time_map.at(exit_s)+(duration if wrap else 0.)
+        # Do not claim the next corner's throttle reapplication as this exit.
+        local_end=end_s+(length if wrap else 0.)
+        next_entry=min((s['start_s_m']+cycle*length for s in geometry.sections
+                        if s['kind']=='corner' and s['section_id']!=section['section_id']
+                        for cycle in (0,1,2) if s['start_s_m']+cycle*length>=local_end-1e-8),default=np.inf)
+        exit_s=min(local_end+config.exit_m,next_entry,length*(2 if wrap else 1))
+        search_end=aligned.time_map.at(exit_s-length if exit_s>length else exit_s)+(duration if exit_s>length else 0.)
         search_end = max(end, min(search_end, float(tt[-1])))
         # A wrapped section joins two observed pieces of this SAME lap, not a
         # verified next-lap event sequence. Never bridge its seam for persistence.
@@ -246,18 +289,7 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
                 measured('first_sustained_throttle_after_minimum_position_m',float(pp[application_min] % length))
     measured('mean_exit_acceleration_g',_mean(tt,lon,apex,end,seam=duration if wrap else None))
     windows['maximum_exit_throttle_pct']=windows['mean_exit_acceleration_g']=[float(apex),float(end)]
-    events = confirmed_events(t,channel(lap,'brake_pct'),config)
-    expanded = []
-    for event in events:
-        for shift in ((0,1) if wrap else (0,)):
-            a, b = event['onset_index'], event['release_index']
-            onset_t = float(t[a]+shift*duration)
-            onset_s = float(aligned.progress[a]+shift*length)
-            local_start = start_s
-            if onset_s < local_start-config.approach_m or onset_s > (apex_s+(length if wrap and apex_s<start_s else 0.)):
-                continue
-            expanded.append(dict(onset_s=onset_s,onset_t=onset_t,release_t=float(t[b]+shift*duration) if b is not None else None,
-                                 onset_index=a,release_index=b,censored=event['censored'],shift=shift))
+    expanded=associated_braking_events(aligned,geometry,config)[section['section_id']]
     measured('braking_event_count',float(len(expanded)) if brake is not None else None)
     approach_start = aligned.time_map.at(max(0.,start_s-config.approach_m))
     for name in list(SPECS)[:10]:
@@ -283,6 +315,9 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
         if start_s-release_s > config.maximum_release_before_entry_m:
             for name in list(SPECS)[1:10]+['braking_to_cornering_transition_s']:
                 explanations[name]='Braking association uncertain: observed event released more than configured distance before geometric corner entry'
+        if event['association_reason']:
+            for name in list(SPECS)[1:10]+['braking_to_cornering_transition_s']:
+                explanations[name]=event['association_reason']
         if lat is not None:
             transition_end = min(end,float(t[-1])) if wrap else end
             transition = _sustained(tt,np.abs(lat),start,transition_end,.5,.15)

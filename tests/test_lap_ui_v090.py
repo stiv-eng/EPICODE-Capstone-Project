@@ -28,6 +28,12 @@ def test_actual_page_laps_thresholds_metric_cursor_and_cached_corner_selection(m
     assert len(specs)==4
     distance=[s for s in specs if s['layout'].get('meta',{}).get('cursor_unit')=='m']
     assert len(distance)==2 and all(s['layout']['meta']['temporal_axis'] is False for s in distance)
+    signals=distance[1]
+    assert signals['layout']['height']>=1000 and signals['layout']['margin']['l']>=100
+    assert len([shape for shape in signals['layout']['shapes'] if shape['type']=='line'])==18
+    assert all(signals['layout']['yaxis'+(str(i) if i>1 else '')]['title']['standoff']>=10 for i in range(1,7))
+    table=next(df.value for df in app.dataframe if 'KPI' in df.value)
+    assert 'Braking Distance [m]' in set(table.KPI) and 'braking_distance_m' not in set(table.KPI)
     corner=next(s for s in app.selectbox if s.key=='lap_analysis_corner')
     corner.set_value(corner.options[1]).run()
     assert not app.exception and len(calls)==1
