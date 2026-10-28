@@ -6,7 +6,7 @@ st.set_page_config(page_title='Motorsport Telemetry Analyzer', page_icon='🏎�
 
 def home():
     st.title('Motorsport Telemetry Analyzer')
-    st.caption('v0.9.2 · Deterministic Telemetry Lap Analysis · Python · Plotly')
+    st.caption('v0.9.3 · Deterministic Telemetry Lap Analysis · Python · Plotly')
     st.markdown('Una piattaforma di analisi telemetrica con esempi locali **GT7 e AssettoCorsaGym** '
                 'e supporto per file **Parquet e CSV**, senza simulatore in esecuzione.')
     st.markdown('Nel **Data Explorer** puoi scegliere gli esempi disponibili, caricare altri file, '
@@ -35,5 +35,5 @@ pages = {'Telemetria locale': [st.Page(home, title='Home', icon='🏁', default=
                              st.Page('pages/14_Session_Comparison.py',title='Telemetry Comparison',icon='📉',url_path='comparison'),
                              st.Page('pages/16_Telemetry_Lap_Analysis.py',title='Telemetry Lap Analysis',icon='🏁',url_path='lap-analysis')]}
 with st.sidebar:
-    st.caption('Motorsport Telemetry Analyzer · v0.9.2')
+    st.caption('Motorsport Telemetry Analyzer · v0.9.3')
 st.navigation(pages).run()

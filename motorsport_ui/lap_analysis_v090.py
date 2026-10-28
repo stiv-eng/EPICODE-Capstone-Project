@@ -107,13 +107,14 @@ def cached_analysis(key_a,key_b,signature_a,signature_b,lap_a,lap_b,configuratio
 
 
 ISSUE_LABELS={
+    'unreliable':'Regione non allineata o transizione',
     'offset':'Scostamento dal riferimento',
     'reverse_progress':'Arretramento della progressione proiettata',
     'ambiguous':'Rami geometrici ambigui',
     'progress_jump':'Salto di progressione proiettata',
     'coverage':'Copertura del giro insufficiente',
 }
-ISSUE_COLORS={'offset':'#ff6378','reverse_progress':'#ffd166','ambiguous':'#dc8af2',
+ISSUE_COLORS={'unreliable':'#ff6378','offset':'#ff6378','reverse_progress':'#ffd166','ambiguous':'#dc8af2',
               'progress_jump':'#ff965c','coverage':'#ffffff'}
 
 
@@ -144,18 +145,37 @@ def trajectory_figure(result):
             if aligned is None or not aligned.problem_masks:
                 continue
             xy=aligned.lap.frame[['pos_x','pos_y']].to_numpy(float)
+            if aligned.quality['status']=='partial':
+                good=np.isfinite(aligned.progress)
+                indexes=np.unique(np.r_[np.arange(0,len(xy),max(1,int(np.ceil(len(xy)/1800)))),len(xy)-1])
+                line=xy[indexes].copy();line[~good[indexes]]=np.nan
+                bad=np.cumsum(~good)
+                line[1:][np.diff(bad[indexes])>0]=np.nan
+                fig.add_trace(go.Scatter(x=line[:,0],y=line[:,1],mode='lines',connectgaps=False,
+                    line=dict(color='#63b3ff',width=1.5),name='Allineamento affidabile · '+label,hoverinfo='skip'))
             for code,mask in aligned.problem_masks.items():
+                if aligned.quality['status']=='partial' and code!='unreliable':
+                    continue
                 indexes=np.flatnonzero(mask)
                 if not len(indexes):
                     continue
                 # Mark actual observations; bounded display never connects
                 # separate failed regions or changes the projection result.
                 peak=next(i['worst_sample'] for i in aligned.quality['issues'] if i['code']==code)
-                indexes=np.unique(np.r_[indexes[::max(1,int(np.ceil(len(indexes)/800)))],indexes[-1],peak])
+                peaks=[i['worst_sample'] for i in aligned.quality['issues'] if mask[i['worst_sample']]] if code=='unreliable' else [peak]
+                indexes=np.unique(np.r_[indexes[::max(1,int(np.ceil(len(indexes)/800)))],indexes[-1],peaks])
+                causes=[' / '.join(ISSUE_LABELS[c] for c,m in aligned.problem_masks.items() if c!='unreliable' and m[i])
+                        or ('Lacuna temporale o transizione' if 'Source clock discontinuity or gap' in aligned.quality['reasons'] else
+                            'Transizione prudenziale o corrispondenza non ancora confermata') for i in indexes]
                 fig.add_trace(go.Scatter(x=xy[indexes,0],y=xy[indexes,1],mode='markers',
                     name=ISSUE_LABELS[code]+' · '+label,marker=dict(color=ISSUE_COLORS[code],size=6),
-                    customdata=np.c_[indexes,aligned.time[indexes]],
-                    hovertemplate='Campione %{customdata[0]:.0f}<br>t=%{customdata[1]:.3f} s<br>x=%{x:.2f} m<br>y=%{y:.2f} m<extra></extra>'))
+                    customdata=[[int(i),float(aligned.time[i]),cause] for i,cause in zip(indexes,causes)],
+                    hovertemplate='Campione %{customdata[0]:.0f}<br>t=%{customdata[1]:.3f} s<br>x=%{x:.2f} m<br>y=%{y:.2f} m<br>%{customdata[2]}<extra></extra>'))
+    finish=result.report.get('finish_marker')
+    if finish:
+        fig.add_annotation(x=finish['xy'][0],y=finish['xy'][1],text='🏁',showarrow=False,
+            yanchor='bottom',font=dict(size=21,family='Segoe UI Emoji, Apple Color Emoji, sans-serif'),
+            hovertext='Ultima posizione registrata presso il confine temporale verificato; non una linea ufficiale di arrivo')
     fig.update_layout(title='Traiettoria di riferimento osservata · geometria deterministica',height=570,
         xaxis_title='X sorgente (m)',yaxis_title='Y sorgente (m)',legend=dict(orientation='h'),uirevision='lap-analysis-map')
     fig.update_yaxes(scaleanchor='x',scaleratio=1)
@@ -198,6 +218,23 @@ def _distance_axis(fig):
     return fig
 
 
+def contribution_figure(report):
+    measured=report['section_deltas']
+    fig=go.Figure()
+    if measured:
+        fig.add_trace(go.Bar(x=[s['section_id'] for s in measured],y=[s['delta_s'] for s in measured],
+            marker_color=['#ff965c' if s['delta_s']>=0 else '#4bd8db' for s in measured],name='Sezioni misurate'))
+    residual=report['unallocated_delta']
+    if residual['required']:
+        fig.add_trace(go.Bar(x=['Non attribuito'],y=[residual['value_s']],
+            marker=dict(color='#c5a0e6',pattern_shape='/'),
+            name='Delta non attribuito — Allineamento spaziale non disponibile',
+            hovertemplate='Residuo contabile: %{y:+.3f} s<br>Non è una perdita misurata individualmente né una causa<extra></extra>'))
+    fig.update_layout(title='Contributi misurati e delta non attribuito',xaxis_title='Sezione del riferimento',
+        yaxis_title='Δ tempo B − A (s)',height=360,legend=dict(orientation='h',y=-.3))
+    return fig
+
+
 def corner_signals(result,section):
     choices=[('speed_kmh','Velocità','km/h'),('brake_pct','Freno','%'),('throttle_pct','Acceleratore','%'),
              ('steering','Sterzo',None),('g_lat','Accelerazione laterale',None),('g_lon','Accelerazione longitudinale',None)]
@@ -225,6 +262,8 @@ def corner_signals(result,section):
             # never draw a line through a missing piece of telemetry.
             if len(indexes)>1:
                 gaps=(np.abs(np.diff(indexes))>max(stride*2,2)) | (np.diff(local)>15.)
+                bad=np.cumsum(~np.isfinite(aligned.progress))
+                gaps|=(indexes[1:]>indexes[:-1])&(bad[indexes[1:]]-bad[indexes[:-1]]>0)
                 values[np.flatnonzero(gaps)+1]=np.nan
             color='#63b3ff' if number==0 else '#ff965c'
             label_lap='Riferimento' if number==0 else 'Analizzato'
@@ -252,7 +291,7 @@ def corner_signals(result,section):
 
 def render():
     st.title('Telemetry Lap Analysis')
-    st.caption('v0.9.2 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
+    st.caption('v0.9.3 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
     left,right=st.columns(2)
     with left:
         st.subheader('Reference Lap')
@@ -323,25 +362,34 @@ def render():
                    'apice operativo: curvature-weighted apex proxy, non apice fisico verificato.')
         if not result.geometry.quality.get('seam_curvature_available',True):
             st.caption('La piccola giunzione al traguardo non verifica una tangente continua: la zona B conserva il tempo, con curvatura e tipo di curva non classificati.')
-    if report['status']!='valid':
-        st.warning('Analisi spaziale non disponibile per questa coppia. I giri restano registrazioni complete con timing verificato; questo non garantisce un confronto spaziale affidabile.')
+        if report.get('finish_marker'):
+            st.caption('🏁 indica l’ultima posizione registrata presso il confine temporale verificato; l’eventuale zona geometrica B resta distinta e non rappresenta una linea ufficiale di arrivo.')
+    if report['status']=='partial':
+        st.warning('Allineamento spaziale parziale: regioni affidabili recuperate prima e dopo le zone escluse. Le transizioni incerte restano nel delta non attribuito.')
+        with st.expander('Perché alcune regioni non sono disponibili'):
+            alignment_diagnostics(result)
+    elif report['status']!='valid':
+        st.warning('Analisi spaziale non disponibile per questa coppia. Il delta giro misurato resta disponibile; il resto è classificato come delta non attribuito.')
         alignment_diagnostics(result)
-        st.caption('Tempi giro e riepiloghi temporali restano misurabili. Nessun delta di sezione o KPI di confronto viene inventato.')
-        return
-    st.success('Allineamento spaziale valido nei limiti dichiarati')
-    qa,qb=report['alignment']['reference'],report['alignment']['analyzed']
-    st.caption(f"Scostamento P95 A/B: {qa['p95_offset_m']:.2f}/{qb['p95_offset_m']:.2f} m · "
-               f"riconciliazione sezioni {report['reconciliation']['error_s']:.3g} s · "
-               'ancore di timing indipendenti 0/fine giro; gli ultimi campioni possono precedere il traguardo di ≤100 ms.')
+    else:
+        st.success('Allineamento spaziale valido nei limiti dichiarati')
+    reconciliation=report['reconciliation']
+    st.caption(f"Delta giro {reconciliation['final_delta_s']:+.3f} s = sezioni misurate {reconciliation['section_sum_delta_s']:+.3f} s + "
+               f"delta non attribuito {reconciliation['unallocated_delta_s']:+.3f} s · errore contabile {reconciliation['error_s']:.3g} s.")
+    if report['unallocated_delta']['required']:
+        st.caption('Delta non attribuito — Allineamento spaziale non disponibile: residuo contabile unico, comprendente sezioni e transizioni non misurabili; non è una perdita causale o un tempo misurato di una singola regione.')
     section_table=pd.DataFrame(report['section_deltas'])
-    contributions=go.Figure(go.Bar(x=section_table.section_id,y=section_table.delta_s,
-        marker_color=['#ff965c' if value>=0 else '#4bd8db' for value in section_table.delta_s],name='Contributo sezione'))
-    contributions.update_layout(title='Contributi netti delle sezioni: curve, rettilinei e zona traguardo',xaxis_title='Sezione del riferimento',yaxis_title='Δ tempo B − A (s)',height=330)
-    render_chart(contributions,mode='xy',key='lap_analysis_contributions')
-    corners=[s for s in result.geometry.sections if s['kind']=='corner']
-    if not corners:
-        st.info('Nessuna curva supera la soglia selezionata. La decomposizione include comunque i rettilinei.')
+    render_chart(contribution_figure(report),mode='xy',key='lap_analysis_contributions')
+    if report['status']=='unavailable':
         return
+    measured_ids={s['section_id'] for s in report['section_deltas']}
+    corners=[s for s in result.geometry.sections if s['kind']=='corner' and s['section_id'] in measured_ids]
+    if not corners:
+        st.info('Nessuna curva interamente supportata da mostrare. Restano disponibili i contributi misurabili e il delta non attribuito.')
+        return
+    if report['status']=='partial':
+        st.caption(f'{len(corners)} curve interamente allineate ispezionabili. Ogni KPI richiede anche il supporto della propria finestra di misura.')
+        st.caption('I suffissi .1, .2 identificano porzioni affidabili di una sezione; le parti escluse non hanno contributi individuali e confluiscono nel residuo unico.')
     corner_ids=[s['section_id'] for s in corners]
     if st.session_state.get('lap_analysis_corner') not in corner_ids:
         st.session_state.pop('lap_analysis_corner',None)
@@ -362,7 +410,7 @@ def render():
     st.dataframe(kpis[['name','reference_value','analyzed_value','difference','validity','explanation']].rename(columns={
         'name':'KPI','reference_value':'Reference','analyzed_value':'Analyzed','difference':'Difference',
         'validity':'Quality','explanation':'Details'}),hide_index=True,width='stretch')
-    delta=go.Figure(go.Scatter(x=result.trace.reference_s_m,y=result.trace.delta_s,mode='lines',name='Δ tempo B − A',
+    delta=go.Figure(go.Scatter(x=result.trace.reference_s_m,y=result.trace.delta_s,mode='lines',connectgaps=False,name='Δ tempo B − A',
         meta=dict(unit='s',channel='Delta cumulato',tolerance=result.geometry.quality['actual_spacing_m']*.51)))
     delta.update_layout(title='Delta cumulato sul riferimento comune',xaxis_title='Posizione comune (m)',yaxis_title='Δ tempo (s)',height=350)
     _distance_axis(delta)
@@ -372,7 +420,7 @@ def render():
         st.dataframe(kpis[['name','definition','temporal_window_s','source_signals']].rename(columns={
             'name':'KPI','definition':'Engineering Definition','temporal_window_s':'Observed Time Windows [s]',
             'source_signals':'Source Signals'}),hide_index=True,width='stretch')
-        st.json(dict(braking_events=measured['braking_events'],alignment=report['alignment']))
+        st.json(dict(braking_events=measured['braking_events'],alignment=facts['alignment']))
         st.dataframe(section_table,hide_index=True,width='stretch')
     st.caption(f"Calcolo deterministico {report['runtime_s']:.3f} s; risultati memorizzati per sorgenti, giri e parametri. "
                'La selezione della curva e l’hover non modificano l’analisi. Differenze di input e differenze di tempo non dimostrano causalità.')

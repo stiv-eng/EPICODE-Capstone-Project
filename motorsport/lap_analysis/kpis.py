@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 import numpy as np
 
+from .alignment import section_supported
+
 
 @dataclass(frozen=True)
 class KPIConfig:
@@ -191,6 +193,10 @@ def associated_braking_events(aligned,geometry,config):
 def _corner_values(aligned, section, geometry, own_geometry, config):
     lap, t = aligned.lap, aligned.time
     length, duration = geometry.length_m, lap.duration_s
+    if not section_supported(aligned,section,length):
+        return ({name:None for name in SPECS},
+                {name:'Unreliable spatial alignment intersects the corner or its timing boundaries' for name in SPECS},
+                [],{name:[None,None] for name in SPECS})
     start_s, end_s = section['start_s_m'], section['end_s_m']
     wrap = section['wraps_start_finish']
     start, end = aligned.time_map.at(start_s), aligned.time_map.at(end_s)+(duration if wrap else 0.)
@@ -239,6 +245,8 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
             measured('minimum_trajectory_radius_m',1/k if k > 1e-12 else None)
         else:
             explanations['maximum_trajectory_curvature_1_m']=explanations['minimum_trajectory_radius_m']='Own trajectory curvature unavailable within the selected reference window'
+    else:
+        explanations['maximum_trajectory_curvature_1_m']=explanations['minimum_trajectory_radius_m']='Own trajectory geometry unavailable; curvature is not inferred across missing or jumped coordinates'
     for name,y,absolute,mean in [('peak_lateral_acceleration_g',lat,True,False),
             ('mean_absolute_lateral_acceleration_g',lat,True,True),
             ('peak_absolute_steering',steer,True,False),('mean_absolute_steering',steer,True,True)]:
@@ -269,7 +277,7 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
                         for cycle in (0,1,2) if s['start_s_m']+cycle*length>=local_end-1e-8),default=np.inf)
         exit_s=min(local_end+config.exit_m,next_entry,length*(2 if wrap else 1))
         search_end=aligned.time_map.at(exit_s-length if exit_s>length else exit_s)+(duration if exit_s>length else 0.)
-        search_end = max(end, min(search_end, float(tt[-1])))
+        search_end = max(end, min(search_end, float(tt[-1]))) if np.isfinite(search_end) else np.nan
         # A wrapped section joins two observed pieces of this SAME lap, not a
         # verified next-lap event sequence. Never bridge its seam for persistence.
         throttle_end = min(search_end,float(t[-1])) if wrap and apex < duration else search_end
@@ -305,6 +313,10 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
         measured('braking_duration_s',release_t-onset_t)
         if own_geometry is not None:
             measured('braking_distance_m',float(own_geometry.source_distance[b]-own_geometry.source_distance[a]))
+        elif {'pos_x','pos_y'}<=set(lap.frame):
+            phase_xy=lap.frame[['pos_x','pos_y']].to_numpy(float)[a:b+1]
+            if np.isfinite(phase_xy).all():
+                measured('braking_distance_m',float(np.linalg.norm(np.diff(phase_xy,axis=0),axis=1).sum()))
         measured('brake_onset_to_apex_m',float(apex_s+(length if wrap and apex_s<start_s else 0.)-event['onset_s']))
         base_brake = channel(lap,'brake_pct')
         measured('maximum_brake_pct',float(np.nanmax(base_brake[a:b+1])))
@@ -337,6 +349,11 @@ def _corner_values(aligned, section, geometry, own_geometry, config):
         if w.sum()>0 and w[good].sum()/w.sum()>=.99:
             measured('trail_braking_proxy_duration_s',float(w[good & (brake>=config.brake_on_pct)].sum()))
     windows['trail_braking_proxy_duration_s']=[float(start),float(apex)]
+    if hasattr(aligned.time_map,'supports_time'):
+        for name,window in windows.items():
+            if not aligned.time_map.supports_time(*window):
+                values[name]=None
+                explanations[name]='Unreliable spatial alignment intersects the required measurement window'
     return values, explanations, expanded, windows
 
 
@@ -352,9 +369,10 @@ def compare_corner(reference, analyzed, section, geometry, own_a, own_b, config=
         if steering_metric and unit.endswith('/s'):
             ua,ub = str(ua)+'/s',str(ub)+'/s'
         compatible = ua==ub
-        association=ar.get(name) or br.get(name)
+        spatial=next((reason for reason in (ar.get(name),br.get(name)) if reason and reason.startswith('Unreliable spatial')),None)
+        association=spatial or ar.get(name) or br.get(name)
         valid = av is not None and bv is not None and compatible and association is None
-        reason = None if valid else ('Incompatible source units' if not compatible else association or 'Missing channel/verified unit, insufficient observed support, or no sustained event')
+        reason = None if valid else (spatial or ('Incompatible source units' if not compatible else association or 'Missing channel/verified unit, insufficient observed support, or no sustained event'))
         difference=bv-av if valid else None
         position=name in ('brake_onset_position_m','brake_release_position_m','minimum_speed_position_m','first_sustained_throttle_after_minimum_position_m')
         if valid and position:
@@ -362,7 +380,7 @@ def compare_corner(reference, analyzed, section, geometry, own_a, own_b, config=
         output.append(dict(name=name,definition=definition,unit=ua if compatible else 'incompatible',
             reference_value=av,analyzed_value=bv,difference=difference,
             difference_definition='Signed shortest common-reference position difference around the closed lap' if position else 'Analyzed minus reference in compatible source units',
-            reference_unit=ua,analyzed_unit=ub,validity='valid' if valid else ('uncertain' if reason and ('Multiple' in reason or 'association' in reason or not compatible) else 'unavailable'),
+            reference_unit=ua,analyzed_unit=ub,validity='valid' if valid else ('unavailable' if spatial else ('uncertain' if reason and ('Multiple' in reason or 'association' in reason or not compatible) else 'unavailable')),
             explanation=reason, reference_corner_window=dict(start_s_m=section['start_s_m'],end_s_m=section['end_s_m'],wraps=section['wraps_start_finish']),
             temporal_window_s=dict(reference=window_a[name],analyzed=window_b[name]),source_signals=signals,kind='measured_fact'))
     return dict(section_id=section['section_id'],kpis=output,braking_events=dict(reference=events_a,analyzed=events_b))

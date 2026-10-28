@@ -66,7 +66,9 @@ def test_page_reports_missing_geometry_without_fabricated_coordinates(monkeypatc
     app=AppTest.from_file(str(ROOT/'pages/16_Telemetry_Lap_Analysis.py'),default_timeout=60).run()
     assert not app.exception
     assert any('Analisi spaziale non disponibile' in w.value for w in app.warning)
-    assert not chart_specs(app)
+    specs=chart_specs(app)
+    assert len(specs)==1  # Accounting residual only, no fabricated track.
+    assert specs[0]['data'][0]['x']==['Non attribuito']
     assert next(m for m in app.metric if m.label=='Differenza totale misurata').value=='+0.000 s'
 
 

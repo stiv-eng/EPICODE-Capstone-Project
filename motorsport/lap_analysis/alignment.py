@@ -49,6 +49,9 @@ class TimeMap:
         value = np.where(q <= 0., 0., np.where(q >= self.length, self.duration, value))
         return float(value) if value.ndim == 0 else value
 
+    def supports(self,start,end):
+        return bool(np.isfinite([start,end]).all() and -1e-7<=start<=end<=self.length+1e-7)
+
 
 @dataclass
 class AlignedLap:
@@ -69,7 +72,7 @@ def _issue(code,mask,values,limit,unit,t,progress):
     return dict(code=code,sample_count=len(indexes),first_sample=int(indexes[0]),
         last_sample=int(indexes[-1]),worst_sample=worst,first_time_s=float(t[indexes[0]]),
         last_time_s=float(t[indexes[-1]]),worst_time_s=float(t[worst]),
-        worst_reference_s_m=float(progress[worst]),
+        worst_reference_s_m=float(progress[worst]) if np.isfinite(progress[worst]) else None,
         maximum_observed=float(values[worst]) if values is not None else None,limit=limit,unit=unit)
 
 
@@ -90,7 +93,7 @@ def ambiguity_mask(geometry, config=AlignmentConfig()):
     return result
 
 
-def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
+def align(lap, geometry, config=AlignmentConfig(), ambiguous=None,partial_only=False,allow_boundaries=True):
     config.validate()
     f = lap.frame
     failures = []
@@ -101,15 +104,23 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
         return AlignedLap(lap, np.array([]), np.array([]), np.array([]), None, dict(status='unavailable', reasons=failures))
     xy = f[['pos_x', 'pos_y']].to_numpy(float)
     t = f.lap_elapsed_s.to_numpy(float)
-    if len(t) < 5 or not np.isfinite(t).all() or not np.isfinite(xy).all():
+    if len(t) < 5 or not np.isfinite(t).all():
         failures.append('Nonfinite/insufficient observed positions or timestamps')
-    elif (np.diff(t) < -1e-6).any() or (np.diff(t) > config.max_clock_gap_s).any():
+    elif (np.diff(t) < -1e-6).any():
         failures.append('Source clock discontinuity or gap')
-    elif t[0] < -.001 or t[0] > config.boundary_time_tolerance_s or not -.001 <= lap.duration_s-t[-1] <= config.boundary_time_tolerance_s:
+    elif t[0] < -.001 or lap.duration_s-t[-1]<-.001:
         failures.append('Witnessed lap timing lacks sufficiently recent boundary observations')
     if failures:
         return AlignedLap(lap, np.array([]), t, np.array([]), None, dict(status='unavailable', reasons=failures))
     t = np.minimum(t, lap.duration_s)
+    if (np.diff(t)>config.max_clock_gap_s).any() or t[0]>config.boundary_time_tolerance_s or lap.duration_s-t[-1]>config.boundary_time_tolerance_s:
+        reason='Source clock discontinuity or gap' if (np.diff(t)>config.max_clock_gap_s).any() else 'Witnessed lap timing lacks sufficiently recent boundary observations'
+        quality=dict(status='unavailable',reasons=[reason],issues=[],observed_samples=len(t))
+        recent=t[0]<=config.boundary_time_tolerance_s and lap.duration_s-t[-1]<=config.boundary_time_tolerance_s
+        return _recover(lap,geometry,config,ambiguous,quality,{},allow_boundaries and recent)
+    if not np.isfinite(xy).all():
+        quality=dict(status='unavailable',reasons=['Nonfinite observed positions; spatial gaps are not bridged'],issues=[],observed_samples=len(t))
+        return _recover(lap,geometry,config,ambiguous,quality,{},allow_boundaries)
     points, length, count = geometry.xy, geometry.length_m, len(geometry.s)
     h = length/count
     vectors = np.roll(points, -1, axis=0)-points
@@ -188,16 +199,48 @@ def align(lap, geometry, config=AlignmentConfig(), ambiguous=None):
         progress_policy='Projection onto common reference; <=3 m jitter drawdown regularized by running maximum',
         stationary_policy='Repeated progress preserves arrival/departure dwell; internal boundary uses right-continuous departure')
     time_map = None if failures else TimeMap(progress, t, length, lap.duration_s)
+    if partial_only and not failures:
+        failures.append('Analyzed geometry is not verified for complete spatial coverage')
+        quality['status']='unavailable'
+        time_map=None
     if time_map:
         quality['repeated_projected_position_time_s'] = time_map.repeated_progress_time_s
         quality['repeated_position_interpretation'] = 'Includes stationary observations, projection plateaus and boundary anchoring; not an independent vehicle-stop detector'
-    return AlignedLap(lap, np.clip(np.maximum.accumulate(progress), 0., length), t, offsets, time_map, quality,
-                      {code:mask for code,mask in masks.items() if mask.any()})
+    masks={code:mask for code,mask in masks.items() if mask.any()}
+    if time_map is None:
+        return _recover(lap,geometry,config,ambiguous,quality,masks,allow_boundaries)
+    return AlignedLap(lap, np.clip(np.maximum.accumulate(progress), 0., length), t, offsets, time_map, quality,masks)
+
+
+def _recover(lap,geometry,config,ambiguous,quality,masks,allow_boundaries):
+    from .partial import recover
+    ambiguous=ambiguity_mask(geometry,config) if ambiguous is None else ambiguous
+    mapping,progress,offsets,valid=recover(lap,geometry,config,ambiguous,allow_boundaries)
+    t=np.minimum(lap.frame.lap_elapsed_s.to_numpy(float),lap.duration_s)
+    quality['status']='partial' if mapping is not None else 'unavailable'
+    quality['valid_spatial_runs']=[] if mapping is None else [
+        {k:r[k] for k in ('start_s_m','end_s_m','start_time_s','end_time_s')} for r in mapping.runs]
+    quality['recovery_policy']='Unique forward geometric reacquisition, >=3 observations advancing >=2 grid cells; internal boundary guards; no interpolation across holes'
+    masks['unreliable']=~valid
+    issue=_issue('unreliable',~valid,None,None,'',t,progress)
+    if issue is not None:
+        quality['issues'].append(issue)
+    return AlignedLap(lap,progress,t,offsets,mapping,quality,masks)
+
+
+def section_supported(aligned,section,length):
+    mapping=aligned.time_map
+    if mapping is None:
+        return False
+    start,end=section['start_s_m'],section['end_s_m']
+    if section['wraps_start_finish']:
+        return mapping.supports(start,length) and mapping.supports(0.,end)
+    return mapping.supports(start,end)
 
 
 def section_time(aligned, section, length):
     mapping = aligned.time_map
-    if mapping is None:
+    if not section_supported(aligned,section,length):
         return None
     start, end = section['start_s_m'], section['end_s_m']
     if section['wraps_start_finish']:

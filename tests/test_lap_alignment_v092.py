@@ -30,7 +30,7 @@ def test_rejected_projection_has_measured_diagnostics_without_regularizing_away_
 
 
 @pytest.mark.skipif(not (ROOT/'data/raw/acgym_barcelona_dallara').exists(),reason='Optional Barcelona recordings absent')
-def test_three_investigated_barcelona_pairs_remain_rejected_with_located_problem_regions():
+def test_three_investigated_barcelona_pairs_preserve_local_rejections_and_recover_valid_sections():
     from motorsport_ui.lap_analysis_v090 import trajectory_figure
     entries=json.loads(MANIFEST.read_text())['files']
     measured=[]
@@ -41,8 +41,10 @@ def test_three_investigated_barcelona_pairs_remain_rejected_with_located_problem
         a=from_session(session,3,spatial)
         for lap_id in ids:
             result=analyze_laps(a,from_session(session,lap_id,spatial))
-            assert result.report['status']=='unavailable'
-            assert not result.report['section_deltas'] and not result.report['corners']
+            assert result.report['status']=='partial'
+            assert result.report['section_deltas'] and result.report['withheld_sections']
+            assert result.report['unallocated_delta']['required']
+            assert abs(result.report['reconciliation']['error_s'])<1e-6
             assert result.report['laps']['measured_lap_delta_s']>0.
             assert result.analyzed.quality['ambiguous_samples']==0
             assert not result.analyzed.problem_masks.get('coverage',np.array([],bool)).any()
@@ -50,8 +52,9 @@ def test_three_investigated_barcelona_pairs_remain_rejected_with_located_problem
             measured.append(issue['maximum_observed'])
             xy=result.analyzed.lap.frame[['pos_x','pos_y']].to_numpy()
             fig=trajectory_figure(result)
-            trace=next(t for t in fig.data if t.name=='Scostamento dal riferimento · Analysis Lap')
-            assert len(trace.x)<=802
+            trace=next(t for t in fig.data if t.name=='Regione non allineata o transizione · Analysis Lap')
+            assert len(trace.x)<=808
+            assert all(isinstance(row[2],str) and row[2] for row in trace.customdata)
             peak=issue['worst_sample']
             assert any(x==xy[peak,0] and y==xy[peak,1] for x,y in zip(trace.x,trace.y))
             assert not any(t.name=='Maximum-curvature point' for t in fig.data)

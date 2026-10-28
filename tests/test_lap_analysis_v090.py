@@ -100,9 +100,12 @@ def test_invalid_or_unsupported_alignment_is_explicitly_unavailable(defect):
     elif defect=='frame':b.coordinate_frame=None
     elif defect=='car':b.identity={**b.identity,'car_id':'other'}
     result=analyze_laps(a,b)
-    assert result.report['status']=='unavailable'
+    assert result.report['status']==('partial' if defect in ('missing','open') else 'unavailable')
     assert result.report['alignment']['reasons']
-    assert not result.report['section_deltas'] and not result.report['corners']
+    if result.report['status']=='unavailable':
+        assert not result.report['section_deltas'] and not result.report['corners']
+    else:
+        assert result.report['withheld_sections']
     assert result.report['laps']['measured_lap_delta_s']==b.duration_s-a.duration_s
 
 
@@ -113,8 +116,9 @@ def test_crossing_trajectory_is_not_resolved_with_naive_nearest_point():
     g=build_geometry(xy)
     assert ambiguity_mask(g).any()
     result=analyze_laps(a,a)
-    assert result.report['status']=='unavailable'
+    assert result.report['status']=='partial'
     assert any('ambiguous' in r for r in result.report['alignment']['reasons'])
+    assert result.report['withheld_sections'] and result.report['unallocated_delta']['required']
 
 
 def test_common_reference_boundaries_do_not_change_with_analyzed_pace():
@@ -181,8 +185,11 @@ def test_missing_finish_observations_cannot_be_repaired_by_duration_scaling():
     a,b=lap(),lap(identity='b')
     b.duration_s+=5.
     result=analyze_laps(a,b)
-    assert result.report['status']=='unavailable'
+    assert result.report['status']=='partial'
     assert any('boundary observations' in reason for reason in result.report['alignment']['reasons'])
+    assert np.isnan(result.analyzed.time_map.at(result.geometry.length_m))
+    assert all(abs(s['delta_s'])<1e-9 for s in result.report['section_deltas'])
+    assert result.report['unallocated_delta']['value_s']==pytest.approx(5.)
 
 
 def test_unverified_normalized_progress_cannot_replace_coordinates():
