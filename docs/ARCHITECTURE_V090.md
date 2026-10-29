@@ -12,6 +12,8 @@ Telemetry Comparison remain the baseline. The new analysis is isolated in
 | `kpis.py` | Observed events, physical-unit checks, temporal windows, measurements and quality |
 | `analysis.py` | Compatibility, shared-reference orchestration, section conservation and strict JSON facts |
 | `motorsport_ui/lap_analysis_v090.py` | Selection, cached computation, plots, measured comparisons and download |
+| `motorsport/coaching.py` | Optional local LM Studio client, deterministic evidence selection and presentation-only unit/number formatting |
+| `motorsport_ui/coaching.py` | Manual Lap/Corner Coaching, language/model selection and session response cache |
 
 Geometry removes consecutive stationary duplicates only in its own spatial
 representation. Temporal telemetry remains unchanged. A and B use the same
@@ -28,9 +30,11 @@ Caches bind source signatures, explicit mappings, selected laps, every analysis
 parameter and implementation signatures. Selecting a corner only changes the
 presentation. JSON schema `deterministic-lap-analysis/1.0` contains provenance,
 configuration, geometry, quality, event observations, measurement windows, units
-and differences. `interpretations` is empty. This is a factual interface for a
-future independent experiment, with no generated advice or causal inference.
+and differences. `interpretations` is empty. Optional coaching consumes a compact
+copy of these facts; generated text is shown separately and never added to the
+deterministic report. It is not validated causal inference.
 
-Reproduce the real-data audit/evaluation using the commands in README. Run the
-test suite and three Chrome scenarios, then run `scripts.finalize_v090` followed
-by `scripts.report_lap_analysis_v090` to rebuild verification and reports.
+Use the README for data acquisition, application startup and tests. The source
+manifests and frozen signal/lap regression baseline remain versioned because
+ingestion and relevant tests use them. Old release-generation pipelines are not
+part of the maintained application.

@@ -1,14 +1,27 @@
-Place original Parquet/CSV telemetry files here. The v0.4 working copy is
-`data/raw/telemetry.parquet` (ignored by Git). The source in Downloads is unchanged.
-The application discovers files here and in `data/demo/` without external downloads.
-Only this README is versioned; raw data must not enter Git.
+# Local telemetry recordings
 
-Additional cached bundles: `gt7_trial_mountain_962c/` (v0.5) and
-`acgym_monza_dallara/` (v0.6). The latter contains pinned human LD/LDX exports and
-small summary CSVs, 241,902,674 bytes in total, publisher-declared CC BY 4.0.
-See `docs/DATASET_EXPANSION_V06.md` for attribution, exclusions and clock limitations.
-Only verified independent ACGym records enter the ML corpus. No pickle is read.
+Place original CSV/Parquet recordings here, or upload them in Data Explorer.
+Raw files stay local and are excluded from Git. `telemetry.parquet`, when present,
+is the original privately supplied attachment; it is not distributed or needed
+to run the application.
 
-To reproduce acquisition deliberately, use `python -m scripts.download_acgym`.
-It verifies/reuses cached files and enforces the 300 MB payload ledger cap.
-There is no automatic download during application startup or page navigation.
+Supported optional public bundles:
+
+| Directory | Source and attribution | Reproduce |
+| --- | --- | --- |
+| `gt7_trial_mountain_962c/` | [Ricardo Queiroz: GT7 Trial Mountain / Porsche 962 C](https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c), publisher-declared CC BY 4.0 for their contribution; about 29 MB | `python -m scripts.download_gt7` |
+| `acgym_monza_dallara/` | [AssettoCorsaGym / dasGringuen research team](https://huggingface.co/datasets/dasgringuen/assettoCorsaGym), publisher-declared CC BY 4.0; about 242 MB | `python -m scripts.download_acgym` |
+| `acgym_barcelona_dallara/` | Same AssettoCorsaGym source, Barcelona GP / Dallara F317 human MoTeC recordings; about 575 MB | `python -m scripts.download_barcelona all` |
+
+ACGym capture project: [Assetto Corsa Gym](https://github.com/dasGringuen/assetto_corsa_gym).
+Pinned revisions, original URLs, byte sizes and hashes are recorded in
+`docs/GT7_MANIFEST_V05.json`, `docs/ACGYM_MANIFEST_V06.json` and
+`docs/BARCELONA_MANIFEST_V07.json`. The app relies on these manifests for loading
+and source integrity; their versioned names are intentional.
+
+Original exports are preserved unchanged. Decoding, filtering, unit conversion
+and canonical mappings are application derivations, not publisher annotations.
+No simulator/game assets, raw recordings or model weights are distributed here.
+Acquisition is explicit; application startup never downloads data. Existing
+differing files are preserved and reported rather than silently overwritten.
+Keep local acquisition ledgers under `artifacts/` when resuming downloads.

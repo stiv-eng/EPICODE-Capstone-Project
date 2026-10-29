@@ -1,99 +1,126 @@
-# Motorsport Telemetry Analyzer — v0.9.3
+# Motorsport Telemetry Analyzer
 
-A local Motorsport **Data Analysis** application built with Python, Streamlit,
-Plotly, NumPy and Pandas. Explore recorded sessions, inspect driver inputs and
-vehicle dynamics, and compare verified laps or time windows.
+A local application for exploring recorded motorsport telemetry, inspecting
+driver inputs and vehicle dynamics, and comparing verified laps or session
+windows. Built with Python, Streamlit, Plotly, NumPy, Pandas and PyArrow.
+Optional AI coaching uses LM Studio and a locally loaded Qwen3-1.7B model;
+automated tests use pytest and Streamlit AppTest.
 
-## Start on Windows / VS Code
+## Setup and launch
 
-The existing project interpreter and F5 configuration are preserved:
-
-1. Open this project folder in VS Code.
-2. Select **Motorsport Telemetry Analyzer** in Run and Debug.
-3. Press **F5**, then open **Data Explorer**.
-
-For a new Python 3.11 environment:
+Python 3.11 is the tested environment. Clone this repository (or download and
+extract its ZIP), then create an environment. On Windows:
 
 ```powershell
+git clone https://github.com/stiv-eng/EPICODE-Capstone-Project.git
+cd EPICODE-Capstone-Project
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+streamlit run streamlit_app.py
 ```
 
-The local application needs no simulator connection, trained models or model
-artifacts. Simulator telemetry support is independent of external timing services.
+On macOS/Linux, activate with `source .venv/bin/activate` instead. If activation
+is unavailable, use the environment's Python with `-m pip` and `-m streamlit`.
+The included VS Code **Motorsport Telemetry Analyzer** launch configuration also
+supports F5 when the project environment is selected.
 
-## Use the application
+The application starts without a simulator, external timing service, trained
+model or LM Studio. Recordings are loaded locally; startup never downloads data.
 
-| Page | Active functionality |
+## Main workflows
+
+| Page | Features |
 | --- | --- |
-| Home | Entry to the analysis workflows |
-| Session Overview | Source information, measured-time signal statistics and data availability |
-| Data Explorer | Signals, Driver Inputs, Vehicle Dynamics, G-G, Tyre Analysis, recorded Cockpit inspection and Position / Track Map |
-| Telemetry Comparison | Verified laps or session windows, stable lap ordering/colors and synchronized hover/cursors |
-| Telemetry Lap Analysis | Deterministic spatial lap comparison, inferred corners/apex proxies, section deltas, engineering KPIs and JSON facts |
+| Session Overview | Source metadata, measured-time statistics and signal availability |
+| Data Explorer | Signals, driver inputs, vehicle dynamics, G-G, tyres, recorded cockpit and track map |
+| Telemetry Comparison | Verified laps or time windows, stable selection colors and synchronized cursors |
+| Telemetry Lap Analysis | Spatial alignment, geometric corners, section deltas, engineering KPIs, JSON export and optional AI coaching |
 
-In Data Explorer choose an installed local recording or upload CSV/Parquet.
-Explicit column/unit mapping supports other telemetry sources. Complete laps are
-available only when timing boundaries are verified; otherwise use session windows.
-Track maps and channels appear only when supported by the actual source.
-Calculations use full-resolution observations while chart point counts are bounded.
+Calculations use full-resolution observations; charts limit displayed points.
+Missing channels and uncertain units remain explicitly unavailable.
 
-Supported installed examples are **Barcelona GP / Dallara F317 (205 validated
-complete laps)**, ACGym Monza / Dallara and GT7 Trial Mountain / Porsche 962 C.
-Raw recordings remain under ignored `data/raw/`. No data is downloaded on startup.
-Generic CSV/Parquet imports work without these example datasets.
+## Telemetry data
 
-## Compare completed laps
+A new clone contains source manifests, not the large recordings or private
+original attachment. In **Data Explorer**, select **Carica file** to upload CSV
+or Parquet, or place files in `data/raw/` or `data/demo/` and select **Dataset
+locale**. Column/unit mapping is available for generic imports. Canonical names
+include `elapsed_s`, `speed_kmh`, `throttle_pct`, `brake_pct`, `pos_x` and `pos_y`;
+only declare units and source channels that are actually known.
 
-Open **Telemetry Lap Analysis**, choose the reference recording/lap and analyzed
-recording/lap, then inspect the measured total delta, section contributions and
-selected-corner signals/KPIs. The default corner radius threshold is **150 m**;
-expand the geometry parameters to change it. The curvature-weighted centre is an
-operational apex proxy. Reference and analysis laps have independent session/lap
-selectors in two columns. Rejected spatial comparisons show reasons and observed
-problem regions while preserving the verified recorded laps. Partial comparisons
-recover supported sections and show one combined unallocated accounting residual.
-The checkered flag marks a recorded position near the verified finish boundary.
-Export the full comparison with **Esporta fatti JSON**.
+Session exploration and time-window comparisons work without verified lap
+boundaries. Complete-lap and corner comparisons require independently validated
+timing and compatible metric coordinates; a lap-number column alone is insufficient.
 
-The raw Barcelona LD files contain actual metre world coordinates omitted by the
-older analysis adapter. This page reads those channels explicitly; GT7 also has
-metric world coordinates. No coordinates are reconstructed from normalized lap
-progress. Generic imports require verified coordinate units/frame and complete
-timing; unsupported sources retain explicit availability messages.
+The supported recorded examples can be acquired explicitly with pinned,
+hash-checked download commands:
 
-All sections come from one reference trajectory. Sequential geometric projection
-checks offsets, reverse motion, crossings and coverage before producing section
-deltas. An unverified seam is marked as an unclassified boundary section, with
-its time retained. A rejected alignment does not produce corner losses. Unknown
-units, missing events and uncertain braking associations remain unavailable or
-uncertain KPIs. Measurements do not establish causes or physical racing apexes.
-See [alignment limits](docs/LAP_ALIGNMENT_V090.md) and
+```powershell
+python -m scripts.download_gt7
+python -m scripts.download_acgym
+python -m scripts.download_barcelona all
+```
+
+These install GT7 Trial Mountain / Porsche 962 C, ACGym Monza / Dallara F317,
+and Barcelona GP / Dallara F317, respectively. Barcelona exposes 205 validated
+complete laps when the complete recording bundle is installed. Downloads are
+optional and can be large; existing recordings are verified before reuse.
+See [data sources and attribution](data/raw/README.md). Original recordings,
+download ledgers and local model files remain excluded from Git.
+
+In **Telemetry Lap Analysis**, choose reference and analyzed recordings/laps.
+The default geometric corner-radius threshold is 150 m. Sections are defined
+on the reference trajectory; the weighted apex is an operational geometric
+proxy. Partial alignments retain reliable regions and one combined unallocated
+accounting residual. Measurements establish differences, not their causes.
+Use **Esporta fatti JSON** to export the deterministic report.
+
+See [architecture](docs/ARCHITECTURE_V090.md),
+[corner detection](docs/CORNER_DETECTION_V090.md),
+[alignment limits](docs/LAP_ALIGNMENT_V090.md) and
 [KPI definitions](docs/DETERMINISTIC_KPI_DEFINITIONS_V090.md).
 
-## Scope and verification
+## Optional AI Driving Coach
 
-Progressive final-lap-time prediction has been discontinued. Its implementation,
-experiments, dedicated tests and dependency manifests are archived in the local
-Git reference `archive/progressive-laptime-ml-v081`. See the
-[recovery guide](docs/archive/PROGRESSIVE_LAPTIME_ML_RECOVERY.md) for the exact commit
-and the ignored datasets/models/private signing keys required for historical recovery.
-The active app contains telemetry analysis; this release adds no replacement predictor.
+1. Start LM Studio separately, manually load a local model such as Qwen3-1.7B,
+   and start its local server. An 8192-token context was used in local smoke tests.
+2. Open **Telemetry Lap Analysis > AI Driving Coach**. The default API URL is
+   `http://127.0.0.1:1234/v1`. Press **Connect / Refresh**, then select a loaded
+   model and Italian or English. The server must expose both `/v1/models` and
+   `/api/v1/models`; only loopback hosts are accepted.
+3. Press **Generate Lap Coaching**, or select a corner in the existing analyzer
+   and press **Generate Corner Coaching**. Each mode works independently.
+
+If server authentication is enabled, set `LM_STUDIO_API_KEY` in the environment
+before launching Streamlit. Never commit credentials or local model weights.
+
+Coaching is ordinary text, requested as **Summary / Recommended Actions**
+(**Riepilogo / Azioni consigliate** in Italian). Python prepares evidence using
+consistent units and at most three decimal places; no JSON response schema or
+semantic output filter is used. Successful responses are cached in the session.
+Changing inputs or settings requires an explicit generation click; reruns never
+trigger inference, automatic model downloads or model loading.
+
+AI recommendations are experiments requiring driver judgment. Local Qwen 1.7B
+smoke tests returned text but also confused measurements and produced unreliable
+advice. Prompt instructions do not validate the generated content; compare it
+with the deterministic KPI table. If LM Studio is unavailable, deterministic
+analysis remains usable.
+
+## Tests and repository scope
 
 ```powershell
-python -m pytest -q
+python -m pytest -q tests
 ```
 
-The optional real-source integration checks require the installed local recordings.
-Browser verification forbids prediction-package imports and model-file access
-without moving or deleting those files. Existing environments may still contain
-historical libraries; they are not required by the active app.
+Tests use pytest and Streamlit AppTest. Synthetic fixtures run without downloaded
+recordings; real-source checks skip when their optional inputs are absent. The
+frozen full-corpus regression additionally needs the original local attachment
+and all three recording bundles. No live LLM inference is required by the tests.
 
-Read the [v0.9.3 release report](docs/RELEASE_V093_REPORT.md),
-[feasibility audit](docs/TELEMETRY_DATA_FEASIBILITY_V090.md),
-[architecture](docs/ARCHITECTURE_V090.md),
-[verification](docs/VERIFICATION_V090.json) and
-[future-direction criteria](docs/NEXT_RELEASE_RECOMMENDATION.md).
-Earlier numbered analysis reports are historical records. v0.9.0 introduces no
-ML, DL, LLM, trained model or API requirement.
+The active project contains telemetry analysis and optional local coaching.
+FastF1 and experimental SVR/GRU/progressive lap-time prediction are retired.
+Historical code remains in Git history; existing local data, archived models and
+keys are not publication assets. Generated reports, caches, environments and raw
+recordings are excluded by `.gitignore`.

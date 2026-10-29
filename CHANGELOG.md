@@ -1,3 +1,13 @@
+# Final release preparation — 2026-10-29
+
+- Preserve deterministic telemetry, comparisons, partial alignment and corner analysis.
+- Keep optional manual Lap/Corner Coaching through local LM Studio, plain-text
+  responses, neutral prompts and presentation-only unit/number formatting.
+- Exclude obsolete FastF1 diagnostics, historical release-generation tooling,
+  generated reports and caches from publication; retain source manifests and
+  active regressions. Local historical resources remain on disk.
+- Refresh setup, dataset acquisition and coaching instructions for a new clone.
+
 # Release v0.9.0 — 2026-10-28
 
 - Add Telemetry Lap Analysis alongside existing workflows: reference/analyzed
@@ -17,8 +27,6 @@
 - Validate synthetic known solutions, recorded lap pairs, existing workflows,
   actual Chrome interactions, exports and the shared metre-based cursor.
   Preserve datasets, archived prediction work and F5. Add no ML/DL/LLM dependency.
-
-See [release evidence and limitations](docs/RELEASE_V090_REPORT.md).
 
 # Release v0.8.2 — 2026-10-25
 
@@ -40,8 +48,5 @@ See [release evidence and limitations](docs/RELEASE_V090_REPORT.md).
 - Record exact signal/overview regression on 73 sources, all 205 original lap
   trajectories, retired tests, browser checks and the unchanged F5 configuration.
 - Add no replacement predictor, new delta-time method or new dataset.
-
-See [release](docs/RELEASE_V082_REPORT.md) and
-[archive recovery](docs/archive/PROGRESSIVE_LAPTIME_ML_RECOVERY.md).
 
 Earlier changelogs and release reports remain in the documented archive commit.

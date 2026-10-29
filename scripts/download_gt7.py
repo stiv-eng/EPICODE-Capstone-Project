@@ -2,7 +2,7 @@
 
 Attribution: Ricardo Queiroz, GT7 Telemetry: Porsche 962 C '88 at Trial Mountain
 https://huggingface.co/datasets/rpqueiroz/gt7-trial-mountain-962c
-The author's license covers their contribution; see DATASET_SELECTION_V05.md.
+The author's license covers their contribution; see data/raw/README.md.
 Raw files remain local and excluded from Git. This script is never run by the UI.
 """
 import hashlib

@@ -16,6 +16,7 @@ from motorsport.lap_analysis.analysis import analyze_laps,json_facts
 from motorsport_ui.telemetry import ROOT,select_telemetry,source_catalog,get_source,source_signature
 from motorsport_ui.selection import lap_labels,selection_identity
 from motorsport_ui.hover import render_figures,render_chart,observed_tolerance
+from motorsport_ui.coaching import render_coach,render_corner_coach
 
 
 KPI_LABELS = {
@@ -291,7 +292,7 @@ def corner_signals(result,section):
 
 def render():
     st.title('Telemetry Lap Analysis')
-    st.caption('v0.9.3 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
+    st.caption('v0.9.4 · confronto deterministico di giri registrati · misure e proxy geometrici, senza attribuzioni causali')
     left,right=st.columns(2)
     with left:
         st.subheader('Reference Lap')
@@ -380,6 +381,7 @@ def render():
         st.caption('Delta non attribuito — Allineamento spaziale non disponibile: residuo contabile unico, comprendente sezioni e transizioni non misurabili; non è una perdita causale o un tempo misurato di una singola regione.')
     section_table=pd.DataFrame(report['section_deltas'])
     render_chart(contribution_figure(report),mode='xy',key='lap_analysis_contributions')
+    render_coach(facts,KPI_LABELS)
     if report['status']=='unavailable':
         return
     measured_ids={s['section_id'] for s in report['section_deltas']}
@@ -398,18 +400,12 @@ def render():
     contribution=next(s for s in report['section_deltas'] if s['section_id']==selected)
     st.subheader(f"{selected}: {contribution['delta_s']:+.3f} s rispetto al riferimento")
     measured=next(c for c in report['corners'] if c['section_id']==selected)
-    concise=[]
-    labels={'brake_onset_position_m','speed_at_apex_kmh','throttle_after_apex_delay_s'}
-    for metric in measured['kpis']:
-        if metric['name'] in labels and metric['validity']=='valid':
-            concise.append(f"{kpi_label(metric)} Δ {metric['difference']:+.2f}")
-    if concise:
-        st.write(' · '.join(concise))
     kpis=pd.DataFrame(measured['kpis'])
     kpis['name']=[kpi_label(m) for m in measured['kpis']]
     st.dataframe(kpis[['name','reference_value','analyzed_value','difference','validity','explanation']].rename(columns={
         'name':'KPI','reference_value':'Reference','analyzed_value':'Analyzed','difference':'Difference',
         'validity':'Quality','explanation':'Details'}),hide_index=True,width='stretch')
+    render_corner_coach(facts,selected,KPI_LABELS)
     delta=go.Figure(go.Scatter(x=result.trace.reference_s_m,y=result.trace.delta_s,mode='lines',connectgaps=False,name='Δ tempo B − A',
         meta=dict(unit='s',channel='Delta cumulato',tolerance=result.geometry.quality['actual_spacing_m']*.51)))
     delta.update_layout(title='Delta cumulato sul riferimento comune',xaxis_title='Posizione comune (m)',yaxis_title='Δ tempo (s)',height=350)

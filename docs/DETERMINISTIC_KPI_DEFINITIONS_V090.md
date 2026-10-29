@@ -109,7 +109,6 @@ use that lap's actual driven XY distance, not normalized reference distance.
 
 Counts describe measurement availability, not accuracy on an independent labelled
 coaching dataset. Missing/censored events, distant associations and unknown units
-remain visible. Raw values and event sample indices are retained in JSON and
-[the measured KPI table](KPI_MEASUREMENTS_V090.csv).
-
-![Barcelona raw input and speed review](figures/corner_barcelona_v090.png)
+remain visible. Raw values and event sample indices are retained in the exported
+JSON; the selected-corner KPI table and signal charts are available directly in
+Telemetry Lap Analysis.

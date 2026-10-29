@@ -14,16 +14,6 @@ from motorsport.ingestion.barcelona import manifest_entry_path, load_barcelona_r
 from motorsport.ingestion.acgym_importer import validate_laps
 
 ROOT = Path(__file__).resolve().parents[1]
-ARCHIVE = '3b96553a10881ea654f5fe2a505cb7b3169d4d1d'
-
-
-def test_removed_subsystem_is_recoverable_and_absent_from_active_source():
-    inventory = json.loads((ROOT/'docs/archive/RETIRED_FILES_V082.json').read_text(encoding='utf-8'))
-    archived = set(subprocess.check_output(['git','ls-tree','-r','--name-only', ARCHIVE], cwd=ROOT, text=True).splitlines())
-    for group, names in inventory['groups'].items():
-        for name in names:
-            assert name in archived and not (ROOT/name).exists(), (group, name)
-    assert not any(name.endswith(('.joblib', '.keras', '.local-signing-key')) for name in archived)
 
 
 def test_active_import_graph_and_dependencies_do_not_reference_prediction():
@@ -135,7 +125,10 @@ def test_analysis_capability_registry_contains_no_training_gates():
         'validated_lap_analysis','lap_progress_comparison','cumulative_lap_delta','verified_lap_timing'}
 
 
-@pytest.mark.skipif(not (ROOT/'data/raw/acgym_barcelona_dallara').exists(), reason='Local recorded payload not installed')
+@pytest.mark.skipif(not all((ROOT/name).exists() for name in (
+    'data/raw/acgym_barcelona_dallara','data/raw/acgym_monza_dallara',
+    'data/raw/gt7_trial_mountain_962c','data/raw/telemetry.parquet')),
+    reason='Full optional regression corpus not installed')
 def test_actual_analysis_regression_and_all_205_barcelona_laps():
     from scripts.verify_data_analysis_v082 import verify
     result = verify(check_local_files=False)

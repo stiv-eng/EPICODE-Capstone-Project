@@ -2,7 +2,7 @@
 
 The engine consumes **actual metric X/Y**. Barcelona coordinates are read from
 existing LD channels with the author's Y/-X horizontal mapping. No velocity or
-normalized-progress reconstruction is used. See [the pre-implementation gate](TELEMETRY_DATA_FEASIBILITY_V090.md).
+normalized-progress reconstruction is used.
 
 ## Spatial numerical contract
 
@@ -78,6 +78,5 @@ threshold can merge adjacent same-direction runs, so counts need not increase
 monotonically. Across analyzed laps using the same reference, boundaries are
 identical by construction and verified in all 32 evaluated cases.
 
-![Actual Barcelona reference geometry](figures/geometry_barcelona_v090.png)
-
-![Actual GT7 reference geometry](figures/geometry_gt7_v090.png)
+Inspect the reference geometry and selected-corner signals directly in
+Telemetry Lap Analysis using the installed recordings.
