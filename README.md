@@ -118,6 +118,8 @@ Tests use pytest and Streamlit AppTest. Synthetic fixtures run without downloade
 recordings; real-source checks skip when their optional inputs are absent. The
 frozen full-corpus regression additionally needs the original local attachment
 and all three recording bundles. No live LLM inference is required by the tests.
+Run the complete suite from a full Git clone: two source-preservation checks
+compare against historical commits, which are unavailable in a source ZIP.
 
 The active project contains telemetry analysis and optional local coaching.
 FastF1 and experimental SVR/GRU/progressive lap-time prediction are retired.
