@@ -1,0 +1,82 @@
+SINOSSI PROGETTO: 
+
+Motorsport Telemetry Analyzer
+Python-Based Motorsport Data Analysis & AI Driving Coach
+
+Motorsport Telemetry Analyzer è un'applicazione sviluppata in Python
+per l'analisi, la visualizzazione e il confronto di dati telemetrici provenienti da simulatori di guida, 
+con l'obiettivo di valutare le prestazioni del veicolo e del pilota, identificare le principali differenze 
+tra giri e fornire suggerimenti pratici per migliorare la performance.
+
+Il progetto combina tecniche di Data Analysis, Vehicle Dynamics, elaborazione numerica e intelligenza artificiale generativa
+, all'interno di una dashboard interattiva sviluppata con Streamlit.
+
+---------------------------------------------------------------------------------------------------------------------------------
+Funzionalità principali
+---------------------------------------------------------------------------------------------------------------------------------
+
+1. Gestione e analisi dei dati telemetrici
+
+L'applicazione permette di importare e analizzare dataset di telemetria, inclusi file in formato Parquet, provenienti da simulazioni 
+di guida come Assetto Corsa e Gran Turismo 7, compatibilmente con i canali disponibili.
+
+I dati vengono elaborati tramite pipeline Python che verificano la completezza dei giri, la coerenza dei segnali e la disponibilità 
+delle informazioni necessarie alle diverse analisi.
+
+2. Dashboard interattiva e Data Exploration
+
+L'interfaccia è organizzata in sezioni dedicate alla panoramica della sessione, all'esplorazione dei dati e al confronto delle prestazioni.
+
+La dashboard consente di:
+- Visualizzare e confrontare segnali come velocità, accelerazioni longitudinali e laterali, sterzo, freno e acceleratore.
+- Analizzare il comportamento dinamico del veicolo attraverso grafici temporali e diagrammi G-G.
+- Esplorare i canali disponibili e le statistiche della sessione.
+- Sovrapporre e confrontare giri differenti tramite grafici interattivi, cursori sincronizzati e selezione dei segnali.
+
+3. Lap Analysis e identificazione delle curve.
+
+Una delle componenti principali è il sistema di analisi deterministica del giro, sviluppato per identificare e caratterizzare le diverse sezioni del circuito.
+Il sistema utilizza le coordinate spaziali del veicolo, il ricampionamento lungo la traiettoria, tecniche di filtraggio e il calcolo della curvatura per 
+identificare le curve e determinarne le caratteristiche geometriche.
+I giri vengono confrontati attraverso un allineamento spaziale rispetto a una traiettoria di riferimento, permettendo di calcolare differenze temporali 
+in funzione della posizione sul tracciato.
+Sono disponibili circa 35 Key Performance Indicators per curva, relativi a frenata, velocità, sterzo, accelerazione, tempi di percorrenza e altri 
+parametri di guida.
+L'analisi include controlli sull'affidabilità dei dati e sulla validità dell'allineamento, con gestione delle sezioni non verificabili e dei delta 
+temporali non attribuibili in modo affidabile.
+
+4. AI Driving Coach
+Il progetto integra un assistente basato su un **Large Language Model (LLM)**, progettato per interpretare i risultati dell'analisi telemetrica e proporre 
+esperimenti di guida finalizzati al miglioramento delle prestazioni.
+L'integrazione utilizza LM Studio, che permette di eseguire localmente il modello linguistico Qwen3-1.7B, in formato GGUF quantizzato, attraverso un server 
+API compatibile con OpenAI.
+
+Sono previste due modalità:
+- Lap Coaching: valutazione complessiva del giro, con identificazione delle principali opportunità di miglioramento.
+- Corner Coaching: analisi specifica di una curva selezionata, con suggerimenti mirati.
+
+Il feedback segue una struttura Summary e Recommended Actions, nella quale ogni suggerimento collega evidenze telemetriche, 
+azioni pratiche e parametri per verificarne l'efficacia.
+L'inferenza viene eseguita localmente e soltanto su richiesta dell'utente, senza necessità di API commerciali o servizi cloud per la generazione.
+
+---------------------------------------------------------------------------------------------------------------------------------
+Architettura e tecnologie
+---------------------------------------------------------------------------------------------------------------------------------
+- Python: linguaggio principale e organizzazione modulare dell'applicazione.
+- Pandas e NumPy: gestione, trasformazione ed elaborazione numerica dei dataset.
+- Elaborazione numerica dei segnali: ricampionamento spaziale, filtraggio, analisi della curvatura e calcolo dei KPI.
+- Plotly: grafici telemetrici interattivi e visualizzazione dei risultati.
+- Streamlit: sviluppo dell'interfaccia web interattiva, utilizzabile tramite browser.
+- LM Studio e Qwen3-1.7B: esecuzione locale del modello linguistico e generazione del coaching.
+- API HTTP locali: comunicazione tra il backend Python e il modello LLM.
+- Git/GitHub e VS Code: versionamento, sviluppo e organizzazione del progetto.
+- Pytest: test automatizzati delle principali funzionalità e dei componenti di integrazione.
+
+---------------------------------------------------------------------------------------------------------------------------------
+Risultato del progetto
+---------------------------------------------------------------------------------------------------------------------------------
+Il risultato è una piattaforma modulare che trasforma dati telemetrici grezzi in informazioni tecniche consultabili e confrontabili, 
+unendo analisi numeriche affidabili e interpretazione assistita dall'intelligenza artificiale.
+Il progetto dimostra l'applicazione concreta di competenze di programmazione Python, ingegneria del veicolo, analisi dei dati, 
+sviluppo software e integrazione di LLM locali a un problema ingegneristico legato al motorsport.
+
